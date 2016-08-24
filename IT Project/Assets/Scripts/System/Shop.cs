@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Shop : MonoBehaviour {
 
-	public HashSet<Item> itmes { get;} = new HashSet<Item> ();
+	//public HashSet<Item> itmes { get;} = new HashSet<Item> ();
 
 	// TODO
 	public void purchase(Item item) {
