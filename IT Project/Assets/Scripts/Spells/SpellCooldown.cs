@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SpellCooldown : MonoBehaviour {
 
     public List<Spell> spells;
-
+    
     void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
