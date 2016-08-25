@@ -1,37 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TapToMove : MonoBehaviour {
-
+public class CharacterNavigation : MonoBehaviour {
 
     private NavMeshAgent navMeshAgent;
 
-
 	// Use this for initialization
-	void Start () {
-
+	public void Start () {
         navMeshAgent = GetComponent<NavMeshAgent>();
-
-
     }
 	
-	// Update is called once per frame
-	void Update () {
-
-        if (Input.GetButton("Fire1"))
-        {
-
-            Move();
-
-
-        }
-
-	
-	}
-
-
-
-    void Move()
+    public void Move()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
