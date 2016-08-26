@@ -7,5 +7,5 @@ public abstract class Trinket : Item {
 
 	public abstract void applyEffect(Character character);
 
-	string getDescription();
+	public abstract string getDescription();
 }
