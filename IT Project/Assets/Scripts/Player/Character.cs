@@ -38,6 +38,22 @@ public class Character : MonoBehaviour {
 
     }
 
+	public int getCoin() {
+		return this.goldEarn;
+	}
+
+	public bool hasSpaceForItem(Item item) {
+		return true; // TODO
+	}
+
+	public void addItem(Item item) {
+		return; // TODO
+	}
+
+	public void deductCoin(int coin) {
+		return; // TODO
+	}
+
     public void TakeDamage(float f)
     {
         currentHealth -= f;

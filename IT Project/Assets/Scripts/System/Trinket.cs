@@ -5,5 +5,7 @@ public abstract class Trinket : Item {
 
 	public abstract int getPrice ();
 
-	public abstract void applyEffect(); // TODO need Player class
+	public abstract void applyEffect(Character character);
+
+	string getDescription();
 }

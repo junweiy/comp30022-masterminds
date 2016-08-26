@@ -1,29 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 
 public class Shop : MonoBehaviour {
 
-	//public HashSet<Item> itmes { get;} = new HashSet<Item> ();
-
-	// TODO
-	public void purchase(Item item) {
+	private HashSet<Item> items {
+		get { return items; }
+		set { items = value; }
 	}
 
 
-	// TODO need Player class
-	public bool canPurchase(Item item) {
-		return false;
+	public bool canPurchase(Item item, Character character) {
+		return (character.getCoin() >= item.getPrice()) && character.hasSpaceForItem(item);
 	}
 
+	public void purchase(Item item, Character character) {
+		if (canPurchase (item, character)) {
+			character.addItem (item);
+			character.deductCoin (item.getPrice ());
+		}
+	}
 
-	// Use this for initialization
-	void Start () {
-	
+	public HashSet<Item> getPurchasableItems(Character character) {
+		return (HashSet<Item>) this.items.Where(i => this.canPurchase(i, character));
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	// create a empty shop
+	public Shop() {
+		this.items = new HashSet<Item> ();
 	}
+
+	// create a shop with provided items
+	public Shop(IEnumerable<Item> items) {
+		this.items = new HashSet<Item> (items);
+	}
+
 }
