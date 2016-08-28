@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SpellCooldown : MonoBehaviour {
 
-    public List<Spell> spells;
+	public List<DummySpell> spells;
     
     void FixedUpdate()
     {
@@ -29,7 +29,7 @@ public class SpellCooldown : MonoBehaviour {
 
     void Update()
     {
-        foreach (Spell s in spells)
+		foreach (DummySpell s in spells)
         {
             if (s.currentCooldown < s.cooldown)
             {
@@ -42,7 +42,7 @@ public class SpellCooldown : MonoBehaviour {
 }
 
 [System.Serializable]
-public class Spell
+public class DummySpell
 {
     public float cooldown;
     public Image spellIcon;

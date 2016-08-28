@@ -1,26 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class StateController {
+public static class StateController {
 
-	void switchBackToGamePlay() {
-		// TODO
+	public static void switchBackToGamePlay() {
+		SceneManager.LoadScene ("scenes/gameplay");
 	}
 
-	void switchToResult() {
-		// TODO
+	public static void switchToResult() {
+		SceneManager.LoadScene ("scenes/result");
 	}
 
-	void switchToShop() {
-		// TODO
+	public static void switchToShop() {
+		SceneManager.LoadScene ("scenes/shop");
 	}
 		
-	void switchToNewRound() { 
-		// TODO
-	}
-
-	void onPlayerDead() {
-		// TODO
+	public static void switchToNewRound() { 
+		SceneManager.LoadScene ("scenes/gameplay");
+		GameController.prepareForNewRound ();
 	}
 		
 }

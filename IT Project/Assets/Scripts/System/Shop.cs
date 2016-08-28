@@ -3,13 +3,12 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 
-public class Shop : MonoBehaviour {
+public class Shop {
 
 	private HashSet<Item> items {
 		get { return items; }
 		set { items = value; }
 	}
-
 
 	public bool canPurchase(Item item, Character character) {
 		return (character.getCoin() >= item.getPrice()) && character.hasSpaceForItem(item);
