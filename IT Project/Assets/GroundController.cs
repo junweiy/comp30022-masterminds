@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GroundController : MonoBehaviour {
 
-	// 
+	// Seconds between every shrink
 	public float secondsBetweenShrinking;
 	// The minimum size presented as a ratio to the initial size
 	public float minScalableSizeRatio;
