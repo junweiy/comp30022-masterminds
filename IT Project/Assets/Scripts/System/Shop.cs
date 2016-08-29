@@ -11,13 +11,13 @@ public class Shop {
 	}
 
 	public bool canPurchase(Item item, Character character) {
-		return (character.getCoin() >= item.getPrice()) && character.hasSpaceForItem(item);
+		return (character.getCoin() >= item.getPurchasePrice()) && character.hasSpaceForItem(item);
 	}
 
 	public void purchase(Item item, Character character) {
 		if (canPurchase (item, character)) {
 			character.addItem (item);
-			character.deductCoin (item.getPrice ());
+			character.deductCoin (item.getPurchasePrice ());
 		}
 	}
 
