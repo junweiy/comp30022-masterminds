@@ -4,7 +4,7 @@ using System.Collections;
 public class ItemButtonScript : MonoBehaviour {
 
 	public ShopController controller;
-	public Item item { get; set; }
+	private Item item;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +19,6 @@ public class ItemButtonScript : MonoBehaviour {
 	public void onClick() {
 		controller.test ();
 		// TODO Enabled only item can be assigned an instance
-		// controller.selectedItem = this.item;
+		controller.selectedItem = this.item;
 	}
 }

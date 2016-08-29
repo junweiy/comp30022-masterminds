@@ -12,11 +12,7 @@ public class GlobalState {
 		return instance;
 	}
 
-	public Character currentChar {
-		get {
-			return currentChar;
-		}
-	}
+	public Character currentChar { get;	private set; }
 
 
 }

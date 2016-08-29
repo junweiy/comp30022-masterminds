@@ -51,7 +51,11 @@ public class Character : MonoBehaviour {
 	}
 
 	public void deductCoin(int coin) {
-		return; // TODO
+		this.goldEarn -= coin;
+	}
+
+	public bool hasItem (Item item) {
+		return false; // TODO
 	}
 
     public void TakeDamage(float f)
@@ -64,6 +68,10 @@ public class Character : MonoBehaviour {
         }
 
     }
+
+	public string getName() {
+		return "Character"; // TODO
+	}
 
     private void OnDeath()
     {

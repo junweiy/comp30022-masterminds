@@ -3,8 +3,6 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
-	public static Character playerCharacter;
-
 	private int numPlayer;
 
 	private static void setCharactersPos() {

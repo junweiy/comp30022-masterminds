@@ -6,18 +6,21 @@ public class ShopController : MonoBehaviour {
 	private Shop shop;
 	public ItemInfoPanelScript infoPanel;
 
+	private Item _selectedItem;
+
 	public Item selectedItem {
 		get {
-			return selectedItem;
+			return _selectedItem;
 		}
 		set {
-			this.selectedItem = value;
+			this._selectedItem = value;
 			infoPanel.updateInfo (value);
 		}
 	}
 
 	// Use this for initialization
 	void Start () {
+		this.shop = new Shop();
 	}
 
 	public bool canPurchase(Item item) {
