@@ -34,7 +34,7 @@ public class Character : MonoBehaviour {
             nav.Move();
         }
 
-        TakeDamage(0.1f);
+        //TakeDamage(0.1f);
 
     }
 
