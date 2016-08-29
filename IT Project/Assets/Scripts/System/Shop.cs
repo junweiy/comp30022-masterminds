@@ -5,19 +5,16 @@ using System.Collections.Generic;
 
 public class Shop {
 
-	private HashSet<Item> items {
-		get { return items; }
-		set { items = value; }
-	}
+	private HashSet<Item> items;
 
 	public bool canPurchase(Item item, Character character) {
-		return (character.getCoin() >= item.getPurchasePrice()) && character.hasSpaceForItem(item);
+		return (character.getCoin() >= item.PurchasePrice) && character.hasSpaceForItem(item);
 	}
 
 	public void purchase(Item item, Character character) {
 		if (canPurchase (item, character)) {
 			character.addItem (item);
-			character.deductCoin (item.getPurchasePrice ());
+			character.deductCoin (item.PurchasePrice);
 		}
 	}
 

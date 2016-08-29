@@ -8,7 +8,7 @@ public class ItemButtonScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		item = new LifeNecklace (); // TODO to be deleted after proper item button generation
 	}
 	
 	// Update is called once per frame
@@ -17,8 +17,6 @@ public class ItemButtonScript : MonoBehaviour {
 	}
 
 	public void onClick() {
-		controller.test ();
-		// TODO Enabled only item can be assigned an instance
 		controller.selectedItem = this.item;
 	}
 }

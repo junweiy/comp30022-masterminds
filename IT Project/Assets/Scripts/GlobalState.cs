@@ -8,6 +8,7 @@ public class GlobalState {
 	public static GlobalState getInstance() {
 		if (instance == null) {
 			instance = new GlobalState ();
+			instance.currentChar = new Character (); // TODO testing only
 		}
 		return instance;
 	}
