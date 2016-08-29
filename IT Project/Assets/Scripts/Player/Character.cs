@@ -23,7 +23,7 @@ public class Character : MonoBehaviour {
         nav = GetComponent<CharacterNavigation>();
         health = GetComponent<HealthBar>();
         isDead = false;
-        health.SetHealth(maximumHealth, currentHealth);
+		health.SetHealth(currentHealth, maximumHealth);
     }
 	
 	// Update is called once per frame
@@ -79,6 +79,13 @@ public class Character : MonoBehaviour {
 		GameController.onCharacterDeath ();
         Destroy(this);
     }
+
+	// For debugging only
+	void OnCollisionEnter(Collision collision) {
+		if (collision.gameObject.name != "Ground" && collision.gameObject.name != "Lava") {
+			Debug.Log (collision.gameObject.name);
+		}
+	}
 
 
 

@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class LavaController : MonoBehaviour {
+	// Health Point dropped every time
 	public int healthDropPerTime;
+	// Time between HP dropping in seconds
 	public int healthDropSecondsInterval;
 	private List<Character> characterList;
 
-	// Use this for initialization
+
 	void Start () {
 		characterList = new List<Character> ();
 	}
