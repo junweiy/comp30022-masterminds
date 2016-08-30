@@ -4,7 +4,7 @@ using System.Collections;
 public class LifeNecklace : Item {
 	public int maxHPIncreased;
 	
-	public LifeNecklace() : base("Life Necklace", "Equipment", 100, 200, "It is a item that can increase the max of HP.") {
+	public LifeNecklace() : base("Life Necklace", ItemTypeEnum.Equipment, 100, 200, "It is a item that can increase the max of HP.") {
 	}
 		
 

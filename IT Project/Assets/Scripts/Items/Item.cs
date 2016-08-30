@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum ItemTypeEnum {Spell, Equipment, Upgrade}
+
 abstract public class Item {
 	// Name of the item
 	private string itemName;
@@ -9,8 +11,8 @@ abstract public class Item {
 		set { itemName = value; }
 	}
     // Type of the item
-    private string itemType;
-    public string ItemType
+	private ItemTypeEnum itemType;
+	public ItemTypeEnum ItemType
     {
         get { return itemType; }
         set { itemType = value; }
@@ -35,7 +37,7 @@ abstract public class Item {
 	}
 
 	// Initialise an Item instance with given information
-	public Item(string name, string type, int sellingPrice, int purchasePrice, string description) {
+	public Item(string name, ItemTypeEnum type, int sellingPrice, int purchasePrice, string description) {
 		this.itemName = name;
         this.itemType = type;
 		this.sellingPrice = sellingPrice;
