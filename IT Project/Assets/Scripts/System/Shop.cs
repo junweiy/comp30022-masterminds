@@ -22,6 +22,11 @@ public class Shop {
 		return (HashSet<Item>) this.items.Where(i => this.canPurchase(i, character));
 	}
 
+    public HashSet<Item> getPurchasableEquipments()
+    {
+        return (this.items);
+    }
+
 	// create a empty shop
 	public Shop() {
 		this.items = new HashSet<Item> ();
@@ -31,5 +36,11 @@ public class Shop {
 	public Shop(IEnumerable<Item> items) {
 		this.items = new HashSet<Item> (items);
 	}
+
+    public Shop(Item item)
+    {
+        this.items = new HashSet<Item>();
+        this.items.Add(item);
+    }
 
 }

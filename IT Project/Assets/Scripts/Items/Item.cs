@@ -8,8 +8,15 @@ abstract public class Item {
 		get { return itemName; }
 		set { itemName = value; }
 	}
-	// The price of selling the item back to shop
-	private int sellingPrice;
+    // Type of the item
+    private string itemType;
+    public string ItemType
+    {
+        get { return itemType; }
+        set { itemType = value; }
+    }
+    // The price of selling the item back to shop
+    private int sellingPrice;
 	public int SellingPrice {
 		get { return sellingPrice;}
 		set { sellingPrice = value;}
@@ -28,8 +35,9 @@ abstract public class Item {
 	}
 
 	// Initialise an Item instance with given information
-	public Item(string name, int sellingPrice, int purchasePrice, string description) {
+	public Item(string name, string type, int sellingPrice, int purchasePrice, string description) {
 		this.itemName = name;
+        this.itemType = type;
 		this.sellingPrice = sellingPrice;
 		this.purchasePrice = purchasePrice;
 		this.description = description;
