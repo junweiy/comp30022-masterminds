@@ -19,4 +19,9 @@ public class ItemInfoPanelScript : MonoBehaviour {
 		}
 		// TODO
 	}
+
+    public void onclick()
+    {
+        Destroy(GameObject.Find("InfoPanel(Clone)"));
+    }
 }

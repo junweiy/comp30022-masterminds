@@ -41,9 +41,4 @@ public class CreateButtons : MonoBehaviour {
 
     }
 
-    //void ButtonClicked(int buttonNo)
-    //{
-    //   Debug.Log("Button clicked = " + buttonNo);
-    //}
-
 }
