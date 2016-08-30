@@ -4,16 +4,40 @@ using System.Collections;
 public class GlobalState {
 
 	// Singleton implementation
-	public static GlobalState instance;
-	public static GlobalState getInstance() {
-		if (instance == null) {
-			instance = new GlobalState ();
-			instance.currentChar = new Character (); // TODO testing only
+	private static GlobalState _instance;
+	public static GlobalState instance {
+		get {
+			if (_instance == null) {
+				_instance = new GlobalState ();
+			}
+			return _instance;
 		}
-		return instance;
 	}
 
-	public Character currentChar { get;	private set; }
+	private Character _currentChar = null;
+	public Character currentChar {
+		get {
+			return _currentChar;
+		}
+		set {
+			if (_currentChar != null) {
+				Debug.LogWarning ("currentChar is overriden"); // defensive
+			}
+			_currentChar = value;
+		}
+	}
 
+	private GameController _gameController = null;
+	public GameController gameController {
+		get {
+			return _gameController;
+		}
+		set {
+			if (_gameController != null) {
+				Debug.LogWarning ("gameController is overriden");
+			}
+			_gameController = value;
+		}
+	}
 
 }

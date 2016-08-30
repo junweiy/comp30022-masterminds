@@ -76,7 +76,7 @@ public class Character : MonoBehaviour {
     private void OnDeath()
     {
         isDead = true;
-		GameController.onCharacterDeath ();
+		GlobalState.instance.gameController.onCharacterDeath ();
         Destroy(this);
     }
 

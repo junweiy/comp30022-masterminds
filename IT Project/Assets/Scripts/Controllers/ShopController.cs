@@ -24,11 +24,11 @@ public class ShopController : MonoBehaviour {
 	}
 
 	public bool canPurchase(Item item) {
-		return this.shop.canPurchase (item, GlobalState.getInstance().currentChar);
+		return this.shop.canPurchase (item, GlobalState.instance.currentChar);
 	}
 
 	public void purchase() {
-		this.shop.purchase (selectedItem, GlobalState.getInstance().currentChar);
+		this.shop.purchase (selectedItem, GlobalState.instance.currentChar);
 	}
 
 	public void nextRound() {

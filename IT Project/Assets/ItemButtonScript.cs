@@ -4,7 +4,7 @@ using System.Collections;
 public class ItemButtonScript : MonoBehaviour {
 
 	public ShopController controller;
-	private Item item;
+	public Item item {get; set;}
 
 	// Use this for initialization
 	void Start () {
