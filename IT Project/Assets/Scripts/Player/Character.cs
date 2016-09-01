@@ -14,6 +14,9 @@ public class Character : MonoBehaviour {
     public int score;
     public int goldEarn;
 
+	public GameObject fireBall;
+	public Transform spellSpawn;
+
     private bool isDead;
 
     private CharacterNavigation nav;
@@ -33,6 +36,10 @@ public class Character : MonoBehaviour {
         {
             nav.Move();
         }
+
+		if (Input.GetKey ("space")) {
+			Instantiate (fireBall, spellSpawn.position, spellSpawn.rotation);
+		}
 
         //TakeDamage(0.1f);
 
