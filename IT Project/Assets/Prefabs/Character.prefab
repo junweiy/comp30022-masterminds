@@ -98,8 +98,8 @@ GameObject:
   - 195: {fileID: 19562870}
   - 54: {fileID: 5470598}
   - 114: {fileID: 11433556}
-  - 114: {fileID: 11427698}
-  - 114: {fileID: 114000010707251754}
+  - 114: {fileID: 114000014040943592}
+  - 114: {fileID: 114000012830686726}
   m_Layer: 0
   m_Name: Character
   m_TagString: Character
@@ -131,7 +131,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182450}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 372, y: 10, z: 289}
+  m_LocalPosition: {x: 372, y: 11, z: 289}
   m_LocalScale: {x: 20, y: 10, z: 20}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -231,23 +231,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11427698
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 182450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196da49a900c8474a983ff18d062294e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maximumHealth: 100
-  currentHealth: 100
-  score: 0
-  goldEarn: 3
-  fireBall: {fileID: 0}
-  spellSpawn: {fileID: 4000012486848322}
 --- !u!114 &11429126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -435,8 +418,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 182450}
   m_Enabled: 1
   m_Radius: 0.5000001
-  m_Speed: 10
-  m_Acceleration: 8
+  m_Speed: 80
+  m_Acceleration: 80
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -611,7 +594,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 417770}
   m_RootOrder: 2
---- !u!114 &114000010707251754
+--- !u!114 &114000012830686726
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -619,7 +602,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 182450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1a7c23cd2885d439d25c9eefee0608, type: 3}
+  m_Script: {fileID: 11500000, guid: c036507048f228b4eaed762b470430fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 40
+  coinNumber: {fileID: 0}
+  spellSpawn: {fileID: 4000012486848322}
+--- !u!114 &114000014040943592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 182450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34b5bcd7b5eec5458053c616bf234b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 11429254}
+  FullHealthColor: {r: 0, g: 1, b: 0, a: 1}
+  ZeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
+  fillImage: {fileID: 11416026}

@@ -775,11 +775,6 @@ MonoBehaviour:
   spawnCentreZ: 1000
   spawnCentreY: 10
   spawnDistanceFactor: 100
---- !u!4 &724279524 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000012486848322, guid: 4cbf26b1429400845994e1e301ebb129,
-    type: 2}
-  m_PrefabInternal: {fileID: 1389410756}
 --- !u!1 &815341147
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,12 +928,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 1474723021}
---- !u!114 &899327560 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11416026, guid: 4cbf26b1429400845994e1e301ebb129,
-    type: 2}
-  m_PrefabInternal: {fileID: 1389410756}
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &918524701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,69 +1429,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11427698, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
-      propertyPath: fireBall
-      value: 
-      objectReference: {fileID: 1000010462454898, guid: f22a8844b620e47158c5394648ae3004,
+    - target: {fileID: 114000012830686726, guid: 4cbf26b1429400845994e1e301ebb129,
         type: 2}
+      propertyPath: coinNumber
+      value: 
+      objectReference: {fileID: 961015061}
     - target: {fileID: 22422440, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22422440, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010707251754, guid: 4cbf26b1429400845994e1e301ebb129,
-        type: 2}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 19562870, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
-      propertyPath: m_Speed
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 19562870, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
-      propertyPath: m_Acceleration
-      value: 80
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 11427698, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
-    - {fileID: 114000010707251754, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1418132107 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 182450, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
-  m_PrefabInternal: {fileID: 1389410756}
---- !u!114 &1418132108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1418132107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b34b5bcd7b5eec5458053c616bf234b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 2035435809}
-  FullHealthColor: {r: 0, g: 1, b: 0, a: 1}
-  ZeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
-  fillImage: {fileID: 899327560}
---- !u!114 &1418132109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1418132107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c036507048f228b4eaed762b470430fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinNumber: {fileID: 961015061}
-  spellSpawn: {fileID: 724279524}
 --- !u!1 &1434024751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,12 +1734,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1753129882}
---- !u!114 &2035435809 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11429254, guid: 4cbf26b1429400845994e1e301ebb129,
-    type: 2}
-  m_PrefabInternal: {fileID: 1389410756}
-  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &2138379860
 Prefab:
   m_ObjectHideFlags: 0
