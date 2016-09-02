@@ -8,7 +8,7 @@ public class Shop {
 	private HashSet<Item> items;
 
 	public bool canPurchase(Item item, Character character) {
-		return (character.getCoin() >= item.PurchasePrice) && character.hasSpaceForItem(item);
+		return (character.Coin >= item.PurchasePrice) && character.hasSpaceForItem();
 	}
 
 	public void purchase(Item item, Character character) {

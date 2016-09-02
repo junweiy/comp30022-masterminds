@@ -1,100 +1,77 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 
 /*
  *  This class is the main class for the character. It stores all the information about the character
  *  
  * 
  */ 
-public class Character : MonoBehaviour {
+public class Character {
 
-    public float maximumHealth; 
-    public float currentHealth;
-    public int score;
-    public int goldEarn;
-
-	public GameObject fireBall;
-	public Transform spellSpawn;
+    private const float DEFAULT_HP = 100f;
+    private const int MAXIMUM_NUMBER_OF_ITEM = 6;
+    private float hp; 
+    private float maxHp;
+    private int score;
+    private int coin;
 
     private bool isDead;
 
-    private CharacterNavigation nav;
-    private HealthBar health;
-    // Use this for initialization
-    void Start () {
-        nav = GetComponent<CharacterNavigation>();
-        health = GetComponent<HealthBar>();
-        isDead = false;
-		health.SetHealth(currentHealth, maximumHealth);
+    private List<Item> items;
+
+    public Character()
+    {
+        maxHp = 100f;
+        hp = 100f;
     }
 	
-	// Update is called once per frame
-	void Update () {
-
-        if (Input.GetButton("Fire1"))
-        {
-            nav.Move();
-        }
-
-		if (Input.GetKey ("space")) {
-			Instantiate (fireBall, spellSpawn.position, spellSpawn.rotation);
-		}
-
-        //TakeDamage(0.1f);
-
-    }
-
-	public int getCoin() {
-		return this.goldEarn;
-	}
-
-	public bool hasSpaceForItem(Item item) {
-		return true; // TODO
-	}
-
-	public void addItem(Item item) {
-		return; // TODO
-	}
-
-	public void deductCoin(int coin) {
-		this.goldEarn -= coin;
-	}
-
-	public bool hasItem (Item item) {
-		return false; // TODO
-	}
-
     public void TakeDamage(float f)
     {
-        currentHealth -= f;
-        health.SetHealth(currentHealth, maximumHealth);
-        if(currentHealth <= 0 && !isDead)
+        hp -= f;
+        if(hp <= 0 && !isDead)
         {
             OnDeath();
         }
 
     }
 
-	public string getName() {
-		return "Character"; // TODO
-	}
-
     private void OnDeath()
     {
         isDead = true;
-		GlobalState.instance.gameController.onCharacterDeath ();
-        Destroy(this);
     }
 
-	// For debugging only
-	void OnCollisionEnter(Collision collision) {
-		if (collision.gameObject.name != "Ground" && collision.gameObject.name != "Lava") {
-			Debug.Log (collision.gameObject.name);
-		}
-	}
+    public void deductCoin(int c)
+    {
+        coin -= c;
+    }
 
 
+    public void addItem(Item i)
+    {
 
+    }
+
+    public bool hasSpaceForItem()
+    {
+        return items.Count <= MAXIMUM_NUMBER_OF_ITEM;
+    }
+
+    public float HP {
+        get { return this.hp; }
+        set { this.hp = value; }
+    }
+
+    public float MaxHP
+    {
+        get { return this.maxHp; }
+        set { this.maxHp = value; }
+    }
+
+    public int Coin
+    {
+        get { return this.coin; }
+        set { this.coin = value; }
+    }
 
 }
