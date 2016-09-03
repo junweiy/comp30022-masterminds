@@ -14,42 +14,43 @@ public class Character {
     private float hp; 
     private float maxHp;
     private int score;
-    private int coin;
+    private int coin = 20;
 
     private bool isDead;
 
     private List<Item> items;
+    private List<Spell> spells;
 
+    
     public Character()
     {
         maxHp = 100f;
         hp = 100f;
-    }
-	
-    public void TakeDamage(float f)
-    {
-        hp -= f;
-        if(hp <= 0 && !isDead)
-        {
-            OnDeath();
-        }
+        items = new List<Item>();
+        spells = new List<Spell>();
 
     }
 
-    private void OnDeath()
+
+
+    /*****/
+
+    public void addSpell(Spell i)
     {
-        isDead = true;
+        spells.Add(i);
     }
 
-    public void deductCoin(int c)
+    public Spell getSpell(int i)
     {
-        coin -= c;
+        return spells.ToArray()[i];
     }
+
+    /*****/
 
 
     public void addItem(Item i)
     {
-
+        items.Add(i);
     }
 
     public bool hasSpaceForItem()
@@ -57,6 +58,7 @@ public class Character {
         return items.Count <= MAXIMUM_NUMBER_OF_ITEM;
     }
 
+    /*****/
     public float HP {
         get { return this.hp; }
         set { this.hp = value; }
@@ -68,10 +70,33 @@ public class Character {
         set { this.maxHp = value; }
     }
 
+    public void TakeDamage(float f)
+    {
+        hp -= f;
+        if (hp <= 0 && !isDead)
+        {
+            OnDeath();
+        }
+
+    }
+
+    private void OnDeath()
+    {
+        isDead = true;
+    }
+
+    /**
+     *  Coin and relative function
+     */
     public int Coin
     {
         get { return this.coin; }
         set { this.coin = value; }
+    }
+
+    public void deductCoin(int c)
+    {
+        coin -= c;
     }
 
 }

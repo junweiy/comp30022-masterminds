@@ -617,9 +617,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 313586184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7495d90d323f41a289d09cda773416c, type: 3}
+  m_Script: {fileID: 11500000, guid: d7047599e36c5e04fa27b73438014261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthDropPerTime: 3
+  healthDropSecondsInterval: 1
 --- !u!1 &354006230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,12 +1438,24 @@ Prefab:
       objectReference: {fileID: 961015061}
     - target: {fileID: 22422440, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22422440, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012830686726, guid: 4cbf26b1429400845994e1e301ebb129,
+        type: 2}
+      propertyPath: spellSpawn
+      value: 
+      objectReference: {fileID: 4000011808695288, guid: 993acc0e6e6d7c6428748dcadafba1db,
+        type: 2}
+    - target: {fileID: 114000012830686726, guid: 4cbf26b1429400845994e1e301ebb129,
+        type: 2}
+      propertyPath: fireball
+      value: 
+      objectReference: {fileID: 1000010462454898, guid: 993acc0e6e6d7c6428748dcadafba1db,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
   m_IsPrefabParent: 0
