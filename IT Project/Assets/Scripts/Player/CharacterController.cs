@@ -8,19 +8,25 @@ public class CharacterController : MonoBehaviour {
     public Transform spellSpawn;
     public GameObject fireball;
 
-    private Character character;
+    public Character character;
     private HealthBarUI healthBarUI;
 	private NavMeshAgent navMeshAgent;
 
 	// Use this for initialization
 	void Start () {
-		character = new Character();
-		navMeshAgent = GetComponent<NavMeshAgent>();
-        healthBarUI = GetComponent<HealthBarUI>();
+//		character = new Character();
+//		healthBarUI = this.gameObject.AddComponent<HealthBarUI>();
+		healthBarUI = this.gameObject.GetComponent<HealthBarUI>();
     }
+
+	public void setAsPlayed() {
+		GlobalState.instance.currentChar = this.character;
+		navMeshAgent = this.gameObject.GetComponent<NavMeshAgent> ();
+	}
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log (coinNumber);
 		healthBarUI.SetHealthUI(character.HP,character.MaxHP);
         coinNumber.updateCoin(character.Coin);
 		if (Input.GetMouseButton (1)) {

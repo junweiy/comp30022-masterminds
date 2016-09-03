@@ -18,7 +18,7 @@ public static class StateController {
 		
 	public static void switchToNewRound() { 
 		SceneManager.LoadScene ("scenes/gameplay");
-		GlobalState.instance.gameController.prepareForNewRound ();
+		GlobalState.instance.gameController.prepareForNextRound ();
 	}
 		
 }

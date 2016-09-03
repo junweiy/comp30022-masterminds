@@ -15,7 +15,11 @@ public class GameController : MonoBehaviour {
 		new Vector2(0.707f, -0.707f),
 	};
 
-	private int numCharacter;
+	private int numCharacterAlive;
+	private Character[] characters;
+	public GameObject camera;
+	public GameObject characterPrefab;
+	public GameObject coinNumber;
 	public float spawnCentreX;
 	public float spawnCentreZ;
 	public float spawnCentreY;
@@ -34,13 +38,37 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	public void prepareForNewRound () {
+	public void initialiseScene(Character[] characters) {
+		this.characters = characters;
+		prepareForNextRound ();
+	}
+
+	public void prepareForNextRound () {
+		foreach (Character c in characters) {
+			var characterObj = Instantiate<GameObject> (characterPrefab);
+			characterObj.tag = "Character";
+			var charController = characterObj.GetComponent<CharacterController> ();
+			var navigation = characterObj.GetComponent<CharacterNavigation> ();
+			charController.character = c;
+
+			if (c == GlobalState.instance.currentChar) {
+				navigation.enabled = true;
+				charController.setAsPlayed ();
+				charController.coinNumber = coinNumber.gameObject.GetComponent<DisplayPlayerCoin> ();
+				Debug.Log (charController.coinNumber);
+				camera.GetComponent<CameraControl> ().m_Target = characterObj.transform;
+			} else {
+				navigation.enabled = false;
+			}
+		}
+
+		numCharacterAlive = characters.Length;
 		setCharactersPos();
 	}
 		
 	public void onCharacterDeath() {
-		this.numCharacter -= 1;
-		if (numCharacter <= 1) {
+		this.numCharacterAlive -= 1;
+		if (numCharacterAlive <= 1) {
 			Debug.Log ("Round Finished");
 			StateController.switchToResult ();
 		}
@@ -49,9 +77,11 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		GlobalState.instance.gameController = this;
-		numCharacter = GameObject.FindGameObjectsWithTag("Character").Length;
 
-		prepareForNewRound ();
+		// TODO for test only
+		var current = new Character();
+		GlobalState.instance.currentChar = current;
+		this.initialiseScene(new Character[] {current, new Character(), new Character()});
 	}
 	
 	// Update is called once per frame

@@ -19,14 +19,26 @@ public class Shop {
 	}
 
 	public HashSet<Item> getPurchasableItems(Character character) {
-		return (HashSet<Item>) this.items.Where(i => this.canPurchase(i, character));
+		var ret = new HashSet<Item> ();
+		foreach (Item i in items) {
+			if (canPurchase(i, character)) {
+				ret.Add (i);
+			}
+		}
+		return ret;
 	}
 
-    public HashSet<Item> getPurchasableEquipments()
-    {
-        return (this.items);
-    }
+	public HashSet<Item> getPurchaseableItemsWithType(Character character, ItemTypeEnum type) {
+		var ret = new HashSet<Item> ();
+		foreach (Item i in getPurchasableItems(character)) {
+			if (i.ItemType == type) {
+				ret.Add (i);
+			}
+		}
+		return ret;
+	}
 
+   
 	// create a empty shop
 	public Shop() {
 		this.items = new HashSet<Item> ();

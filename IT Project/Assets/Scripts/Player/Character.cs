@@ -83,6 +83,7 @@ public class Character {
     private void OnDeath()
     {
         isDead = true;
+		GlobalState.instance.gameController.onCharacterDeath ();
     }
 
     /**
