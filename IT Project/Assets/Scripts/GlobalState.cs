@@ -21,7 +21,7 @@ public class GlobalState {
 		}
 		set {
 			if (_currentChar != null) {
-				Debug.LogWarning ("currentChar is overriden"); // defensive
+				Debug.LogWarning ("currentChar is overriden");
 			}
 			_currentChar = value;
 		}
@@ -43,5 +43,27 @@ public class GlobalState {
 	public static bool isCurrentChar(Character c) {
 		return c == GlobalState.instance.currentChar;
 	}
+
+	private int _totalNumRounds = 5;
+	public int totalNumRounds {
+		get {
+			return _totalNumRounds;
+		} set {
+			_totalNumRounds = value;
+		}
+	}
+
+	private int numRoundsFinished = 0;
+
+	public bool numRoundsIncrement() {
+		numRoundsFinished += 1;
+		Debug.Log (numRoundsFinished);
+		return numRoundsFinished >= totalNumRounds;
+	}
+
+	public void resetNumRoundsCounter() {
+		numRoundsFinished = 0;
+	}
+
 
 }

@@ -27,6 +27,10 @@ public class CharacterController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
+		if (!GlobalState.isCurrentChar (character)) {
+			character.TakeDamage (0.3f);
+		}
 		
 		healthBarUI.SetHealthUI(character.HP,character.MaxHP);
 

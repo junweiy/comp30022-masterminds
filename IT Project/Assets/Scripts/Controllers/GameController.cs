@@ -28,8 +28,7 @@ public class GameController : MonoBehaviour {
 	private void setCharactersPos() {
 		GameObject[] characterObjs = GameObject.FindGameObjectsWithTag("Character");
 		int numCharacter = characterObjs.Length;
-		Debug.Log (numCharacter);
-		// need map size, ground types etc
+		// need map size, ground types etc for more adaptive algorithm
 		for (int i = 0; i < numCharacter; i++) {
 			float xOffset = positions [i].x;
 			float zOffset = positions [i].y;
@@ -53,7 +52,6 @@ public class GameController : MonoBehaviour {
 			var charController = characterObj.GetComponent<CharacterController> ();
 			charController.initialise (c,false);
 			if (GlobalState.isCurrentChar (c)) {
-				//charController.coinNumber = coinNumber.gameObject.GetComponent<DisplayPlayerCoin> ();
 				mainCamera.GetComponent<CameraControl> ().m_Target = characterObj.transform;
 				charController.setAsMainCharacter ();
 			}
@@ -69,7 +67,7 @@ public class GameController : MonoBehaviour {
 		this.numCharacterAlive -= 1;
 		if (numCharacterAlive <= 1) {
 			Debug.Log ("Round Finished");
-			StateController.switchToResult ();
+			StateController.finishRound();
 		}
 	}
 
@@ -77,7 +75,7 @@ public class GameController : MonoBehaviour {
 	void Start () {
 		GlobalState.instance.gameController = this;
 
-		// TODO for test only
+		// TODO for test only, will need to read player input
 		var current = new Character();
 		GlobalState.instance.currentChar = current;
 		this.initialiseScene(new Character[] {current, new Character(), new Character(), new Character(), new Character(),
