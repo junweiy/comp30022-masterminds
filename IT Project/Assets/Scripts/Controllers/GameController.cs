@@ -28,13 +28,11 @@ public class GameController : MonoBehaviour {
 	private void setCharactersPos() {
 		GameObject[] characterObjs = GameObject.FindGameObjectsWithTag("Character");
 		int numCharacter = characterObjs.Length;
+		Debug.Log (numCharacter);
 		// need map size, ground types etc
 		for (int i = 0; i < numCharacter; i++) {
 			float xOffset = positions [i].x;
 			float zOffset = positions [i].y;
-			Debug.Log (i);
-			Debug.Log (xOffset);
-			Debug.Log (zOffset);
 			characterObjs [i].SetActive (false);
 			characterObjs [i].transform.position = new Vector3 (
 				spawnCentreX + xOffset * spawnDistance,
@@ -52,24 +50,18 @@ public class GameController : MonoBehaviour {
 	public void prepareForNextRound () {
 		foreach (Character c in characters) {
 			var characterObj = Instantiate<GameObject> (characterPrefab);
-			characterObj.tag = "Character";
 			var charController = characterObj.GetComponent<CharacterController> ();
-			var navigation = characterObj.GetComponent<CharacterNavigation> ();
-			charController.character = c;
-		
-			if (c == GlobalState.instance.currentChar) {
-				navigation.enabled = true;
-				charController.setAsPlayed ();
+			charController.initialise (c);
+			if (GlobalState.isCurrentChar (c)) {
 				charController.coinNumber = coinNumber.gameObject.GetComponent<DisplayPlayerCoin> ();
-				Debug.Log (charController.coinNumber);
 				mainCamera.GetComponent<CameraControl> ().m_Target = characterObj.transform;
-			} else {
-				navigation.enabled = false;
 			}
 		}
 
 		numCharacterAlive = characters.Length;
 		setCharactersPos();
+
+		mainCamera.GetComponent<CameraControl> ().enabled = true;
 	}
 		
 	public void onCharacterDeath() {
@@ -88,7 +80,7 @@ public class GameController : MonoBehaviour {
 		var current = new Character();
 		GlobalState.instance.currentChar = current;
 		this.initialiseScene(new Character[] {current, new Character(), new Character(), new Character(), new Character(),
-			new Character(), new Character(), new Character(), new Character()});
+			new Character(), new Character(), new Character()});
 	}
 	
 	// Update is called once per frame

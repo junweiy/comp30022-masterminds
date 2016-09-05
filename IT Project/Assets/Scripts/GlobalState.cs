@@ -40,4 +40,8 @@ public class GlobalState {
 		}
 	}
 
+	public static bool isCurrentChar(Character c) {
+		return c == GlobalState.instance.currentChar;
+	}
+
 }

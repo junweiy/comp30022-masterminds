@@ -9,27 +9,27 @@ public class CharacterController : MonoBehaviour {
     public GameObject fireball;
 
     public Character character;
-    private HealthBarUI healthBarUI;
+	private HealthBarUI healthBarUI;
 	private NavMeshAgent navMeshAgent;
 
 	// Use this for initialization
-	void Start () {
-//		character = new Character();
-//		healthBarUI = this.gameObject.AddComponent<HealthBarUI>();
-		healthBarUI = this.gameObject.GetComponent<HealthBarUI>();
-    }
-
-	public void setAsPlayed() {
-		GlobalState.instance.currentChar = this.character;
-		navMeshAgent = this.gameObject.GetComponent<NavMeshAgent> ();
+	public void initialise(Character c) {
+		this.healthBarUI = this.gameObject.GetComponent<HealthBarUI> ();
+		this.gameObject.tag = "Character";
+		navMeshAgent = this.GetComponent<NavMeshAgent> ();
+		navMeshAgent.enabled = GlobalState.isCurrentChar (character);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
+		if (!GlobalState.isCurrentChar(character)) {
+			
+			character.TakeDamage (0.1f);
+		}
 		healthBarUI.SetHealthUI(character.HP,character.MaxHP);
 
 		// quick fix only
-		if (coinNumber != null) {
+		if (GlobalState.isCurrentChar(character)) {
 			coinNumber.updateCoin (character.Coin);
 		}
 
@@ -60,6 +60,7 @@ public class CharacterController : MonoBehaviour {
         }
 
     }
+
 
 
     // For debugging only

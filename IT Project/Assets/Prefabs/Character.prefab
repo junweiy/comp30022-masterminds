@@ -97,9 +97,8 @@ GameObject:
   - 23: {fileID: 2313248}
   - 195: {fileID: 19562870}
   - 54: {fileID: 5470598}
-  - 114: {fileID: 11433556}
   - 114: {fileID: 114000014040943592}
-  - 114: {fileID: 114000012830686726}
+  - 114: {fileID: 114000011872789936}
   m_Layer: 0
   m_Name: Character
   m_TagString: Character
@@ -295,17 +294,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &11433556
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 182450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ce5a61276548e64fa9759e7205624bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11444862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -594,7 +582,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 417770}
   m_RootOrder: 2
---- !u!114 &114000012830686726
+--- !u!114 &114000011872789936
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -606,8 +594,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinNumber: {fileID: 0}
-  spellSpawn: {fileID: 4000011808695288, guid: 993acc0e6e6d7c6428748dcadafba1db, type: 2}
-  fireball: {fileID: 1000010462454898, guid: 993acc0e6e6d7c6428748dcadafba1db, type: 2}
+  spellSpawn: {fileID: 0}
+  fireball: {fileID: 0}
 --- !u!114 &114000014040943592
 MonoBehaviour:
   m_ObjectHideFlags: 1
