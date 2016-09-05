@@ -4,6 +4,15 @@ using System.Collections;
 
 public static class StateController {
 
+	public static void finishRound() {
+		bool gameHasFinished = GlobalState.instance.numRoundsIncrement ();
+		if (gameHasFinished) {
+			switchToResult ();
+		} else {
+			switchToShop ();
+		}
+	}
+
 	public static void switchBackToGamePlay() {
 		SceneManager.LoadScene ("scenes/gameplay");
 	}
