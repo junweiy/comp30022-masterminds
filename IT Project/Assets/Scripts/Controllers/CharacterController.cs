@@ -3,61 +3,60 @@ using System.Collections;
 
 public class CharacterController : MonoBehaviour {
 
-	public DisplayPlayerCoin coinNumber;
-
-    public Transform spellSpawn;
-    public GameObject fireball;
-
+	// the character model
     public Character character;
+
+
 	private HealthBarUI healthBarUI;
 	private NavMeshAgent navMeshAgent;
+	private bool isMainCharacter;
 
 	// Use this for initialization
-	public void initialise(Character c) {
+	public void initialise(Character c,bool isMainCharacter) {
+		character = c;
+		this.isMainCharacter = isMainCharacter;
 		this.healthBarUI = this.gameObject.GetComponent<HealthBarUI> ();
 		this.gameObject.tag = "Character";
 		navMeshAgent = this.GetComponent<NavMeshAgent> ();
 		navMeshAgent.enabled = GlobalState.isCurrentChar (character);
 	}
 
+	public void setAsMainCharacter(){
+		isMainCharacter = true;
+	}
+
 	// Update is called once per frame
 	void Update () {
-		if (!GlobalState.isCurrentChar(character)) {
-			
-			character.TakeDamage (0.1f);
-		}
+		
 		healthBarUI.SetHealthUI(character.HP,character.MaxHP);
 
-		// quick fix only
-		if (GlobalState.isCurrentChar(character)) {
-			coinNumber.updateCoin (character.Coin);
+
+		if (isMainCharacter) {
+			if (Input.GetMouseButton (1)) {
+				Move ();
+			}
+
+			if (Input.GetButton ("Fire1")) {
+				Move ();
+			}
+
+			if (Input.GetKey ("1")) {
+				Cast (1);
+			}
+			if (Input.GetKey ("2")) {
+				Cast (2);
+			}
+			if (Input.GetKey ("3")) {
+				Cast (3);
+			}
+			if (Input.GetKey ("4")) {
+				Cast (4);
+			}
 		}
 
-		if (Input.GetMouseButton (1)) {
-			Move ();
-		}
 
-        if (Input.GetButton("Fire1"))
-        {
-            Move();
-        }
 
-        if (Input.GetKey("1"))
-        {
-            Cast(1);
-        }
-        if (Input.GetKey("2"))
-        {
-            Cast(2);
-        }
-        if (Input.GetKey("3"))
-        {
-            Cast(3);
-        }
-        if (Input.GetKey("4"))
-        {
-            Cast(4);
-        }
+
 
     }
 

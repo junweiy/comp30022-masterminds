@@ -51,10 +51,11 @@ public class GameController : MonoBehaviour {
 		foreach (Character c in characters) {
 			var characterObj = Instantiate<GameObject> (characterPrefab);
 			var charController = characterObj.GetComponent<CharacterController> ();
-			charController.initialise (c);
+			charController.initialise (c,false);
 			if (GlobalState.isCurrentChar (c)) {
-				charController.coinNumber = coinNumber.gameObject.GetComponent<DisplayPlayerCoin> ();
+				//charController.coinNumber = coinNumber.gameObject.GetComponent<DisplayPlayerCoin> ();
 				mainCamera.GetComponent<CameraControl> ().m_Target = characterObj.transform;
+				charController.setAsMainCharacter ();
 			}
 		}
 

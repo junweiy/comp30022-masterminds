@@ -593,9 +593,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c036507048f228b4eaed762b470430fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinNumber: {fileID: 0}
-  spellSpawn: {fileID: 0}
-  fireball: {fileID: 0}
 --- !u!114 &114000014040943592
 MonoBehaviour:
   m_ObjectHideFlags: 1
