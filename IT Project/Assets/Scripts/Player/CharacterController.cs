@@ -26,9 +26,13 @@ public class CharacterController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (coinNumber);
 		healthBarUI.SetHealthUI(character.HP,character.MaxHP);
-        coinNumber.updateCoin(character.Coin);
+
+		// quick fix only
+		if (coinNumber != null) {
+			coinNumber.updateCoin (character.Coin);
+		}
+
 		if (Input.GetMouseButton (1)) {
 			Move ();
 		}
@@ -70,6 +74,11 @@ public class CharacterController : MonoBehaviour {
 
 	private void Move()
 	{
+		// quick fix only
+		if (navMeshAgent == null) {
+			return;
+		}
+
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 

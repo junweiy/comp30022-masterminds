@@ -17,24 +17,30 @@ public class GameController : MonoBehaviour {
 
 	private int numCharacterAlive;
 	private Character[] characters;
-	public GameObject camera;
+	public GameObject mainCamera;
 	public GameObject characterPrefab;
 	public GameObject coinNumber;
 	public float spawnCentreX;
 	public float spawnCentreZ;
 	public float spawnCentreY;
-	public float spawnDistanceFactor;
+	public float spawnDistance;
 
 	private void setCharactersPos() {
-		GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
-		int numCharacter = characters.Length;
+		GameObject[] characterObjs = GameObject.FindGameObjectsWithTag("Character");
+		int numCharacter = characterObjs.Length;
 		// need map size, ground types etc
 		for (int i = 0; i < numCharacter; i++) {
 			float xOffset = positions [i].x;
 			float zOffset = positions [i].y;
-			characters [i].transform.position = new Vector3 (spawnCentreX + xOffset * spawnDistanceFactor,
+			Debug.Log (i);
+			Debug.Log (xOffset);
+			Debug.Log (zOffset);
+			characterObjs [i].SetActive (false);
+			characterObjs [i].transform.position = new Vector3 (
+				spawnCentreX + xOffset * spawnDistance,
 				spawnCentreY,
-				spawnCentreZ + zOffset * spawnDistanceFactor);
+				spawnCentreZ + zOffset * spawnDistance);
+			characterObjs [i].SetActive (true);
 		}
 	}
 
@@ -50,13 +56,13 @@ public class GameController : MonoBehaviour {
 			var charController = characterObj.GetComponent<CharacterController> ();
 			var navigation = characterObj.GetComponent<CharacterNavigation> ();
 			charController.character = c;
-
+		
 			if (c == GlobalState.instance.currentChar) {
 				navigation.enabled = true;
 				charController.setAsPlayed ();
 				charController.coinNumber = coinNumber.gameObject.GetComponent<DisplayPlayerCoin> ();
 				Debug.Log (charController.coinNumber);
-				camera.GetComponent<CameraControl> ().m_Target = characterObj.transform;
+				mainCamera.GetComponent<CameraControl> ().m_Target = characterObj.transform;
 			} else {
 				navigation.enabled = false;
 			}
@@ -81,7 +87,8 @@ public class GameController : MonoBehaviour {
 		// TODO for test only
 		var current = new Character();
 		GlobalState.instance.currentChar = current;
-		this.initialiseScene(new Character[] {current, new Character(), new Character()});
+		this.initialiseScene(new Character[] {current, new Character(), new Character(), new Character(), new Character(),
+			new Character(), new Character(), new Character(), new Character()});
 	}
 	
 	// Update is called once per frame

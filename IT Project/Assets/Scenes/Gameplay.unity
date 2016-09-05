@@ -773,13 +773,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b52d0ba7055447ba606a273f59f510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 880982612}
+  mainCamera: {fileID: 880982612}
   characterPrefab: {fileID: 182450, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
   coinNumber: {fileID: 961015057}
   spawnCentreX: 1000
   spawnCentreZ: 1000
   spawnCentreY: 10
-  spawnDistanceFactor: 100
+  spawnDistance: 100
 --- !u!1 &815341147
 GameObject:
   m_ObjectHideFlags: 0
