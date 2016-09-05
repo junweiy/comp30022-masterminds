@@ -70,6 +70,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraControl.cs" />
+    <Compile Include="Assets\Scripts\Character\Character.cs" />
+    <Compile Include="Assets\Scripts\Character\HealthBarUI.cs" />
+    <Compile Include="Assets\Scripts\Character\KeyboardMovement.cs" />
+    <Compile Include="Assets\Scripts\Controllers\CharacterController.cs" />
     <Compile Include="Assets\Scripts\Controllers\GameController.cs" />
     <Compile Include="Assets\Scripts\Controllers\ShopController.cs" />
     <Compile Include="Assets\Scripts\GlobalState.cs" />
@@ -79,11 +83,6 @@
     <Compile Include="Assets\Scripts\Items\LifeNecklace.cs" />
     <Compile Include="Assets\Scripts\Items\StaffOfTrials.cs" />
     <Compile Include="Assets\Scripts\Obstacles\ObstacleController.cs" />
-    <Compile Include="Assets\Scripts\Player\Character.cs" />
-    <Compile Include="Assets\Scripts\Player\CharacterController.cs" />
-    <Compile Include="Assets\Scripts\Player\CharacterNavigation.cs" />
-    <Compile Include="Assets\Scripts\Player\HealthBarUI.cs" />
-    <Compile Include="Assets\Scripts\Player\KeyboardMovement.cs" />
     <Compile Include="Assets\Scripts\Spells\FireBallController.cs" />
     <Compile Include="Assets\Scripts\Spells\Mover.cs" />
     <Compile Include="Assets\Scripts\Spells\Spell.cs" />
