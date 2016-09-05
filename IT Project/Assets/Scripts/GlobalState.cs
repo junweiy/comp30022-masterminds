@@ -57,12 +57,22 @@ public class GlobalState {
 
 	public bool numRoundsIncrement() {
 		numRoundsFinished += 1;
-		Debug.Log (numRoundsFinished);
+		Debug.Log ("round " + numRoundsFinished + "/" + totalNumRounds + " finished");
 		return numRoundsFinished >= totalNumRounds;
 	}
 
 	public void resetNumRoundsCounter() {
 		numRoundsFinished = 0;
+	}
+
+	private Profile _profile = new Profile();
+	public Profile profile {
+		get {
+			return _profile;
+		}
+		set {
+			_profile = value;
+		}
 	}
 
 

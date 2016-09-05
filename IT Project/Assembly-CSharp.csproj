@@ -66,6 +66,8 @@
      <Compile Include="Assets\Scripts\System\CreateButtons.cs" />
      <Compile Include="Assets\Scripts\System\ItemButtonScript.cs" />
      <Compile Include="Assets\Scripts\System\ItemInfoPanelScript.cs" />
+     <Compile Include="Assets\Scripts\System\Profile.cs" />
+     <Compile Include="Assets\Scripts\System\ProfileMessenger.cs" />
      <Compile Include="Assets\Scripts\System\Shop.cs" />
      <Compile Include="Assets\Scripts\System\StateController.cs" />
      <Compile Include="Assets\Scripts\UI\DisplayPlayerCoin.cs" />
