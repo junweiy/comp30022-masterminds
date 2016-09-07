@@ -72,6 +72,7 @@ public class GlobalState {
 		}
 		set {
 			_profile = value;
+			ProfileMessenger.submitNewProfile (_profile);
 		}
 	}
 

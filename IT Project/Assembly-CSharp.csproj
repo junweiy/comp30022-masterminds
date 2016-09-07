@@ -70,6 +70,7 @@
      <Compile Include="Assets\Scripts\System\ProfileMessenger.cs" />
      <Compile Include="Assets\Scripts\System\Shop.cs" />
      <Compile Include="Assets\Scripts\System\StateController.cs" />
+     <Compile Include="Assets\Scripts\System\UpdateRequest.cs" />
      <Compile Include="Assets\Scripts\UI\DisplayPlayerCoin.cs" />
      <Compile Include="Assets\Scripts\UI\IgnoreRotation.cs" />
      <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
