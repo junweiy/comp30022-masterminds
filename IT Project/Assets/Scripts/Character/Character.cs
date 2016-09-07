@@ -21,6 +21,7 @@ public class Character {
     private List<Item> items;
     private List<Spell> spells;
 
+	public float range { get; set; }
     
     public Character()
     {

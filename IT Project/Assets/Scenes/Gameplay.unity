@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4469245, g: 0.49678487, b: 0.5750831, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.57508564, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1239,6 +1239,96 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1001 &1075200141
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 417770, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 372
+      objectReference: {fileID: 0}
+    - target: {fileID: 417770, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 417770, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 289
+      objectReference: {fileID: 0}
+    - target: {fileID: 417770, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 417770, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 417770, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 417770, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 417770, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 22422440, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22422440, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013902173300, guid: 4cbf26b1429400845994e1e301ebb129,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -39
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013902173300, guid: 4cbf26b1429400845994e1e301ebb129,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013902173300, guid: 4cbf26b1429400845994e1e301ebb129,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011872789936, guid: 4cbf26b1429400845994e1e301ebb129,
+        type: 2}
+      propertyPath: spellRange
+      value: 
+      objectReference: {fileID: 1473009255}
+    - target: {fileID: 114000014218864284, guid: 4cbf26b1429400845994e1e301ebb129,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000014218864284, guid: 4cbf26b1429400845994e1e301ebb129,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000014218864284, guid: 4cbf26b1429400845994e1e301ebb129,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000014218864284, guid: 4cbf26b1429400845994e1e301ebb129,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.15686275
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4cbf26b1429400845994e1e301ebb129, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1115503849
 Prefab:
   m_ObjectHideFlags: 0
@@ -1502,6 +1592,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1434024751}
+--- !u!114 &1473009255 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000014218864284, guid: 4cbf26b1429400845994e1e301ebb129,
+    type: 2}
+  m_PrefabInternal: {fileID: 1075200141}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1656009276
 GameObject:
   m_ObjectHideFlags: 0

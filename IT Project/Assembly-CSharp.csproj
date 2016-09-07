@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Items\LifeNecklace.cs" />
      <Compile Include="Assets\Scripts\Items\StaffOfTrials.cs" />
      <Compile Include="Assets\Scripts\Obstacles\ObstacleController.cs" />
+     <Compile Include="Assets\Scripts\Spells\FireBall.cs" />
      <Compile Include="Assets\Scripts\Spells\FireBallController.cs" />
      <Compile Include="Assets\Scripts\Spells\Mover.cs" />
      <Compile Include="Assets\Scripts\Spells\Spell.cs" />
@@ -77,11 +78,11 @@
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
- <Reference Include="UnityEngine.Networking">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

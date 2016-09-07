@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class CharacterController : MonoBehaviour {
 
 	// the character model
     public Character character;
+
+	public Image spellRange;
 
 
 	private HealthBarUI healthBarUI;
@@ -15,10 +18,12 @@ public class CharacterController : MonoBehaviour {
 	public void initialise(Character c,bool isMainCharacter) {
 		character = c;
 		this.isMainCharacter = isMainCharacter;
-		this.healthBarUI = this.gameObject.GetComponent<HealthBarUI> ();
+		this.healthBarUI = this.GetComponent<HealthBarUI> ();
 		this.gameObject.tag = "Character";
 		navMeshAgent = this.GetComponent<NavMeshAgent> ();
 		navMeshAgent.enabled = GlobalState.isCurrentChar (character);
+		spellRange.enabled = false;
+
 	}
 
 	public void setAsMainCharacter(){
@@ -28,7 +33,7 @@ public class CharacterController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (!GlobalState.isCurrentChar (character)) {
+		if (isMainCharacter) {
 			character.TakeDamage (0.3f);
 		}
 		
@@ -78,6 +83,10 @@ public class CharacterController : MonoBehaviour {
 
 	private void Move()
 	{
+		if (spellRange.enabled = true) {
+			spellRange.enabled = false;
+		}
+
 		// quick fix only
 		if (navMeshAgent == null) {
 			return;
@@ -92,6 +101,7 @@ public class CharacterController : MonoBehaviour {
 			navMeshAgent.Resume();
 
 		}
+
 	}
 
     /* This function will cast spell based on the spell number stored in the character */
@@ -104,12 +114,16 @@ public class CharacterController : MonoBehaviour {
         }
         else
         {
+			spellRange.enabled = true;
+			spellRange.transform.localScale *= s.range+character.range;
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100))
             {
                 s.applyEffect(character, this.transform, hit.point);
             }
+			spellRange.enabled = false;
         }
     }
 

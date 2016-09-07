@@ -8,6 +8,8 @@ public abstract class Spell {
     private bool isInstantSpell;
 	public float currentCooldown;
 
+	public float range;
+
 	abstract public int getPrice ();
 
 	abstract public string getDescription ();
