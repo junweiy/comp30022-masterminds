@@ -106,10 +106,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010462454898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9365ccc70c51946b989f9c1d03fb3e15, type: 3}
+  m_Script: {fileID: 11500000, guid: f96f11c00d56ec34b9113b5a6c87e396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 40
 --- !u!114 &114000013297955746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -118,10 +118,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010462454898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7c454270b72e4335aeb1293b9381bdd, type: 3}
+  m_Script: {fileID: 11500000, guid: 4aec62a8f30231b428cd43151464eb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: 40
 --- !u!135 &135000011419026338
 SphereCollider:
   m_ObjectHideFlags: 1

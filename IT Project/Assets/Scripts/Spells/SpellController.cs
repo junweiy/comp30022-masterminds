@@ -39,9 +39,10 @@ public class SpellController : MonoBehaviour {
 	private void Cast(int i)
 	{
 		Spell s = character.getSpell(i-1);
+		Transform t = transform.Find ("SpellSpawn");
 		if (s.isInstant())
 		{
-			//
+			s.applyEffect(character, transform, t.position);
 		}
 		else
 		{
@@ -52,7 +53,7 @@ public class SpellController : MonoBehaviour {
 			RaycastHit hit;
 			if (Physics.Raycast(ray, out hit, 100))
 			{
-				//s.applyEffect(character, this.transform, hit.point);
+				s.applyEffect(character, transform, hit.point);
 			}
 			spellRange.enabled = false;
 		}

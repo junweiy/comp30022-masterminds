@@ -29,7 +29,7 @@ public class Character {
         hp = 100f;
         items = new List<Item>();
         spells = new List<Spell>();
-
+		addSpell (new FireBall ());
     }
 
 

@@ -475,6 +475,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellRange: {fileID: 114000012521118286}
+  fireBallPrefab: {fileID: 1000010462454898, guid: 993acc0e6e6d7c6428748dcadafba1db,
+    type: 2}
 --- !u!114 &114000014064282548
 MonoBehaviour:
   m_ObjectHideFlags: 1
