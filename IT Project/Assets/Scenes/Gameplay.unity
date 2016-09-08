@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.5750856, a: 1}
+  m_IndirectSpecularColor: {r: 0.4469245, g: 0.49678487, b: 0.5750831, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -620,8 +620,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7047599e36c5e04fa27b73438014261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthDropPerTime: 0
-  healthDropSecondsInterval: 0
+  healthDropPerTime: 1
+  healthDropSecondsInterval: 1
 --- !u!1 &354006230
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,7 +780,7 @@ MonoBehaviour:
   spawnCentreX: 1000
   spawnCentreZ: 1000
   spawnCentreY: 10
-  spawnDistance: 100
+  spawnDistance: 200
 --- !u!1 &815341147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,9 +1025,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3ef09ff12a24c55bd7990697f7a25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsBetweenShrinking: 0
-  minScalableSizeRatio: 0
-  sizeShrunkPerTime: 0
+  secondsBetweenShrinking: 0.1
+  minScalableSizeRatio: 0.2
+  sizeShrunkPerTime: 0.5
 --- !u!1 &961015057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,7 +1446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c552c375b328844194610c49a96311e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spells: []
 --- !u!114 &1434024754
 MonoBehaviour:
   m_ObjectHideFlags: 0
