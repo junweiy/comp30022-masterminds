@@ -6,10 +6,6 @@ public class CharacterController : MonoBehaviour {
 
 	// the character model
     public Character character;
-
-	public Image spellRange;
-
-
 	private HealthBarUI healthBarUI;
 	private NavMeshAgent navMeshAgent;
 	private bool isMainCharacter;
@@ -22,7 +18,6 @@ public class CharacterController : MonoBehaviour {
 		this.gameObject.tag = "Character";
 		navMeshAgent = this.GetComponent<NavMeshAgent> ();
 		navMeshAgent.enabled = GlobalState.isCurrentChar (character);
-		spellRange.enabled = false;
 
 	}
 
@@ -36,7 +31,6 @@ public class CharacterController : MonoBehaviour {
 		if (isMainCharacter) {
 			character.TakeDamage (0.3f);
 		}
-		
 		healthBarUI.SetHealthUI(character.HP,character.MaxHP);
 
 
@@ -48,25 +42,7 @@ public class CharacterController : MonoBehaviour {
 			if (Input.GetButton ("Fire1")) {
 				Move ();
 			}
-
-			if (Input.GetKey ("1")) {
-				Cast (1);
-			}
-			if (Input.GetKey ("2")) {
-				Cast (2);
-			}
-			if (Input.GetKey ("3")) {
-				Cast (3);
-			}
-			if (Input.GetKey ("4")) {
-				Cast (4);
-			}
 		}
-
-
-
-
-
     }
 
 
@@ -83,8 +59,9 @@ public class CharacterController : MonoBehaviour {
 
 	private void Move()
 	{
-		if (spellRange.enabled = true) {
-			spellRange.enabled = false;
+		SpellController spellController = this.GetComponent<SpellController> ();
+		if (spellController.spellRange.enabled == true) {
+			spellController.spellRange.enabled = false;
 		}
 
 		// quick fix only
@@ -104,29 +81,7 @@ public class CharacterController : MonoBehaviour {
 
 	}
 
-    /* This function will cast spell based on the spell number stored in the character */
-    private void Cast(int i)
-    {
-        Spell s = character.getSpell(i-1);
-        if (s.isInstant())
-        {
-            s.applyEffect(character,this.transform);
-        }
-        else
-        {
-			spellRange.enabled = true;
-			spellRange.transform.localScale *= s.range+character.range;
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100))
-            {
-                s.applyEffect(character, this.transform, hit.point);
-            }
-			spellRange.enabled = false;
-        }
-    }
-
+    
 
     public Character getCharacter()
     {
