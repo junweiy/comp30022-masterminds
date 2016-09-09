@@ -42,7 +42,7 @@ public class GlobalState {
 		}
 	}
 
-	private Dictionary<Character, int> charToRoundsWon = new Dictionary<,>();
+	private Dictionary<Character, int> charToRoundsWon = new Dictionary<Character,int>();
 
 	public void recordWinner(Character c) {
 		if (charToRoundsWon.ContainsKey (c)) {

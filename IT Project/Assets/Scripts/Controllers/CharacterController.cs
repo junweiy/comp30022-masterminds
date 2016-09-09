@@ -9,7 +9,9 @@ public class CharacterController : MonoBehaviour {
 	private HealthBarUI healthBarUI;
 	private NavMeshAgent navMeshAgent;
 	private bool isMainCharacter;
-
+    private bool selectingSpellCasting;
+    private int numberOfTouch;
+    
 	// Use this for initialization
 	public void initialise(Character c,bool isMainCharacter) {
 		character = c;
@@ -18,8 +20,9 @@ public class CharacterController : MonoBehaviour {
 		this.gameObject.tag = "Character";
 		navMeshAgent = this.GetComponent<NavMeshAgent> ();
 		navMeshAgent.enabled = GlobalState.isCurrentChar (character);
-
-	}
+        selectingSpellCasting = false;
+        numberOfTouch = 0;
+    }
 
 	public void setAsMainCharacter(){
 		isMainCharacter = true;
@@ -30,16 +33,17 @@ public class CharacterController : MonoBehaviour {
 
 		healthBarUI.SetHealthUI(character.HP,character.MaxHP);
 
-
 		if (isMainCharacter) {
-			if (Input.GetMouseButton (1)) {
-				Move ();
-			}
+            while (numberOfTouch < Input.touchCount)
+            {
+                Touch t = Input.GetTouch(numberOfTouch);
+                Move(t);
 
-			if (Input.GetButton ("Fire1")) {
-				Move ();
-			}
-		}
+
+                numberOfTouch++;
+            }
+
+        }
     }
 
 
@@ -54,29 +58,27 @@ public class CharacterController : MonoBehaviour {
     }
 
 
-	private void Move()
+	private void Move(Touch t)
 	{
+
+
 		SpellController spellController = this.GetComponent<SpellController> ();
 		if (spellController.spellRange.enabled == true) {
 			spellController.spellRange.enabled = false;
 		}
+        
 
-		// quick fix only
-		if (navMeshAgent == null) {
-			return;
-		}
-
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		Ray ray = Camera.main.ScreenPointToRay(t.position);
 		RaycastHit hit;
 
 		if (Physics.Raycast(ray, out hit, 100))
 		{
 			navMeshAgent.destination = hit.point;
 			navMeshAgent.Resume();
-
 		}
 
 	}
+
 
     
 
