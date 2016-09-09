@@ -4,13 +4,14 @@ using System.Collections;
 
 public static class StateController {
 
-	public static void finishRound() {
+	public static bool finishRound() {
 		bool gameHasFinished = GlobalState.instance.numRoundsIncrement ();
 		if (gameHasFinished) {
 			switchToResult ();
 		} else {
 			switchToShop ();
 		}
+		return gameHasFinished;
 	}
 
 	public static void switchBackToGamePlay() {

@@ -2,6 +2,14 @@
 using System.Collections;
 
 public class GameController : MonoBehaviour {
+	
+	public GameObject mainCamera;
+	public GameObject characterPrefab;
+	public GameObject coinNumber;
+	public float spawnCentreX;
+	public float spawnCentreZ;
+	public float spawnCentreY;
+	public float spawnDistance;
 
 	// naive way of determining relative spawn positions
 	private static Vector2[] positions = {
@@ -17,13 +25,6 @@ public class GameController : MonoBehaviour {
 
 	private int numCharacterAlive;
 	private Character[] characters;
-	public GameObject mainCamera;
-	public GameObject characterPrefab;
-	public GameObject coinNumber;
-	public float spawnCentreX;
-	public float spawnCentreZ;
-	public float spawnCentreY;
-	public float spawnDistance;
 
 	private void setCharactersPos() {
 		GameObject[] characterObjs = GameObject.FindGameObjectsWithTag("Character");
@@ -69,9 +70,21 @@ public class GameController : MonoBehaviour {
 	public void onCharacterDeath() {
 		this.numCharacterAlive -= 1;
 		if (numCharacterAlive <= 1) {
-			Debug.Log ("Round Finished");
-			StateController.finishRound();
+			this.finishRound ();
 		}
+	}
+
+	public void finishRound() {
+		Debug.Log ("Round Finished");
+		Character winner = this.characters [0];
+		// TODO Players having same score not proply handled here
+		foreach (Character c in this.characters) {
+			if (c.score > winner.score) {
+				winner = c;
+			}
+		}
+
+		bool gameHasFinished = StateController.finishRound();
 	}
 
 	// Use this for initialization

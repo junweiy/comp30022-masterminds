@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class GlobalState {
 
@@ -38,6 +40,26 @@ public class GlobalState {
 			}
 			_gameController = value;
 		}
+	}
+
+	private Dictionary<Character, int> charToRoundsWon = new Dictionary<,>();
+
+	public void recordWinner(Character c) {
+		if (charToRoundsWon.ContainsKey (c)) {
+			charToRoundsWon [c] += 1;
+		} else {
+			charToRoundsWon.Add (c, 0);
+		}
+	}
+
+	public Character getFinalWinner() {
+		return charToRoundsWon.FirstOrDefault (
+			x => x.Value == charToRoundsWon.Values.Max ()
+		).Key;
+	}
+
+	public void clearWinnerRecord() {
+		charToRoundsWon.Clear ();
 	}
 
 	public static bool isCurrentChar(Character c) {

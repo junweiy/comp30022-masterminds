@@ -13,7 +13,7 @@ public class Character {
     private const int MAXIMUM_NUMBER_OF_ITEM = 6;
     private float hp; 
     private float maxHp;
-    private int score;
+	public int score {get; private set;}
     private int coin = 20;
 
     private bool isDead;
@@ -27,6 +27,7 @@ public class Character {
     {
         maxHp = 100f;
         hp = 100f;
+		score = 0;
         items = new List<Item>();
         spells = new List<Spell>();
 		addSpell (new FireBall ());
@@ -100,5 +101,15 @@ public class Character {
     {
         coin -= c;
     }
+
+	public int addScore(int s) {
+		this.score += s;
+		return this.score;
+	}
+
+	public int deductScore(int s) {
+		this.score = Mathf.Max(this.score - s, 0);
+		return this.score;
+	}
 
 }
