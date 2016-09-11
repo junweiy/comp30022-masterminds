@@ -5,36 +5,17 @@ public enum ItemTypeEnum {Spell, Equipment, Upgrade}
 
 abstract public class Item {
 	// Name of the item
-	private string itemName;
-	public string ItemName {
-		get { return itemName; }
-		set { itemName = value; }
-	}
+	public string itemName {get; private set;}
     // Type of the item
-	private ItemTypeEnum itemType;
-	public ItemTypeEnum ItemType
-    {
-        get { return itemType; }
-        set { itemType = value; }
-    }
+	public ItemTypeEnum itemType {get; private set;}
     // The price of selling the item back to shop
-    private int sellingPrice;
-	public int SellingPrice {
-		get { return sellingPrice;}
-		set { sellingPrice = value;}
-	}
+	public int sellingPrice {get; private set;}
 	// The price of purchasing the item at shop
-	private int purchasePrice;
-	public int PurchasePrice {
-		get { return purchasePrice; }
-		set { purchasePrice = value;}
-	}
+	public int purchasePrice {get; private set;}
 	// The description of the item
-	private string description;
-	public string Description{
-		get { return description; }
-		set { description = value; }
-	}
+	public string description {get; private set;}
+	// The level of the item
+	public int level {get; set;}
 
 	// Initialise an Item instance with given information
 	public Item(string name, ItemTypeEnum type, int sellingPrice, int purchasePrice, string description) {
@@ -43,8 +24,13 @@ abstract public class Item {
 		this.sellingPrice = sellingPrice;
 		this.purchasePrice = purchasePrice;
 		this.description = description;
+		this.level = 1;
 	}
 		
-	// Apply desired effects to the player
+	// Apply desired effects to the player when wearing
 	public abstract void applyEffect(Character ply);
+	// remove effects to the player when taking off
+	public abstract void removeEffect(Character ply);
+	// Function used to modify properties to achieve levelup
+	abstract public void levelUp ();
 }

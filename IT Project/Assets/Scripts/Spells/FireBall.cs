@@ -47,12 +47,13 @@ public class FireBall : Spell {
 		GameObject fb = GameObject.Instantiate (fireBallPrefab, pos, Quaternion.LookRotation(dir)) as GameObject;
 		// Change related properties to reflect certain level of spell
 		fbc = fb.GetComponent<FireBallController> ();
-		fbc.damage = damage;
+		fbc.damage = damage + character.baseAttack;
 	}
 
 	/* The function applies changes to the spell when upgrading it.
 	 */
 	public override void levelUp () {
+		this.level++;
 		this.damage += LVL_UP_DAMAGE_INCREMENT;
 	}
 		

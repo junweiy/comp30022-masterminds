@@ -12,9 +12,10 @@ public class Character {
     private const float DEFAULT_HP = 100f;
     private const int MAXIMUM_NUMBER_OF_ITEM = 6;
 
+	public int baseAttack { get;set; }
     private float hp; 
-    private float maxHp;
-	public int score {get; private set;}
+	private float maxHp { get; set; }
+	public int score { get; private set; }
     private int coin;
 
 	public bool canMove { get; set; }
@@ -27,6 +28,7 @@ public class Character {
     
     public Character()
     {
+		baseAttack = 0;
         maxHp = 100f;
         hp = 100f;
 		score = 0;

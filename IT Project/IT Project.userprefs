@@ -1,16 +1,30 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Controllers/CharacterController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Spells/Spell.cs">
     <Files>
-      <File FileName="Assets/Scripts/Controllers/CharacterController.cs" Line="71" Column="3" />
-      <File FileName="Assets/Scripts/System/UpdateRequest.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Items/Item.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Controllers/GameController.cs" Line="87" Column="56" />
-      <File FileName="Assets/Scripts/System/ProfileMessenger.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/System/Profile.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Camera/CameraControl.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/System/StateController.cs" Line="14" Column="26" />
+      <File FileName="Assets/Scripts/Spells/Spell.cs" Line="19" Column="22" />
+      <File FileName="Assets/Scripts/Spells/FireNova.cs" Line="65" Column="13" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="IT Project" expanded="True">
+            <Node name="Assembly-CSharp" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Camera" expanded="True" />
+                <Node name="Character" expanded="True" />
+                <Node name="Controllers" expanded="True" />
+                <Node name="Items" expanded="True" />
+                <Node name="Spells" expanded="True">
+                  <Node name="Spell.cs" selected="True" />
+                </Node>
+                <Node name="System" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

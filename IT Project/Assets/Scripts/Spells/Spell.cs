@@ -19,7 +19,7 @@ public abstract class Spell {
 	// The current level of the spell
 	public int level {get; set;}
 	// The range of the spell
-	public float range {get; private set;}
+	public float range {get; set;}
 
 	/* The initialisation of the spell with relative properties.
 	 */

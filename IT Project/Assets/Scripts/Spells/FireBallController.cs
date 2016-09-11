@@ -13,10 +13,13 @@ public class FireBallController : MonoBehaviour {
 	void OnCollisionEnter(Collision collision) {
 		CharacterController cc;
 		GameObject gameObject = collision.gameObject;
-		Destroy (this.gameObject);
 		if (gameObject.tag == CHARACTER_TAG) {
 			cc = gameObject.GetComponent<CharacterController>();
-			cc.character.TakeDamage (damage);
+			if (!cc.isMainCharacter) {
+				Destroy (this.gameObject);
+				cc.character.TakeDamage (damage);
+			}
+
 		}
 
 	}

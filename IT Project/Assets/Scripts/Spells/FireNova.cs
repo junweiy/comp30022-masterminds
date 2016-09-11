@@ -53,7 +53,7 @@ public class FireNova : Spell {
 		Object fireNovaPrefab = Resources.Load(PREFAB_PATH);
 		GameObject fn = GameObject.Instantiate (fireNovaPrefab, charTransform.position, charTransform.rotation) as GameObject;
 		fnc = fn.GetComponent<FireNovaController> ();
-		fnc.damage = damage;
+		fnc.damage = damage + character.baseAttack;
 		fnc.range = range;
 		fnc.power = power;
 		fnc.castingTime = castingTime;
@@ -62,6 +62,7 @@ public class FireNova : Spell {
 	/* The function applies changes to the spell when upgrading it.
 	 */
 	public override void levelUp () {
+		this.level++;
 		this.range += LVL_UP_RANGE_INCREMENT;
 		this.damage += LVL_UP_DAMAGE_INCREMENT;
 		this.power += LVL_UP_POWER_INCREMENT;

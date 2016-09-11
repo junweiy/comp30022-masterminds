@@ -33,7 +33,7 @@ public class CreateButtons : MonoBehaviour {
 		foreach (Item item in shop.getPurchasableItems(GlobalState.instance.currentChar))
         {
             GameObject goButton = (GameObject)Instantiate(shopIcon);
-            goButton.GetComponentInChildren<Text>().text = item.ItemName;
+            goButton.GetComponentInChildren<Text>().text = item.itemName;
             goButton.transform.SetParent(equipmentPanel, false);
             goButton.transform.localScale = new Vector3(1, 1, 1);
         }
