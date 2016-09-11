@@ -5,15 +5,15 @@ using System.Collections;
 public class CharacterController : MonoBehaviour {
 
 	// the character model
-    public Character character;
+	public Character character {get; set;}
 	private HealthBarUI healthBarUI;
 	private NavMeshAgent navMeshAgent;
-	private bool isMainCharacter;
+	public bool isMainCharacter { get; set;}
 
 	// Use this for initialization
-	public void initialise(Character c,bool isMainCharacter) {
+	public void initialise(Character c) {
 		character = c;
-		this.isMainCharacter = isMainCharacter;
+		this.isMainCharacter = false;
 		this.healthBarUI = this.GetComponent<HealthBarUI> ();
 		this.gameObject.tag = "Character";
 		navMeshAgent = this.GetComponent<NavMeshAgent> ();
@@ -25,13 +25,22 @@ public class CharacterController : MonoBehaviour {
 		isMainCharacter = true;
 	}
 
+	/* The function causes the player a sudden stop when the player is navigating to a point, which
+	 * is used to fit the spell FireNova.
+	 */ 
+	public void stopMoving() {
+		NavMeshAgent nma = this.GetComponent<NavMeshAgent> ();
+		nma.velocity = new Vector3(0,0,0);
+		nma.Stop ();
+	}
+
 	// Update is called once per frame
 	void Update () {
 
 		healthBarUI.SetHealthUI(character.HP,character.MaxHP);
 
 
-		if (isMainCharacter) {
+		if (isMainCharacter && character.canMove) {
 			if (Input.GetMouseButton (1)) {
 				Move ();
 			}

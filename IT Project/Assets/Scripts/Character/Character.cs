@@ -11,15 +11,17 @@ public class Character {
 
     private const float DEFAULT_HP = 100f;
     private const int MAXIMUM_NUMBER_OF_ITEM = 6;
+
     private float hp; 
     private float maxHp;
 	public int score {get; private set;}
-    private int coin = 20;
+    private int coin;
 
+	public bool canMove { get; set; }
     private bool isDead;
 
     private List<Item> items;
-    private List<Spell> spells;
+	public List<Spell> spells { get; set; }
 
 	public float range { get; set; }
     
@@ -28,9 +30,13 @@ public class Character {
         maxHp = 100f;
         hp = 100f;
 		score = 0;
+		coin = 0;
+		isDead = false;
+		canMove = true;
         items = new List<Item>();
-        spells = new List<Spell>();
+		spells = new List<Spell> ();
 		addSpell (new FireBall ());
+		addSpell (new FireNova ());
     }
 
 
@@ -40,11 +46,6 @@ public class Character {
     public void addSpell(Spell i)
     {
         spells.Add(i);
-    }
-
-    public Spell getSpell(int i)
-    {
-        return spells.ToArray()[i];
     }
 
     /*****/

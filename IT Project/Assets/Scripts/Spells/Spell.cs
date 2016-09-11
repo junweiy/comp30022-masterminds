@@ -2,22 +2,32 @@
 using UnityEngine.UI;
 
 public abstract class Spell {
-	
-	public float cooldown;
-	public string iconPath;
-	public bool isInstantSpell;
-	public float currentCooldown;
-	public int price;
-	public string name;
-	public string description;
-	public int level;
-	public float range;
+	// The cool down time of spell (unit in frames)
+	public float cooldown {get; private set;}
+	// The icon path used to genereate icon on spell bar
+	public string iconPath {get; private set;}
+	// Whether the spell is a constant skill
+	public bool isInstantSpell {get; private set;}
+	// The current cool down time
+	public float currentCooldown {get; set;}
+	// The price of the spell
+	public int price {get; private set;}
+	// The name of the spell
+	public string name {get; private set;}
+	// The description of the spell
+	public string description {get; private set;}
+	// The current level of the spell
+	public int level {get; set;}
+	// The range of the spell
+	public float range {get; private set;}
 
-	public Spell(float cd, string path, bool isInstant, float currCd, int price, string name, string des,float range) {
+	/* The initialisation of the spell with relative properties.
+	 */
+	public Spell(float cd, string path, bool isInstant, int price, string name, string des,float range) {
 		this.cooldown = cd;
 		this.iconPath = path;
 		this.isInstantSpell = isInstant;
-		this.currentCooldown = currCd;
+		this.currentCooldown = cd;
 		this.price = price;
 		this.name = name;
 		this.description = des;
@@ -26,14 +36,10 @@ public abstract class Spell {
 	}
 
 
-
+	// Function used to apply the effect to the character
 	abstract public void applyEffect(Character character,Transform characterTransform,Vector3 destination);
+	// Function used to modify properties to achieve levelup
 	abstract public void levelUp ();
-
-    public bool isInstant()
-    {
-        return isInstantSpell;
-    }
 
 }
 

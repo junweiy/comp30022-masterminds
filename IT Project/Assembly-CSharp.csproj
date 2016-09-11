@@ -61,10 +61,13 @@
      <Compile Include="Assets\Scripts\Obstacles\ObstacleController.cs" />
      <Compile Include="Assets\Scripts\Spells\FireBall.cs" />
      <Compile Include="Assets\Scripts\Spells\FireBallController.cs" />
+     <Compile Include="Assets\Scripts\Spells\FireNova.cs" />
+     <Compile Include="Assets\Scripts\Spells\FireNovaController.cs" />
      <Compile Include="Assets\Scripts\Spells\Mover.cs" />
      <Compile Include="Assets\Scripts\Spells\Spell.cs" />
      <Compile Include="Assets\Scripts\Spells\SpellController.cs" />
      <Compile Include="Assets\Scripts\Spells\SpellCooldown.cs" />
+     <Compile Include="Assets\Scripts\Spells\SpellUIController.cs" />
      <Compile Include="Assets\Scripts\System\CreateButtons.cs" />
      <Compile Include="Assets\Scripts\System\ItemButtonScript.cs" />
      <Compile Include="Assets\Scripts\System\ItemInfoPanelScript.cs" />
