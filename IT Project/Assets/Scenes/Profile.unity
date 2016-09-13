@@ -1022,8 +1022,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile:
-    userId: 0
-    username: blablabla
+    uid: 0
+    userName: 
+    email: 
     numGamesPlayed: 0
     numGamesWon: 0
     numGamesLost: 0
@@ -1242,6 +1243,54 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 942081827}
+--- !u!1 &982787138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 982787140}
+  - 114: {fileID: 982787139}
+  m_Layer: 0
+  m_Name: ProfileController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &982787139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 982787138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4e13b9dd42d4ff992c2cbf59d77a48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userNameField: {fileID: 2112590930}
+  userIdField: {fileID: 752814306}
+  gamePlayedField: {fileID: 1290104331}
+  gameWonField: {fileID: 304457871}
+  gameLostField: {fileID: 708228863}
+  bestScoreField: {fileID: 841199202}
+  numKillField: {fileID: 718182922}
+  numDeathField: {fileID: 1152352390}
+--- !u!4 &982787140
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 982787138}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 867.66046, y: 596.1944, z: 652.8832}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
 --- !u!1 &1041575006
 GameObject:
   m_ObjectHideFlags: 0

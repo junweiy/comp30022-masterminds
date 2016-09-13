@@ -4,8 +4,9 @@ using UnityEngine;
 [System.Serializable]
 public class Profile {
 
-	public int userId = 0;
-	public string username = "";
+	public int uid = 0;
+	public string userName = "";
+	public string email = "";
 
 	public int numGamesPlayed = 0;
 	public int numGamesWon = 0;

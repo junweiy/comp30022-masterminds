@@ -96,6 +96,7 @@ public class GameController : MonoBehaviour {
 		GlobalState.instance.currentChar = current;
 		this.initialiseScene(new Character[] {current, new Character(), new Character(), new Character(), new Character(),
 			new Character(), new Character(), new Character()});
+
 	}
 	
 	// Update is called once per frame
