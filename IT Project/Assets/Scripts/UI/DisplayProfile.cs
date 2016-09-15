@@ -8,8 +8,8 @@ public class DisplayProfile : MonoBehaviour {
     public GameObject details;
 	
 	void Update () {
-        SetText("User", profile.username, 0);
-        SetText("User", profile.userId.ToString(), 1);
+        SetText("User", profile.userName, 0);
+        SetText("User", profile.uid.ToString(), 1);
         SetText("numGamesPlayed", profile.numGamesPlayed.ToString(),1);
         SetText("numGamesWin", profile.numGamesWon.ToString(),1);
         SetText("numGamesLost", profile.numGamesLost.ToString(),1);
