@@ -25,6 +25,10 @@ public static class StateController {
 	public static void switchToShop() {
 		SceneManager.LoadScene ("scenes/shop");
 	}
+
+	public static void switchToRoom() {
+		SceneManager.LoadScene ("scenes/room");
+	}
 		
 	public static void switchToNewRound() { 
 		SceneManager.LoadScene ("scenes/gameplay");

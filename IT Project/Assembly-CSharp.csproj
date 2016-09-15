@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ResultPageController.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraControl.cs" />
      <Compile Include="Assets\Scripts\Character\Character.cs" />
      <Compile Include="Assets\Scripts\Character\HealthBarUI.cs" />
@@ -77,6 +78,7 @@
      <Compile Include="Assets\Scripts\System\StateController.cs" />
      <Compile Include="Assets\Scripts\System\UpdateRequest.cs" />
      <Compile Include="Assets\Scripts\UI\DisplayPlayerCoin.cs" />
+     <Compile Include="Assets\Scripts\UI\DisplayProfile.cs" />
      <Compile Include="Assets\Scripts\UI\IgnoreRotation.cs" />
      <Compile Include="Assets\UnityTestTools\Assertions\AssertionComponent.cs" />
      <Compile Include="Assets\UnityTestTools\Assertions\AssertionException.cs" />
@@ -147,10 +149,10 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
- <HintPath>/Users/yangjunwei/comp30022-masterminds/IT Project/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.dll</HintPath>
+ <HintPath>/Users/Jack/comp30022-masterminds/IT Project/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil.Mdb">
- <HintPath>/Users/yangjunwei/comp30022-masterminds/IT Project/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.Mdb.dll</HintPath>
+ <HintPath>/Users/Jack/comp30022-masterminds/IT Project/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.Mdb.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
