@@ -45,6 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LoginPanelController.cs" />
+     <Compile Include="Assets\MainMenuController.cs" />
+     <Compile Include="Assets\RegisterPanelController.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraControl.cs" />
      <Compile Include="Assets\Scripts\Character\Character.cs" />
      <Compile Include="Assets\Scripts\Character\HealthBarUI.cs" />
@@ -66,6 +69,7 @@
      <Compile Include="Assets\Scripts\Spells\FireNovaController.cs" />
      <Compile Include="Assets\Scripts\Spells\Mover.cs" />
      <Compile Include="Assets\Scripts\Spells\Spell.cs" />
+     <Compile Include="Assets\Scripts\Spells\SpellButtonController.cs" />
      <Compile Include="Assets\Scripts\Spells\SpellController.cs" />
      <Compile Include="Assets\Scripts\Spells\SpellCooldown.cs" />
      <Compile Include="Assets\Scripts\Spells\SpellUIController.cs" />

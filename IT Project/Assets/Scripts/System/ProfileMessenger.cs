@@ -40,13 +40,13 @@ public class ProfileMessenger {
 	public static Profile getProfileById(int userid) {
 		string token = ProfileMessenger.password;
 
-		ProfileUpdateRequest req = new ProfileUpdateRequest ();
+		ProfileUpdateRequestWithUid req = new ProfileUpdateRequestWithUid ();
 		req.uid = userid;
 		req.token = token;
 		req.timestamp = getTimeStamp();
 
 		WWWForm form = new WWWForm ();
-		form.AddField ("message", ProfileUpdateRequest.toJson(req));
+		form.AddField ("message", req.toJson());
 		WWW w = new WWW (getProfileUrl, form);
 		// wait until complete
 		while (!w.isDone) {
@@ -56,6 +56,33 @@ public class ProfileMessenger {
 			return null;
 		}
 		else {
+			var res = JsonUtility.FromJson<ProfileUpdateResponse> (w.text);
+			return res.profile;
+		}
+	}
+
+	public static Profile getProfileByEmail(string email) {
+		string token = ProfileMessenger.password;
+
+		ProfileUpdateRequestWithEmail req = new ProfileUpdateRequestWithEmail ();
+		req.email = email;
+		req.token = token;
+		req.timestamp = getTimeStamp();
+
+		WWWForm form = new WWWForm ();
+		form.AddField ("message", req.toJson());
+		Debug.Log (req.toJson ());
+		WWW w = new WWW (getProfileUrl, form);
+		// wait until complete
+		while (!w.isDone) {
+		}
+		if (!string.IsNullOrEmpty(w.error)) {
+			Debug.Log(w.error);
+			return null;
+		}
+		else {
+			Debug.Log (w);
+			Debug.Log (w.text);
 			var res = JsonUtility.FromJson<ProfileUpdateResponse> (w.text);
 			return res.profile;
 		}
@@ -101,14 +128,24 @@ public class NewUserResponse {
 }
 
 [System.Serializable]
-public class ProfileUpdateRequest {
-
+public class ProfileUpdateRequestWithUid {
 	public int uid;
 	public string token;
 	public int timestamp;
 
-	public static string toJson(ProfileUpdateRequest request) {
-		return JsonUtility.ToJson (request);
+	public string toJson() {
+		return JsonUtility.ToJson (this);
+	}
+}
+
+[System.Serializable]
+public class ProfileUpdateRequestWithEmail {
+	public string email;
+	public string token;
+	public int timestamp;
+
+	public string toJson() {
+		return JsonUtility.ToJson (this);
 	}
 }
 
