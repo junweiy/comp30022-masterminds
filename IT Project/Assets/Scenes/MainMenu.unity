@@ -495,13 +495,14 @@ GameObject:
   - 224: {fileID: 462722155}
   - 222: {fileID: 462722157}
   - 114: {fileID: 462722156}
+  - 114: {fileID: 462722158}
   m_Layer: 5
   m_Name: Register
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &462722155
 RectTransform:
   m_ObjectHideFlags: 0
@@ -557,6 +558,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 462722154}
+--- !u!114 &462722158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 462722154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edbd920eaf54fd4998a0cf31b23a647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &590364252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,13 +1731,14 @@ GameObject:
   - 224: {fileID: 1229490598}
   - 222: {fileID: 1229490600}
   - 114: {fileID: 1229490599}
+  - 114: {fileID: 1229490601}
   m_Layer: 5
   m_Name: Login
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1229490598
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1780,6 +1793,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1229490597}
+--- !u!114 &1229490601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1229490597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbaa748a35325f34190178d65b7dbbdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1281963991
 GameObject:
   m_ObjectHideFlags: 0
