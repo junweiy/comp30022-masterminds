@@ -87,15 +87,17 @@ public class GlobalState {
 		numRoundsFinished = 0;
 	}
 
-	private Profile _profile = new Profile();
+	private Profile _profile;
 	public Profile profile {
 		get {
 			return _profile;
-		}
-		set {
+		} set {
 			_profile = value;
-			ProfileMessenger.submitNewProfile (_profile);
 		}
+	}
+
+	public static void loadProfileWithUid(int userid) {
+		GlobalState.instance._profile = ProfileMessenger.getProfileById (userid);
 	}
 
 

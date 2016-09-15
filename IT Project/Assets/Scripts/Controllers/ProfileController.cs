@@ -17,8 +17,8 @@ public class ProfileController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		p = ProfileMessenger.getProfileById (1);
-		Debug.Log (Profile.toJson (p));
+		GlobalState.loadProfileWithUid(1);
+		p = GlobalState.instance.profile;
 		displayInfo ();
 	}
 
@@ -34,6 +34,7 @@ public class ProfileController : MonoBehaviour {
 	}
 
 	void Update() {
+		// TODO investigate on why this must be in update()
 		displayInfo ();
 	}
 }
