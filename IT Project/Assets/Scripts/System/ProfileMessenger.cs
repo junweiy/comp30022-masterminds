@@ -71,7 +71,6 @@ public class ProfileMessenger {
 
 		WWWForm form = new WWWForm ();
 		form.AddField ("message", req.toJson());
-		Debug.Log (req.toJson ());
 		WWW w = new WWW (getProfileUrl, form);
 		// wait until complete
 		while (!w.isDone) {
@@ -81,8 +80,6 @@ public class ProfileMessenger {
 			return null;
 		}
 		else {
-			Debug.Log (w);
-			Debug.Log (w.text);
 			var res = JsonUtility.FromJson<ProfileUpdateResponse> (w.text);
 			return res.profile;
 		}
@@ -94,7 +91,6 @@ public class ProfileMessenger {
 		req.userName = userName;
 		req.timestamp = getTimeStamp();
 		req.token = password;
-
 		WWWForm form = new WWWForm ();
 		form.AddField ("message", JsonUtility.ToJson (req));
 		WWW w = new WWW (newUserUrl, form);

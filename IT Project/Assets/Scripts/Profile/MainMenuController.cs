@@ -20,7 +20,10 @@ public class MainMenuController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		// TODO Keybord action for testing, shuold probably provide a feature to switch user properly
+		if (Input.GetKeyDown (KeyCode.S) && mainMenuPage.activeSelf) {
+			switchTo (loginPage);
+		}
 	}
 
 	private void DisableAllPages() {
