@@ -34,5 +34,9 @@ public static class StateController {
 	public static void switchToProfile() {
 		SceneManager.LoadScene ("scenes/profile");
 	}
+
+	public static void switchToMainMenu() {
+		SceneManager.LoadScene ("scenes/mainmenu");
+	}
 		
 }

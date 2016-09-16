@@ -17,7 +17,6 @@ public class ProfileController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GlobalState.loadProfileWithUid(1);
 		p = GlobalState.instance.profile;
 		displayInfo ();
 	}
@@ -36,5 +35,9 @@ public class ProfileController : MonoBehaviour {
 	void Update() {
 		// TODO investigate on why this must be in update()
 		displayInfo ();
+	}
+
+	public void closePage() {
+		StateController.switchToMainMenu();
 	}
 }
