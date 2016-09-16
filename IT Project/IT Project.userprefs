@@ -1,10 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.AttachToProcess" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/System/ProfileMessenger.cs">
     <Files>
-      <File FileName="Assets/MainMenuController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/System/ProfileMessenger.cs" Line="74" Column="29" />
-      <File FileName="Assets/Scripts/GlobalState.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Profile/ErrorPageController.cs" Line="4" Column="1" />
+      <File FileName="Assets/Scripts/Profile/MainMenuController.cs" Line="60" Column="8" />
+      <File FileName="Assets/Scripts/System/ProfileMessenger.cs" Line="14" Column="50" />
+      <File FileName="Assets/Scripts/System/ProfileMessagingException.cs" Line="9" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

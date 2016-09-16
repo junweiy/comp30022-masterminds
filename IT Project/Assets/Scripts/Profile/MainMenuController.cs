@@ -12,6 +12,7 @@ public class MainMenuController : MonoBehaviour {
 	public GameObject multiModePage;
 	public GameObject registerPage;
 	public GameObject loginPage;
+	public GameObject alertPage;
 
 	// Use this for initialization
 	void Start () {
@@ -39,15 +40,24 @@ public class MainMenuController : MonoBehaviour {
 		page.SetActive (true);
 	}
 
+	private void displayError(ProfileMessagingException exception) {
+		alertPage.SetActive (true);
+		alertPage.GetComponent<ErrorPageController> ().showAlert (exception.message);
+	}
+
 	public void registerSubmit() {
 		string userName = registerUserNameField.GetComponent<Text> ().text;
 		string email = registerEmailField.GetComponent<Text> ().text;
-		int? uid = ProfileMessenger.createNewUser (userName, email);
-		if (uid == null) {
-			Debug.LogWarning ("register failed");
-		} else {
-			GlobalState.loadProfileWithUid ( (int) uid);
-			gotoMainMenu ();
+		try {
+			int? uid = ProfileMessenger.createNewUser (userName, email);
+			if (uid == null) {
+				Debug.LogWarning ("register failed");
+			} else {
+				GlobalState.loadProfileWithUid ( (int) uid);
+				gotoMainMenu ();
+			}
+		} catch (ProfileMessagingException e) {
+			displayError (e);
 		}
 	}
 
@@ -57,11 +67,15 @@ public class MainMenuController : MonoBehaviour {
 
 	public void login(GameObject emailTextField) {
 		string email = emailTextField.GetComponent<Text> ().text;
-		bool outcome = GlobalState.loadProfileWithEmail (email);
-		if (outcome == false) {
-			Debug.LogWarning ("login failed");
-		} else {
-			gotoMainMenu ();
+		try {
+			bool outcome = GlobalState.loadProfileWithEmail (email);
+			if (outcome == false) {
+				Debug.LogWarning ("login failed");
+			} else {
+				gotoMainMenu ();
+			}
+		} catch (ProfileMessagingException e) {
+			displayError (e);
 		}
 	}
 

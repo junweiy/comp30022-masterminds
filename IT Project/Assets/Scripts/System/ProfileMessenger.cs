@@ -11,6 +11,14 @@ public class ProfileMessenger {
 		return System.DateTime.Now.Millisecond;
 	}
 
+	static void throwExceptionIfError(string text) {
+		Debug.Log (text);
+		ErrorResponse res = JsonUtility.FromJson<ErrorResponse> (text);
+		if (res.code != -1 && res.code != 0 && res.message != null) {
+			throw new ProfileMessagingException(res.code, res.message);
+		}
+	}
+
 	public static void submitNewProfile(Profile profile) {
 		WWWForm form = new WWWForm ();
 
@@ -28,6 +36,7 @@ public class ProfileMessenger {
 			Debug.Log(w.error);
 		}
 		else {
+			throwExceptionIfError (w.text);
 			Debug.Log("Finished submitting profile");
 		}
 	}
@@ -56,6 +65,7 @@ public class ProfileMessenger {
 			return null;
 		}
 		else {
+			throwExceptionIfError (w.text);
 			var res = JsonUtility.FromJson<ProfileUpdateResponse> (w.text);
 			return res.profile;
 		}
@@ -71,6 +81,7 @@ public class ProfileMessenger {
 
 		WWWForm form = new WWWForm ();
 		form.AddField ("message", req.toJson());
+		Debug.Log (req.toJson ());
 		WWW w = new WWW (getProfileUrl, form);
 		// wait until complete
 		while (!w.isDone) {
@@ -80,6 +91,7 @@ public class ProfileMessenger {
 			return null;
 		}
 		else {
+			throwExceptionIfError (w.text);
 			var res = JsonUtility.FromJson<ProfileUpdateResponse> (w.text);
 			return res.profile;
 		}
@@ -102,59 +114,70 @@ public class ProfileMessenger {
 			return null;
 		}
 		else {
+			throwExceptionIfError (w.text);
 			var res = JsonUtility.FromJson<NewUserResponse> (w.text);
 			return res.uid;
 		}
 	}
-}
 
-[System.Serializable]
-public class NewUserRequest {
-	public string userName;
-	public string email;
-	public int timestamp;
-	public string token;
-}
 
-[System.Serializable]
-public class NewUserResponse {
-	public int code;
-	public string message;
-	public int uid;
-}
 
-[System.Serializable]
-public class ProfileUpdateRequestWithUid {
-	public int uid;
-	public string token;
-	public int timestamp;
 
-	public string toJson() {
-		return JsonUtility.ToJson (this);
+
+	[System.Serializable]
+	class NewUserRequest {
+		public string userName;
+		public string email;
+		public int timestamp;
+		public string token;
 	}
-}
 
-[System.Serializable]
-public class ProfileUpdateRequestWithEmail {
-	public string email;
-	public string token;
-	public int timestamp;
-
-	public string toJson() {
-		return JsonUtility.ToJson (this);
+	[System.Serializable]
+	class NewUserResponse {
+		public int code;
+		public string message;
+		public int uid;
 	}
-}
 
-[System.Serializable]
-public class ProfileUpdateResponse {
-	public int code;
-	public Profile profile;
-}
+	[System.Serializable]
+	class ProfileUpdateRequestWithUid {
+		public int uid;
+		public string token;
+		public int timestamp;
 
-[System.Serializable]
-public class NewProfileRequest {
-	public Profile newProfile;
-	public int uid;
-	public string token;
+		public string toJson() {
+			return JsonUtility.ToJson (this);
+		}
+	}
+
+	[System.Serializable]
+	class ProfileUpdateRequestWithEmail {
+		public string email;
+		public string token;
+		public int timestamp;
+
+		public string toJson() {
+			return JsonUtility.ToJson (this);
+		}
+	}
+
+	[System.Serializable]
+	class ProfileUpdateResponse {
+		public int code;
+		public Profile profile;
+	}
+
+	[System.Serializable]
+	class NewProfileRequest {
+		public Profile newProfile;
+		public int uid;
+		public string token;
+	}
+
+	[System.Serializable]
+	class ErrorResponse {
+		public int code;
+		public string message;
+	}
 }
 
