@@ -13,13 +13,13 @@ namespace UnityTest
     [Serializable]
     public class AssertionExplorerWindow : EditorWindow
     {
-        private List<AssertionComponent> m_AllAssertions = new List<AssertionComponent>();
+        private System.Collections.Generic.List<AssertionComponent> m_AllAssertions = new System.Collections.Generic.List<AssertionComponent>();
         [SerializeField]
         private string m_FilterText = "";
         [SerializeField]
         private FilterType m_FilterType;
         [SerializeField]
-        private List<string> m_FoldMarkers = new List<string>();
+        private System.Collections.Generic.List<string> m_FoldMarkers = new System.Collections.Generic.List<string>();
         [SerializeField]
         private GroupByType m_GroupBy;
         [SerializeField]
@@ -61,7 +61,7 @@ namespace UnityTest
             if (s_ShouldReload && m_NextReload < DateTime.Now)
             {
                 s_ShouldReload = false;
-                m_AllAssertions = new List<AssertionComponent>((AssertionComponent[])Resources.FindObjectsOfTypeAll(typeof(AssertionComponent)));
+                m_AllAssertions = new System.Collections.Generic.List<AssertionComponent>((AssertionComponent[])Resources.FindObjectsOfTypeAll(typeof(AssertionComponent)));
                 Repaint();
             }
         }
@@ -76,7 +76,7 @@ namespace UnityTest
             EditorGUILayout.EndScrollView();
         }
 
-        private IEnumerable<AssertionComponent> FilterResults(List<AssertionComponent> assertionComponents, string text)
+        private IEnumerable<AssertionComponent> FilterResults(System.Collections.Generic.List<AssertionComponent> assertionComponents, string text)
         {
             if (m_ShowType == ShowType.ShowDisabled)
                 assertionComponents = assertionComponents.Where(c => !c.enabled).ToList();

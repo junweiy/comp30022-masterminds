@@ -47,7 +47,7 @@ namespace UnityTest
             return dto;
         }
 
-        public static ResultDTO CreateRunFinished(List<TestResult> testResults)
+        public static ResultDTO CreateRunFinished(System.Collections.Generic.List<TestResult> testResults)
         {
             var dto = new ResultDTO(MessageType.RunFinished);
             return dto;

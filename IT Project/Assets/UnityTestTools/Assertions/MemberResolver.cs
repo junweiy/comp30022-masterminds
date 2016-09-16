@@ -36,7 +36,7 @@ namespace UnityTest
             var fullCallStack = GetCallstack();
 
             m_CallingObjectRef = result;
-            var tempCallstack = new List<MemberInfo>();
+            var tempCallstack = new System.Collections.Generic.List<MemberInfo>();
             for (int i = 0; i < fullCallStack.Length; i++)
             {
                 var member = fullCallStack[i];
@@ -131,7 +131,7 @@ namespace UnityTest
 
             PropertyInfo propertyTemp;
             FieldInfo fieldTemp;
-            var list = new List<MemberInfo>();
+            var list = new System.Collections.Generic.List<MemberInfo>();
             while (propsQueue.Count != 0)
             {
                 var nameToFind = propsQueue.Dequeue();

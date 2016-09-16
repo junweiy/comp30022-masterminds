@@ -21,7 +21,7 @@ namespace UnityTest
         [SerializeField]
         private PlatformRunnerConfiguration m_Configuration;
 
-        private List<ITestResult> m_TestResults = new List<ITestResult>();
+        private System.Collections.Generic.List<ITestResult> m_TestResults = new System.Collections.Generic.List<ITestResult>();
 
         #region steering variables
         private bool m_RunFinished;
@@ -76,7 +76,7 @@ namespace UnityTest
                         m_TestFailed = true;
                     break;
                 case ResultDTO.MessageType.RunStarted:
-                    m_TestResults = new List<ITestResult>();
+                    m_TestResults = new System.Collections.Generic.List<ITestResult>();
                     m_StatusLabel = "Run started: " + dto.loadedLevelName;
                     break;
                 case ResultDTO.MessageType.RunFinished:
@@ -109,7 +109,7 @@ namespace UnityTest
             }
         }
 
-        private void WriteResultsToLog(ResultDTO dto, List<ITestResult> list)
+        private void WriteResultsToLog(ResultDTO dto, System.Collections.Generic.List<ITestResult> list)
         {
             string result = "Run finished for: " + dto.loadedLevelName;
             var failCount = list.Count(t => t.Executed && !t.IsSuccess);

@@ -10,7 +10,7 @@ namespace UnityTest
         protected override IEnumerable<IGrouping<CheckMethod, AssertionComponent>> GroupResult(IEnumerable<AssertionComponent> assertionComponents)
         {
             var enumVals = Enum.GetValues(typeof(CheckMethod)).Cast<CheckMethod>();
-            var pairs = new List<CheckFunctionAssertionPair>();
+            var pairs = new System.Collections.Generic.List<CheckFunctionAssertionPair>();
 
             foreach (var checkMethod in enumVals)
             {

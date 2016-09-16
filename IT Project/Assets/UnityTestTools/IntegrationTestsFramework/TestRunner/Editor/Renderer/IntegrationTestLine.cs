@@ -7,7 +7,7 @@ namespace UnityTest
 {
     class IntegrationTestLine : IntegrationTestRendererBase
     {
-        public static List<TestResult> Results;
+        public static System.Collections.Generic.List<TestResult> Results;
         protected TestResult m_Result;
 
         public IntegrationTestLine(GameObject gameObject, TestResult testResult) : base(gameObject)

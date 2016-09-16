@@ -24,7 +24,7 @@ namespace UnityTest
         private readonly GUIContent m_GUIRepeatCheckFrameGuiContent = new GUIContent("Repeat check", "Should the check be repeated.");
         #endregion
 
-        private static List<Type> allComparersList = null;
+        private static System.Collections.Generic.List<Type> allComparersList = null;
 
         public AssertionComponentEditor()
         {
@@ -183,7 +183,7 @@ namespace UnityTest
         {
             if(allComparersList == null)
             {
-                allComparersList = new List<Type>();
+                allComparersList = new System.Collections.Generic.List<Type>();
                 var allAssemblies = AppDomain.CurrentDomain.GetAssemblies();
                 foreach (var assembly in allAssemblies)
                 {

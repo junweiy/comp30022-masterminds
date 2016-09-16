@@ -8,7 +8,7 @@ namespace UnityTest
 {
     class IntegrationTestGroupLine : IntegrationTestRendererBase
     {
-        public static List<GameObject> FoldMarkers;
+        public static System.Collections.Generic.List<GameObject> FoldMarkers;
         private IntegrationTestRendererBase[] m_Children;
 
         public IntegrationTestGroupLine(GameObject gameObject) : base(gameObject)

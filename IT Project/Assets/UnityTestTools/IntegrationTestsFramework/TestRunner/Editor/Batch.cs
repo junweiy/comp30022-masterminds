@@ -37,11 +37,11 @@ namespace UnityTest
         public static void RunIntegrationTests(BuildTarget ? targetPlatform)
         {
             var sceneList = FindTestScenesInProject();
-            RunIntegrationTests(targetPlatform, sceneList, new List<string>());
+            RunIntegrationTests(targetPlatform, (System.Collections.Generic.List<string>)sceneList, new System.Collections.Generic.List<string>());
         }
 
 
-        public static void RunIntegrationTests(BuildTarget? targetPlatform, List<string> testScenes, List<string> otherBuildScenes)
+        public static void RunIntegrationTests(BuildTarget? targetPlatform, System.Collections.Generic.List<string> testScenes, System.Collections.Generic.List<string> otherBuildScenes)
         {
             if (targetPlatform.HasValue)
                 BuildAndRun(targetPlatform.Value, testScenes, otherBuildScenes);
@@ -49,7 +49,7 @@ namespace UnityTest
                 RunInEditor(testScenes,  otherBuildScenes);
         }
         
-        private static void BuildAndRun(BuildTarget target, List<string> testScenes, List<string> otherBuildScenes)
+        private static void BuildAndRun(BuildTarget target, System.Collections.Generic.List<string> testScenes, System.Collections.Generic.List<string> otherBuildScenes)
         {
             var resultFilePath = GetParameterArgument(k_ResultFileDirParam);
 
@@ -78,7 +78,7 @@ namespace UnityTest
             PlatformRunner.BuildAndRunInPlayer(config);
         }
 
-        private static void RunInEditor(List<string> testScenes, List<string> otherBuildScenes)
+        private static void RunInEditor(System.Collections.Generic.List<string> testScenes, System.Collections.Generic.List<string> otherBuildScenes)
         {
             CheckActiveBuildTarget();
 
@@ -175,7 +175,7 @@ namespace UnityTest
 
         private static List<string> GetSceneListFromParam(string param)
         {
-            var sceneList = new List<string>();
+            var sceneList = new System.Collections.Generic.List<string>();
             foreach (var arg in Environment.GetCommandLineArgs())
             {
                 if (arg.ToLower().StartsWith(param.ToLower()))

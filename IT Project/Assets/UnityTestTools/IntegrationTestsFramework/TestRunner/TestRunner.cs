@@ -19,8 +19,8 @@ namespace UnityTest
         static private readonly TestResultRenderer k_ResultRenderer = new TestResultRenderer();
 
         public TestComponent currentTest;
-        private List<TestResult> m_ResultList = new List<TestResult>();
-        private List<TestComponent> m_TestComponents;
+        private System.Collections.Generic.List<TestResult> m_ResultList = new System.Collections.Generic.List<TestResult>();
+        private System.Collections.Generic.List<TestComponent> m_TestComponents;
 
         public bool isInitializedByRunner
         {
@@ -84,7 +84,7 @@ namespace UnityTest
             InitRunner(tests, dynamicTestTypes.Select(type => type.AssemblyQualifiedName).ToList());
         }
 
-        public void InitRunner(List<TestComponent> tests, List<string> dynamicTestsToRun)
+        public void InitRunner(System.Collections.Generic.List<TestComponent> tests, System.Collections.Generic.List<string> dynamicTestsToRun)
         {
             Application.logMessageReceived += LogHandler;
 

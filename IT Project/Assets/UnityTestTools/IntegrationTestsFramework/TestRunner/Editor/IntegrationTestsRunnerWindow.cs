@@ -23,8 +23,8 @@ namespace UnityTest
 
         #region runner steerign vars
         private static IntegrationTestsRunnerWindow s_Instance;
-        [SerializeField] private List<GameObject> m_TestsToRun;
-        [SerializeField] private List<string> m_DynamicTestsToRun;
+        [SerializeField] private System.Collections.Generic.List<GameObject> m_TestsToRun;
+        [SerializeField] private System.Collections.Generic.List<string> m_DynamicTestsToRun;
         [SerializeField] private bool m_ReadyToRun;
         private bool m_IsBuilding;
         public static bool selectedInHierarchy;
@@ -40,8 +40,8 @@ namespace UnityTest
         int m_resultTestMaxLength = 15000;
 
         [SerializeField] private GameObject m_SelectedLine;
-        [SerializeField] private List<TestResult> m_ResultList = new List<TestResult>();
-        [SerializeField] private List<GameObject> m_FoldMarkers = new List<GameObject>();
+        [SerializeField] private System.Collections.Generic.List<TestResult> m_ResultList = new System.Collections.Generic.List<TestResult>();
+        [SerializeField] private System.Collections.Generic.List<GameObject> m_FoldMarkers = new System.Collections.Generic.List<GameObject>();
 
         private IntegrationTestsRunnerSettings m_Settings;
 
@@ -267,7 +267,7 @@ namespace UnityTest
 
             var topTestList = TestComponent.FindAllTopTestsOnScene();
 
-            var newResultList = new List<TestResult>();
+            var newResultList = new System.Collections.Generic.List<TestResult>();
             m_TestLines = ParseTestList(topTestList, newResultList);
 
             var oldDynamicResults = m_ResultList.Where(result => result.dynamicTest);
@@ -293,9 +293,9 @@ namespace UnityTest
         }
 
 
-        private IntegrationTestRendererBase[] ParseTestList(List<TestComponent> testList, List<TestResult> results)
+        private IntegrationTestRendererBase[] ParseTestList(System.Collections.Generic.List<TestComponent> testList, System.Collections.Generic.List<TestResult> results)
         {
-            var tempList = new List<IntegrationTestRendererBase>();
+            var tempList = new System.Collections.Generic.List<IntegrationTestRendererBase>();
             foreach (var testObject in testList)
             {
                 if (!testObject.IsTestGroup())
@@ -502,7 +502,7 @@ namespace UnityTest
                 PlayerSettings.runInBackground = true;
             }
 
-            public void RunStarted(string platform, List<TestComponent> testsToRun)
+            public void RunStarted(string platform, System.Collections.Generic.List<TestComponent> testsToRun)
             {
                 EditorApplication.update += OnEditorUpdate;
                 m_TestNumber = testsToRun.Count;
@@ -513,7 +513,7 @@ namespace UnityTest
                 }
             }
 
-            public void RunFinished(List<TestResult> testResults)
+            public void RunFinished(System.Collections.Generic.List<TestResult> testResults)
             {
                 m_Window.SetCurrentTest(null);
                 m_CurrentTest = null;
@@ -553,10 +553,10 @@ namespace UnityTest
                 }
             }
 
-            public void TestRunInterrupted(List<ITestComponent> testsNotRun)
+            public void TestRunInterrupted(System.Collections.Generic.List<ITestComponent> testsNotRun)
             {
                 Debug.Log("Test run interrupted");
-                RunFinished(new List<TestResult>());
+                RunFinished(new System.Collections.Generic.List<TestResult>());
             }
 
             private void OnEditorUpdate()

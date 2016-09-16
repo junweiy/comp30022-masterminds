@@ -7,11 +7,11 @@ public class LavaController : MonoBehaviour {
 	public int healthDropPerTime;
 	// Time between HP dropping in seconds
 	public int healthDropSecondsInterval;
-	private List<Character> characterList;
+	private System.Collections.Generic.List<Character> characterList;
 
 
 	void Start () {
-		characterList = new List<Character> ();
+        characterList = new System.Collections.Generic.List<Character> ();
 	}
 
 	void OnCollisionEnter(Collision collision) {

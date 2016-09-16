@@ -53,7 +53,7 @@ namespace UnityTest
                 }
             }
 
-            var resultList = new List<string>();
+            var resultList = new System.Collections.Generic.List<string>();
             var path = "";
             if (propertyToSearch.EndsWith("."))
                 propertyToSearch = propertyToSearch.Substring(0, propertyToSearch.Length - 1);
@@ -95,7 +95,7 @@ namespace UnityTest
             var goVals = GetPropertiesAndFieldsFromType(typeof(GameObject),
                                                         depthOfSearch - 1).Select(s => "gameObject." + s);
 
-            var result = new List<string>();
+            var result = new System.Collections.Generic.List<string>();
             if (AllowedTypes == null || !AllowedTypes.Any() || AllowedTypes.Contains(typeof(GameObject)))
                 result.Add("gameObject");
             result.AddRange(goVals);
@@ -129,8 +129,8 @@ namespace UnityTest
         {
             level--;
 
-            var result = new List<string>();
-            var fields = new List<MemberInfo>();
+            var result = new System.Collections.Generic.List<string>();
+            var fields = new System.Collections.Generic.List<MemberInfo>();
             fields.AddRange(type.GetFields().Where(f => !Attribute.IsDefined(f, typeof(ObsoleteAttribute))).ToArray());
             fields.AddRange(type.GetProperties().Where(info => info.GetIndexParameters().Length == 0 && !Attribute.IsDefined(info, typeof(ObsoleteAttribute))).ToArray());
 
@@ -167,7 +167,7 @@ namespace UnityTest
 
         internal Type[] GetAllComponents(GameObject gameObject)
         {
-            var result = new List<Type>();
+            var result = new System.Collections.Generic.List<Type>();
             var components = gameObject.GetComponents(typeof(Component));
             foreach (var component in components)
             {

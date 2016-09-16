@@ -32,7 +32,7 @@ namespace UnityTest
         public bool sendResultsOverNetwork { get; private set; }
 
 #if UTT_SOCKETS_SUPPORTED
-        private readonly List<IPEndPoint> m_IPEndPointList = new List<IPEndPoint>();
+        private readonly System.Collections.Generic.List<IPEndPoint> m_IPEndPointList = new System.Collections.Generic.List<IPEndPoint>();
 #endif
 
         public TestRunnerConfigurator()
@@ -78,7 +78,7 @@ namespace UnityTest
             else
                 text = GetTextFromTextAsset(testScenesToRun);
 
-            List<string> sceneList = new List<string>();
+            System.Collections.Generic.List<string> sceneList = new System.Collections.Generic.List<string>();
             foreach (var line in text.Split(new[] {'\n'}, StringSplitOptions.RemoveEmptyEntries))
             {
                 sceneList.Add(line.ToString());
@@ -155,10 +155,10 @@ namespace UnityTest
         {
 #if UTT_SOCKETS_SUPPORTED
             if (!NetworkInterface.GetIsNetworkAvailable()) 
-                return new List<String>{IPAddress.Loopback.ToString()};
+                return new System.Collections.Generic.List<string> { IPAddress.Loopback.ToString()};
 
-            var ipList = new List<UnicastIPAddressInformation>();
-            var allIpsList = new List<UnicastIPAddressInformation>();
+            var ipList = new System.Collections.Generic.List<UnicastIPAddressInformation>();
+            var allIpsList = new System.Collections.Generic.List<UnicastIPAddressInformation>();
 
             foreach (var netInterface in NetworkInterface.GetAllNetworkInterfaces())
             {
@@ -186,7 +186,7 @@ namespace UnityTest
                             return mask2.CompareTo(mask1);
                         });
             if (ipList.Count == 0)
-                return new List<String> { IPAddress.Loopback.ToString() };
+                return new System.Collections.Generic.List<string> { IPAddress.Loopback.ToString() };
             return ipList.Select(i => i.Address.ToString()).ToList();
 #else
             return new List<string>();

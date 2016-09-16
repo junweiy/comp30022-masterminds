@@ -8,7 +8,7 @@ namespace UnityTest
 {
     public interface IListRenderer
     {
-        void Render(IEnumerable<AssertionComponent> allAssertions, List<string> foldMarkers);
+        void Render(IEnumerable<AssertionComponent> allAssertions, System.Collections.Generic.List<string> foldMarkers);
     }
 
     public abstract class AssertionListRenderer<T> : IListRenderer
@@ -23,7 +23,7 @@ namespace UnityTest
             }
         }
 
-        public void Render(IEnumerable<AssertionComponent> allAssertions, List<string> foldMarkers)
+        public void Render(IEnumerable<AssertionComponent> allAssertions, System.Collections.Generic.List<string> foldMarkers)
         {
             foreach (var grouping in GroupResult(allAssertions))
             {

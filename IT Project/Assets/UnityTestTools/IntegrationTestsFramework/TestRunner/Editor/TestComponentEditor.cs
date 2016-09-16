@@ -108,7 +108,7 @@ namespace UnityTest
 
         private string[] GetListOfIgnoredPlatforms(string[] enumList, int flags)
         {
-            var notSelectedPlatforms = new List<string>();
+            var notSelectedPlatforms = new System.Collections.Generic.List<string>();
             for (int i = 0; i < enumList.Length; i++)
             {
                 var sel = (flags & (1 << i)) != 0;

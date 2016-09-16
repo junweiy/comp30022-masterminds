@@ -13,7 +13,7 @@ public class SpellController : MonoBehaviour {
 	// The image of spell range
 	public Image spellRange;
 	// A list of spells that the character currently have
-	private List<Spell> spells;
+	private System.Collections.Generic.List<Spell> spells;
 
 	/* The function initialises the controller on a certain character.
 	 */

@@ -15,15 +15,15 @@ namespace UnityTest.IntegrationTests
     {
         private BuildTarget m_BuildTarget;
 
-        private List<string> m_IntegrationTestScenes;
-        private List<string> m_OtherScenesToBuild;
-        private List<string> m_AllScenesInProject;
+        private System.Collections.Generic.List<string> m_IntegrationTestScenes;
+        private System.Collections.Generic.List<string> m_OtherScenesToBuild;
+        private System.Collections.Generic.List<string> m_AllScenesInProject;
 
         private Vector2 m_ScrollPositionIntegrationTests;
         private Vector2 m_ScrollPositionOtherScenes;
         private Vector2 m_ScrollPositionAllScenes;
-        private readonly List<string> m_Interfaces = new List<string>();
-        private readonly List<string> m_SelectedScenes = new List<string>();
+        private readonly System.Collections.Generic.List<string> m_Interfaces = new System.Collections.Generic.List<string>();
+        private readonly System.Collections.Generic.List<string> m_SelectedScenes = new System.Collections.Generic.List<string>();
 
         private int m_SelectedInterface;
         [SerializeField]
@@ -40,10 +40,10 @@ namespace UnityTest.IntegrationTests
         void Awake()
         {
             if (m_OtherScenesToBuild == null)
-                m_OtherScenesToBuild = new List<string> ();
+                m_OtherScenesToBuild = new System.Collections.Generic.List<string> ();
 
             if (m_IntegrationTestScenes == null)
-                m_IntegrationTestScenes = new List<string> ();
+                m_IntegrationTestScenes = new System.Collections.Generic.List<string> ();
 
             titleContent = new GUIContent("Platform runner");
             m_BuildTarget = PlatformRunner.defaultBuildTarget;
@@ -171,7 +171,7 @@ namespace UnityTest.IntegrationTests
             }
         }
 
-        private void DrawVerticalSceneList(ref List<string> sourceList, ref string selectString, ref Vector2 scrollPosition)
+        private void DrawVerticalSceneList(ref System.Collections.Generic.List<string> sourceList, ref string selectString, ref Vector2 scrollPosition)
         {
 			scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition, Styles.testList);
             EditorGUI.indentLevel++;
@@ -198,10 +198,10 @@ namespace UnityTest.IntegrationTests
             EditorGUILayout.EndScrollView();
         }
 
-        public static List<string> GetScenesWithTestComponents(List<string> allScenes)
+        public static List<string> GetScenesWithTestComponents(System.Collections.Generic.List<string> allScenes)
         {
-            List<Object> results = EditorReferencesUtil.FindScenesWhichContainAsset("TestComponent.cs");    
-            List<string> integrationTestScenes = new List<string>();
+            System.Collections.Generic.List<Object> results = EditorReferencesUtil.FindScenesWhichContainAsset("TestComponent.cs");
+            System.Collections.Generic.List<string> integrationTestScenes = new System.Collections.Generic.List<string>();
             
             foreach (Object obj in results) {
                 string result = allScenes.FirstOrDefault(s => s.Contains(obj.name));
@@ -277,7 +277,7 @@ namespace UnityTest.IntegrationTests
             };
             
             if (m_SelectedInterface > 0)
-            config.ipList = new List<string> {m_Interfaces.ElementAt(m_SelectedInterface)};
+            config.ipList = new System.Collections.Generic.List<string> { m_Interfaces.ElementAt(m_SelectedInterface) };
             
             PlatformRunner.BuildAndRunInPlayer(config);
             Close ();
@@ -301,9 +301,9 @@ namespace UnityTest.IntegrationTests
         {
             string storedTestScenes = EditorPrefs.GetString (Animator.StringToHash (Application.dataPath + "uttTestScenes").ToString ());
             string storedBuildScenes = EditorPrefs.GetString (Animator.StringToHash (Application.dataPath + "uttBuildScenes").ToString ());
-            
-            List<string> parsedTestScenes = storedTestScenes.Split (',').ToList ();
-            List<string> parsedBuildScenes = storedBuildScenes.Split (',').ToList ();
+
+            System.Collections.Generic.List<string> parsedTestScenes = storedTestScenes.Split (',').ToList();
+            System.Collections.Generic.List<string> parsedBuildScenes = storedBuildScenes.Split (',').ToList();
             
             // Sanity check scenes actually exist
             foreach (string str in parsedTestScenes) {

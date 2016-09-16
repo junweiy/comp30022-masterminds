@@ -26,7 +26,7 @@ public class TestResultRenderer
             FailedMessagesStyle.richText = true;
         }
     }
-    private readonly Dictionary<string, List<ITestResult>> m_TestCollection = new Dictionary<string, List<ITestResult>>();
+    private readonly Dictionary<string, System.Collections.Generic.List<ITestResult>> m_TestCollection = new Dictionary<string, System.Collections.Generic.List<ITestResult>>();
 
     private bool m_ShowResults;
     Vector2 m_ScrollPosition;
@@ -41,7 +41,7 @@ public class TestResultRenderer
     public void AddResults(string sceneName, ITestResult result)
     {
         if (!m_TestCollection.ContainsKey(sceneName))
-            m_TestCollection.Add(sceneName, new List<ITestResult>());
+            m_TestCollection.Add(sceneName, new System.Collections.Generic.List<ITestResult>());
         m_TestCollection[sceneName].Add(result);
         if (result.Executed && !result.IsSuccess)
             m_FailureCount++;

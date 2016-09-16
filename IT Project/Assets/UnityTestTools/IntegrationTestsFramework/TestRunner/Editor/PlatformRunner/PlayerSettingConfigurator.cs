@@ -20,7 +20,7 @@ namespace UnityTest
         private bool m_RunInBackground;
         private bool m_FullScreen;
         private bool m_ResizableWindow;
-        private readonly List<string> m_TempFileList = new List<string>();
+        private readonly System.Collections.Generic.List<string> m_TempFileList = new System.Collections.Generic.List<string>();
 
         public PlayerSettingConfigurator(bool saveInTempFolder)
         {

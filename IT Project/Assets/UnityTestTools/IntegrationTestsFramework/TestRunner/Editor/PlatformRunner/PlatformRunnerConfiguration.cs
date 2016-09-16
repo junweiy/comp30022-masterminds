@@ -11,15 +11,15 @@ using UnityEngine.SceneManagement;
 [Serializable]
 public class PlatformRunnerConfiguration
 {
-    public List<string> buildScenes;
-    public List<string> testScenes;
+    public System.Collections.Generic.List<string> buildScenes;
+    public System.Collections.Generic.List<string> testScenes;
     public BuildTarget buildTarget;
     public bool runInEditor;
     public string projectName = SceneManager.GetActiveScene().path;
 
     public string resultsDir = null;
     public bool sendResultsOverNetwork;
-    public List<string> ipList;
+    public System.Collections.Generic.List<string> ipList;
     public int port;
 
     public PlatformRunnerConfiguration(BuildTarget buildTarget)

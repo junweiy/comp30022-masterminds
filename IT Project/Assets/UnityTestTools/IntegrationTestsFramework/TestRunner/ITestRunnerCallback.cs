@@ -6,11 +6,11 @@ namespace UnityTest.IntegrationTestRunner
 {
     public interface ITestRunnerCallback
     {
-        void RunStarted(string platform, List<TestComponent> testsToRun);
-        void RunFinished(List<TestResult> testResults);
+        void RunStarted(string platform, System.Collections.Generic.List<TestComponent> testsToRun);
+        void RunFinished(System.Collections.Generic.List<TestResult> testResults);
         void AllScenesFinished();
         void TestStarted(TestResult test);
         void TestFinished(TestResult test);
-        void TestRunInterrupted(List<ITestComponent> testsNotRun);
+        void TestRunInterrupted(System.Collections.Generic.List<ITestComponent> testsNotRun);
     }
 }

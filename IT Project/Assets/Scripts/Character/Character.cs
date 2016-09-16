@@ -21,7 +21,7 @@ public class Character {
 	public bool canMove { get; set; }
     private bool isDead;
 
-    private List<Item> items;
+    private System.Collections.Generic.List<Item> items;
 	public List<Spell> spells { get; set; }
 
 	public float range { get; set; }
@@ -35,8 +35,8 @@ public class Character {
 		coin = 0;
 		isDead = false;
 		canMove = true;
-        items = new List<Item>();
-		spells = new List<Spell> ();
+        items = new System.Collections.Generic.List<Item>();
+        spells = new System.Collections.Generic.List<Spell> ();
 		addSpell (new FireBall ());
 		addSpell (new FireNova ());
     }

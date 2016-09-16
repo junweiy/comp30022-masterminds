@@ -79,12 +79,12 @@ namespace UnityTest
             return result;
         }
 
-        public void RunStarted(string platform, List<TestComponent> testsToRun)
+        public void RunStarted(string platform, System.Collections.Generic.List<TestComponent> testsToRun)
         {
             SendDTO(ResultDTO.CreateRunStarted());
         }
 
-        public void RunFinished(List<TestResult> testResults)
+        public void RunFinished(System.Collections.Generic.List<TestResult> testResults)
         {
             SendDTO(ResultDTO.CreateRunFinished(testResults));
         }
@@ -104,9 +104,9 @@ namespace UnityTest
             SendDTO (ResultDTO.CreateAllScenesFinished ());
         }
 
-        public void TestRunInterrupted(List<ITestComponent> testsNotRun)
+        public void TestRunInterrupted(System.Collections.Generic.List<ITestComponent> testsNotRun)
         {
-            RunFinished(new List<TestResult>());
+            RunFinished(new System.Collections.Generic.List<TestResult>());
         }
     }
 }

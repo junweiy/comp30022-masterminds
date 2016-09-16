@@ -6,7 +6,7 @@ namespace UnityTest.IntegrationTestRunner
 {
     public class TestRunnerCallbackList : ITestRunnerCallback
     {
-        private readonly List<ITestRunnerCallback> m_CallbackList = new List<ITestRunnerCallback>();
+        private readonly System.Collections.Generic.List<ITestRunnerCallback> m_CallbackList = new System.Collections.Generic.List<ITestRunnerCallback>();
 
         public void Add(ITestRunnerCallback callback)
         {
@@ -18,7 +18,7 @@ namespace UnityTest.IntegrationTestRunner
             m_CallbackList.Remove(callback);
         }
 
-        public void RunStarted(string platform, List<TestComponent> testsToRun)
+        public void RunStarted(string platform, System.Collections.Generic.List<TestComponent> testsToRun)
         {
             foreach (var unitTestRunnerCallback in m_CallbackList)
             {
@@ -26,7 +26,7 @@ namespace UnityTest.IntegrationTestRunner
             }
         }
 
-        public void RunFinished(List<TestResult> testResults)
+        public void RunFinished(System.Collections.Generic.List<TestResult> testResults)
         {
             foreach (var unitTestRunnerCallback in m_CallbackList)
             {
@@ -58,7 +58,7 @@ namespace UnityTest.IntegrationTestRunner
             }
         }
 
-        public void TestRunInterrupted(List<ITestComponent> testsNotRun)
+        public void TestRunInterrupted(System.Collections.Generic.List<ITestComponent> testsNotRun)
         {
             foreach (var unitTestRunnerCallback in m_CallbackList)
             {

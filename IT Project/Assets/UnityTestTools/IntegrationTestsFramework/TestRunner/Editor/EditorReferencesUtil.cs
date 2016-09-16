@@ -53,7 +53,7 @@ namespace UnityTest
 
         private static List<FileInfo> DirSearch(DirectoryInfo d, string searchFor)
         {
-            List<FileInfo> founditems = d.GetFiles(searchFor).ToList();
+            System.Collections.Generic.List<FileInfo> founditems = d.GetFiles(searchFor).ToList();
             
             // Add (by recursing) subdirectory items.
             DirectoryInfo[] dis = d.GetDirectories();
@@ -68,10 +68,10 @@ namespace UnityTest
             get
             {
                 // get every single one of the files in the Assets folder.
-                List<FileInfo> files = DirSearch(new DirectoryInfo(Application.dataPath), "*.unity");
-                
+                System.Collections.Generic.List<FileInfo> files = DirSearch(new DirectoryInfo(Application.dataPath), "*.unity");
+
                 // now make them all into Asset references.
-                List<Object> assetRefs = new List<Object>();
+                System.Collections.Generic.List<Object> assetRefs = new System.Collections.Generic.List<Object>();
                 
                 foreach (FileInfo fi in files)
                 {

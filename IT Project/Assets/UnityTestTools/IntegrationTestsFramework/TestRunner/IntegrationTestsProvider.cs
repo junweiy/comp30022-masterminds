@@ -98,7 +98,7 @@ namespace UnityTest.IntegrationTestRunner
 
         public List<ITestComponent> GetRemainingTests()
         {
-            var remainingTests = new List<ITestComponent>();
+            var remainingTests = new System.Collections.Generic.List<ITestComponent>();
             foreach (var test in testCollection)
             {
                 remainingTests.AddRange(test.Value);
