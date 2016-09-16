@@ -33,12 +33,10 @@ public class SpellUIController : MonoBehaviour {
             {
                 GameObject spellButton = (GameObject)Instantiate(spellIcon);
                 Image[] images = spellButton.GetComponentsInChildren<Image>();
-                images[0] = (Image)Resources.Load(spells[i].iconPath, typeof(Texture2D));
-                images[1] = (Image)Resources.Load(spells[i].iconPath, typeof(Texture2D));
+                images[0].sprite = (Sprite)Resources.Load(spells[i].iconPath, typeof(Sprite));
+                images[1].sprite = (Sprite)Resources.Load(spells[i].iconPath, typeof(Sprite));
                 spellButton.transform.SetParent(spellBar_go.transform, false);
                 spellButton.transform.localScale = new Vector3(1, 1, 1);
-                icons[i] = spellButton;
-                Debug.Log("icons " + i.ToString() + " is " + (icons[i] == null).ToString());
             }
         }
         
@@ -46,7 +44,7 @@ public class SpellUIController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        icons = spellBar_go.GetComponentsInChildren<GameObject>();
         for (int i = 0; i < icons.Length; i++)
         {
             if (spells[i].currentCooldown < spells[i].cooldown)
