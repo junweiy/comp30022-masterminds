@@ -69,9 +69,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2894cf3c519741758bf3c74a2b77e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  radius: 0
-  power: 0
+  damage: 10
+  range: 10
+  power: 100
+  castingTime: 300
 --- !u!198 &198000010606891656
 ParticleSystem:
   m_ObjectHideFlags: 1

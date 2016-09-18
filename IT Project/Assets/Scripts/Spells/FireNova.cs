@@ -57,6 +57,7 @@ public class FireNova : Spell {
 		fnc.range = range;
 		fnc.power = power;
 		fnc.castingTime = castingTime;
+		fnc.ch = character;
 	}
 
 	/* The function applies changes to the spell when upgrading it.

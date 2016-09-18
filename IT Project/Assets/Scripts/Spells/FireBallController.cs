@@ -4,6 +4,8 @@ using System.Collections;
 public class FireBallController : MonoBehaviour {
 	// The tag of the character
 	public const string CHARACTER_TAG = "Character";
+	// Character that cast the spell
+	public Character ch;
 	// The damage of spell at current level
 	public int damage;
 
@@ -15,11 +17,10 @@ public class FireBallController : MonoBehaviour {
 		GameObject gameObject = collision.gameObject;
 		if (gameObject.tag == CHARACTER_TAG) {
 			cc = gameObject.GetComponent<CharacterController>();
-			if (!cc.isMainCharacter) {
+			if (cc.character != ch) {
 				Destroy (this.gameObject);
 				cc.character.TakeDamage (damage);
 			}
-
 		}
 
 	}

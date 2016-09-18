@@ -88,7 +88,7 @@ public class Character {
     private void OnDeath()
     {
         isDead = true;
-		GlobalState.instance.gameController.onCharacterDeath ();
+		//GlobalState.instance.gameController.onCharacterDeath ();
     }
 
     /**
