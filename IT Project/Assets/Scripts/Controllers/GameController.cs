@@ -51,13 +51,10 @@ public class GameController : MonoBehaviour {
 		foreach (Character c in characters) {
 			var characterObj = Instantiate<GameObject> (characterPrefab);
 			var charController = characterObj.GetComponent<CharacterController> ();
-			var spellController = characterObj.GetComponent<SpellController> ();
 			charController.initialise (c);
-			spellController.initialise (c);
 			if (GlobalState.isCurrentChar (c)) {
 				mainCamera.GetComponent<CameraControl> ().m_Target = characterObj.transform;
 				charController.setAsMainCharacter ();
-				spellController.setAsMainCharacter ();
 			}
 		}
 

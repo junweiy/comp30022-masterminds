@@ -6,9 +6,16 @@ public class CharacterController : MonoBehaviour {
 
 	// the character model
 	public Character character {get; set;}
+
+	public bool isMainCharacter { get; set;}
+
+	// The name of object used to spawn spells
 	private HealthBarUI healthBarUI;
 	private NavMeshAgent navMeshAgent;
-	public bool isMainCharacter { get; set;}
+	public Image spellRange;
+
+	private string SPELL_SPAWN_NAME = "SpellSpawn";
+
 
 	// Use this for initialization
 	public void initialise(Character c) {
@@ -18,7 +25,6 @@ public class CharacterController : MonoBehaviour {
 		this.gameObject.tag = "Character";
 		navMeshAgent = this.GetComponent<NavMeshAgent> ();
 		navMeshAgent.enabled = GlobalState.isCurrentChar (character);
-
 	}
 
 	public void setAsMainCharacter(){
@@ -37,22 +43,50 @@ public class CharacterController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		healthBarUI.SetHealthUI(character.HP,character.MaxHP);
+		healthBarUI.SetHealthUI(character.hp,character.maxHp);
 
-
-		if (isMainCharacter && character.canMove) {
-			if (Input.GetMouseButton (1)) {
-				Move ();
-			}
-
-			if (Input.GetButton ("Fire1")) {
-				Move ();
+		// Update cool down time for all spells
+		foreach (Spell s in character.spells) {
+			if (s.currentCooldown < s.cooldown) {
+				s.currentCooldown++;
 			}
 		}
+
+		if (isMainCharacter) {
+
+			if (Input.GetKeyDown ("1")) {
+				cast (character.spells[0]);
+			}
+			if (Input.GetKeyDown ("2")) {
+				cast (character.spells[1]);
+			}
+
+			if (Input.GetMouseButton (0) || Input.GetMouseButton(1)) {
+
+				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				RaycastHit hit;
+				if (!Physics.Raycast (ray, out hit, 100)) {
+					throw new UnityException ("Ray cast not hit");
+				}
+
+				if (character.canCast ()) {
+					character.castSelected (transform,hit.point);
+				}
+				else {
+					move (hit.point);
+				}
+			}
+
+			if (character.canCast ()) {
+				float range = character.getSelectedSpell().range + character.castingRange;
+				displaySpellCastRange (range);
+			} else {
+				hideSpellCastRange ();
+			}
+
+		}
+
     }
-
-
-
     // For debugging only
     void OnCollisionEnter(Collision collision)
     {
@@ -63,31 +97,37 @@ public class CharacterController : MonoBehaviour {
     }
 
 
-	private void Move()
+	private void move(Vector3 destination)
 	{
-		SpellController spellController = this.GetComponent<SpellController> ();
-		if (spellController.spellRange.enabled == true) {
-			spellController.spellRange.enabled = false;
-		}
+		navMeshAgent.destination = destination;
+		navMeshAgent.Resume ();
 
-		// quick fix only
-		if (navMeshAgent == null) {
-			return;
-		}
+	}
 
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit hit;
-
-		if (Physics.Raycast(ray, out hit, 100))
-		{
-			navMeshAgent.destination = hit.point;
-			navMeshAgent.Resume();
-
+	/* This function will cast spell based on the spell number stored in the character */
+	private void cast(Spell s)
+	{
+		if (s.isInstantSpell) {
+			// Find the transform of spell spawning point for instant spells
+			// and cast
+			Transform t = transform.Find (SPELL_SPAWN_NAME);
+			character.cast (s,transform,t.position);
+		} else {
+			character.selectSpell(s);
 		}
 
 	}
 
-    
+	public void displaySpellCastRange(float range){
+		spellRange.enabled = true;
+		spellRange.color = new Color (0f,1f,1f,0.15f);
+		spellRange.rectTransform.localScale = new Vector3(range,range,1f);
+	}
+
+
+	public void hideSpellCastRange(){
+		spellRange.enabled = false;
+	}
 
     public Character getCharacter()
     {

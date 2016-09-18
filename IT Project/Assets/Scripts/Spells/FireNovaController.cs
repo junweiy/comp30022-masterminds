@@ -13,6 +13,8 @@ public class FireNovaController : MonoBehaviour {
 	// The casting time of spell at current level
 	public int castingTime;
 
+	public Character fromCharacter;
+
 	/* The function looks for the main character and returns the character controller component of 
 	 * the character.
 	 */ 
@@ -56,7 +58,7 @@ public class FireNovaController : MonoBehaviour {
 				if (rb != null) {
 					CharacterController ccOther = hit.GetComponent<CharacterController> (); 
 					rb.AddExplosionForce (power, transform.position, range);
-					ccOther.character.TakeDamage (damage);
+					ccOther.character.TakeDamage (damage,fromCharacter);
 				}
 			}
 		}

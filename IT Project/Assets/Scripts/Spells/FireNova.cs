@@ -38,6 +38,7 @@ public class FireNova : Spell {
 	// The casting time for the spell
 	private int castingTime = INITIAL_CASTING_TIME;
 
+
 	/* The function initialises the FireNova object with basic properties.
 	 */
 	public FireNova() : base(COOLDOWN, ICON_PATH, ISCONST, PRICE, NAME, DESCRIPTION, INITIAL_RANGE) {
@@ -56,6 +57,7 @@ public class FireNova : Spell {
 		fnc.damage = damage + character.baseAttack;
 		fnc.range = range;
 		fnc.power = power;
+		fnc.fromCharacter = character;
 		fnc.castingTime = castingTime;
 	}
 

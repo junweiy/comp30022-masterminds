@@ -1,30 +1,21 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Spells/Spell.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Character/Character.cs">
     <Files>
       <File FileName="Assets/Scripts/Spells/Spell.cs" Line="19" Column="22" />
-      <File FileName="Assets/Scripts/Spells/FireNova.cs" Line="65" Column="13" />
+      <File FileName="Assets/Scripts/Spells/FireNova.cs" Line="58" Column="21" />
+      <File FileName="Assets/Scripts/Controllers/CharacterController.cs" Line="54" Column="1" />
+      <File FileName="Assets/Scripts/Character/Character.cs" Line="24" Column="52" />
+      <File FileName="Assets/Scripts/Controllers/GameController.cs" Line="84" Column="1" />
+      <File FileName="Assets/Scripts/Spells/SpellController.cs" Line="68" Column="35" />
+      <File FileName="Assets/Scripts/Items/LifeNecklace.cs" Line="36" Column="12" />
+      <File FileName="Assets/Scripts/System/Shop.cs" Line="11" Column="1" />
+      <File FileName="Assets/Scripts/Ground/LavaController.cs" Line="36" Column="22" />
+      <File FileName="Assets/Scripts/Spells/FireBallController.cs" Line="26" Column="3" />
+      <File FileName="Assets/Scripts/Spells/FireNovaController.cs" Line="59" Column="1" />
+      <File FileName="Assets/Scripts/Spells/FireBall.cs" Line="38" Column="42" />
+      <File FileName="Assets/Scripts/System/StateController.cs" Line="1" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="IT Project" expanded="True">
-            <Node name="Assembly-CSharp" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="Camera" expanded="True" />
-                <Node name="Character" expanded="True" />
-                <Node name="Controllers" expanded="True" />
-                <Node name="Items" expanded="True" />
-                <Node name="Spells" expanded="True">
-                  <Node name="Spell.cs" selected="True" />
-                </Node>
-                <Node name="System" expanded="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

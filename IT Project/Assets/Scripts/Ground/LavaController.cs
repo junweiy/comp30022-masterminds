@@ -33,7 +33,7 @@ public class LavaController : MonoBehaviour {
 
 	IEnumerator Damage (Character player) {
 		while (characterList.Contains (player)) {
-			player.TakeDamage (healthDropPerTime);
+			player.looseHealth (healthDropPerTime);
 			yield return new WaitForSeconds (healthDropSecondsInterval);
 		}
 	}

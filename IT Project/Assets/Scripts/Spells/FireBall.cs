@@ -48,6 +48,7 @@ public class FireBall : Spell {
 		// Change related properties to reflect certain level of spell
 		fbc = fb.GetComponent<FireBallController> ();
 		fbc.damage = damage + character.baseAttack;
+		fbc.fromCharacter = character;
 	}
 
 	/* The function applies changes to the spell when upgrading it.

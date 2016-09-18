@@ -67,7 +67,7 @@ public class SpellController : MonoBehaviour {
 		} else {
 			// WuliPangPang please fix this
 			spellRange.enabled = true;
-			spellRange.transform.localScale *= s.range+character.range;
+			spellRange.transform.localScale *= s.range+character.castingRange;
 
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;

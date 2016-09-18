@@ -27,13 +27,13 @@ public class LifeNecklace : Item {
 	/* The function applies the effect of Life Necklace when the character wears it.
 	 */
 	public override void applyEffect(Character ply) {
-		ply.MaxHP += maxHPIncreased;
+		ply.maxHp += maxHPIncreased;
 	}
 
 	/* The function removes the effect of Life Necklace when the character takes it off.
 	 */
 	public override void removeEffect(Character ply) {
-		ply.MaxHP -= maxHPIncreased;
+		ply.maxHp -= maxHPIncreased;
 	}
 
 	/* The function applies changes to the spell when upgrading it.

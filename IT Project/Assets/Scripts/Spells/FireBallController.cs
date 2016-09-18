@@ -6,6 +6,7 @@ public class FireBallController : MonoBehaviour {
 	public const string CHARACTER_TAG = "Character";
 	// The damage of spell at current level
 	public int damage;
+	public Character fromCharacter;
 
 	/* The function detects if the fireball hits on any other player while flying. If it does, 
 	 * damage will be caused and the fireball will disappear.
@@ -17,7 +18,7 @@ public class FireBallController : MonoBehaviour {
 			cc = gameObject.GetComponent<CharacterController>();
 			if (!cc.isMainCharacter) {
 				Destroy (this.gameObject);
-				cc.character.TakeDamage (damage);
+				cc.character.TakeDamage (damage,fromCharacter);
 			}
 
 		}

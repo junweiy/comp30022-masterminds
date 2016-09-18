@@ -2,30 +2,35 @@
 using System.Collections;
 using System.Collections.Generic;
 
-/*
- *  This class is the main class for the character. It stores all the information about the character
- *  
- * 
- */ 
+/// <summary>
+/// Character.
+/// This is the model class of Character. It contains information about the character
+/// and the logic.
+/// </summary>
 public class Character {
 
-    private const float DEFAULT_HP = 100f;
-    private const int MAXIMUM_NUMBER_OF_ITEM = 6;
+    public const float DEFAULT_HP = 100f;
+    public const int MAXIMUM_NUMBER_OF_ITEM = 6;
 
-	public int baseAttack { get;set; }
-    private float hp; 
-	private float maxHp { get; set; }
+	public int baseAttack { get; set; }
+	public float castingRange { get; set; }
+	public float maxHp { get; set; }
+	public float hp { get; set; } 
 	public int score { get; private set; }
-    private int coin;
-
 	public bool canMove { get; set; }
-    private bool isDead;
-
-    private List<Item> items;
 	public List<Spell> spells { get; set; }
+	public int coin { get; set; }
 
-	public float range { get; set; }
-    
+	public List<Character> killedCharacter{ get; set;}
+	public Character lastDamagedCharacter{ get; set; }
+
+	private string SPELL_SPAWN_NAME = "SpellSpawn";
+	private List<Item> items;
+	//The state of the character, whether he is aming to cast or casting or selecting
+	private enum State {Waiting, Aiming, Casting, Moving, Died}; 
+	private State state;
+	private Spell selectedSpell;
+
     public Character()
     {
 		baseAttack = 0;
@@ -33,26 +38,19 @@ public class Character {
         hp = 100f;
 		score = 0;
 		coin = 0;
-		isDead = false;
-		canMove = true;
         items = new List<Item>();
 		spells = new List<Spell> ();
+		killedCharacter = new List<Character> ();
 		addSpell (new FireBall ());
 		addSpell (new FireNova ());
     }
 
 
-
-    /*****/
-
     public void addSpell(Spell i)
     {
         spells.Add(i);
     }
-
-    /*****/
-
-
+		
     public void addItem(Item i)
     {
         items.Add(i);
@@ -62,43 +60,39 @@ public class Character {
     {
         return items.Count <= MAXIMUM_NUMBER_OF_ITEM;
     }
-
-    /*****/
-    public float HP {
-        get { return this.hp; }
-        set { this.hp = value; }
-    }
-
-    public float MaxHP
+		
+	public void TakeDamage(float f,Character fromCharacter)
     {
-        get { return this.maxHp; }
-        set { this.maxHp = value; }
+		hp -= f;
+		lastDamagedCharacter = fromCharacter;
+		if (hp <= 0 && state != State.Died)
+		{
+			OnDeath();
+		}
     }
 
-    public void TakeDamage(float f)
-    {
-        hp -= f;
-        if (hp <= 0 && !isDead)
-        {
-            OnDeath();
-        }
+	public void looseHealth(float f){
+		hp -= f;
+		if (hp <= 0 && state != State.Died)
+		{
+			OnDeath();
+		}
+	}
 
-    }
+	public void recordKill(Character c){
+		killedCharacter.Add (c);
+	}
 
     private void OnDeath()
     {
-        isDead = true;
+		lastDamagedCharacter.recordKill (this);
+		state = State.Died;
 		GlobalState.instance.gameController.onCharacterDeath ();
     }
 
     /**
      *  Coin and relative function
      */
-    public int Coin
-    {
-        get { return this.coin; }
-        set { this.coin = value; }
-    }
 
     public void deductCoin(int c)
     {
@@ -110,9 +104,49 @@ public class Character {
 		return this.score;
 	}
 
-	public int deductScore(int s) {
-		this.score = Mathf.Max(this.score - s, 0);
-		return this.score;
+	public bool canCast(){
+		return state == State.Aiming;
+	}
+
+	public Spell getSelectedSpell(){
+		return selectedSpell;
+	}
+
+	public void selectSpell(Spell s){
+		//select again to cancel select
+		if (state == State.Aiming) {
+			state = State.Waiting;
+			return;
+		}
+		// Reject casting if cool down has not finished
+		if (s.currentCooldown < s.cooldown) {
+			throw new UnityException("Cooldown");
+		}
+		selectedSpell = s;
+		state = State.Aiming;
+	}
+
+	public void cast(Spell s, Transform transform, Vector3 destination) {
+		if (state == State.Died) {
+			throw new UnityException ("Died");
+		}
+
+		if (state == State.Casting){
+			throw new UnityException ("Casting");
+		}
+
+		// Reject casting if cool down has not finished
+		if (s.currentCooldown < s.cooldown) {
+			throw new UnityException("Cooldown");
+		}
+		s.applyEffect(this, transform, destination);
+		s.currentCooldown = 0;
+		state = State.Waiting;
+		selectedSpell = null;
+	}
+
+	public void castSelected(Transform transform,Vector3 destination){
+		cast (selectedSpell, transform, destination);
 	}
 
 }
