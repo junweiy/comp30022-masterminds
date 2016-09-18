@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
 	
@@ -24,7 +25,7 @@ public class GameController : MonoBehaviour {
 	};
 
 	private int numCharacterAlive;
-	private Character[] characters;
+	public Character[] characters { get; private set; }
 
 	private void setCharactersPos() {
 		GameObject[] characterObjs = GameObject.FindGameObjectsWithTag("Character");
@@ -73,15 +74,10 @@ public class GameController : MonoBehaviour {
 
 	public void finishRound() {
 		Debug.Log ("Round Finished");
-		Character winner = this.characters [0];
-		// TODO Players having same score not proply handled here
-		foreach (Character c in this.characters) {
-			if (c.score > winner.score) {
-				winner = c;
-			}
-		}
-
 		bool gameHasFinished = StateController.finishRound();
+		if (gameHasFinished) {
+			
+		}
 	}
 
 	// Use this for initialization

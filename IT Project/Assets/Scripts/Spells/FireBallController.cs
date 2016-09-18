@@ -18,7 +18,7 @@ public class FireBallController : MonoBehaviour {
 			cc = gameObject.GetComponent<CharacterController>();
 			if (!cc.isMainCharacter) {
 				Destroy (this.gameObject);
-				cc.character.TakeDamage (damage,fromCharacter);
+				cc.character.takeDamage (damage,fromCharacter);
 			}
 
 		}

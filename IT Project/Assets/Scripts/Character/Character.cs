@@ -23,6 +23,8 @@ public class Character {
 
 	public List<Character> killedCharacter{ get; set;}
 	public Character lastDamagedCharacter{ get; set; }
+	public int numKill { get; private set; }
+	public int numDeath { get; private set; }
 
 	private string SPELL_SPAWN_NAME = "SpellSpawn";
 	private List<Item> items;
@@ -38,6 +40,8 @@ public class Character {
         hp = 100f;
 		score = 0;
 		coin = 0;
+		numKill = 0;
+		numDeath = 0;
         items = new List<Item>();
 		spells = new List<Spell> ();
 		killedCharacter = new List<Character> ();
@@ -61,33 +65,37 @@ public class Character {
         return items.Count <= MAXIMUM_NUMBER_OF_ITEM;
     }
 		
-	public void TakeDamage(float f,Character fromCharacter)
+	public void takeDamage(float f,Character fromCharacter)
     {
 		hp -= f;
 		lastDamagedCharacter = fromCharacter;
 		if (hp <= 0 && state != State.Died)
 		{
-			OnDeath();
+			onDeath();
 		}
     }
 
-	public void looseHealth(float f){
+	public void loseHealth(float f){
 		hp -= f;
 		if (hp <= 0 && state != State.Died)
 		{
-			OnDeath();
+			onDeath();
 		}
 	}
 
 	public void recordKill(Character c){
 		killedCharacter.Add (c);
+		addScore (1);
+		numKill += 1;
 	}
 
-    private void OnDeath()
+    private void onDeath()
     {
 		lastDamagedCharacter.recordKill (this);
 		state = State.Died;
 		GlobalState.instance.gameController.onCharacterDeath ();
+		addScore (-3);
+		numDeath += 1;
     }
 
     /**

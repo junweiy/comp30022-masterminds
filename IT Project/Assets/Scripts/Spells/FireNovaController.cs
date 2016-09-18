@@ -58,7 +58,7 @@ public class FireNovaController : MonoBehaviour {
 				if (rb != null) {
 					CharacterController ccOther = hit.GetComponent<CharacterController> (); 
 					rb.AddExplosionForce (power, transform.position, range);
-					ccOther.character.TakeDamage (damage,fromCharacter);
+					ccOther.character.takeDamage (damage,fromCharacter);
 				}
 			}
 		}
