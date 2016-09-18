@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class FireBallController : MonoBehaviour {
+public class FireBallController : NetworkBehaviour {
 	// The tag of the character
 	public const string CHARACTER_TAG = "Character";
 	// Character that cast the spell
@@ -16,11 +17,20 @@ public class FireBallController : MonoBehaviour {
 		CharacterController cc;
 		GameObject gameObject = collision.gameObject;
 		if (gameObject.tag == CHARACTER_TAG) {
-			cc = gameObject.GetComponent<CharacterController>();
-			if (cc.character != ch) {
+			cc = gameObject.GetComponent<CharacterController> ();
+			if (!cc.character.Equals(ch)) {
+				if (ch == null) {
+					Debug.Log ("AA");
+				}
+				if (cc == null) {
+					Debug.Log ("BB");
+				}
+				Debug.Log (cc.character.HP + "," + ch.HP);
 				Destroy (this.gameObject);
 				cc.character.TakeDamage (damage);
 			}
+		} else {
+			Destroy (this.gameObject);
 		}
 
 	}

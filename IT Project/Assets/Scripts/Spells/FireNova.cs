@@ -48,7 +48,7 @@ public class FireNova : Spell {
 	 * and during the casting time player will be disabled for moving, after which enemies surrounded by
 	 * player will be hit against will explosive force and player can move around again.
 	 */ 
-	public override void applyEffect(Character character,Transform charTransform,Vector3 destination) {
+	public override GameObject applyEffect(Character character,Transform charTransform,Vector3 destination) {
 		FireNovaController fnc;
 		Object fireNovaPrefab = Resources.Load(PREFAB_PATH);
 		GameObject fn = GameObject.Instantiate (fireNovaPrefab, charTransform.position, charTransform.rotation) as GameObject;
@@ -58,6 +58,7 @@ public class FireNova : Spell {
 		fnc.power = power;
 		fnc.castingTime = castingTime;
 		fnc.ch = character;
+		return fn;
 	}
 
 	/* The function applies changes to the spell when upgrading it.

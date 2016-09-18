@@ -22,11 +22,12 @@ GameObject:
   - 33: {fileID: 33000012973157606}
   - 135: {fileID: 135000011419026338}
   - 23: {fileID: 23000012376239988}
-  - 114: {fileID: 114000013297955746}
   - 54: {fileID: 54000013200956376}
   - 114: {fileID: 114000010650185738}
   - 199: {fileID: 199000010639091440}
   - 198: {fileID: 198000013956628858}
+  - 114: {fileID: 114000013961251408}
+  - 114: {fileID: 114000010715449166}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: Untagged
@@ -53,7 +54,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010462454898}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -110,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 40
---- !u!114 &114000013297955746
+--- !u!114 &114000010715449166
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -118,10 +119,50 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010462454898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aec62a8f30231b428cd43151464eb32, type: 3}
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 200
+  m_TransformSyncMode: 3
+  m_SendInterval: 0
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &114000013961251408
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010462454898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 153
+    i1: 58
+    i2: 204
+    i3: 14
+    i4: 110
+    i5: 109
+    i6: 124
+    i7: 100
+    i8: 40
+    i9: 116
+    i10: 141
+    i11: 202
+    i12: 218
+    i13: 251
+    i14: 161
+    i15: 219
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!135 &135000011419026338
 SphereCollider:
   m_ObjectHideFlags: 1

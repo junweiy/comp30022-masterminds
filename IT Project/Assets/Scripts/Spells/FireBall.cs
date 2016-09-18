@@ -5,7 +5,7 @@ public class FireBall : Spell {
 	// The damage of level 1 Fireball
 	private const int INITIAL_DAMAGE = 40;
 	// The cool down time of Fireball (unit in frames)
-	private const int COOLDOWN = 1000;
+	private const int COOLDOWN = 1;
 	// The icon path used to genereate icon on spell bar
 	private const string ICON_PATH = "";
 	// Whether Fireball is a constant skill
@@ -20,6 +20,8 @@ public class FireBall : Spell {
 	private const float RANGE = 10;
 	// The path of the prefab
 	private const string PREFAB_PATH = "prefabs/fireball";
+	// The velocity of fire ball
+	private const int VELOCITY = 200;
 	// The increment in damage when upgrading the spell
 	private const int LVL_UP_DAMAGE_INCREMENT = 20;
 
@@ -37,7 +39,7 @@ public class FireBall : Spell {
 	 * and move towards to desired direction until it hits a player or flys out of the border, and damage
 	 * will be given if it hits on a player.
 	 */ 
-	public override void applyEffect(Character character,Transform charTransform,Vector3 destination) {
+	public override GameObject applyEffect(Character character,Transform charTransform,Vector3 destination) {
 		FireBallController fbc;
 		Object fireBallPrefab = Resources.Load(PREFAB_PATH);
 		// The spawning point is half way between the character position and desired destination
@@ -47,8 +49,10 @@ public class FireBall : Spell {
 		GameObject fb = GameObject.Instantiate (fireBallPrefab, pos, Quaternion.LookRotation(dir)) as GameObject;
 		// Change related properties to reflect certain level of spell
 		fbc = fb.GetComponent<FireBallController> ();
+		fbc.GetComponent<Rigidbody> ().velocity = fbc.transform.forward * VELOCITY;
 		fbc.damage = damage + character.baseAttack;
 		fbc.ch = character;
+		return fb;
 	}
 
 	/* The function applies changes to the spell when upgrading it.

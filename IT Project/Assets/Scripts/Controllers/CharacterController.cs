@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 using System.Collections;
 using UnityEngine.Networking;
 using System.Collections.Generic;
@@ -44,6 +45,7 @@ public class CharacterController : NetworkBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		healthBarUI.SetHealthUI(character.HP,character.MaxHP);
 
 		// Update cool down time for all spells
 		foreach (Spell s in character.spells) {
@@ -55,9 +57,9 @@ public class CharacterController : NetworkBehaviour {
 		if (!isLocalPlayer) {
 			return;
 		}
+			
 
 		// Detect user input of movement
-
 
 		if (character.canMove) {
 			if (Input.GetMouseButton (1)) {
@@ -68,11 +70,9 @@ public class CharacterController : NetworkBehaviour {
 				Move ();
 			}
 		}
-
-
+			
 
 		// Detect user input of casting spells
-
 		if (Input.GetKeyDown ("1")) {
 			Cast (character.spells[0]);
 		}
@@ -80,11 +80,19 @@ public class CharacterController : NetworkBehaviour {
 			Cast (character.spells[1]);
 		}
 			
-		healthBarUI.SetHealthUI(character.HP,character.MaxHP);
-
-
 
     }
+
+	void Cast(Spell s) {
+		if (s.currentCooldown < s.cooldown) {
+			return;
+		}
+		if (s is FireBall) {
+			CmdCastFireBall (s as FireBall, gameObject);
+		}
+
+		s.currentCooldown = 0;
+	}
 
 
 
@@ -121,36 +129,59 @@ public class CharacterController : NetworkBehaviour {
 
 	}
 
-	/* This function will cast spell based on the spell number stored in the character */
-	private void Cast(Spell s)
-	{
+	[Command]
+	void CmdCastFireBall(FireBall fb, GameObject gO) {
+		// Supposed to work as constant however the navmesh is not working
+//		Image spellRange = gO.GetComponent<CharacterController>().spellRange;
+//			
+//		spellRange.enabled = true;
+//		spellRange.transform.localScale *= fb.range+character.range;
+//
+//		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+//		RaycastHit hit;
+//		if (Physics.Raycast(ray, out hit, 100))
+//		{
+//			GameObject go = fb.applyEffect(character, transform, hit.point) as GameObject;
+//			NetworkServer.Spawn (go);
+//		}
+//		spellRange.enabled = false;
+		Transform t = transform.Find (SPELL_SPAWN_NAME);
+		GameObject go = fb.applyEffect(gO.GetComponent<CharacterController>().character, transform, t.position);
+		NetworkServer.Spawn (go);
 
-		// Reject casting if cool down has not finished
-		if (s.currentCooldown < s.cooldown) {
-			return;
-		}
-
-		if (s.isInstantSpell) {
-			// Find the transform of spell spawning point for instant spells
-			Transform t = transform.Find (SPELL_SPAWN_NAME);
-			s.applyEffect(character, transform, t.position);
-		} else {
-			// WuliPangPang please fix this
-			spellRange.enabled = true;
-			spellRange.transform.localScale *= s.range+character.range;
-
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit hit;
-			if (Physics.Raycast(ray, out hit, 100))
-			{
-				s.applyEffect(character, transform, hit.point);
-			}
-			spellRange.enabled = false;
-		}
-
-		// Reset the cool down
-		s.currentCooldown = 0;
 	}
+		
+
+	/* This function will cast spell based on the spell number stored in the character */
+//	private void Cast(Spell s)
+//	{
+//
+//		// Reject casting if cool down has not finished
+//		if (s.currentCooldown < s.cooldown) {
+//			return;
+//		}
+//
+//		if (s.isInstantSpell) {
+//			// Find the transform of spell spawning point for instant spells
+//			Transform t = transform.Find (SPELL_SPAWN_NAME);
+//			s.applyEffect(character, transform, t.position);
+//		} else {
+//			// WuliPangPang please fix this
+//			spellRange.enabled = true;
+//			spellRange.transform.localScale *= s.range+character.range;
+//
+//			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+//			RaycastHit hit;
+//			if (Physics.Raycast(ray, out hit, 100))
+//			{
+//				s.applyEffect(character, transform, hit.point);
+//			}
+//			spellRange.enabled = false;
+//		}
+//
+//		// Reset the cool down
+//		s.currentCooldown = 0;
+//	}
 		
 
 }

@@ -21,6 +21,7 @@ public class CameraControl : MonoBehaviour {
     }
 
 	void LateUpdate() {
+		
 		transform.rotation = rotation;
 	}
     
