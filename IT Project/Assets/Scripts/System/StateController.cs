@@ -34,5 +34,13 @@ public static class StateController {
 		SceneManager.LoadScene ("scenes/gameplay");
 		GlobalState.instance.gameController.prepareForNextRound ();
 	}
+
+	public static void switchToProfile() {
+		SceneManager.LoadScene ("scenes/profile");
+	}
+
+	public static void switchToMainMenu() {
+		SceneManager.LoadScene ("scenes/mainmenu");
+	}
 		
 }
