@@ -22,7 +22,6 @@ GameObject:
   - 222: {fileID: 222000011334818358}
   - 114: {fileID: 114000012461481854}
   - 114: {fileID: 114000010997073122}
-  - 114: {fileID: 114000010025439700}
   m_Layer: 5
   m_Name: SpellButton
   m_TagString: Untagged
@@ -40,6 +39,7 @@ GameObject:
   - 224: {fileID: 224000010554323208}
   - 222: {fileID: 222000011534966342}
   - 114: {fileID: 114000012487717198}
+  - 114: {fileID: 114000010216431096}
   m_Layer: 5
   m_Name: SpellIcon
   m_TagString: Untagged
@@ -47,12 +47,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114000010025439700
+--- !u!114 &114000010216431096
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013425377858}
+  m_GameObject: {fileID: 1000013940440732}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 693c0f09c9e70ae40857adfe2c582fd8, type: 3}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114000010025439700}
+      - m_Target: {fileID: 114000010216431096}
         m_MethodName: onclick
         m_Mode: 1
         m_Arguments:
