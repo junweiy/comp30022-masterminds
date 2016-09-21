@@ -9,7 +9,7 @@ public class FireNova : Spell {
 	// The cool down time of FireNova (unit in frames)
 	private const int COOLDOWN = 1000;
 	// The icon path used to genereate icon on spell bar
-	private const string ICON_PATH = "textures/spells/fireNova";
+	private const string ICON_PATH = "Textures/Spells/fireNova";
 	// Whether FireNova is a constant skill
 	private const bool ISCONST = true;
 	// The price of FireNova

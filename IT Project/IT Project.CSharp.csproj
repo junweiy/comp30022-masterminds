@@ -95,9 +95,9 @@
     <Compile Include="Assets\Scripts\Spells\FireNovaController.cs" />
     <Compile Include="Assets\Scripts\Spells\Mover.cs" />
     <Compile Include="Assets\Scripts\Spells\Spell.cs" />
-    <Compile Include="Assets\Scripts\Spells\SpellButtonController.cs" />
     <Compile Include="Assets\Scripts\Spells\SpellController.cs" />
     <Compile Include="Assets\Scripts\Spells\SpellCooldown.cs" />
+    <Compile Include="Assets\Scripts\Spells\SpellIconController.cs" />
     <Compile Include="Assets\Scripts\Spells\SpellUIController.cs" />
     <Compile Include="Assets\Scripts\System\CreateButtons.cs" />
     <Compile Include="Assets\Scripts\System\ItemButtonScript.cs" />

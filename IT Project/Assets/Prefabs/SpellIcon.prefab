@@ -58,8 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 693c0f09c9e70ae40857adfe2c582fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellButton: {fileID: 1000013940440732}
-  icon: {fileID: 0}
+  spellIcon: {fileID: 1000013940440732}
 --- !u!114 &114000010997073122
 MonoBehaviour:
   m_ObjectHideFlags: 1
