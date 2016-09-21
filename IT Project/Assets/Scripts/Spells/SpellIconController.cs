@@ -16,14 +16,10 @@ public class SpellIconController : MonoBehaviour {
         this.icon = Resources.Load<Sprite>(spell.iconPath);
         images = spellIcon.GetComponentsInChildren<Image>();
         images[0].sprite = icon;
-        images[0].type = Image.Type.Filled;
-        images[0].fillMethod = Image.FillMethod.Radial360;
-        images[0].fillOrigin = (int)Image.Origin360.Top;
         images[1].sprite = icon;
         images[1].type = Image.Type.Filled;
         images[1].fillMethod = Image.FillMethod.Radial360;
         images[1].fillOrigin = (int)Image.Origin360.Top;
-        spell.currentCooldown = 0;
     }
 
     // On click event
