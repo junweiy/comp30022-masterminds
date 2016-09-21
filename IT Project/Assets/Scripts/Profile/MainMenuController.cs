@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour {
 
-	public GameObject registerUserNameField;
-	public GameObject registerEmailField;
+	public InputField registerUserNameField;
+	public InputField registerEmailField;
 
 	public GameObject mainMenuPage;
 	public GameObject singleModePage;
@@ -46,8 +46,8 @@ public class MainMenuController : MonoBehaviour {
 	}
 
 	public void registerSubmit() {
-		string userName = registerUserNameField.GetComponent<Text> ().text;
-		string email = registerEmailField.GetComponent<Text> ().text;
+		string userName = registerUserNameField.text;
+		string email = registerEmailField.text;
 		try {
 			int? uid = ProfileMessenger.createNewUser (userName, email);
 			if (uid == null) {

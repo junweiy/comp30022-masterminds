@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class RegisterPanelController : MonoBehaviour {
 
-    public Text userName_input;
-    public Text email_input;
+    public InputField userName_input;
+    public InputField email_input;
     public string userName;
     public string email;
 
