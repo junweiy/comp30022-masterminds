@@ -1,17 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/System/ProfileMessenger.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/SettingPanel.cs">
     <Files>
-      <File FileName="Assets/Scripts/Profile/ErrorPageController.cs" Line="4" Column="1" />
-      <File FileName="Assets/Scripts/Profile/MainMenuController.cs" Line="60" Column="8" />
-      <File FileName="Assets/Scripts/System/ProfileMessenger.cs" Line="14" Column="50" />
-      <File FileName="Assets/Scripts/System/ProfileMessagingException.cs" Line="9" Column="9" />
+      <File FileName="Assets/Scripts/System/StateController.cs" Line="43" Column="40" />
+      <File FileName="Assets/Scripts/UI/SettingPanel.cs" Line="25" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Catchpoint exceptionName="System.ArgumentException" includeSubclasses="True" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

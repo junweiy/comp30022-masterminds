@@ -40,7 +40,7 @@ public static class StateController {
 	}
 
 	public static void switchToMainMenu() {
-		SceneManager.LoadScene ("scenes/mainmenu");
+		SceneManager.LoadScene ("scenes/MainMenu");
 	}
 		
 }
