@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FireBall : Spell {
 	// The damage of level 1 Fireball
-	private const int INITIAL_DAMAGE = 40;
+	private const int INITIAL_DAMAGE = 400;
 	// The cool down time of Fireball (unit in frames)
 	private const int COOLDOWN = 1000;
 	// The icon path used to genereate icon on spell bar

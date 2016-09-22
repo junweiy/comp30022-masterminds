@@ -20,6 +20,7 @@ public class Character {
 	public bool canMove { get; set; }
 	public List<Spell> spells { get; set; }
 	public int coin { get; set; }
+    public Profile player { get; set; }
 
 	public List<Character> killedCharacter{ get; set;}
 	public Character lastDamagedCharacter{ get; set; }

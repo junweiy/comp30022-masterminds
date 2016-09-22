@@ -34,8 +34,9 @@ public class ResultPageController : MonoBehaviour {
             Text[] texts;
             texts = userDetail.GetComponentsInChildren<Text>();
             // character should know user name and id
-            //texts[0].text = chars[i].userName
-            //texts[1].text = chars[i].userID;
+            texts[0].text = chars[i].player.username;
+            texts[1].text = chars[i].player.userId.ToString();
+            
             texts[2].text = chars[i].numKill.ToString();
             texts[3].text = chars[i].numDeath.ToString();
             //TODO: load and display spell image needs implementation
@@ -51,13 +52,13 @@ public class ResultPageController : MonoBehaviour {
 		StateController.switchToRoom ();
 	}
 
-	public void loadData() {
-		Character current = GlobalState.instance.currentChar;
-		this.chars = GlobalState.instance.gameController.characters;
-		int maxScore = chars.Max (c => c.score);
-		Character[] winners = chars.Where (c => c.score == maxScore).ToArray();
-		this.isWinner = winners.Contains (current);
-	}
+    public void loadData() {
+        Character current = GlobalState.instance.currentChar;
+        this.chars = GlobalState.instance.gameController.characters;
+        int maxScore = chars.Max(c => c.score);
+        Character[] winners = chars.Where(c => c.score == maxScore).ToArray();
+        this.isWinner = winners.Contains(current);
+    }
 
 	public void saveReplay() {
 		// TODO

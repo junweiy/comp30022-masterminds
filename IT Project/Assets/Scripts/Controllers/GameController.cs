@@ -87,8 +87,16 @@ public class GameController : MonoBehaviour {
 		// TODO for test only, will need to read player input
 		var current = new Character();
 		GlobalState.instance.currentChar = current;
-		this.initialiseScene(new Character[] {current, new Character(), new Character(), new Character(), new Character(),
-			new Character(), new Character(), new Character()});
+        Character kevin = new Character();
+        kevin.player = new Profile();
+        kevin.player.userId = 6;
+        kevin.player.username = "Pangpang";
+
+        current.player = new Profile();
+        current.player.username = "Jack";
+        current.player.userId = 1;
+
+		this.initialiseScene(new Character[] {current, kevin});
 	}
 	
 	// Update is called once per frame
