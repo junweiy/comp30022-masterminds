@@ -8,7 +8,8 @@ using System.Collections.Generic;
 public class CharacterController : NetworkBehaviour {
 
 	// the character model
-	public Character character {get; set;}
+	public Character character;
+
 	private HealthBarUI healthBarUI;
 	private NavMeshAgent navMeshAgent;
 	public bool isMainCharacter { get; set;}
@@ -23,7 +24,7 @@ public class CharacterController : NetworkBehaviour {
 
 	// Use this for initialization
 	public void Start() {
-		character = new Character();
+		character = GetComponent<Character>();
 		this.isMainCharacter = false;
 		this.healthBarUI = this.GetComponent<HealthBarUI> ();
 		this.gameObject.tag = "Character";
@@ -90,6 +91,9 @@ public class CharacterController : NetworkBehaviour {
 		if (s is FireBall) {
 			CmdCastFireBall (s as FireBall, gameObject);
 		}
+		if (s is FireNova) {
+			CmdCastFireNova (s as FireNova, gameObject);
+		}
 
 		s.currentCooldown = 0;
 	}
@@ -131,6 +135,8 @@ public class CharacterController : NetworkBehaviour {
 
 	[Command]
 	void CmdCastFireBall(FireBall fb, GameObject gO) {
+		// TO-DO
+
 		// Supposed to work as constant however the navmesh is not working
 //		Image spellRange = gO.GetComponent<CharacterController>().spellRange;
 //			
@@ -146,9 +152,13 @@ public class CharacterController : NetworkBehaviour {
 //		}
 //		spellRange.enabled = false;
 		Transform t = transform.Find (SPELL_SPAWN_NAME);
-		GameObject go = fb.applyEffect(gO.GetComponent<CharacterController>().character, transform, t.position);
-		NetworkServer.Spawn (go);
+		fb.applyEffect(gO.GetComponent<CharacterController>().character, transform, t.position);
+	}
 
+	[Command]
+	void CmdCastFireNova(FireNova fn, GameObject gO) {
+		Transform t = transform.Find (SPELL_SPAWN_NAME);
+		fn.applyEffect(gO.GetComponent<CharacterController>().character, transform, t.position);
 	}
 		
 

@@ -1,19 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class FireNovaController : MonoBehaviour { 
+public class FireNovaController : NetworkBehaviour { 
 	// The tag of the character
 	public const string CHARACTER_TAG = "Character";
 	// The damage of spell at current level
+	[SyncVar]
 	public int damage;
 	// The range of spell at current level
+	[SyncVar]
 	public float range;
 	// The power of spell at current level
+	[SyncVar]
 	public float power;
 	// The casting time of spell at current level
+	[SyncVar]
 	public int castingTime;
-	// Character that cast the spell
-	public Character ch;
+	// Character netID that cast the spell
+	[SyncVar]
+	public NetworkInstanceId chId;
 
 	/* The function utilised coroutine to achieve casting time effect.
 	 */ 
@@ -26,11 +32,15 @@ public class FireNovaController : MonoBehaviour {
 	 * corresponding amount of damage. 
 	 */ 
 	IEnumerator castFireNova() {
+		GameObject originalPlayer = ClientScene.FindLocalObject (chId);
 		yield return new WaitForSecondsRealtime (castingTime);
 		// After casting time find all objects within casting range
 		Collider[] colliders = Physics.OverlapSphere(this.transform.position, range);
 		foreach (Collider hit in colliders) {
 			if (!hit.CompareTag(CHARACTER_TAG)) {
+				continue;
+			}
+			if (hit.gameObject.GetComponent<Character> ().Equals (originalPlayer.GetComponent<Character>())) {
 				continue;
 			}
 			// all players around will be pushed with certain amount of power

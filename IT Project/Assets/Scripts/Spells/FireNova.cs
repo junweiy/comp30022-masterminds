@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 public class FireNova : Spell {
 	// The damage of level 1 FireNova
@@ -7,7 +8,7 @@ public class FireNova : Spell {
 	// The power of level 1 FireNova
 	private const float INITIAL_POWER = 8000.0F;
 	// The cool down time of FireNova (unit in frames)
-	private const int COOLDOWN = 1000;
+	private const int COOLDOWN = 1;
 	// The icon path used to genereate icon on spell bar
 	private const string ICON_PATH = "";
 	// Whether FireNova is a constant skill
@@ -48,7 +49,7 @@ public class FireNova : Spell {
 	 * and during the casting time player will be disabled for moving, after which enemies surrounded by
 	 * player will be hit against will explosive force and player can move around again.
 	 */ 
-	public override GameObject applyEffect(Character character,Transform charTransform,Vector3 destination) {
+	public override void applyEffect(Character character,Transform charTransform,Vector3 destination) {
 		FireNovaController fnc;
 		Object fireNovaPrefab = Resources.Load(PREFAB_PATH);
 		GameObject fn = GameObject.Instantiate (fireNovaPrefab, charTransform.position, charTransform.rotation) as GameObject;
@@ -57,8 +58,8 @@ public class FireNova : Spell {
 		fnc.range = range;
 		fnc.power = power;
 		fnc.castingTime = castingTime;
-		fnc.ch = character;
-		return fn;
+		fnc.chId = character.netId;
+		NetworkServer.Spawn (fn);
 	}
 
 	/* The function applies changes to the spell when upgrading it.

@@ -316,8 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7047599e36c5e04fa27b73438014261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthDropPerTime: 1
-  healthDropSecondsInterval: 1
+  healthDropPerTime: 0
+  healthDropSecondsInterval: 0
 --- !u!1 &404358798
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,9 +489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3ef09ff12a24c55bd7990697f7a25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsBetweenShrinking: 0.1
-  minScalableSizeRatio: 0.2
-  sizeShrunkPerTime: 0.5
+  secondsBetweenShrinking: 0
+  minScalableSizeRatio: 0
+  sizeShrunkPerTime: 0
 --- !u!1 &961015057
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,7 +920,7 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 1000010441146158, guid: b9bfc1849909f406986351883e5f1bb4,
+  m_PlayerPrefab: {fileID: 1000013997806572, guid: b9bfc1849909f406986351883e5f1bb4,
     type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1

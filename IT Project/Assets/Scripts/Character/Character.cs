@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
 /*
  *  This class is the main class for the character. It stores all the information about the character
  *  
  * 
  */ 
-public class Character {
+public class Character : NetworkBehaviour {
 
     private const float DEFAULT_HP = 100f;
     private const int MAXIMUM_NUMBER_OF_ITEM = 6;
 
 	public int baseAttack { get;set; }
+	[SyncVar]
     private float hp; 
 	private float maxHp { get; set; }
 	public int score { get; private set; }
@@ -26,7 +28,7 @@ public class Character {
 
 	public float range { get; set; }
     
-    public Character()
+    void Start()
     {
 		baseAttack = 0;
         maxHp = 100f;
