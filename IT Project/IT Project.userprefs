@@ -1,17 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Controllers/CharacterController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Spells/FireBallController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Character/Character.cs" Line="19" Column="8" />
-      <File FileName="Assets/Scripts/Spells/FireBall.cs" Line="25" Column="34" />
-      <File FileName="Assets/Scripts/Spells/FireBallController.cs" Line="20" Column="38" />
-      <File FileName="Assets/Scripts/Controllers/CharacterController.cs" Line="157" Column="41" />
-      <File FileName="Assets/Scripts/Spells/FireNovaController.cs" Line="3" Column="30" />
-      <File FileName="Assets/Scripts/Camera/CameraControl.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Spells/Spell.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Spells/FireNova.cs" Line="11" Column="32" />
+      <File FileName="Assets/Scripts/Spells/FireBall.cs" Line="44" Column="26" />
+      <File FileName="Assets/Scripts/Spells/FireNovaController.cs" Line="17" Column="43" />
+      <File FileName="Assets/Scripts/Spells/FireBallController.cs" Line="21" Column="2" />
       <File FileName="Assets/Scripts/Ground/GroundController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Spells/FireNova.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Character/HealthBarUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Character/Character.cs" Line="17" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
