@@ -18,21 +18,21 @@ public class CharacterTest {
         var fireball = new FireBall();
         c1.addSpell(fireball);
 
-        Assert.AreEqual(c1.spells.Count, 1);
-        Assert.AreEqual(c1.spells[0], fireball);
+        Assert.AreEqual(1, c1.spells.Count);
+        Assert.AreEqual(fireball, c1.spells[0]);
 
         c1.addSpell(fireball);
-        Assert.AreEqual(c1.spells.Count, 1);
-        Assert.AreEqual(c1.spells[0], fireball);
+        Assert.AreEqual(1, c1.spells.Count);
+        Assert.AreEqual(fireball, c1.spells[0]);
 
         var anotherFireball = new FireBall();
         c1.addSpell(anotherFireball);
-        Assert.AreEqual(c1.spells.Count, 1);
-        Assert.AreEqual(c1.spells[0], fireball);
+        Assert.AreEqual(1, c1.spells.Count);
+        Assert.AreEqual(fireball, c1.spells[0]);
 
         var firenova = new FireNova();
         c1.addSpell(firenova);
-        Assert.AreEqual(c1.spells.Count, 2);
+        Assert.AreEqual(2, c1.spells.Count);
         Assert.True(c1.spells.Contains(firenova));
 	}
 

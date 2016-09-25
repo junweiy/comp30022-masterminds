@@ -38,6 +38,10 @@ public class Shop {
 		return ret;
 	}
 
+    public void addItem(Item item) {
+        this.items.Add(item);
+    }
+
    
 	// create a empty shop
 	public Shop() {
