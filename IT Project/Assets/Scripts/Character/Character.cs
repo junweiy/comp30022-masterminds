@@ -10,16 +10,16 @@ using System.Collections.Generic;
 public class Character {
 
     private const float DEFAULT_HP = 100f;
-    private const int MAXIMUM_NUMBER_OF_ITEM = 6;
+    public const int MAXIMUM_NUMBER_OF_ITEM = 6;
 
 	public int baseAttack { get;set; }
     private float hp; 
 	private float maxHp { get; set; }
 	public int score { get; private set; }
-    private int coin;
+	public int coin { get; private set; }
 
 	public bool canMove { get; set; }
-    private bool isDead;
+	public bool isDead { get; private set; }
 
     public List<Item> items { get; private set; }
 	public List<Spell> spells { get; set; }
@@ -37,30 +37,36 @@ public class Character {
 		canMove = true;
         items = new List<Item>();
 		spells = new List<Spell> ();
-		addSpell (new FireBall ());
-		addSpell (new FireNova ());
+		AddSpell (new FireBall ());
+		AddSpell (new FireNova ());
     }
 
 
 
     /*****/
 
-    public void addSpell(Spell i)
+    public void AddSpell(Spell i)
     {
-        spells.Add(i);
+		spells.Add (i);
+        
     }
 
     /*****/
 
 
-    public void addItem(Item i)
+    public void AddItem(Item i)
     {
-        items.Add(i);
+		if (items.Count < MAXIMUM_NUMBER_OF_ITEM) {
+			items.Add(i);
+		} else {
+			throw new FullItemException ();
+		}
+        
     }
 
-    public bool hasSpaceForItem()
+    public bool HasSpaceForItem()
     {
-        return items.Count <= MAXIMUM_NUMBER_OF_ITEM;
+        return items.Count < MAXIMUM_NUMBER_OF_ITEM;
     }
 
     /*****/
@@ -88,31 +94,33 @@ public class Character {
     private void OnDeath()
     {
         isDead = true;
-		GlobalState.instance.gameController.onCharacterDeath ();
+		if (GlobalState.instance.gameController != null) {
+			GlobalState.instance.gameController.onCharacterDeath ();
+		}
+
     }
 
     /**
      *  Coin and relative function
      */
-    public int Coin
+
+	public void AddCoin(int c) {
+		this.coin += c;
+	}
+
+    public void DeductCoin(int c)
     {
-        get { return this.coin; }
-        set { this.coin = value; }
+		this.coin -= c;
     }
 
-    public void deductCoin(int c)
-    {
-        coin -= c;
-    }
-
-	public int addScore(int s) {
+	public int AddScore(int s) {
 		this.score += s;
 		return this.score;
 	}
 
-	public int deductScore(int s) {
+	public int DeductScore(int s) {
 		this.score = Mathf.Max(this.score - s, 0);
 		return this.score;
 	}
-
+		
 }

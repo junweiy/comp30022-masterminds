@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum ItemTypeEnum {Spell, Equipment, Upgrade}
+public enum ItemTypeEnum {Spell, Equipment, Upgrade, Undefined}
 
 abstract public class Item {
 	// Name of the item
@@ -16,6 +16,15 @@ abstract public class Item {
 	public string description {get; private set;}
 	// The level of the item
 	public int level {get; set;}
+
+	public Item() {
+		this.itemName = "";
+		this.itemType = ItemTypeEnum.Undefined;
+		this.sellingPrice = 0;
+		this.purchasePrice = 0;
+		this.description = "";
+		this.level = 1;
+	}
 
 	// Initialise an Item instance with given information
 	public Item(string name, ItemTypeEnum type, int sellingPrice, int purchasePrice, string description) {
