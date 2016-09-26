@@ -46,7 +46,7 @@ public class GlobalState {
 		return c == GlobalState.instance.currentChar;
 	}
 
-	private int _totalNumRounds = 2;
+	private int _totalNumRounds = 1;
 	public int totalNumRounds {
 		get {
 			return _totalNumRounds;

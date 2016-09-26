@@ -13,7 +13,7 @@ public class ResultPageController : MonoBehaviour {
     public GameObject result;
 
     // Update is called once per frame
-    void Update()
+    void Start()
     {
         loadData();
         //display result (win or lose)
@@ -26,6 +26,7 @@ public class ResultPageController : MonoBehaviour {
             result.GetComponent<Text>().text = "LOSE";
         }
        
+        //TODO: team related information
 
         // generate a panel to display details of result for each user
         for (int i = 0; i < chars.Length; i++)
@@ -33,14 +34,19 @@ public class ResultPageController : MonoBehaviour {
             GameObject userDetail = (GameObject)Instantiate(detailPanel);
             Text[] texts;
             texts = userDetail.GetComponentsInChildren<Text>();
-            // character should know user name and id
             texts[0].text = chars[i].player.username;
-            texts[1].text = chars[i].player.userId.ToString();
-            
+            texts[1].text = chars[i].player.userId.ToString();           
             texts[2].text = chars[i].numKill.ToString();
             texts[3].text = chars[i].numDeath.ToString();
-            //TODO: load and display spell image needs implementation
-            //...
+
+            Image[] skill_images;
+            skill_images = userDetail.GetComponentsInChildren<Image>();
+            for (int j=0; j<chars[i].spells.Count; j++)
+            {
+                skill_images[j+2].sprite = Resources.Load<Sprite>(chars[i].spells[j].iconPath);
+                skill_images[j+2].color = new Color32(255,255,255,255);
+            }
+
             userDetail.transform.SetParent(displayDetailPanel, false);
             userDetail.transform.localScale = new Vector3(1, 1, 1);
         }
