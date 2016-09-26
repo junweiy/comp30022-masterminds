@@ -49,9 +49,9 @@ public abstract class Spell {
 
 
 	// Function used to apply the effect to the character
-	abstract public void applyEffect(Character character,Transform characterTransform,Vector3 destination);
+	abstract public bool ApplyEffect(Character character,Transform characterTransform,Vector3 destination);
 	// Function used to modify properties to achieve levelup
-	abstract public void levelUp ();
+	abstract public void LevelUp ();
 
 }
 

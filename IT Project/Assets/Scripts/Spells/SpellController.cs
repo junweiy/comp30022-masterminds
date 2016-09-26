@@ -63,7 +63,7 @@ public class SpellController : MonoBehaviour {
 		if (s.isInstantSpell) {
 			// Find the transform of spell spawning point for instant spells
 			Transform t = transform.Find (SPELL_SPAWN_NAME);
-			s.applyEffect(character, transform, t.position);
+			s.ApplyEffect(character, transform, t.position);
 		} else {
 			// WuliPangPang please fix this
 			spellRange.enabled = true;
@@ -73,7 +73,7 @@ public class SpellController : MonoBehaviour {
 			RaycastHit hit;
 			if (Physics.Raycast(ray, out hit, 100))
 			{
-				s.applyEffect(character, transform, hit.point);
+				s.ApplyEffect(character, transform, hit.point);
 			}
 			spellRange.enabled = false;
 		}

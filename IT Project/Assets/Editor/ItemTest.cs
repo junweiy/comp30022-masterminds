@@ -5,7 +5,6 @@ using System;
 
 
 // The class will test functionality of all items
-[TestFixture]
 public class ItemTest {
 
 	public const float MAXHP = 10;

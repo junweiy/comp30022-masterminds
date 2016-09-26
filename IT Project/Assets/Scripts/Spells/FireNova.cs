@@ -25,22 +25,25 @@ public class FireNova : Spell {
 	// The path of the prefab
 	private const string PREFAB_PATH = "Prefabs/FireNova";
 	// The increment in damage when upgrading the spell
-	private const int LVL_UP_DAMAGE_INCREMENT = 20;
+	public const int LVL_UP_DAMAGE_INCREMENT = 20;
 	// The increment in range when upgrading the spell
-	private const float LVL_UP_RANGE_INCREMENT = 1.0f;
+	public const float LVL_UP_RANGE_INCREMENT = 1.0f;
 	// The increment in power when upgrading the spell
-	private const float LVL_UP_POWER_INCREMENT = 500.0f;
+	public const float LVL_UP_POWER_INCREMENT = 500.0f;
 
 	// The damage of FireNova
-	private int damage = INITIAL_DAMAGE;
+	public int damage { get; private set; }
 	// The power of FireNova
-	private float power = INITIAL_POWER;
+	public float power { get; private set; }
 	// The casting time for the spell
-	private int castingTime = INITIAL_CASTING_TIME;
+	public int castingTime { get; private set; }
 
 	/* The function initialises the FireNova object with basic properties.
 	 */
 	public FireNova() : base(COOLDOWN, ICON_PATH, ISCONST, PRICE, NAME, DESCRIPTION, INITIAL_RANGE) {
+		damage = INITIAL_DAMAGE;
+		power = INITIAL_POWER;
+		castingTime = INITIAL_CASTING_TIME;
 	}
 
 	/* The function takes three arguments, which are the character object, the transform of the character
@@ -48,7 +51,7 @@ public class FireNova : Spell {
 	 * and during the casting time player will be disabled for moving, after which enemies surrounded by
 	 * player will be hit against will explosive force and player can move around again.
 	 */ 
-	public override void applyEffect(Character character,Transform charTransform,Vector3 destination) {
+	public override bool ApplyEffect(Character character,Transform charTransform,Vector3 destination) {
 		FireNovaController fnc;
 		Object fireNovaPrefab = Resources.Load(PREFAB_PATH);
 		GameObject fn = GameObject.Instantiate (fireNovaPrefab, charTransform.position, charTransform.rotation) as GameObject;
@@ -57,16 +60,16 @@ public class FireNova : Spell {
 		fnc.range = range;
 		fnc.power = power;
 		fnc.castingTime = castingTime;
+		return fn != null;
 	}
 
 	/* The function applies changes to the spell when upgrading it.
 	 */
-	public override void levelUp () {
+	public override void LevelUp () {
 		this.level++;
 		this.range += LVL_UP_RANGE_INCREMENT;
 		this.damage += LVL_UP_DAMAGE_INCREMENT;
 		this.power += LVL_UP_POWER_INCREMENT;
-
 	}
 
 }
