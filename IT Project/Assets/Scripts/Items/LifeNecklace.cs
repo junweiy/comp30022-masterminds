@@ -13,10 +13,10 @@ public class LifeNecklace : Item {
 	// The HP increment of level 1 Life Necklace
 	private const int INITIAL_HP_INCREMENT = 10;
 	// The extra HP increment when leveling up
-	private const int LVL_UP_HP_INCREMENT = 10;
+	public const int LVL_UP_HP_INCREMENT = 10;
 
 	// The maximum health point can be increased when wearing this equipment
-	public int maxHPIncreased;
+	public int maxHPIncreased { get; private set; }
 
 	/* The function initialises the object with relative properties
 	 */
@@ -26,19 +26,19 @@ public class LifeNecklace : Item {
 		
 	/* The function applies the effect of Life Necklace when the character wears it.
 	 */
-	public override void applyEffect(Character ply) {
+	public override void ApplyEffect(Character ply) {
 		ply.MaxHP += maxHPIncreased;
 	}
 
 	/* The function removes the effect of Life Necklace when the character takes it off.
 	 */
-	public override void removeEffect(Character ply) {
+	public override void RemoveEffect(Character ply) {
 		ply.MaxHP -= maxHPIncreased;
 	}
 
 	/* The function applies changes to the spell when upgrading it.
 	 */
-	public override void levelUp () {
+	public override void LevelUp () {
 		this.level++;
 		maxHPIncreased += LVL_UP_HP_INCREMENT;
 	}

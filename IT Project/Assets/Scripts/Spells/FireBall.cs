@@ -21,10 +21,10 @@ public class FireBall : Spell {
 	// The path of the prefab
 	private const string PREFAB_PATH = "prefabs/fireball";
 	// The increment in damage when upgrading the spell
-	private const int LVL_UP_DAMAGE_INCREMENT = 20;
+	public const int LVL_UP_DAMAGE_INCREMENT = 20;
 
 	// The damage of Fireball
-	private int damage;
+	public int damage { get; private set; }
 
 	/* The function initialises the Fireball object with basic properties.
 	 */
@@ -37,7 +37,7 @@ public class FireBall : Spell {
 	 * and move towards to desired direction until it hits a player or flys out of the border, and damage
 	 * will be given if it hits on a player.
 	 */ 
-	public override void applyEffect(Character character,Transform charTransform,Vector3 destination) {
+	public override bool ApplyEffect(Character character,Transform charTransform,Vector3 destination) {
 		FireBallController fbc;
 		Object fireBallPrefab = Resources.Load(PREFAB_PATH);
 		// The spawning point is half way between the character position and desired destination
@@ -48,11 +48,12 @@ public class FireBall : Spell {
 		// Change related properties to reflect certain level of spell
 		fbc = fb.GetComponent<FireBallController> ();
 		fbc.damage = damage + character.baseAttack;
+		return fb != null;
 	}
 
 	/* The function applies changes to the spell when upgrading it.
 	 */
-	public override void levelUp () {
+	public override void LevelUp () {
 		this.level++;
 		this.damage += LVL_UP_DAMAGE_INCREMENT;
 	}
