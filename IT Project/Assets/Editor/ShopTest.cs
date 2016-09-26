@@ -9,27 +9,31 @@ public class ShopTest {
         public DummyItem(string name, ItemTypeEnum type, int sellingPrice, int purchasePrice, string description) : base(name, type, sellingPrice, purchasePrice, description) {
         }
 
-        public override void applyEffect(Character ply) {
+        public override void ApplyEffect(Character ply) {
             return;
         }
 
-        public override void levelUp() {
+        public override void LevelUp() {
             return;
         }
 
-        public override void removeEffect(Character ply) {
+        public override void RemoveEffect(Character ply) {
             return;
         }
     }
 
-    Character c = new Character();
-    Shop s = new Shop();
-    Item item1 = new DummyItem("item1", ItemTypeEnum.Equipment, 20, 40, "Description");
-    Item item2 = new DummyItem("item2", ItemTypeEnum.Upgrade, 100, 200, "Description");
+    Character c;
+    Shop s;
+	Item item1;
+	Item item2;
 
     [SetUp]
     public void setUp() {
-        c.Coin = 100;
+		c = new Character ();
+		s = new Shop ();
+		item1 = new DummyItem("item1", ItemTypeEnum.Equipment, 20, 40, "Description");
+		item2 = new DummyItem("item2", ItemTypeEnum.Upgrade, 100, 200, "Description");
+		c.Coin = 100;
         s.addItem(item1);
         s.addItem(item2);
     }

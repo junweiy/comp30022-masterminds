@@ -28,9 +28,9 @@ abstract public class Item {
 	}
 		
 	// Apply desired effects to the player when wearing
-	public abstract void applyEffect(Character ply);
+	public abstract void ApplyEffect(Character ply);
 	// remove effects to the player when taking off
-	public abstract void removeEffect(Character ply);
+	public abstract void RemoveEffect(Character ply);
 	// Function used to modify properties to achieve levelup
-	abstract public void levelUp ();
+	abstract public void LevelUp ();
 }
