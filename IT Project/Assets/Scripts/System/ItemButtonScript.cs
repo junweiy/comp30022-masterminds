@@ -6,14 +6,16 @@ public class ItemButtonScript : MonoBehaviour {
 
     private Character character;
 	private Item item {get; set;}
+    private Shop shop;
     public GameObject infoPanel;
     private GameObject canvas;
     private Transform window;
 
-    public void initialise(Character character, Item item)
+    public void initialise(Character character, Item item, Shop shop)
     {
         this.item = item;
         this.character = character;
+        this.shop = shop;
     }
 
     
@@ -27,7 +29,7 @@ public class ItemButtonScript : MonoBehaviour {
         Transform descriptionTr = panel.transform.Find("Description");
         descriptionTr.GetComponent<Text>().text = item.description;
         var itemInfoPanelScript = panel.GetComponent<ItemInfoPanelScript>();
-        itemInfoPanelScript.initialise(item, character);
+        itemInfoPanelScript.initialise(item, character,shop);
         panel.transform.SetParent(window, false);
         panel.transform.localScale = new Vector3(1, 1, 1);
         infoPanel.SetActive(true);

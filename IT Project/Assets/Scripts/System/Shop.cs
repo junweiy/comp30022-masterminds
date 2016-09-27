@@ -16,7 +16,46 @@ public class Shop {
 			character.addItem (item);
 			character.deductCoin (item.purchasePrice);
 		}
-	}
+        if (item.itemType != ItemTypeEnum.Spell)
+        {
+            // upgrade item
+            if (character.items.Contains(item))
+            {
+                item.removeEffect(character);
+                item.levelUp();
+                item.applyEffect(character);
+                character.deductCoin(item.purchasePrice);
+            }
+            // buy new item
+            else
+            {
+                bool hasSameItemType = false;
+                foreach(Item purchasedItem in character.items)
+                {
+                    if (purchasedItem.itemType == item.itemType)
+                    {
+                        hasSameItemType = true;
+                        break;
+                    }
+                }
+                if (hasSameItemType)
+                {
+                    character.addCoin(item.purchasePrice);
+                }
+                item.applyEffect(character);
+                character.addItem(item);
+                character.deductCoin(item.purchasePrice);
+            }
+        }
+        else
+        {
+            //TODO: how to upgrade spell
+            //if (character.spells.Contains(item))
+            //{
+
+            //}
+        }
+    }
 
 	public HashSet<Item> getPurchasableItems(Character character) {
 		var ret = new HashSet<Item> ();

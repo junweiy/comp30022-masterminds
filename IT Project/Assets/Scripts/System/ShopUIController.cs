@@ -21,19 +21,19 @@ public class ShopUIController : MonoBehaviour {
     {
         this.shop = shop;
         this.character = character;
-        Debug.Assert(character != null);
+        Debug.Assert(this.character != null);
     }
 
     void Start()
     {
         // Get all purchaseable items and generate icons in proper list
-        foreach (Item item in shop.getPurchasableItems(character))
+        foreach (Item item in shop.getPurchasableItems(this.character))
         {
             GameObject goButton = (GameObject)Instantiate(shopIcon);
             goButton.GetComponentInChildren<Text>().text = item.itemName;
             goButton.GetComponent<Image>().sprite = Resources.Load<Sprite>(item.iconPath);
             var itemButtonController = goButton.GetComponent<ItemButtonScript>();
-            itemButtonController.initialise(character, item);
+            itemButtonController.initialise(character, item, shop);
             if (item.itemType == ItemTypeEnum.Spell)
             {
                 goButton.transform.SetParent(spellPanel, false);

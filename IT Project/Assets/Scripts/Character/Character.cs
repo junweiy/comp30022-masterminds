@@ -105,6 +105,11 @@ public class Character {
         coin -= c;
     }
 
+    public void addCoin(int c)
+    {
+        coin += c;
+    }
+
 	public int addScore(int s) {
 		this.score += s;
 		return this.score;
