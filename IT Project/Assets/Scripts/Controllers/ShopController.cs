@@ -14,7 +14,7 @@ public class ShopController : MonoBehaviour {
 		}
 		set {
 			this._selectedItem = value;
-			infoPanel.updateInfo (value);
+			infoPanel.UpdateInfo (value);
 		}
 	}
 
@@ -24,15 +24,15 @@ public class ShopController : MonoBehaviour {
 	}
 
 	public bool CanPurchase(Item item) {
-		return this.shop.canPurchase (item, GlobalState.instance.currentChar);
+		return this.shop.CanPurchase (item, GlobalState.instance.currentChar);
 	}
 
 	public void Purchase() {
-		this.shop.purchase (selectedItem, GlobalState.instance.currentChar);
+		this.shop.Purchase (selectedItem, GlobalState.instance.currentChar);
 	}
 
 	public void NextRound() {
-		StateController.switchToNewRound ();
+		StateController.SwitchToNewRound ();
 	}
 
 	// Update is called once per frame

@@ -58,11 +58,11 @@ public class GameController : MonoBehaviour {
 			var charController = characterObj.GetComponent<CharacterController> ();
 			var spellController = characterObj.GetComponent<SpellController> ();
 			charController.Initialise (c);
-			spellController.initialise (c);
+			spellController.Initialise (c);
 			if (GlobalState.isCurrentChar (c)) {
 				mainCamera.GetComponent<CameraControl> ().m_Target = characterObj.transform;
 				charController.SetAsMainCharacter ();
-				spellController.setAsMainCharacter ();
+				spellController.SetAsMainCharacter ();
 			}
 		}
 

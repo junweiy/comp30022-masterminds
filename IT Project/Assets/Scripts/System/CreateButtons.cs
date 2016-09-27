@@ -30,7 +30,7 @@ public class CreateButtons : MonoBehaviour {
             //tempButton.onClick.AddListener(() => ButtonClicked(tempInt));
         }
 
-		foreach (Item item in shop.getPurchasableItems(GlobalState.instance.currentChar))
+		foreach (Item item in shop.GetPurchasableItems(GlobalState.instance.currentChar))
         {
             GameObject goButton = (GameObject)Instantiate(shopIcon);
             goButton.GetComponentInChildren<Text>().text = item.itemName;

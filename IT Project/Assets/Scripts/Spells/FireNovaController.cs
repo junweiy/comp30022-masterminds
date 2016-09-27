@@ -30,14 +30,14 @@ public class FireNovaController : MonoBehaviour {
 	/* The function utilised coroutine to achieve casting time effect.
 	 */ 
 	void Start () {
-		StartCoroutine (castFireNova());
+		StartCoroutine (CastFireNova());
 	}
 
 	/* The function firstly disables the movement of the main character for several seconds,
 	 * then detect all players within the casting range and push against all of them and give
 	 * corresponding amount of damage. 
 	 */ 
-	IEnumerator castFireNova() {
+	IEnumerator CastFireNova() {
 		CharacterController cc = findMainCharacterController ();;
 		Character c = cc.character;
 		// Stop the movement of the player

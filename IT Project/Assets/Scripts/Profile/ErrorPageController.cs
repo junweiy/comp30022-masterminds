@@ -6,7 +6,7 @@ public class ErrorPageController : MonoBehaviour {
 
     public Text errorMessage;
 
-    public void showAlert(string message)
+    public void ShowAlert(string message)
     {
         errorMessage.text = message;
     }

@@ -14,7 +14,7 @@ public class ResultPageController : MonoBehaviour {
 	}
 
 	public void returnToRoom() {
-		StateController.switchToRoom ();
+		StateController.SwitchToRoom ();
 	}
 
 	public void saveReplay() {

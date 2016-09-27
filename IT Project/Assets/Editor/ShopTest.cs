@@ -35,38 +35,38 @@ public class ShopTest {
 		item1 = new DummyItem("item1", ItemTypeEnum.Equipment, 20, 40, "Description");
 		item2 = new DummyItem("item2", ItemTypeEnum.Upgrade, 100, 200, "Description");
 		c.AddCoin (100);
-        s.addItem(item1);
-        s.addItem(item2);
+        s.AddItem(item1);
+        s.AddItem(item2);
     }
 
     [Test]
 	public void canPurchaseTest() {
-        Assert.True(s.canPurchase(item1, c));
-        Assert.False(s.canPurchase(item2, c));
+        Assert.True(s.CanPurchase(item1, c));
+        Assert.False(s.CanPurchase(item2, c));
 		c.AddCoin (1000);
-        Assert.True(s.canPurchase(item1, c));
-        Assert.True(s.canPurchase(item2, c));
+        Assert.True(s.CanPurchase(item1, c));
+        Assert.True(s.CanPurchase(item2, c));
     }
 
     [Test]
     public void purchaseTest() {
-        s.purchase(item1, c);
+        s.Purchase(item1, c);
         Assert.True(c.items.Contains(item1));
         //Assert.False(s.canPurchase(item1, c));
 		c.AddCoin(1000);
         //Assert.False(s.canPurchase(item1, c));
-        s.purchase(item2, c);
+        s.Purchase(item2, c);
         Assert.True(c.items.Contains(item2));
     }
 
     [Test]
     public void getPurchaseableItemsTest() {
-        var purchaseable = s.getPurchasableItems(c);
+        var purchaseable = s.GetPurchasableItems(c);
         Assert.AreEqual(1, purchaseable.Count);
         Assert.True(purchaseable.Contains(item1));
 
 		c.AddCoin(1000);
-        purchaseable = s.getPurchasableItems(c);
+        purchaseable = s.GetPurchasableItems(c);
         Assert.AreEqual(2, purchaseable.Count);
         Assert.True(purchaseable.Contains(item1));
         Assert.True(purchaseable.Contains(item2));

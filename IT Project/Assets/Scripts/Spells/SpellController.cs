@@ -3,6 +3,11 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
+/* * * * * * * * * * * * *
+ * 						 *
+ *  CLASS TO BE DELETED  *
+ * 						 *
+ * * * * * * * * * * * * */
 public class SpellController : MonoBehaviour {
 	// The name of object used to spawn spells
 	private string SPELL_SPAWN_NAME = "SpellSpawn";
@@ -17,7 +22,7 @@ public class SpellController : MonoBehaviour {
 
 	/* The function initialises the controller on a certain character.
 	 */
-	public void initialise(Character c) {
+	public void Initialise(Character c) {
 		character = c;
 		this.isMainCharacter = false;
 		spellRange.enabled = false;
@@ -26,7 +31,7 @@ public class SpellController : MonoBehaviour {
 
 	/* The function sets the player with this spell controller as the main character.
 	 */ 
-	public void setAsMainCharacter(){
+	public void SetAsMainCharacter(){
 		isMainCharacter = true;
 	}
 

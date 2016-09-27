@@ -13,14 +13,14 @@ public class ItemInfoPanelScript : MonoBehaviour {
 	
 	}
 
-	public void updateInfo(Item item) {
+	public void UpdateInfo(Item item) {
 		if (item == null) {
 			Debug.Log ("cannot update info of item (null)");
 		}
 		// TODO
 	}
 
-    public void onclick()
+    public void onClick()
     {
         Destroy(GameObject.Find("InfoPanel(Clone)"));
     }

@@ -14,7 +14,7 @@ public class SpellButtonController : MonoBehaviour {
         images = spellButton.GetComponentsInChildren<Image>();
         icon = images[1];
     }
-	public void onclick()
+	public void onClick()
     {
         if (spell.currentCooldown >= spell.cooldown)
             {

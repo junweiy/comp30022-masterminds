@@ -97,7 +97,7 @@ public class GlobalState {
 	}
 
 	public static bool loadProfileWithUid(int userid) {
-		GlobalState.instance._profile = ProfileMessenger.getProfileById (userid);
+		GlobalState.instance._profile = ProfileMessenger.GetProfileById (userid);
 		return true;
 	}
 

@@ -23,7 +23,7 @@ public class MainMenuController : MonoBehaviour {
 	void Update () {
 		// TODO Keybord action for testing, shuold probably provide a feature to switch user properly
 		if (Input.GetKeyDown (KeyCode.S) && mainMenuPage.activeSelf) {
-			switchTo (loginPage);
+			SwitchTo (loginPage);
 		}
 	}
 
@@ -35,17 +35,17 @@ public class MainMenuController : MonoBehaviour {
 		loginPage.SetActive(false);
 	}
 
-	private void switchTo(GameObject page) {
+	private void SwitchTo(GameObject page) {
 		DisableAllPages ();
 		page.SetActive (true);
 	}
 
-	private void displayError(ProfileMessagingException exception) {
+	private void DisplayError(ProfileMessagingException exception) {
 		alertPage.SetActive (true);
-		alertPage.GetComponent<ErrorPageController> ().showAlert (exception.message);
+		alertPage.GetComponent<ErrorPageController> ().ShowAlert (exception.message);
 	}
 
-	public void registerSubmit() {
+	public void RegisterSubmit() {
 		string userName = registerUserNameField.text;
 		string email = registerEmailField.text;
 		try {
@@ -57,15 +57,15 @@ public class MainMenuController : MonoBehaviour {
 				gotoMainMenu ();
 			}
 		} catch (ProfileMessagingException e) {
-			displayError (e);
+			DisplayError (e);
 		}
 	}
 
-	public void registerCancel() {
-		switchTo (loginPage);
+	public void RegisterCancel() {
+		SwitchTo (loginPage);
 	}
 
-	public void login(GameObject emailTextField) {
+	public void Login(GameObject emailTextField) {
 		string email = emailTextField.GetComponent<Text> ().text;
 		try {
 			bool outcome = GlobalState.loadProfileWithEmail (email);
@@ -75,28 +75,28 @@ public class MainMenuController : MonoBehaviour {
 				gotoMainMenu ();
 			}
 		} catch (ProfileMessagingException e) {
-			displayError (e);
+			DisplayError (e);
 		}
 	}
 
 	public void gotoMainMenu() {
-		switchTo (mainMenuPage);
+		SwitchTo (mainMenuPage);
 	}
 
 	public void gotoRegister() {
-		switchTo (registerPage);
+		SwitchTo (registerPage);
 	}
 
 	public void gotoProfile() {
-		StateController.switchToProfile ();
+		StateController.SwitchToProfile ();
 	}
 
 	public void gotoSingleModePage() {
-		switchTo (singleModePage);
+		SwitchTo (singleModePage);
 	}
 
 	public void gotoMultiModePage() {
-		switchTo (multiModePage);
+		SwitchTo (multiModePage);
 	}
 
 }

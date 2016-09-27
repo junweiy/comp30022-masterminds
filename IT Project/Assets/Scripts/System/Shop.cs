@@ -7,21 +7,21 @@ public class Shop {
 
 	private HashSet<Item> items;
 
-	public bool canPurchase(Item item, Character character) {
+	public bool CanPurchase(Item item, Character character) {
 		return (character.coin >= item.purchasePrice) && character.HasSpaceForItem();
 	}
 
-	public void purchase(Item item, Character character) {
-		if (canPurchase (item, character)) {
+	public void Purchase(Item item, Character character) {
+		if (CanPurchase (item, character)) {
 			character.AddItem (item);
 			character.DeductCoin (item.purchasePrice);
 		}
 	}
 
-	public HashSet<Item> getPurchasableItems(Character character) {
+	public HashSet<Item> GetPurchasableItems(Character character) {
 		var ret = new HashSet<Item> ();
 		foreach (Item i in items) {
-			if (canPurchase(i, character)) {
+			if (CanPurchase(i, character)) {
 				ret.Add (i);
 			}
 		}
@@ -30,7 +30,7 @@ public class Shop {
 
 	public HashSet<Item> getPurchaseableItemsWithType(Character character, ItemTypeEnum type) {
 		var ret = new HashSet<Item> ();
-		foreach (Item i in getPurchasableItems(character)) {
+		foreach (Item i in GetPurchasableItems(character)) {
 			if (i.itemType == type) {
 				ret.Add (i);
 			}
@@ -38,7 +38,7 @@ public class Shop {
 		return ret;
 	}
 
-    public void addItem(Item item) {
+    public void AddItem(Item item) {
         this.items.Add(item);
     }
 

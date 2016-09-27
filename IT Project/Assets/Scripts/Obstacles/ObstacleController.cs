@@ -2,19 +2,20 @@
 using System.Collections;
 
 public class ObstacleController : MonoBehaviour {
-
-	public float maximumHealth; 
+	// Upper limit of HP
+	public float maximumHealth;
+	// Obstacle class
 	private Obstacle obstacle;
 
 	void Start () {
         obstacle = new Obstacle(maximumHealth);
-        obstacle.addOnDestoyAction(delegate {
+        obstacle.AddOnDestoyAction(delegate {
             GameObject.Destroy(this.gameObject);
         });
 	}
 
 	public void TakeDamage(float f) {
-        obstacle.takeDamage(f);
+        obstacle.TakeDamage(f);
 	}
 
 }

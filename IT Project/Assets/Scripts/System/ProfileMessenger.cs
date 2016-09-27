@@ -7,11 +7,11 @@ public class ProfileMessenger {
 	public static string newUserUrl = "http://115.146.95.82/masterminds/profile/newUser.py";
 	public static string password = "overdue";
 
-	public static int getTimeStamp() {
+	public static int GetTimeStamp() {
 		return System.DateTime.Now.Millisecond;
 	}
 
-	static void throwExceptionIfError(string text) {
+	static void ThrowExceptionIfError(string text) {
 		Debug.Log (text);
 		ErrorResponse res = JsonUtility.FromJson<ErrorResponse> (text);
 		if (res.code != -1 && res.code != 0 && res.message != null) {
@@ -19,7 +19,7 @@ public class ProfileMessenger {
 		}
 	}
 
-	public static void submitNewProfile(Profile profile) {
+	public static void SubmitNewProfile(Profile profile) {
 		WWWForm form = new WWWForm ();
 
 		NewProfileRequest m = new NewProfileRequest ();
@@ -36,23 +36,23 @@ public class ProfileMessenger {
 			Debug.Log(w.error);
 		}
 		else {
-			throwExceptionIfError (w.text);
+			ThrowExceptionIfError (w.text);
 			Debug.Log("Finished submitting profile");
 		}
 	}
 
-	public static Profile getNewProfileFromServer(Profile currentProfile) {
+	public static Profile GetNewProfileFromServer(Profile currentProfile) {
 		int uid = currentProfile.uid;
-		return ProfileMessenger.getProfileById (uid);
+		return ProfileMessenger.GetProfileById (uid);
 	}
 
-	public static Profile getProfileById(int userid) {
+	public static Profile GetProfileById(int userid) {
 		string token = ProfileMessenger.password;
 
 		ProfileUpdateRequestWithUid req = new ProfileUpdateRequestWithUid ();
 		req.uid = userid;
 		req.token = token;
-		req.timestamp = getTimeStamp();
+		req.timestamp = GetTimeStamp();
 
 		WWWForm form = new WWWForm ();
 		form.AddField ("message", req.toJson());
@@ -65,7 +65,7 @@ public class ProfileMessenger {
 			return null;
 		}
 		else {
-			throwExceptionIfError (w.text);
+			ThrowExceptionIfError (w.text);
 			var res = JsonUtility.FromJson<ProfileUpdateResponse> (w.text);
 			return res.profile;
 		}
@@ -77,7 +77,7 @@ public class ProfileMessenger {
 		ProfileUpdateRequestWithEmail req = new ProfileUpdateRequestWithEmail ();
 		req.email = email;
 		req.token = token;
-		req.timestamp = getTimeStamp();
+		req.timestamp = GetTimeStamp();
 
 		WWWForm form = new WWWForm ();
 		form.AddField ("message", req.toJson());
@@ -91,7 +91,7 @@ public class ProfileMessenger {
 			return null;
 		}
 		else {
-			throwExceptionIfError (w.text);
+			ThrowExceptionIfError (w.text);
 			var res = JsonUtility.FromJson<ProfileUpdateResponse> (w.text);
 			return res.profile;
 		}
@@ -101,7 +101,7 @@ public class ProfileMessenger {
 		var req = new NewUserRequest ();
 		req.email = email;
 		req.userName = userName;
-		req.timestamp = getTimeStamp();
+		req.timestamp = GetTimeStamp();
 		req.token = password;
 		WWWForm form = new WWWForm ();
 		form.AddField ("message", JsonUtility.ToJson (req));
@@ -114,7 +114,7 @@ public class ProfileMessenger {
 			return null;
 		}
 		else {
-			throwExceptionIfError (w.text);
+			ThrowExceptionIfError (w.text);
 			var res = JsonUtility.FromJson<NewUserResponse> (w.text);
 			return res.uid;
 		}

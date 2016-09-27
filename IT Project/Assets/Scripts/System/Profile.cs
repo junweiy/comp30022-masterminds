@@ -16,7 +16,7 @@ public class Profile {
 	public int numDeath = 0;
 
 
-	public string toJson() {
+	public string ToJson() {
 		return JsonUtility.ToJson (this);
 	}
 

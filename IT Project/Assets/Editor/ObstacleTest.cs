@@ -11,7 +11,7 @@ public class ObstacleTest {
     public void addOnDestoyActionTest() {
         Assert.AreEqual(0, o.onDestroyActions.Count);
         Action a = delegate { };
-        o.addOnDestoyAction(a);
+        o.AddOnDestoyAction(a);
         Assert.AreEqual(1, o.onDestroyActions.Count);
         Assert.True(o.onDestroyActions.Contains(a));
     }
@@ -21,14 +21,14 @@ public class ObstacleTest {
         Assert.AreEqual(100, o.maxHealth);
         Assert.AreEqual(100, o.currentHealth);
         bool destroyed = false;
-        o.addOnDestoyAction(delegate { destroyed = true; });
+        o.AddOnDestoyAction(delegate { destroyed = true; });
 
-        o.takeDamage(70);
+        o.TakeDamage(70);
         Assert.AreEqual(100, o.maxHealth);
         Assert.AreEqual(30, o.currentHealth);
         Assert.False(destroyed);
 
-        o.takeDamage(1200);
+        o.TakeDamage(1200);
         Assert.AreEqual(100, o.maxHealth);
         Assert.AreEqual(0, o.currentHealth);
         Assert.True(destroyed);
