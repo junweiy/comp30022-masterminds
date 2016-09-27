@@ -10,7 +10,10 @@ public class FireBallController : NetworkBehaviour {
 	public NetworkInstanceId chId;
 
 	[SyncVar]
-	public Vector3 velocity;
+	public Quaternion playerRotation;
+
+	[SyncVar]
+	public float velocity;
 
 	[SyncVar]
 	public float range;
@@ -22,13 +25,17 @@ public class FireBallController : NetworkBehaviour {
 	[SyncVar]
 	public float distanceTravelled;
 
+	public Vector3 positionChange;
+
 	void Start() {
 		distanceTravelled = 0;
+		positionChange = playerRotation * (velocity * this.transform.forward);
 	}
 
 	void Update() {
-		distanceTravelled += velocity.magnitude;
-		this.transform.position += velocity;
+		
+		distanceTravelled += positionChange.magnitude;
+		this.transform.position += positionChange;
 		if (distanceTravelled >= range) {
 			Destroy (this.gameObject);
 		}

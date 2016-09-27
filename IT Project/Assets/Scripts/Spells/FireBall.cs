@@ -47,12 +47,13 @@ public class FireBall : Spell {
 		Vector3 pos = charTransform.position + (destination - charTransform.position) / 2;
 		// The direction is the vector starting from current position towards desired destination
 		Vector3 dir = destination - charTransform.position;
-		GameObject fb = GameObject.Instantiate (fireBallPrefab, pos, Quaternion.LookRotation(dir)) as GameObject;
+		GameObject fb = GameObject.Instantiate (fireBallPrefab, pos, new Quaternion(0,0,0,0)) as GameObject;
 		// Change related properties to reflect certain level of spell
 		fbc = fb.GetComponent<FireBallController> ();
-		fbc.velocity = fbc.transform.forward * VELOCITY;
+		fbc.velocity = VELOCITY;
 		fbc.damage = damage + character.baseAttack;
 		fbc.range = this.range;
+		fbc.playerRotation = Quaternion.LookRotation (dir);
 		fbc.chId = character.netId;
 		NetworkServer.Spawn (fb);
 	}
