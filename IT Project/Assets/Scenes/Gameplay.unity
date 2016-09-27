@@ -403,8 +403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7047599e36c5e04fa27b73438014261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthDropPerTime: 1
-  healthDropSecondsInterval: 1
+  healthDropPerTime: 20
+  healthDropSecondsInterval: 20
 --- !u!1001 &326801252
 Prefab:
   m_ObjectHideFlags: 0
@@ -455,22 +455,22 @@ Prefab:
     - target: {fileID: 224000010554323208, guid: ffe47eeb92e7e604ea0a4743c0c4de54,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 224000010554323208, guid: ffe47eeb92e7e604ea0a4743c0c4de54,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 224000010554323208, guid: ffe47eeb92e7e604ea0a4743c0c4de54,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 224000010554323208, guid: ffe47eeb92e7e604ea0a4743c0c4de54,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 224000010554323208, guid: ffe47eeb92e7e604ea0a4743c0c4de54,
         type: 2}
@@ -480,7 +480,7 @@ Prefab:
     - target: {fileID: 224000010554323208, guid: ffe47eeb92e7e604ea0a4743c0c4de54,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000010554323208, guid: ffe47eeb92e7e604ea0a4743c0c4de54,
         type: 2}
@@ -490,7 +490,7 @@ Prefab:
     - target: {fileID: 224000010554323208, guid: ffe47eeb92e7e604ea0a4743c0c4de54,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000010554323208, guid: ffe47eeb92e7e604ea0a4743c0c4de54,
         type: 2}

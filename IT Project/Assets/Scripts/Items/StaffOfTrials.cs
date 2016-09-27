@@ -18,7 +18,7 @@ public class StaffOfTrials : Item {
 	// The attack increased when wearing the equipment
 	public int attackIncreased;
 
-	public StaffOfTrials() : base(NAME, ItemTypeEnum.Equipment, SELLING_PRICE, PURCHASE_PRICE, DESCRIPTION) {
+	public StaffOfTrials() : base(NAME, ItemTypeEnum.Weapon, SELLING_PRICE, PURCHASE_PRICE, DESCRIPTION) {
 		attackIncreased = INITIAL_ATTACK_INCREMENT;
 	}
 

@@ -4,22 +4,17 @@ using UnityEngine.UI;
 
 public class ItemButtonScript : MonoBehaviour {
 
-	public ShopController controller;
-	public Item item {get; set;}
+    private Character character;
+	private Item item {get; set;}
     public GameObject infoPanel;
     private GameObject canvas;
     private Transform window;
 
-
-	// Use this for initialization
-	void Start () {
-		item = new LifeNecklace (); // TODO to be deleted after proper item button generation
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void initialise(Character character, Item item)
+    {
+        this.item = item;
+        this.character = character;
+    }
 
     
 	public void onClick() {
@@ -31,6 +26,8 @@ public class ItemButtonScript : MonoBehaviour {
         nameTr.GetComponent<Text>().text = item.itemName;
         Transform descriptionTr = panel.transform.Find("Description");
         descriptionTr.GetComponent<Text>().text = item.description;
+        var itemInfoPanelScript = panel.GetComponent<ItemInfoPanelScript>();
+        itemInfoPanelScript.initialise(item, character);
         panel.transform.SetParent(window, false);
         panel.transform.localScale = new Vector3(1, 1, 1);
         infoPanel.SetActive(true);

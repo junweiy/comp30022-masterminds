@@ -4,6 +4,10 @@ using System.Collections;
 public class ShopController : MonoBehaviour {
 
 	private Shop shop;
+    private ItemInventory inventory;
+    public GameObject shopSystem;
+    public GameObject shopPane;
+    public GameObject equipmentPane;
 	public ItemInfoPanelScript infoPanel;
 
 	private Item _selectedItem;
@@ -14,13 +18,18 @@ public class ShopController : MonoBehaviour {
 		}
 		set {
 			this._selectedItem = value;
-			infoPanel.updateInfo (value);
+			//infoPanel.updateInfo (value);
 		}
 	}
 
 	// Use this for initialization
 	void Start () {
-		this.shop = new Shop();
+        this.inventory = shopSystem.GetComponent<ItemInventory>();
+        this.inventory.initialise();
+		this.shop = new Shop(inventory.items);
+        var shopUIController = shopPane.GetComponent<ShopUIController>();
+        Debug.Assert(GlobalState.instance.currentChar != null);
+        shopUIController.initialise(this.shop, GlobalState.instance.currentChar);
 	}
 
 	public bool canPurchase(Item item) {

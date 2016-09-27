@@ -14,13 +14,15 @@ public class LifeNecklace : Item {
 	private const int INITIAL_HP_INCREMENT = 10;
 	// The extra HP increment when leveling up
 	private const int LVL_UP_HP_INCREMENT = 10;
+    // The icon path of item
+    private const string ICON_PATH = "";
 
 	// The maximum health point can be increased when wearing this equipment
 	public int maxHPIncreased;
 
 	/* The function initialises the object with relative properties
 	 */
-	public LifeNecklace() : base(NAME, ItemTypeEnum.Equipment, SELLING_PRICE, PURCHASE_PRICE, DESCRIPTION) {
+	public LifeNecklace() : base(NAME, ItemTypeEnum.Trinket, SELLING_PRICE, PURCHASE_PRICE, DESCRIPTION) {
 		maxHPIncreased = INITIAL_HP_INCREMENT;
 	}
 		

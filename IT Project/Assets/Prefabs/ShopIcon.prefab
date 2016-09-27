@@ -170,8 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59943d4d62c1374abfa322624129df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  infoPanel: {fileID: 1000012009698844, guid: 445dbe3866d270049b6a39277249f25f, type: 2}
+  infoPanel: {fileID: 1000011928315412, guid: 445dbe3866d270049b6a39277249f25f, type: 2}
 --- !u!222 &222000012219187148
 CanvasRenderer:
   m_ObjectHideFlags: 1

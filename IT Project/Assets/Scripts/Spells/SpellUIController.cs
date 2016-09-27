@@ -16,23 +16,23 @@ public class SpellUIController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //generate buttons
-        spells = character.spells;
+        //spells = character.spells;
         //...
-        icons = bar.GetComponentsInChildren<GameObject>();
+        //icons = bar.GetComponentsInChildren<GameObject>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        for (int i = 0; i < icons.Length; i++)
-        {
-            if (spells[i].currentCooldown < spells[i].cooldown)
-            {
-                Image[] images;
-                images = icons[i].GetComponentsInChildren<Image>();
-                Image spellImage = images[1];
-                spellImage.fillAmount = spells[i].currentCooldown / spells[i].cooldown;
-            } 
-        }
+        //for (int i = 0; i < icons.Length; i++)
+        //{
+        //    if (spells[i].currentCooldown < spells[i].cooldown)
+        //    {
+        //        Image[] images;
+        //        images = icons[i].GetComponentsInChildren<Image>();
+        //        Image spellImage = images[1];
+        //        spellImage.fillAmount = spells[i].currentCooldown / spells[i].cooldown;
+        //    } 
+        //}
     }
 }

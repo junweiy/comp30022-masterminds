@@ -21,7 +21,7 @@ public class Character {
 	public bool canMove { get; set; }
     private bool isDead;
 
-    private List<Item> items;
+    public List<Item> items;
 	public List<Spell> spells { get; set; }
 
 	public float range { get; set; }

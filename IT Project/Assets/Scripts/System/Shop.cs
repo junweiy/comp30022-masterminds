@@ -8,7 +8,7 @@ public class Shop {
 	private HashSet<Item> items;
 
 	public bool canPurchase(Item item, Character character) {
-		return (character.Coin >= item.purchasePrice) && character.hasSpaceForItem();
+        return (character.Coin >= item.purchasePrice) && character.hasSpaceForItem();
 	}
 
 	public void purchase(Item item, Character character) {
@@ -49,10 +49,9 @@ public class Shop {
 		this.items = new HashSet<Item> (items);
 	}
 
-    public Shop(Item item)
+    public Shop(List<Item> items)
     {
-        this.items = new HashSet<Item>();
-        this.items.Add(item);
+        this.items = new HashSet<Item>(items);
     }
 
 }

@@ -75,6 +75,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\EquipmentUIController.cs" />
+    <Compile Include="Assets\ItemInventory.cs" />
     <Compile Include="Assets\ResultPageController.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraControl.cs" />
     <Compile Include="Assets\Scripts\Character\Character.cs" />
@@ -105,13 +107,13 @@
     <Compile Include="Assets\Scripts\Spells\SpellController.cs" />
     <Compile Include="Assets\Scripts\Spells\SpellCooldown.cs" />
     <Compile Include="Assets\Scripts\Spells\SpellUIController.cs" />
-    <Compile Include="Assets\Scripts\System\CreateButtons.cs" />
     <Compile Include="Assets\Scripts\System\ItemButtonScript.cs" />
     <Compile Include="Assets\Scripts\System\ItemInfoPanelScript.cs" />
     <Compile Include="Assets\Scripts\System\Profile.cs" />
     <Compile Include="Assets\Scripts\System\ProfileMessagingException.cs" />
     <Compile Include="Assets\Scripts\System\ProfileMessenger.cs" />
     <Compile Include="Assets\Scripts\System\Shop.cs" />
+    <Compile Include="Assets\Scripts\System\ShopUIController.cs" />
     <Compile Include="Assets\Scripts\System\StateController.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayPlayerCoin.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayProfile.cs" />

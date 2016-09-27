@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum ItemTypeEnum {Spell, Equipment, Upgrade}
+public enum ItemTypeEnum {Spell, Armour, Weapon, Trinket, Upgrade}
 
 abstract public class Item {
 	// Name of the item
@@ -16,6 +16,8 @@ abstract public class Item {
 	public string description {get; private set;}
 	// The level of the item
 	public int level {get; set;}
+    // The icon path of item
+    public string iconPath { get; set; }
 
 	// Initialise an Item instance with given information
 	public Item(string name, ItemTypeEnum type, int sellingPrice, int purchasePrice, string description) {
