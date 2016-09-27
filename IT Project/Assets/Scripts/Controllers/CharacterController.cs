@@ -47,7 +47,6 @@ public class CharacterController : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () {
 		healthBarUI.SetHealthUI(character.HP,character.MaxHP);
-
 		// Update cool down time for all spells
 		foreach (Spell s in character.spells) {
 			if (s.currentCooldown < s.cooldown) {
