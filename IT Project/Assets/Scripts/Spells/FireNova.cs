@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 public class FireNova : Spell {
 	// The damage of level 1 FireNova
@@ -7,7 +8,7 @@ public class FireNova : Spell {
 	// The power of level 1 FireNova
 	private const float INITIAL_POWER = 8000.0F;
 	// The cool down time of FireNova (unit in frames)
-	private const int COOLDOWN = 1000;
+	private const int COOLDOWN = 1;
 	// The icon path used to genereate icon on spell bar
 	private const string ICON_PATH = "Textures/Spells/fireNova";
 	// Whether FireNova is a constant skill
@@ -20,8 +21,8 @@ public class FireNova : Spell {
 	public const string DESCRIPTION = "fire nova";
 	// The range within which ememies will be affected
 	private const float INITIAL_RANGE = 30.0F;
-	// The time required for casting (unit in secs)
-	private const int INITIAL_CASTING_TIME = 1;
+	// The time required for casting (unit in frames)
+	private const int INITIAL_CASTING_TIME = 200;
 	// The path of the prefab
 	private const string PREFAB_PATH = "Prefabs/FireNova";
 	// The increment in damage when upgrading the spell
@@ -60,6 +61,8 @@ public class FireNova : Spell {
 		fnc.range = range;
 		fnc.power = power;
 		fnc.castingTime = castingTime;
+		fnc.chId = character.netId;
+		NetworkServer.Spawn (fn);
 		return fn != null;
 	}
 

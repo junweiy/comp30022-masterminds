@@ -23,6 +23,8 @@ GameObject:
   - 54: {fileID: 54000013571542930}
   - 199: {fileID: 199000013605341074}
   - 198: {fileID: 198000010606891656}
+  - 114: {fileID: 114000011721159658}
+  - 114: {fileID: 114000012485485368}
   m_Layer: 0
   m_Name: FireNova
   m_TagString: Untagged
@@ -53,7 +55,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -69,16 +71,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2894cf3c519741758bf3c74a2b77e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  radius: 0
-  power: 0
+  damage: 10
+  range: 10
+  power: 100
+  castingTime: 300
+  timePassed: 0
+  alreadyCast: 0
+--- !u!114 &114000011721159658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010108898470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 89
+    i1: 110
+    i2: 126
+    i3: 108
+    i4: 18
+    i5: 24
+    i6: 68
+    i7: 56
+    i8: 139
+    i9: 244
+    i10: 74
+    i11: 17
+    i12: 249
+    i13: 170
+    i14: 215
+    i15: 178
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
+--- !u!114 &114000012485485368
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010108898470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!198 &198000010606891656
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010108898470}
-  serializedVersion: 2
+  serializedVersion: 4
   lengthInSec: 0.1
   startDelay:
     scalar: 0
@@ -116,12 +173,13 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
+  autoRandomSeed: 1
   scalingMode: 2
+  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1

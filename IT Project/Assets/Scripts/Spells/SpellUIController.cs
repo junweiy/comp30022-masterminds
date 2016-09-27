@@ -18,20 +18,7 @@ public class SpellUIController : MonoBehaviour {
         spells = c.spells;
     }
 
-<<<<<<< HEAD
-	// Use this for initialization
-	void Start () {
-        //generate buttons
-        // = character.spells;
-        //...
-        icons = bar.GetComponentsInChildren<GameObject>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		/*
-        for (int i = 0; i < icons.Length; i++)
-=======
+
     public void setAsMainCharacter()
     {
         isMainCharacter = true;
@@ -39,25 +26,17 @@ public class SpellUIController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        spellBar_go = GameObject.FindGameObjectWithTag("SpellBar");
-        //generate buttons
-        if (isMainCharacter)
->>>>>>> SpellBar
-        {
-            for (int i = 0; i < spells.Count; i++)
-            {
-                GameObject spellButton = (GameObject)Instantiate(spellIcon);
-                var spellButtonController = spellButton.GetComponent<SpellIconController>();
-                spellButtonController.initialise(spells[i]);
-                spellButton.transform.SetParent(spellBar_go.transform, false);
-                spellButton.transform.localScale = new Vector3(1, 1, 1);
-            }
-        }
-<<<<<<< HEAD
-        */
-    }
-=======
-        
+		spellBar_go = GameObject.FindGameObjectWithTag ("SpellBar");
+		//generate buttons
+		if (isMainCharacter) {
+			for (int i = 0; i < spells.Count; i++) {
+				GameObject spellButton = (GameObject)Instantiate (spellIcon);
+				var spellButtonController = spellButton.GetComponent<SpellIconController> ();
+				spellButtonController.initialise (spells [i]);
+				spellButton.transform.SetParent (spellBar_go.transform, false);
+				spellButton.transform.localScale = new Vector3 (1, 1, 1);
+			}
+		}
 	}
->>>>>>> SpellBar
+
 }
