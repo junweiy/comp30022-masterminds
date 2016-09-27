@@ -16,14 +16,14 @@ public class SpellUIController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //generate buttons
-        spells = character.spells;
+        // = character.spells;
         //...
         icons = bar.GetComponentsInChildren<GameObject>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		/*
         for (int i = 0; i < icons.Length; i++)
         {
             if (spells[i].currentCooldown < spells[i].cooldown)
@@ -34,5 +34,6 @@ public class SpellUIController : MonoBehaviour {
                 spellImage.fillAmount = spells[i].currentCooldown / spells[i].cooldown;
             } 
         }
+        */
     }
 }
