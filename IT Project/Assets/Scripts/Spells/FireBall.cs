@@ -18,11 +18,11 @@ public class FireBall : Spell {
 	// The description of the Fireball
 	public const string DESCRIPTION = "fire ball";
 	// The range that can be chosen to cast within
-	private const float RANGE = 500;
+	private const float RANGE = 600;
 	// The path of the prefab
 	private const string PREFAB_PATH = "prefabs/fireball";
 	// The velocity of fire ball
-	private const float VELOCITY = 5;
+	private const float VELOCITY = 300;
 	// The increment in damage when upgrading the spell
 	public const int LVL_UP_DAMAGE_INCREMENT = 20;
 

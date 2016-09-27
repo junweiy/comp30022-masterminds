@@ -29,11 +29,10 @@ public class FireBallController : NetworkBehaviour {
 
 	void Start() {
 		distanceTravelled = 0;
-		positionChange = playerRotation * (velocity * this.transform.forward);
+		positionChange = playerRotation * (velocity * Time.deltaTime * this.transform.forward);
 	}
 
 	void Update() {
-		
 		distanceTravelled += positionChange.magnitude;
 		this.transform.position += positionChange;
 		if (distanceTravelled >= range) {
@@ -45,14 +44,18 @@ public class FireBallController : NetworkBehaviour {
 	 * damage will be caused and the fireball will disappear.
 	 */ 
 	void OnCollisionEnter(Collision collision) {
-		GameObject originalPlayer = ClientScene.FindLocalObject (chId);
+		Character originalPlayer = NetworkHelper.GetObjectFromNetIdValue<Character> (chId.Value, this.isServer);
 		Character c;
 		GameObject gameObject = collision.gameObject;
 		if (gameObject.tag == CHARACTER_TAG) {
 			c = gameObject.GetComponent<Character> ();
-			if (!originalPlayer.GetComponent<Character>().Equals(c)) {
+			if (!originalPlayer.Equals(c)) {
 				Destroy (this.gameObject);
 				c.TakeDamage (damage);
+				if (c.isDead) {
+					c.numDeath++;
+					originalPlayer.numKilled++;
+				}
 			}
 		} else {
 			Destroy (this.gameObject);

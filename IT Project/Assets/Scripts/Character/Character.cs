@@ -21,7 +21,11 @@ public class Character : NetworkBehaviour {
 	public int coin { get; private set; }
 
 	public bool canMove { get; set; }
-	public bool isDead { get; private set; }
+	public bool isDead;
+	[SyncVar]
+	public int numKilled;
+	[SyncVar]
+	public int numDeath;
 
     public List<Item> items { get; private set; }
 	public List<Spell> spells { get; set; }
@@ -35,6 +39,8 @@ public class Character : NetworkBehaviour {
         hp = 100f;
 		score = 0;
 		coin = 0;
+		numDeath = 0;
+		numKilled = 0;
 		isDead = false;
 		canMove = true;
         items = new List<Item>();
@@ -86,8 +92,7 @@ public class Character : NetworkBehaviour {
     public void TakeDamage(float f)
     {
         hp -= f;
-        if (hp <= 0 && !isDead)
-        {
+        if (hp <= 0 && !isDead) {
             OnDeath();
         }
 
@@ -95,6 +100,7 @@ public class Character : NetworkBehaviour {
 
     private void OnDeath()
     {
+		Debug.Log ("A");
         isDead = true;
     }
 

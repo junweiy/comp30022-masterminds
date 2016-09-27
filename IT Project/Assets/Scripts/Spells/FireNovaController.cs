@@ -21,42 +21,44 @@ public class FireNovaController : NetworkBehaviour {
 	[SyncVar]
 	public NetworkInstanceId chId;
 
-	public int timePassed;
+	public float timePassed;
 
-	public bool alreadyCast;
 
 	/* The function utilised coroutine to achieve casting time effect.
 	 */ 
 	void Start () {
 		timePassed = 0;
-		alreadyCast = false;
 	}
 
 	void Update() {
-		timePassed++;
-		if (timePassed >= castingTime && !alreadyCast) {
+		timePassed+= Time.deltaTime;
+		if (timePassed >= castingTime) {
 			castFireNova ();
-			alreadyCast = true;
 		}
 	}
 
 	public void castFireNova() {
-		GameObject originalPlayer = ClientScene.FindLocalObject (chId);
+		Character originalCharacter = NetworkHelper.GetObjectFromNetIdValue<Character> (chId.Value, this.isServer);
 		// After casting time find all objects within casting range
 		Collider[] colliders = Physics.OverlapSphere(this.transform.position, range);
 		foreach (Collider hit in colliders) {
 			if (!hit.CompareTag(CHARACTER_TAG)) {
 				continue;
 			}
-			if (hit.gameObject.GetComponent<Character> ().Equals (originalPlayer.GetComponent<Character>())) {
+			if (hit.gameObject.GetComponent<Character> ().Equals (originalCharacter)) {
 				continue;
 			}
 			// all players around will be pushed with certain amount of power
 			Rigidbody rb = hit.GetComponent<Rigidbody> ();
 			if (rb != null) {
-				CharacterController ccOther = hit.GetComponent<CharacterController> (); 
+				Character anotherCharacter = hit.GetComponent<Character> (); 
 				rb.AddExplosionForce (power, transform.position, range);
-				ccOther.character.TakeDamage (damage);
+				anotherCharacter.TakeDamage (damage);
+				if (anotherCharacter.isDead) {
+					anotherCharacter.numDeath++;
+					originalCharacter.numKilled++;
+				}
+
 			}
 		}
 		// The spell object is destroyed
