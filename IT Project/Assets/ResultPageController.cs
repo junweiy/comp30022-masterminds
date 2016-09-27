@@ -34,8 +34,8 @@ public class ResultPageController : MonoBehaviour {
             GameObject userDetail = (GameObject)Instantiate(detailPanel);
             Text[] texts;
             texts = userDetail.GetComponentsInChildren<Text>();
-            texts[0].text = chars[i].player.username;
-            texts[1].text = chars[i].player.userId.ToString();           
+            texts[0].text = chars[i].player.userName;
+            texts[1].text = chars[i].player.uid.ToString();           
             texts[2].text = chars[i].numKill.ToString();
             texts[3].text = chars[i].numDeath.ToString();
 

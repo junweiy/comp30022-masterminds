@@ -4,17 +4,17 @@ using System.Collections;
 public class ObstacleController : MonoBehaviour {
 
 	public float maximumHealth; 
-	private float currentHealth;
+	private Obstacle obstacle;
 
 	void Start () {
-		currentHealth = maximumHealth;
+        obstacle = new Obstacle(maximumHealth);
+        obstacle.addOnDestoyAction(delegate {
+            GameObject.Destroy(this.gameObject);
+        });
 	}
 
-	public void TakeDamage(float f)
-	{
-		currentHealth -= f;
-		if(currentHealth <= 0) { Destroy(this); }
-
+	public void TakeDamage(float f) {
+        obstacle.takeDamage(f);
 	}
 
 }
