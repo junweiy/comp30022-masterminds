@@ -19,15 +19,15 @@ public class ItemTest {
 		lifeNecklace = new LifeNecklace ();
 		staffOfTrials = new StaffOfTrials ();
 		characterStub = NSubstitute.Substitute.For<Character> ();
-		characterStub.MaxHP = MAXHP;
+		characterStub.maxHp = MAXHP;
 		characterStub.baseAttack = BASEATTACK;
 	}
 
 	[Test]
 	public void CanApplyEffectWithLifeNecklace() {
-		float initialMaxHP = characterStub.MaxHP;
+		float initialMaxHP = characterStub.maxHp;
 		lifeNecklace.ApplyEffect (characterStub);
-		Assert.AreEqual (characterStub.MaxHP, initialMaxHP + lifeNecklace.maxHPIncreased);
+		Assert.AreEqual (characterStub.maxHp, initialMaxHP + lifeNecklace.maxHPIncreased);
 	}
 
 	[Test]
@@ -39,9 +39,9 @@ public class ItemTest {
 
 	[Test]
 	public void CanRemoveEffectWithLifeNecklace() {
-		float initialMaxHP = characterStub.MaxHP;
+		float initialMaxHP = characterStub.maxHp;
 		lifeNecklace.RemoveEffect (characterStub);
-		Assert.AreEqual (characterStub.MaxHP, initialMaxHP - lifeNecklace.maxHPIncreased);
+		Assert.AreEqual (characterStub.maxHp, initialMaxHP - lifeNecklace.maxHPIncreased);
 	}
 
 	[Test]

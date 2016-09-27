@@ -48,10 +48,10 @@ public class CharacterTest {
 
     [Test]
     public void TakeDamageTest() {
-		float currHP = character.HP;
+		float currHP = character.hp;
 		character.TakeDamage (DAMAGE_TAKEN_FOR_TESTING);
-		Assert.AreEqual (character.HP, currHP - DAMAGE_TAKEN_FOR_TESTING);
-		while (character.HP > 0) {
+		Assert.AreEqual (character.hp, currHP - DAMAGE_TAKEN_FOR_TESTING);
+		while (character.hp > 0) {
 			character.TakeDamage (DAMAGE_TAKEN_FOR_TESTING);
 		}
 		Assert.True (character.isDead);

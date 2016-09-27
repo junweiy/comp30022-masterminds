@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/* * * * * * * * * * * * *
+ * 						 *
+ *  CLASS TO BE DELETED  *
+ * 						 *
+ * * * * * * * * * * * * */
 public class GameController : MonoBehaviour {
 	
 	public GameObject mainCamera;
@@ -52,11 +57,11 @@ public class GameController : MonoBehaviour {
 			var characterObj = Instantiate<GameObject> (characterPrefab);
 			var charController = characterObj.GetComponent<CharacterController> ();
 			var spellController = characterObj.GetComponent<SpellController> ();
-			charController.initialise (c);
+			charController.Initialise (c);
 			spellController.initialise (c);
 			if (GlobalState.isCurrentChar (c)) {
 				mainCamera.GetComponent<CameraControl> ().m_Target = characterObj.transform;
-				charController.setAsMainCharacter ();
+				charController.SetAsMainCharacter ();
 				spellController.setAsMainCharacter ();
 			}
 		}

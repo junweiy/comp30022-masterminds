@@ -10,8 +10,8 @@ public class CharacterController : MonoBehaviour {
 	private NavMeshAgent navMeshAgent;
 	public bool isMainCharacter { get; set;}
 
-	// Use this for initialization
-	public void initialise(Character c) {
+	// To be replaced
+	public void Initialise(Character c) {
 		character = c;
 		this.isMainCharacter = false;
 		this.healthBarUI = this.GetComponent<HealthBarUI> ();
@@ -21,14 +21,15 @@ public class CharacterController : MonoBehaviour {
 
 	}
 
-	public void setAsMainCharacter(){
+	// To be deleted
+	public void SetAsMainCharacter() {
 		isMainCharacter = true;
 	}
 
 	/* The function causes the player a sudden stop when the player is navigating to a point, which
 	 * is used to fit the spell FireNova.
 	 */ 
-	public void stopMoving() {
+	public void StopMoving() {
 		NavMeshAgent nma = this.GetComponent<NavMeshAgent> ();
 		nma.velocity = new Vector3(0,0,0);
 		nma.Stop ();
@@ -37,7 +38,7 @@ public class CharacterController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		healthBarUI.SetHealthUI(character.HP,character.MaxHP);
+		healthBarUI.SetHealthUI(character.hp,character.maxHp);
 
 
 		if (isMainCharacter && character.canMove) {
@@ -54,17 +55,14 @@ public class CharacterController : MonoBehaviour {
 
 
     // For debugging only
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name != "Ground" && collision.gameObject.name != "Lava")
-        {
+    void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.name != "Ground" && collision.gameObject.name != "Lava") {
             Debug.Log(collision.gameObject.name);
         }
     }
 
-
-	private void Move()
-	{
+	// To be replaced
+	private void Move() {
 		SpellController spellController = this.GetComponent<SpellController> ();
 		if (spellController.spellRange.enabled == true) {
 			spellController.spellRange.enabled = false;
@@ -78,19 +76,16 @@ public class CharacterController : MonoBehaviour {
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 
-		if (Physics.Raycast(ray, out hit, 100))
-		{
+		if (Physics.Raycast(ray, out hit, 100)) {
 			navMeshAgent.destination = hit.point;
 			navMeshAgent.Resume();
-
 		}
 
 	}
 
     
-
-    public Character getCharacter()
-    {
+	// To be deleted
+    public Character getCharacter() {
         return character;
     }
 

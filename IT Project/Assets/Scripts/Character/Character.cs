@@ -24,9 +24,9 @@ public class Character {
 	// Base attack point 
 	public int baseAttack { get; set; }
 	// Current HP
-	private float hp { get; set; }
+	public float hp { get; private set; }
 	// Upper limit of HP
-	private float maxHp { get; set; }
+	public float maxHp { get; set; }
 	// Score gained during the game
 	public int score { get; private set; }
 	// Number of coins player gained during the game

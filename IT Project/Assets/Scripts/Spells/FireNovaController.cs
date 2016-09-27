@@ -42,7 +42,7 @@ public class FireNovaController : MonoBehaviour {
 		Character c = cc.character;
 		// Stop the movement of the player
 		c.canMove = false;
-		cc.stopMoving ();
+		cc.StopMoving ();
 		yield return new WaitForSecondsRealtime (castingTime);
 		// After casting time find all objects within casting range
 		Collider[] colliders = Physics.OverlapSphere(this.transform.position, range);

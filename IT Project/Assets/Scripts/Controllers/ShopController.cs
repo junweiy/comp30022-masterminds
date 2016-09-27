@@ -23,15 +23,15 @@ public class ShopController : MonoBehaviour {
 		this.shop = new Shop();
 	}
 
-	public bool canPurchase(Item item) {
+	public bool CanPurchase(Item item) {
 		return this.shop.canPurchase (item, GlobalState.instance.currentChar);
 	}
 
-	public void purchase() {
+	public void Purchase() {
 		this.shop.purchase (selectedItem, GlobalState.instance.currentChar);
 	}
 
-	public void nextRound() {
+	public void NextRound() {
 		StateController.switchToNewRound ();
 	}
 
