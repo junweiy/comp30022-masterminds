@@ -21,19 +21,27 @@ public class FireNovaController : NetworkBehaviour {
 	[SyncVar]
 	public NetworkInstanceId chId;
 
+	public int timePassed;
+
+	public bool alreadyCast;
+
 	/* The function utilised coroutine to achieve casting time effect.
 	 */ 
 	void Start () {
-		StartCoroutine (castFireNova());
+		timePassed = 0;
+		alreadyCast = false;
 	}
 
-	/* The function firstly disables the movement of the main character for several seconds,
-	 * then detect all players within the casting range and push against all of them and give
-	 * corresponding amount of damage. 
-	 */ 
-	IEnumerator castFireNova() {
+	void Update() {
+		timePassed++;
+		if (timePassed >= castingTime && !alreadyCast) {
+			castFireNova ();
+			alreadyCast = true;
+		}
+	}
+
+	public void castFireNova() {
 		GameObject originalPlayer = ClientScene.FindLocalObject (chId);
-		yield return new WaitForSecondsRealtime (castingTime);
 		// After casting time find all objects within casting range
 		Collider[] colliders = Physics.OverlapSphere(this.transform.position, range);
 		foreach (Collider hit in colliders) {

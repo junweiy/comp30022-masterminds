@@ -21,8 +21,8 @@ public class FireNova : Spell {
 	public const string DESCRIPTION = "fire nova";
 	// The range within which ememies will be affected
 	private const float INITIAL_RANGE = 30.0F;
-	// The time required for casting (unit in secs)
-	private const int INITIAL_CASTING_TIME = 1;
+	// The time required for casting (unit in frames)
+	private const int INITIAL_CASTING_TIME = 200;
 	// The path of the prefab
 	private const string PREFAB_PATH = "Prefabs/FireNova";
 	// The increment in damage when upgrading the spell
