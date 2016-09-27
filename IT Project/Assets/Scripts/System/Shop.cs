@@ -8,13 +8,13 @@ public class Shop {
 	private HashSet<Item> items;
 
 	public bool canPurchase(Item item, Character character) {
-		return (character.Coin >= item.purchasePrice) && character.hasSpaceForItem();
+		return (character.coin >= item.purchasePrice) && character.HasSpaceForItem();
 	}
 
 	public void purchase(Item item, Character character) {
 		if (canPurchase (item, character)) {
-			character.addItem (item);
-			character.deductCoin (item.purchasePrice);
+			character.AddItem (item);
+			character.DeductCoin (item.purchasePrice);
 		}
 	}
 
@@ -37,6 +37,10 @@ public class Shop {
 		}
 		return ret;
 	}
+
+    public void addItem(Item item) {
+        this.items.Add(item);
+    }
 
    
 	// create a empty shop

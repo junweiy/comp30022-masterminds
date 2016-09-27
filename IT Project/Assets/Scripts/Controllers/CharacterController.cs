@@ -151,13 +151,13 @@ public class CharacterController : NetworkBehaviour {
 //		}
 //		spellRange.enabled = false;
 		Transform t = transform.Find (SPELL_SPAWN_NAME);
-		fb.applyEffect(gO.GetComponent<CharacterController>().character, transform, t.position);
+		fb.ApplyEffect(gO.GetComponent<CharacterController>().character, transform, t.position);
 	}
 
 	[Command]
 	void CmdCastFireNova(FireNova fn, GameObject gO) {
 		Transform t = transform.Find (SPELL_SPAWN_NAME);
-		fn.applyEffect(gO.GetComponent<CharacterController>().character, transform, t.position);
+		fn.ApplyEffect(gO.GetComponent<CharacterController>().character, transform, t.position);
 	}
 		
 

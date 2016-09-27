@@ -21,6 +21,18 @@ public abstract class Spell {
 	// The range of the spell
 	public float range {get; set;}
 
+	public Spell() {
+		this.cooldown = 0;
+		this.iconPath = "";
+		this.isInstantSpell = false;
+		this.currentCooldown = 0;
+		this.price = 0;
+		this.name = "";
+		this.description = "";
+		this.level = 1;
+		this.range = 0;
+	}
+
 	/* The initialisation of the spell with relative properties.
 	 */
 	public Spell(float cd, string path, bool isInstant, int price, string name, string des,float range) {
@@ -37,9 +49,9 @@ public abstract class Spell {
 
 
 	// Function used to apply the effect to the character
-	abstract public void applyEffect(Character character,Transform characterTransform,Vector3 destination);
+	abstract public bool ApplyEffect(Character character,Transform characterTransform,Vector3 destination);
 	// Function used to modify properties to achieve levelup
-	abstract public void levelUp ();
+	abstract public void LevelUp ();
 
 }
 
