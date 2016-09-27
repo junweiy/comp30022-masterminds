@@ -6,13 +6,19 @@ using UnityEngine.UI;
 public class SpellUIController : MonoBehaviour {
 
     public GameObject spellIcon;
-    public RectTransform spellBar;
-    public GameObject bar;
+    private GameObject spellBar_go;
     private Character character;
+    private bool isMainCharacter;
     private List<Spell> spells;
     private GameObject [] icons;
 
+    public void initialise(Character c)
+    {
+        character = c;
+        spells = c.spells;
+    }
 
+<<<<<<< HEAD
 	// Use this for initialization
 	void Start () {
         //generate buttons
@@ -25,15 +31,33 @@ public class SpellUIController : MonoBehaviour {
 	void Update () {
 		/*
         for (int i = 0; i < icons.Length; i++)
+=======
+    public void setAsMainCharacter()
+    {
+        isMainCharacter = true;
+    }
+
+    // Use this for initialization
+    void Start () {
+        spellBar_go = GameObject.FindGameObjectWithTag("SpellBar");
+        //generate buttons
+        if (isMainCharacter)
+>>>>>>> SpellBar
         {
-            if (spells[i].currentCooldown < spells[i].cooldown)
+            for (int i = 0; i < spells.Count; i++)
             {
-                Image[] images;
-                images = icons[i].GetComponentsInChildren<Image>();
-                Image spellImage = images[1];
-                spellImage.fillAmount = spells[i].currentCooldown / spells[i].cooldown;
-            } 
+                GameObject spellButton = (GameObject)Instantiate(spellIcon);
+                var spellButtonController = spellButton.GetComponent<SpellIconController>();
+                spellButtonController.initialise(spells[i]);
+                spellButton.transform.SetParent(spellBar_go.transform, false);
+                spellButton.transform.localScale = new Vector3(1, 1, 1);
+            }
         }
+<<<<<<< HEAD
         */
     }
+=======
+        
+	}
+>>>>>>> SpellBar
 }

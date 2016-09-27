@@ -144,6 +144,7 @@ GameObject:
   - 114: {fileID: 114000010371706270}
   - 114: {fileID: 114000012144812192}
   - 114: {fileID: 114000012700213790}
+  - 114: {fileID: 114000011078797666}
   m_Layer: 0
   m_Name: Character
   m_TagString: Character
@@ -291,6 +292,19 @@ MonoBehaviour:
   FullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   ZeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
   fillImage: {fileID: 114000011954960980}
+--- !u!114 &114000011078797666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013689837204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d726591b2fd6140289786afebfb90c5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellIcon: {fileID: 1000013940440732, guid: ffe47eeb92e7e604ea0a4743c0c4de54, type: 2}
+  spellBar: {fileID: 224000011101299760, guid: 8d81da51516a29e4399996bda8241688, type: 2}
 --- !u!114 &114000011558600960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -475,8 +489,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellRange: {fileID: 114000012521118286}
-  fireBallPrefab: {fileID: 1000010462454898, guid: 993acc0e6e6d7c6428748dcadafba1db,
-    type: 2}
 --- !u!114 &114000014064282548
 MonoBehaviour:
   m_ObjectHideFlags: 1

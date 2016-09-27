@@ -7,6 +7,8 @@ TagManager:
   - ShopWindow
   - Character
   - HUDCanvas
+  - Fire
+  - SpellBar
   layers:
   - Default
   - TransparentFX
