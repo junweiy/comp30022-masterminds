@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+// TEMPORARY CLASS
 public class KeyboardMovement : MonoBehaviour {
 
     public float velocity = 10f;
@@ -31,7 +33,7 @@ public class KeyboardMovement : MonoBehaviour {
             this.transform.Translate(Vector3.left * velocity * Time.deltaTime);
         }
 
-        //Move rignt
+        //Move right
         if (Input.GetKey("d"))
         {
             this.transform.Translate(Vector3.right * velocity * Time.deltaTime);
