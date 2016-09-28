@@ -1,20 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Networking;
 
 /*
  *  This class is the main class for the character. It stores all the information about the character
  *  
  * 
  */ 
-public class Character : NetworkBehaviour {
+public class Character : MonoBehaviour {
 
     private const float DEFAULT_HP = 100f;
     public const int MAXIMUM_NUMBER_OF_ITEM = 6;
 
 	public int baseAttack { get;set; }
-	[SyncVar]
     private float hp; 
 	private float maxHp { get; set; }
 	public int score { get; private set; }
@@ -22,18 +20,19 @@ public class Character : NetworkBehaviour {
 
 	public bool canMove { get; set; }
 	public bool isDead;
-	[SyncVar]
 	public int numKilled;
-	[SyncVar]
 	public int numDeath;
 
     public List<Item> items { get; private set; }
 	public List<Spell> spells { get; set; }
 
 	public float range { get; set; }
+
+	private HealthBarUI healthBarUI;
     
     void Start()
     {
+		this.healthBarUI = this.GetComponent<HealthBarUI> ();
 		baseAttack = 0;
         maxHp = 100f;
         hp = 100f;
@@ -49,8 +48,10 @@ public class Character : NetworkBehaviour {
 		AddSpell (new FireNova ());
     }
 
-
-
+	void Update() {
+		healthBarUI.SetHealthUI(HP,MaxHP);
+	}
+		
     /*****/
 
     public void AddSpell(Spell i)

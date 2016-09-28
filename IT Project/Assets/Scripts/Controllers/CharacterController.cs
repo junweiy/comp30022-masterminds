@@ -2,18 +2,16 @@
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
-using UnityEngine.Networking;
 using System.Collections.Generic;
 
-public class CharacterController : NetworkBehaviour {
+public class CharacterController : Photon.MonoBehaviour {
 
 	// the character model
 	public Character character;
 
-	private HealthBarUI healthBarUI;
+
 	private NavMeshAgent navMeshAgent;
-	public bool isMainCharacter { get; set;}
-	public GameObject mainCamera;
+
 
 	// spell model
 
@@ -22,55 +20,54 @@ public class CharacterController : NetworkBehaviour {
 	// The image of spell range
 	public Image spellRange;
 
+	public void Awake() {
+		this.gameObject.tag = "Character";
+	}
+
 	// Use this for initialization
 	public void Start() {
+		enabled = photonView.isMine;
 		character = GetComponent<Character>();
-		this.isMainCharacter = false;
-		this.healthBarUI = this.GetComponent<HealthBarUI> ();
-		this.gameObject.tag = "Character";
 		navMeshAgent = this.GetComponent<NavMeshAgent> ();
-		if (isLocalPlayer) {
-			mainCamera.GetComponent<CameraControl> ().m_Target = transform;
-			mainCamera.GetComponent<CameraControl> ().enabled = true;
-			mainCamera.GetComponentInChildren<Camera> ().enabled = true;
-			mainCamera.GetComponentInChildren<Camera> ().GetComponent<AudioListener> ().enabled = true;
-		} else {
-			mainCamera.GetComponent<CameraControl> ().enabled = false;
-			mainCamera.GetComponentInChildren<Camera> ().enabled = false;
-			mainCamera.GetComponentInChildren<Camera> ().GetComponent<AudioListener> ().enabled = false;
-		}
-
 		spellRange.enabled = false;
+
 	}
-		
+
+	public void SetControllable() {
+		CameraControl cc = this.GetComponentInChildren<CameraControl> ();
+		Camera c = this.GetComponentInChildren<Camera> ();
+		AudioListener al = this.GetComponentInChildren<AudioListener> ();
+		cc.m_Target = this.transform;
+		cc.enabled = true;
+		c.enabled = true;
+		al.enabled = true;
+	}
+
 
 	// Update is called once per frame
 	void Update () {
-		healthBarUI.SetHealthUI(character.HP,character.MaxHP);
+		
 		// Update cool down time for all spells
 		foreach (Spell s in character.spells) {
 			if (s.currentCooldown < s.cooldown) {
-				s.currentCooldown++;
+				s.currentCooldown+=Time.deltaTime;
 			}
 		}
 
-		if (!isLocalPlayer) {
+		if (!photonView.isMine) {
 			return;
 		}
-			
 
 		// Detect user input of movement
 
-		if (character.canMove) {
-			if (Input.GetMouseButton (1)) {
-				Move ();
-			}
-
-			if (Input.GetButton ("Fire1")) {
-				Move ();
-			}
+		if (Input.GetMouseButton (1)) {
+			Move ();
 		}
-			
+
+		if (Input.GetButton ("Fire1")) {
+			Move ();
+		}
+
 
 		// Detect user input of casting spells
 		if (Input.GetKeyDown ("1")) {
@@ -79,34 +76,48 @@ public class CharacterController : NetworkBehaviour {
 		if (Input.GetKeyDown ("2")) {
 			Cast (character.spells[1]);
 		}
-			
 
-    }
+
+	}
 
 	void Cast(Spell s) {
 		if (s.currentCooldown < s.cooldown) {
 			return;
 		}
-		if (s is FireBall) {
-			CmdCastFireBall (s as FireBall, gameObject);
+		if (s.isInstantSpell) {
+			Transform t = transform.Find (SPELL_SPAWN_NAME);
+			s.ApplyEffect(character, transform, t.position);
+		} else {
+			
 		}
-		if (s is FireNova) {
-			CmdCastFireNova (s as FireNova, gameObject);
-		}
-
 		s.currentCooldown = 0;
 	}
 
+//	void Cast(Spell s) {
+//		if (s.currentCooldown < s.cooldown) {
+//			return;
+//		}
+//		if (s is FireBall) {
+//			CmdCastFireBall (s as FireBall, gameObject);
+//		}
+//		if (s is FireNova) {
+//			CmdCastFireNova (s as FireNova, gameObject);
+//		}
+//
+//		s.currentCooldown = 0;
+//	}
 
 
-    // For debugging only
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name != "Ground" && collision.gameObject.name != "Lava")
-        {
-            Debug.Log(collision.gameObject.name);
-        }
-    }
+
+	// For debugging only
+	void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.name != "Ground" && collision.gameObject.name != "Lava")
+		{
+			Debug.Log(collision.gameObject.name);
+
+		}
+	}
 
 
 	private void Move()
@@ -132,65 +143,63 @@ public class CharacterController : NetworkBehaviour {
 
 	}
 
-	[Command]
-	void CmdCastFireBall(FireBall fb, GameObject gO) {
+//	void CmdCastFireBall(FireBall fb, GameObject gO) {
 		// TO-DO
 
 		// Supposed to work as constant however the navmesh is not working
-//		Image spellRange = gO.GetComponent<CharacterController>().spellRange;
-//			
-//		spellRange.enabled = true;
-//		spellRange.transform.localScale *= fb.range+character.range;
-//
-//		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-//		RaycastHit hit;
-//		if (Physics.Raycast(ray, out hit, 100))
-//		{
-//			GameObject go = fb.applyEffect(character, transform, hit.point) as GameObject;
-//			NetworkServer.Spawn (go);
-//		}
-//		spellRange.enabled = false;
-		Transform t = transform.Find (SPELL_SPAWN_NAME);
-		fb.ApplyEffect(gO.GetComponent<CharacterController>().character, transform, t.position);
-	}
+		//		Image spellRange = gO.GetComponent<CharacterController>().spellRange;
+		//			
+		//		spellRange.enabled = true;
+		//		spellRange.transform.localScale *= fb.range+character.range;
+		//
+		//		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		//		RaycastHit hit;
+		//		if (Physics.Raycast(ray, out hit, 100))
+		//		{
+		//			GameObject go = fb.applyEffect(character, transform, hit.point) as GameObject;
+		//			NetworkServer.Spawn (go);
+		//		}
+		//		spellRange.enabled = false;
+//		Transform t = transform.Find (SPELL_SPAWN_NAME);
+//		fb.ApplyEffect(gO.GetComponent<CharacterController>().character, transform, t.position);
+//	}
 
-	[Command]
-	void CmdCastFireNova(FireNova fn, GameObject gO) {
-		Transform t = transform.Find (SPELL_SPAWN_NAME);
-		fn.ApplyEffect(gO.GetComponent<CharacterController>().character, transform, t.position);
-	}
-		
+//	void CmdCastFireNova(FireNova fn, GameObject gO) {
+//		Transform t = transform.Find (SPELL_SPAWN_NAME);
+//		fn.ApplyEffect(gO.GetComponent<CharacterController>().character, transform, t.position);
+//	}
+
 
 	/* This function will cast spell based on the spell number stored in the character */
-//	private void Cast(Spell s)
-//	{
-//
-//		// Reject casting if cool down has not finished
-//		if (s.currentCooldown < s.cooldown) {
-//			return;
-//		}
-//
-//		if (s.isInstantSpell) {
-//			// Find the transform of spell spawning point for instant spells
-//			Transform t = transform.Find (SPELL_SPAWN_NAME);
-//			s.applyEffect(character, transform, t.position);
-//		} else {
-//			// WuliPangPang please fix this
-//			spellRange.enabled = true;
-//			spellRange.transform.localScale *= s.range+character.range;
-//
-//			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-//			RaycastHit hit;
-//			if (Physics.Raycast(ray, out hit, 100))
-//			{
-//				s.applyEffect(character, transform, hit.point);
-//			}
-//			spellRange.enabled = false;
-//		}
-//
-//		// Reset the cool down
-//		s.currentCooldown = 0;
-//	}
-		
+	//	private void Cast(Spell s)
+	//	{
+	//
+	//		// Reject casting if cool down has not finished
+	//		if (s.currentCooldown < s.cooldown) {
+	//			return;
+	//		}
+	//
+	//		if (s.isInstantSpell) {
+	//			// Find the transform of spell spawning point for instant spells
+	//			Transform t = transform.Find (SPELL_SPAWN_NAME);
+	//			s.applyEffect(character, transform, t.position);
+	//		} else {
+	//			// WuliPangPang please fix this
+	//			spellRange.enabled = true;
+	//			spellRange.transform.localScale *= s.range+character.range;
+	//
+	//			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+	//			RaycastHit hit;
+	//			if (Physics.Raycast(ray, out hit, 100))
+	//			{
+	//				s.applyEffect(character, transform, hit.point);
+	//			}
+	//			spellRange.enabled = false;
+	//		}
+	//
+	//		// Reset the cool down
+	//		s.currentCooldown = 0;
+	//	}
+
 
 }

@@ -13,5 +13,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Result.unity
   - enabled: 0
     path: Assets/Scenes/Room.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
+  - enabled: 0
+    path: Assets/PUNVoice/TestVoice/TestVoice-Scene.unity

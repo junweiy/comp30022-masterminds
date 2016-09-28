@@ -61,7 +61,6 @@ public class FireNova : Spell {
 		fnc.range = range;
 		fnc.power = power;
 		fnc.castingTime = castingTime;
-		fnc.chId = character.netId;
 		NetworkServer.Spawn (fn);
 		return fn != null;
 	}

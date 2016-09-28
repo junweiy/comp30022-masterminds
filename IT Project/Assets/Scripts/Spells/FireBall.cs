@@ -54,8 +54,6 @@ public class FireBall : Spell {
 		fbc.damage = damage + character.baseAttack;
 		fbc.range = this.range;
 		fbc.playerRotation = Quaternion.LookRotation (dir);
-		fbc.chId = character.netId;
-		NetworkServer.Spawn (fb);
 		return fb != null;
 	}
 
