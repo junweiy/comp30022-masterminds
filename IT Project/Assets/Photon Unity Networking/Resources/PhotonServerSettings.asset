@@ -32,4 +32,7 @@ MonoBehaviour:
   - PunRespawn
   - RequestForPickupItems
   - RequestForPickupTimes
+  - setUpVariable
+  - setVariableForFireBall
+  - SetUpVariableFireBall
   DisableAutoOpenWizard: 1

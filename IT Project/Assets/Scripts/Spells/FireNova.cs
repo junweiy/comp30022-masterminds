@@ -27,8 +27,6 @@ public class FireNova : Spell {
 	private const string PREFAB_PATH = "Prefabs/FireNova";
 	// The increment in damage when upgrading the spell
 	public const int LVL_UP_DAMAGE_INCREMENT = 20;
-	// The increment in range when upgrading the spell
-	public const float LVL_UP_RANGE_INCREMENT = 1.0f;
 	// The increment in power when upgrading the spell
 	public const float LVL_UP_POWER_INCREMENT = 500.0f;
 
@@ -41,7 +39,7 @@ public class FireNova : Spell {
 
 	/* The function initialises the FireNova object with basic properties.
 	 */
-	public FireNova() : base(COOLDOWN, ICON_PATH, ISCONST, PRICE, NAME, DESCRIPTION, INITIAL_RANGE) {
+	public FireNova() : base(COOLDOWN, ICON_PATH, ISCONST, PRICE, NAME, DESCRIPTION) {
 		damage = INITIAL_DAMAGE;
 		power = INITIAL_POWER;
 		castingTime = INITIAL_CASTING_TIME;
@@ -52,13 +50,12 @@ public class FireNova : Spell {
 	 * and during the casting time player will be disabled for moving, after which enemies surrounded by
 	 * player will be hit against will explosive force and player can move around again.
 	 */ 
-	public override bool ApplyEffect(Character character,Transform charTransform,Vector3 destination) {
+	public bool ApplyEffect(Character character,Transform charTransform,Vector3 destination) {
 		FireNovaController fnc;
 		Object fireNovaPrefab = Resources.Load(PREFAB_PATH);
 		GameObject fn = GameObject.Instantiate (fireNovaPrefab, charTransform.position, charTransform.rotation) as GameObject;
 		fnc = fn.GetComponent<FireNovaController> ();
 		fnc.damage = damage + character.baseAttack;
-		fnc.range = range;
 		fnc.power = power;
 		fnc.castingTime = castingTime;
 		NetworkServer.Spawn (fn);
@@ -69,7 +66,6 @@ public class FireNova : Spell {
 	 */
 	public override void LevelUp () {
 		this.level++;
-		this.range += LVL_UP_RANGE_INCREMENT;
 		this.damage += LVL_UP_DAMAGE_INCREMENT;
 		this.power += LVL_UP_POWER_INCREMENT;
 	}

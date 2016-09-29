@@ -9,16 +9,9 @@ public class CharacterController : Photon.MonoBehaviour {
 	// the character model
 	public Character character;
 
-
 	private NavMeshAgent navMeshAgent;
 
 
-	// spell model
-
-	// The name of object used to spawn spells
-	private string SPELL_SPAWN_NAME = "SpellSpawn";
-	// The image of spell range
-	public Image spellRange;
 
 	public void Awake() {
 		this.gameObject.tag = "Character";
@@ -29,7 +22,6 @@ public class CharacterController : Photon.MonoBehaviour {
 		enabled = photonView.isMine;
 		character = GetComponent<Character>();
 		navMeshAgent = this.GetComponent<NavMeshAgent> ();
-		spellRange.enabled = false;
 
 	}
 
@@ -47,12 +39,6 @@ public class CharacterController : Photon.MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		// Update cool down time for all spells
-		foreach (Spell s in character.spells) {
-			if (s.currentCooldown < s.cooldown) {
-				s.currentCooldown+=Time.deltaTime;
-			}
-		}
 
 		if (!photonView.isMine) {
 			return;
@@ -68,44 +54,8 @@ public class CharacterController : Photon.MonoBehaviour {
 			Move ();
 		}
 
-
-		// Detect user input of casting spells
-		if (Input.GetKeyDown ("1")) {
-			Cast (character.spells[0]);
-		}
-		if (Input.GetKeyDown ("2")) {
-			Cast (character.spells[1]);
-		}
-
-
 	}
 
-	void Cast(Spell s) {
-		if (s.currentCooldown < s.cooldown) {
-			return;
-		}
-		if (s.isInstantSpell) {
-			Transform t = transform.Find (SPELL_SPAWN_NAME);
-			s.ApplyEffect(character, transform, t.position);
-		} else {
-			
-		}
-		s.currentCooldown = 0;
-	}
-
-//	void Cast(Spell s) {
-//		if (s.currentCooldown < s.cooldown) {
-//			return;
-//		}
-//		if (s is FireBall) {
-//			CmdCastFireBall (s as FireBall, gameObject);
-//		}
-//		if (s is FireNova) {
-//			CmdCastFireNova (s as FireNova, gameObject);
-//		}
-//
-//		s.currentCooldown = 0;
-//	}
 
 
 
@@ -122,8 +72,8 @@ public class CharacterController : Photon.MonoBehaviour {
 
 	private void Move()
 	{
-		if (spellRange.enabled == true) {
-			spellRange.enabled = false;
+		if (this.GetComponent<SpellController>().spellRange.enabled == true) {
+			this.GetComponent<SpellController>().spellRange.enabled = false;
 		}
 
 		// quick fix only
@@ -140,8 +90,8 @@ public class CharacterController : Photon.MonoBehaviour {
 			navMeshAgent.Resume();
 
 		}
-
 	}
+
 
 //	void CmdCastFireBall(FireBall fb, GameObject gO) {
 		// TO-DO

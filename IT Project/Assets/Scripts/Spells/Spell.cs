@@ -18,8 +18,6 @@ public abstract class Spell {
 	public string description {get; private set;}
 	// The current level of the spell
 	public int level {get; set;}
-	// The range of the spell
-	public float range {get; set;}
 
 	public Spell() {
 		this.cooldown = 0;
@@ -30,12 +28,11 @@ public abstract class Spell {
 		this.name = "";
 		this.description = "";
 		this.level = 1;
-		this.range = 0;
 	}
 
 	/* The initialisation of the spell with relative properties.
 	 */
-	public Spell(float cd, string path, bool isInstant, int price, string name, string des,float range) {
+	public Spell(float cd, string path, bool isInstant, int price, string name, string des) {
 		this.cooldown = cd;
 		this.iconPath = path;
 		this.isInstantSpell = isInstant;
@@ -44,12 +41,9 @@ public abstract class Spell {
 		this.name = name;
 		this.description = des;
 		this.level = 1;
-		this.range = range;
 	}
 
 
-	// Function used to apply the effect to the character
-	abstract public bool ApplyEffect(Character character,Transform characterTransform,Vector3 destination);
 	// Function used to modify properties to achieve levelup
 	abstract public void LevelUp ();
 

@@ -7,10 +7,12 @@ using System.Collections.Generic;
  *  
  * 
  */ 
-public class Character : MonoBehaviour {
+public class Character : Photon.MonoBehaviour {
 
     private const float DEFAULT_HP = 100f;
     public const int MAXIMUM_NUMBER_OF_ITEM = 6;
+
+	public int charID;
 
 	public int baseAttack { get;set; }
     private float hp; 
@@ -33,6 +35,7 @@ public class Character : MonoBehaviour {
     void Start()
     {
 		this.healthBarUI = this.GetComponent<HealthBarUI> ();
+		charID = photonView.viewID;
 		baseAttack = 0;
         maxHp = 100f;
         hp = 100f;
