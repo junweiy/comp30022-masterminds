@@ -15,18 +15,17 @@ public class Character : Photon.MonoBehaviour {
 	public int charID;
 
 	public int baseAttack { get;set; }
-    public float hp; 
+	public float hp { get; set; }
 	private float maxHp { get; set; }
 	public int score { get; private set; }
 	public int coin { get; private set; }
 
 	public bool canMove { get; set; }
-	public bool isDead;
+	public bool isDead { get; private set; }
 	public int numKilled;
 	public int numDeath;
 
     public List<Item> items { get; private set; }
-	public List<Spell> spells { get; set; }
 
 	public float range { get; set; }
 
@@ -46,22 +45,12 @@ public class Character : Photon.MonoBehaviour {
 		isDead = false;
 		canMove = true;
         items = new List<Item>();
-		spells = new List<Spell> ();
-		AddSpell (new FireBall ());
-		AddSpell (new FireNova ());
     }
 
 	void Update() {
 		healthBarUI.SetHealthUI(HP,MaxHP);
 	}
-		
-    /*****/
 
-    public void AddSpell(Spell i)
-    {
-		spells.Add (i);
-        
-    }
 
     /*****/
 

@@ -8,22 +8,14 @@ public class CharacterController : Photon.MonoBehaviour {
 
 	// the character model
 	public Character character;
-
 	private NavMeshAgent navMeshAgent;
-
-
-
-	public void Awake() {
-		this.gameObject.tag = "Character";
-	}
 
 	// Use this for initialization
 	public void Start() {
-		this.GetComponent<PhotonVoiceRecorder> ().Transmit = false;
+		this.gameObject.tag = "Character";
 		enabled = photonView.isMine;
 		character = GetComponent<Character>();
 		navMeshAgent = this.GetComponent<NavMeshAgent> ();
-
 	}
 
 	public void SetControllable() {
@@ -39,7 +31,6 @@ public class CharacterController : Photon.MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
 
 		if (!photonView.isMine) {
 			return;
@@ -55,8 +46,6 @@ public class CharacterController : Photon.MonoBehaviour {
 			this.GetComponent<PhotonVoiceRecorder> ().Transmit = false;
 		}
 
-
-
 		// Detect user input of movement
 
 		if (Input.GetMouseButton (1)) {
@@ -68,21 +57,7 @@ public class CharacterController : Photon.MonoBehaviour {
 		}
 
 	}
-
-
-
-
-	// For debugging only
-	void OnCollisionEnter(Collision collision)
-	{
-		if (collision.gameObject.name != "Ground" && collision.gameObject.name != "Lava")
-		{
-			Debug.Log(collision.gameObject.name);
-
-		}
-	}
-
-
+		
 	private void Move()
 	{
 		if (this.GetComponent<SpellController>().spellRange.enabled == true) {
@@ -97,41 +72,12 @@ public class CharacterController : Photon.MonoBehaviour {
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 
-		if (Physics.Raycast(ray, out hit, 100))
-		{
+		if (Physics.Raycast(ray, out hit, 100)) {
 			navMeshAgent.destination = hit.point;
 			navMeshAgent.Resume();
 
 		}
 	}
-
-
-//	void CmdCastFireBall(FireBall fb, GameObject gO) {
-		// TO-DO
-
-		// Supposed to work as constant however the navmesh is not working
-		//		Image spellRange = gO.GetComponent<CharacterController>().spellRange;
-		//			
-		//		spellRange.enabled = true;
-		//		spellRange.transform.localScale *= fb.range+character.range;
-		//
-		//		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		//		RaycastHit hit;
-		//		if (Physics.Raycast(ray, out hit, 100))
-		//		{
-		//			GameObject go = fb.applyEffect(character, transform, hit.point) as GameObject;
-		//			NetworkServer.Spawn (go);
-		//		}
-		//		spellRange.enabled = false;
-//		Transform t = transform.Find (SPELL_SPAWN_NAME);
-//		fb.ApplyEffect(gO.GetComponent<CharacterController>().character, transform, t.position);
-//	}
-
-//	void CmdCastFireNova(FireNova fn, GameObject gO) {
-//		Transform t = transform.Find (SPELL_SPAWN_NAME);
-//		fn.ApplyEffect(gO.GetComponent<CharacterController>().character, transform, t.position);
-//	}
-
 
 	/* This function will cast spell based on the spell number stored in the character */
 	//	private void Cast(Spell s)
