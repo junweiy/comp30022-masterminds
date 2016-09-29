@@ -125,12 +125,12 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 3
+  synchronization: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114000011184337382}
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -146,12 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96f11c00d56ec34b9113b5a6c87e396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRotation: {x: 0, y: 0, z: 0, w: 0}
-  velocity: NaN
-  range: 0
+  charID: 0
   damage: 10
   distanceTravelled: 0
-  positionChange: {x: 0, y: 0, z: 0}
 --- !u!135 &135000011889760044
 SphereCollider:
   m_ObjectHideFlags: 1

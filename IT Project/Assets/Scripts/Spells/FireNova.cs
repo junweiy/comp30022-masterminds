@@ -6,7 +6,7 @@ public class FireNova : Spell {
 	// The damage of level 1 FireNova
 	private const int INITIAL_DAMAGE = 40;
 	// The power of level 1 FireNova
-	private const float INITIAL_POWER = 8000.0F;
+	private const float INITIAL_POWER = 800.0F;
 	// The cool down time of FireNova (unit in frames)
 	private const int COOLDOWN = 1;
 	// The icon path used to genereate icon on spell bar
@@ -45,22 +45,21 @@ public class FireNova : Spell {
 		castingTime = INITIAL_CASTING_TIME;
 	}
 
-	/* The function takes three arguments, which are the character object, the transform of the character
-	 * and the destination that the player decided to cast towards. Then the FireNova will be initialised
-	 * and during the casting time player will be disabled for moving, after which enemies surrounded by
-	 * player will be hit against will explosive force and player can move around again.
-	 */ 
-	public bool ApplyEffect(Character character,Transform charTransform,Vector3 destination) {
-		FireNovaController fnc;
-		Object fireNovaPrefab = Resources.Load(PREFAB_PATH);
-		GameObject fn = GameObject.Instantiate (fireNovaPrefab, charTransform.position, charTransform.rotation) as GameObject;
-		fnc = fn.GetComponent<FireNovaController> ();
-		fnc.damage = damage + character.baseAttack;
-		fnc.power = power;
-		fnc.castingTime = castingTime;
-		NetworkServer.Spawn (fn);
-		return fn != null;
-	}
+//	/* The function takes three arguments, which are the character object, the transform of the character
+//	 * and the destination that the player decided to cast towards. Then the FireNova will be initialised
+//	 * and during the casting time player will be disabled for moving, after which enemies surrounded by
+//	 * player will be hit against will explosive force and player can move around again.
+//	 */ 
+//	public bool ApplyEffect(Character character,Transform charTransform,Vector3 destination) {
+//		FireNovaController fnc;
+//		GameObject fn = GameObject.Instantiate (fireNovaPrefab, charTransform.position, charTransform.rotation) as GameObject;
+//		fnc = fn.GetComponent<FireNovaController> ();
+//		fnc.damage = damage + character.baseAttack;
+//		fnc.power = power;
+//		fnc.castingTime = castingTime;
+//		NetworkServer.Spawn (fn);
+//		return fn != null;
+//	}
 
 	/* The function applies changes to the spell when upgrading it.
 	 */

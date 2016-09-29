@@ -25,6 +25,7 @@ GameObject:
   - 198: {fileID: 198000010606891656}
   - 114: {fileID: 114000011721159658}
   - 114: {fileID: 114000012485485368}
+  - 114: {fileID: 114000010505868192}
   m_Layer: 0
   m_Name: FireNova
   m_TagString: Untagged
@@ -71,12 +72,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2894cf3c519741758bf3c74a2b77e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charID: 0
   damage: 10
   range: 10
   power: 100
   castingTime: 300
   timePassed: 0
-  alreadyCast: 0
+--- !u!114 &114000010505868192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010108898470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &114000011721159658
 MonoBehaviour:
   m_ObjectHideFlags: 1

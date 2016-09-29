@@ -15,7 +15,7 @@ public class Character : Photon.MonoBehaviour {
 	public int charID;
 
 	public int baseAttack { get;set; }
-    private float hp; 
+    public float hp; 
 	private float maxHp { get; set; }
 	public int score { get; private set; }
 	public int coin { get; private set; }
@@ -104,7 +104,6 @@ public class Character : Photon.MonoBehaviour {
 
     private void OnDeath()
     {
-		Debug.Log ("A");
         isDead = true;
     }
 

@@ -35,4 +35,5 @@ MonoBehaviour:
   - setUpVariable
   - setVariableForFireBall
   - SetUpVariableFireBall
+  - SetUpVariableFireNova
   DisableAutoOpenWizard: 1

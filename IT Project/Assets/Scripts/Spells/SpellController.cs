@@ -38,7 +38,9 @@ public class SpellController : Photon.MonoBehaviour {
 			fb.currentCooldown = 0;
 		}
 		if (Input.GetKeyDown ("2")) {
-			//Cast (character.spells[1]);
+			FireNovaController fnc = CastFireNova ();
+			photonView.RPC ("SetUpVariableFireNova", PhotonTargets.All, fnc.photonView.viewID);
+			fn.currentCooldown = 0;
 		}
 
 	}
@@ -55,14 +57,29 @@ public class SpellController : Photon.MonoBehaviour {
 	void SetUpVariableFireBall(int viewID) {
 		FireBallController fbc = PhotonView.Find (viewID).gameObject.GetComponent<FireBallController>();
 		fbc.charID = photonView.viewID;
-		fbc.damage = fb.damage;
+		fbc.damage = fb.damage + character.baseAttack;
 	}
+
+	[PunRPC]
+	void SetUpVariableFireNova(int viewID) {
+		FireNovaController fnc = PhotonView.Find (viewID).gameObject.GetComponent<FireNovaController>();
+		fnc.charID = photonView.viewID;
+		fnc.damage = fn.damage + character.baseAttack;
+		fnc.power = fn.power;
+		fnc.castingTime = fn.castingTime;
+	}
+
 
 	public FireBallController CastFireBall () {
 		Transform t = transform.Find (SPELL_SPAWN_NAME);
 		Vector3 pos = this.transform.position + (t.position - this.transform.position) / 2;
 		GameObject fb = PhotonNetwork.Instantiate ("Prefabs/Fireball", pos, new Quaternion(0,0,0,0), 0);
 		return fb.GetComponent<FireBallController> ();
+	}
+
+	public FireNovaController CastFireNova() {
+		GameObject fn = PhotonNetwork.Instantiate ("Prefabs/FireNova", this.transform.position, this.transform.rotation, 0);
+		return fn.GetComponent<FireNovaController> ();
 	}
 
 //	void Cast(Spell s) {
