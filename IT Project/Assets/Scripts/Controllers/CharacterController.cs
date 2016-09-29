@@ -19,6 +19,7 @@ public class CharacterController : Photon.MonoBehaviour {
 
 	// Use this for initialization
 	public void Start() {
+		this.GetComponent<PhotonVoiceRecorder> ().Transmit = false;
 		enabled = photonView.isMine;
 		character = GetComponent<Character>();
 		navMeshAgent = this.GetComponent<NavMeshAgent> ();
@@ -43,6 +44,18 @@ public class CharacterController : Photon.MonoBehaviour {
 		if (!photonView.isMine) {
 			return;
 		}
+
+		if (Input.GetKey(KeyCode.R)) {
+			Debug.Log ("Chatting");
+			this.GetComponent<PhotonVoiceRecorder> ().Transmit = true;
+		}
+
+		if (Input.GetKeyUp (KeyCode.R)) {
+			Debug.Log ("Stop Chatting");
+			this.GetComponent<PhotonVoiceRecorder> ().Transmit = false;
+		}
+
+
 
 		// Detect user input of movement
 

@@ -459,7 +459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AutoConnect: 1
   AutoDisconnect: 1
-  AutoTransmit: 1
+  AutoTransmit: 0
   SamplingRate: 24000
   Delay: 40
   Bitrate: 30000
