@@ -36,4 +36,6 @@ MonoBehaviour:
   - setVariableForFireBall
   - SetUpVariableFireBall
   - SetUpVariableFireNova
+  - RefreshPlayerList
+  - StartGame
   DisableAutoOpenWizard: 1

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameController : MonoBehaviour {
+public class GameController : Photon.MonoBehaviour {
 
 	public void checkIfGameEnds() {
 		int numAlive = GameObject.FindGameObjectsWithTag ("Character").Length;
@@ -9,6 +9,35 @@ public class GameController : MonoBehaviour {
 			StateController.FinishRound ();
 		}
 	}
+
+	Vector3 GetNextSpawnPoint() {
+		switch (PhotonNetwork.playerList.Length) {
+			case 0:
+				return new Vector3 (200,0,200);
+				break;
+			case 1:
+				return new Vector3 (1800,0,200);
+				break;
+			case 2:
+				return new Vector3 (1800,0,1800);
+				break;
+			case 3:
+				return new Vector3 (200,0,1800);
+				break;
+			default:
+				return new Vector3 (1000,0,1000);
+				break;
+		}
+	}
+
+
+
+	void Start() {
+		GameObject player = PhotonNetwork.Instantiate ("Prefabs/Character", new Vector3(1000,0,1000),Quaternion.identity, 0);
+		player.GetComponent<CharacterController> ().SetControllable();
+	}
+
+
 
 //	public void prepareForNextRound () {
 //		foreach (Character c in characters) {
