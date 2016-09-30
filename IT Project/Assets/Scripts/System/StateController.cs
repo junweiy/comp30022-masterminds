@@ -29,8 +29,12 @@ public static class StateController {
 	public static void switchToRoom() {
 		SceneManager.LoadScene ("scenes/room");
 	}
-		
-	public static void switchToNewRound() { 
+
+    public static void switchToReplay() {
+        SceneManager.LoadScene("scenes/replay");
+    }
+
+    public static void switchToNewRound() { 
 		SceneManager.LoadScene ("scenes/gameplay");
 		//GlobalState.instance.gameController.prepareForNextRound ();
 	}

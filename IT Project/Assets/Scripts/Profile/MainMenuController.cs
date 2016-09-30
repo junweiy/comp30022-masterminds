@@ -91,7 +91,12 @@ public class MainMenuController : MonoBehaviour {
 		StateController.switchToProfile ();
 	}
 
-	public void gotoSingleModePage() {
+    public void gotoReplay() {
+        StateController.switchToReplay();
+    }
+
+
+    public void gotoSingleModePage() {
 		switchTo (singleModePage);
 	}
 
