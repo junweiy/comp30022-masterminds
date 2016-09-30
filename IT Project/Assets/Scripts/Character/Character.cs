@@ -15,7 +15,7 @@ public class Character : Photon.MonoBehaviour {
 	public int charID;
 
 	public int baseAttack { get;set; }
-	public float hp { get; set; }
+	public float hp;
 	private float maxHp { get; set; }
 	public int score { get; private set; }
 	public int coin { get; private set; }

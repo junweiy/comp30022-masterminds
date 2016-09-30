@@ -26,6 +26,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	}
 
 	void OnGUI() {
+		
 		GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
 		GUI.Label (new Rect(Screen.width/3, Screen.height/2,300,20), status);
 		GUI.Label (new Rect(Screen.width/2, Screen.height/3,100,20), ((int)timeLeft).ToString());
@@ -40,10 +41,14 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	}
 
 	public void CountdownFinished() {
-		
+		StateController.switchBackToGamePlay ();
 	}
 
 	void Update() {
+		if (!PhotonNetwork.connected) {
+			return;
+		}
+
 		if (countdownStarted) {
 			timeLeft -= Time.deltaTime;
 		}

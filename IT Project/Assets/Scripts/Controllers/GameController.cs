@@ -33,7 +33,8 @@ public class GameController : Photon.MonoBehaviour {
 
 
 	void Start() {
-		GameObject player = PhotonNetwork.Instantiate ("Prefabs/Character", new Vector3(1000,0,1000),Quaternion.identity, 0);
+		Debug.Log (PhotonNetwork.connected);
+		GameObject player = PhotonNetwork.Instantiate ("Prefabs/Character", GetNextSpawnPoint(),Quaternion.identity, 0);
 		player.GetComponent<CharacterController> ().SetControllable();
 	}
 

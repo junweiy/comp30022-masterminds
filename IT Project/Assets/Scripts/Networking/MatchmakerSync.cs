@@ -4,6 +4,10 @@ using Photon;
 public class MatchmakerSync : Photon.MonoBehaviour {
 	public float timeLeft;
 
+	void Start() {
+		timeLeft = RandomMatchmaker.COUNTDOWN;
+	}
+
 	// Update is called once per frame
 	void Update() {
 		if (!PhotonNetwork.connected) {
