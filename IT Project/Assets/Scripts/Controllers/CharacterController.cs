@@ -38,12 +38,12 @@ public class CharacterController : Photon.MonoBehaviour {
 
 		if (Input.GetKey(KeyCode.R)) {
 			Debug.Log ("Chatting");
-			this.GetComponent<PhotonVoiceRecorder> ().Transmit = true;
+			//this.GetComponent<PhotonVoiceRecorder> ().Transmit = true;
 		}
 
 		if (Input.GetKeyUp (KeyCode.R)) {
 			Debug.Log ("Stop Chatting");
-			this.GetComponent<PhotonVoiceRecorder> ().Transmit = false;
+			//this.GetComponent<PhotonVoiceRecorder> ().Transmit = false;
 		}
 
 		// Detect user input of movement
