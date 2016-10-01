@@ -31,7 +31,7 @@ public static class StateController {
 	}
 
     public static void switchToReplay() {
-        SceneManager.LoadScene("scenes/replay");
+        SceneManager.LoadScene("scenes/replaySelection");
     }
 
     public static void switchToNewRound() { 

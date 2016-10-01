@@ -16,4 +16,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
   - enabled: 1
-    path: Assets/Scenes/Replay.unity
+    path: Assets/Scenes/ReplaySelection.unity
+  - enabled: 1
+    path: Assets/Scenes/Profile.unity
