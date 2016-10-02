@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class GameController : Photon.MonoBehaviour {
@@ -10,8 +11,8 @@ public class GameController : Photon.MonoBehaviour {
 		}
 	}
 
-	Vector3 GetNextSpawnPoint() {
-		switch (PhotonNetwork.playerList.Length) {
+	Vector3 GetNextSpawnPoint(int index) {
+		switch (index) {
 			case 0:
 				return new Vector3 (200,0,200);
 				break;
@@ -30,11 +31,24 @@ public class GameController : Photon.MonoBehaviour {
 		}
 	}
 
+	int GetIndex() {
+		PhotonPlayer[] players = PhotonNetwork.playerList;
+		Array.Sort (players);
+		for (int i = 0; i < players.Length; i++) {
+			if (PhotonNetwork.player == players[i]) {
+				Debug.Log (i);
+				return i;
+			}
+		}
+		throw new UnityException ();
+	}
+
 
 
 	void Start() {
-		Debug.Log (PhotonNetwork.connected);
-		GameObject player = PhotonNetwork.Instantiate ("Prefabs/Character", GetNextSpawnPoint(),Quaternion.identity, 0);
+		PhotonPlayer[] playerList = PhotonNetwork.playerList;
+
+		GameObject player = PhotonNetwork.Instantiate ("Prefabs/Character", GetNextSpawnPoint(GetIndex()),Quaternion.identity, 0);
 		player.GetComponent<CharacterController> ().SetControllable();
 	}
 

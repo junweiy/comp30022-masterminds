@@ -54,6 +54,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 		}
 
 		if (timeLeft <= 0) {
+			PhotonNetwork.room.visible = false;
 			CountdownFinished ();
 		}
 
