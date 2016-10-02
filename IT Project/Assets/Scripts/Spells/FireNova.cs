@@ -8,7 +8,7 @@ public class FireNova : Spell {
 	// The power of level 1 FireNova
 	private const float INITIAL_POWER = 8000.0F;
 	// The cool down time of FireNova (unit in frames)
-	private const int COOLDOWN = 1;
+	private const int COOLDOWN = 10;
 	// The icon path used to genereate icon on spell bar
 	private const string ICON_PATH = "Textures/Spells/fireNova";
 	// Whether FireNova is a constant skill

@@ -15,6 +15,9 @@ public class CharacterController : NetworkBehaviour {
 	public bool isMainCharacter { get; set;}
 	public GameObject mainCamera;
 
+    private GameObject spellBar;
+    private bool firstCall = true;
+
 	// spell model
 
 	// The name of object used to spawn spells
@@ -29,28 +32,39 @@ public class CharacterController : NetworkBehaviour {
 		this.healthBarUI = this.GetComponent<HealthBarUI> ();
 		this.gameObject.tag = "Character";
 		navMeshAgent = this.GetComponent<NavMeshAgent> ();
-		if (isLocalPlayer) {
+
+        if (isLocalPlayer) {
 			mainCamera.GetComponent<CameraControl> ().m_Target = transform;
 			mainCamera.GetComponent<CameraControl> ().enabled = true;
 			mainCamera.GetComponentInChildren<Camera> ().enabled = true;
-			mainCamera.GetComponentInChildren<Camera> ().GetComponent<AudioListener> ().enabled = true;
-		} else {
+			mainCamera.GetComponentInChildren<Camera> ().GetComponent<AudioListener> ().enabled = true;           
+        } else {
 			mainCamera.GetComponent<CameraControl> ().enabled = false;
 			mainCamera.GetComponentInChildren<Camera> ().enabled = false;
 			mainCamera.GetComponentInChildren<Camera> ().GetComponent<AudioListener> ().enabled = false;
-		}
+        }
 
-		spellRange.enabled = false;
+        spellRange.enabled = false;
 	}
 		
 
 	// Update is called once per frame
 	void Update () {
-		healthBarUI.SetHealthUI(character.HP,character.MaxHP);
+
+        if (firstCall)
+        {
+            spellBar = GameObject.FindGameObjectWithTag("SpellBar");
+            var spellUIController = spellBar.GetComponent<SpellUIController>();
+            spellUIController.initialise(character, isLocalPlayer);
+            this.firstCall = false;
+        }
+        
+
+        healthBarUI.SetHealthUI(character.HP,character.MaxHP);
 		// Update cool down time for all spells
 		foreach (Spell s in character.spells) {
 			if (s.currentCooldown < s.cooldown) {
-				s.currentCooldown++;
+				s.currentCooldown += Time.deltaTime;
 			}
 		}
 

@@ -6,7 +6,7 @@ public class FireBall : Spell {
 	// The damage of level 1 Fireball
 	private const int INITIAL_DAMAGE = 60;
 	// The cool down time of Fireball (unit in frames)
-	private const int COOLDOWN = 1;
+	private const int COOLDOWN = 3;
 	// The icon path used to genereate icon on spell bar
 	private const string ICON_PATH = "Textures/Spells/fireBall";
 	// Whether Fireball is a constant skill
