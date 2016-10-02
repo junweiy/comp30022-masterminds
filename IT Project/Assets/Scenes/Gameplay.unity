@@ -329,7 +329,6 @@ GameObject:
   - 114: {fileID: 404358800}
   - 82: {fileID: 404358802}
   - 114: {fileID: 404358801}
-  - 114: {fileID: 404358803}
   m_Layer: 0
   m_Name: GameplayControl
   m_TagString: GameController
@@ -446,28 +445,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &404358803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 404358798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c83e06d07b8f654981913996327bdf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AutoConnect: 1
-  AutoDisconnect: 1
-  AutoTransmit: 0
-  SamplingRate: 24000
-  Delay: 40
-  Bitrate: 30000
-  VoiceDetection: 0
-  VoiceDetectionThreshold: 0.01
-  PlayDelayMs: 200
-  DebugLostPercent: 0
-  DebugInfo: 0
 --- !u!1 &918524701
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,7 +36,6 @@ public class GameController : Photon.MonoBehaviour {
 		Array.Sort (players);
 		for (int i = 0; i < players.Length; i++) {
 			if (PhotonNetwork.player == players[i]) {
-				Debug.Log (i);
 				return i;
 			}
 		}

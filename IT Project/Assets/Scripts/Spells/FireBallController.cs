@@ -40,7 +40,7 @@ public class FireBallController : Photon.MonoBehaviour {
 		if (gameObject.tag == CHARACTER_TAG) {
 			c = gameObject.GetComponent<Character> ();
 			if (!c.charID.Equals(charID)) {
-				PhotonNetwork.Destroy (this.gameObject);
+				Destroy (this.gameObject);
 				c.TakeDamage (damage);
 				if (c.isDead) {
 					c.numDeath++;
