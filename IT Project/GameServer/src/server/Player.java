@@ -33,7 +33,7 @@ public class Player {
 		send = new Sender(clientSocket);	
 		this.id = pid;
 		this.x = id*2;
-		this.y = 1;
+		this.y = 0;
 		this.z = id*2;
 	}
 	

@@ -84,7 +84,7 @@ public class Room {
 				from.state = PlayerState.Ready;
 				numReady++;
 				
-				if(numReady>=2 && numReady == numPlayer){
+				if(numReady>=1 && numReady == numPlayer){
 					state = RoomState.Started;
 					syncCommand(StartInfo());
 					syncCommand("N 0");
