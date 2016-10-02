@@ -20,7 +20,6 @@ public class Game : MonoBehaviour {
     void Start()
     {
         PlayerManager.SpawnAllPlayer();
-
         input = new InputHandler(this);
         CommandSender.SendLastLockedCommands();
     }
@@ -53,7 +52,8 @@ public class Game : MonoBehaviour {
         }
         else
         {
-            input.UpdateInput();
+
+            GameUpdate();
 
             GameFrame++;
             CurrentFrame++;
@@ -94,5 +94,13 @@ public class Game : MonoBehaviour {
         Recording.Finish("first.txt");
     }
 
+
+    private void GameUpdate()
+    {
+
+        input.UpdateInput();
+        PlayerManager.UpdateAll();
+
+    }
 
 }

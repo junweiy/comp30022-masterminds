@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Command;
+using Manager;
 
 namespace Replay
 {
@@ -12,6 +13,8 @@ namespace Replay
         void Start()
         {
             Recording.Load("first.txt");
+            PlayerManager.SpawnAllPlayer();
+
         }
 
         // Update is called once per frame
@@ -42,7 +45,11 @@ namespace Replay
             GameFrame++;
         }
 
-        private void GameUpdate() { }
+
+        private void GameUpdate()
+        {
+            PlayerManager.UpdateAll();
+        }
 
     }
 }

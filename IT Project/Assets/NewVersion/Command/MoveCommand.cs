@@ -21,7 +21,7 @@ namespace Command
 
         public void ProcessCommand()
         {
-            PlayerManager.getPlayerByID(pid).Move(destination);
+            PlayerManager.GetPlayerByID(pid).Move(destination);
         }
 
         public string Show()

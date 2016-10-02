@@ -75,7 +75,7 @@ namespace NetworkManager
             }
             if(state == State.Start)
             {
-                SceneManager.LoadScene("newversion/Game");
+                SceneManager.LoadScene("newversion/scenes/Game");
             }
             
         }

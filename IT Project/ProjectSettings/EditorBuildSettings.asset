@@ -20,6 +20,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/PUNVoice/TestVoice/TestVoice-Scene.unity
   - enabled: 1
-    path: Assets/NewVersion/Ready.unity
+    path: Assets/NewVersion/Scenes/Main.unity
   - enabled: 1
-    path: Assets/NewVersion/Game.unity
+    path: Assets/NewVersion/Scenes/Ready.unity
+  - enabled: 1
+    path: Assets/NewVersion/Scenes/Game.unity
+  - enabled: 1
+    path: Assets/NewVersion/Scenes/Replay.unity

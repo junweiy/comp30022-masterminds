@@ -23,7 +23,7 @@ namespace Manager
             players.Add(p);
         }
 
-        public static Player getPlayerByID(int id)
+        public static Player GetPlayerByID(int id)
         {
             foreach (Player p in players)
             {
@@ -36,13 +36,24 @@ namespace Manager
         }
 
 
-
+        public static Player GetLocalPlayer()
+        {
+            return GetPlayerByID(LocalCharacterID);
+        }
 
         public static void SpawnAllPlayer()
         {
             foreach (Player p in players)
             {
                 p.Spawn();
+            }
+        }
+
+        public static void UpdateAll()
+        {
+            foreach (Player p in players)
+            {
+                p.Update();
             }
         }
 

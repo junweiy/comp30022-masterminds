@@ -7,6 +7,7 @@ namespace Replay
     {
 
         private static Queue<ICommand> record = new Queue<ICommand>();
+        private static string startState;
 
         public static void Record(ICommand a)
         {
@@ -15,7 +16,7 @@ namespace Replay
 
         public static void Finish(string path)
         {
-            RecordIO.GenerateRecord(path, record);
+            RecordIO.GenerateRecord(path, record, startState);
         }
 
         public static void Load(string path)
@@ -36,6 +37,11 @@ namespace Replay
         public static ICommand Next()
         {
             return record.Dequeue();
+        }
+
+        public static void RecordStart(string s)
+        {
+            startState = s;
         }
         
     }

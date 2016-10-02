@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using NetworkManager;
+using Replay;
 
 namespace Manager
 {
@@ -27,9 +28,15 @@ namespace Manager
 
         public static void StartGame(string s)
         {
+            Recording.RecordStart(s);
+            ParseStartInfo(s);
+            network.StartGame();
+
+        }
+
+        public static void ParseStartInfo(string s)
+        {
             string[] info = s.Split('.');
-
-
             int numPlayer = int.Parse(info[1]);
             int i;
             for (i = 0; i < numPlayer; i++)
@@ -37,8 +44,6 @@ namespace Manager
                 string[] player = info[i + 2].Split(' ');
                 PlayerManager.AddPlayer(new Player(int.Parse(player[0]), new Vector3(int.Parse(player[1]), int.Parse(player[2]), int.Parse(player[3]))));
             }
-
-            network.StartGame();
         }
 
     }

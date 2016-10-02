@@ -35,7 +35,11 @@ namespace NetworkManager
 
         public static void Connect()
         {
+            //Cloud
+            //String server = "43.240.97.95";
+
             String server = "localhost";
+
             // Create a TcpClient.
             Int32 port = 9878;
             client = new TcpClient(server, port);

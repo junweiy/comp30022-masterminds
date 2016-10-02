@@ -5,8 +5,19 @@ public class Player {
 
     public int id { get; private set; }
 
-    public Vector3 spawn;
-    GameObject p;
+    public enum PlayerState
+    {
+        Idle,
+        Moving,
+        AwaitingCast,
+        Died
+    }
+    private PlayerState state;
+
+    private Vector3 spawn;
+    private GameObject p;
+    private NavMeshAgent nma;
+
 
     public Player(int id, Vector3 spawn)
     {
@@ -18,13 +29,51 @@ public class Player {
     {
         p = GameObject.Instantiate(Resources.Load("Player", typeof(GameObject))) as GameObject;
         p.transform.localPosition = spawn;
+        nma = p.GetComponent<NavMeshAgent>();
+        state = PlayerState.Idle;
     }
 
     public void Move(Vector3 dest)
     {
-        NavMeshAgent nma = p.GetComponent<NavMeshAgent>();
         nma.SetDestination(dest);
         nma.Resume();
+        state = PlayerState.Moving;
     }
 
+    public Vector3 GetPosition()
+    {
+        return p.transform.localPosition;
+    }
+
+
+    public void Update()
+    {
+        
+        if(state == PlayerState.Idle)
+        {
+            p.GetComponent<Animation>().Play("Move|Idle");
+        }
+
+        if (state == PlayerState.Moving)
+        {
+            p.GetComponent<Animation>().Play("Move|Move");
+        }
+
+        CheckMoving();
+
+    }
+    
+    public void CheckMoving()
+    {
+        if (nma.remainingDistance <= nma.stoppingDistance)
+        {
+            if (!nma.hasPath || Mathf.Abs(nma.velocity.sqrMagnitude) < float.Epsilon)
+            {
+                if (state == PlayerState.Moving)
+                {
+                    state = PlayerState.Idle;
+                }
+            }
+        }
+    }
 }
