@@ -19,8 +19,9 @@ public class Game : MonoBehaviour {
 
     void Start()
     {
+        PlayerManager.SpawnAllPlayer();
+
         input = new InputHandler(this);
-        ConnectionHandler.StartConnection();
         CommandSender.SendLastLockedCommands();
     }
 

@@ -52,11 +52,27 @@ namespace NetworkManager
             while (true)
             {
                 String s = sreader.ReadLine();
-                
-                if(s[0] == 'J')
+
+                Debug.Log(s);
+
+                if (s.Equals("Ready"))
+                {
+                    GameManager.Ready();
+                    continue;
+                }
+
+                if (s[0] == 'J')
                 {
                     GameManager.SetMainChar(s);
+                    continue;
                 }
+
+                if(s[0] == 'S')
+                {
+                    GameManager.StartGame(s);
+                    continue;
+                }
+
 
                 CommandReceiver.Receive(s);
             }

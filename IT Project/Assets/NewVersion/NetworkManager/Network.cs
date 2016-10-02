@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 using Manager;
+using UnityEngine.SceneManagement;
+
 namespace NetworkManager
 {
     public class Network : MonoBehaviour
@@ -15,7 +17,8 @@ namespace NetworkManager
             Connected,
             Failed,
             Joined,
-            Ready
+            Ready,
+            Start
         }
 
         private State state;
@@ -24,8 +27,7 @@ namespace NetworkManager
         void Start()
         {
 
-
-            GameManager.n = this;
+            GameManager.network = this;
             try
             {
                 ConnectionHandler.StartConnection();
@@ -48,6 +50,10 @@ namespace NetworkManager
              state = State.Joined;
         }
 
+        public void Ready()
+        {
+            state = State.Ready;
+        }
 
         void Update()
         {
@@ -57,7 +63,7 @@ namespace NetworkManager
             }
             if (state == State.Joined)
             {
-                process.text = "You've joined the room";
+                process.text = "You've joined the room, You are player "+PlayerManager.LocalCharacterID;
             }
             if (state == State.Failed)
             {
@@ -67,14 +73,30 @@ namespace NetworkManager
             {
                 process.text = "Joining room.........";
             }
+            if(state == State.Start)
+            {
+                SceneManager.LoadScene("newversion/Game");
+            }
             
         }
 
-
-        public static void Ready()
+        void OnApplicationQuit()
         {
-            ConnectionHandler.Send("Ready");
+            ConnectionHandler.receive.Abort();
+            if (ConnectionHandler.client != null)
+                ConnectionHandler.client.Close();
         }
+
+        public void GetReady()
+        {
+            GameManager.GetReady();
+        }
+
+        public void StartGame()
+        {
+            state = State.Start;
+        }
+
 
     }
 }

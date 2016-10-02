@@ -10,9 +10,14 @@ public class Player {
 
     public Player(int id, Vector3 spawn)
     {
+        this.spawn = spawn;
+        this.id = id;
+    }
+
+    public void Spawn()
+    {
         p = GameObject.Instantiate(Resources.Load("Player", typeof(GameObject))) as GameObject;
         p.transform.localPosition = spawn;
-        this.id = id;
     }
 
     public void Move(Vector3 dest)

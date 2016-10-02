@@ -34,5 +34,17 @@ namespace Manager
             }
             throw new System.Exception("Player not found");
         }
+
+
+
+
+        public static void SpawnAllPlayer()
+        {
+            foreach (Player p in players)
+            {
+                p.Spawn();
+            }
+        }
+
     }
 }

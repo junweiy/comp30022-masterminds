@@ -7,29 +7,38 @@ namespace Manager
 {
     public static class GameManager
     {
-        public static NetworkManager.Network n;
-
-        public static void ReceiveStart(string s)
-        {
-            
-            string[] lis = s.Split('.');
-            int numPlayer = int.Parse(lis[0]);
-            int i;
-            for (i = 0; i < numPlayer; i++)
-            {
-                string[] info = lis[i + 1].Split(' ');
-
-                PlayerManager.AddPlayer(new Player(int.Parse(info[0]),new Vector3(int.Parse(info[1]), int.Parse(info[2]),int.Parse(info[3]))));
-            }
-
-            SceneManager.LoadScene("newversion/Game");
-
-        }
-
+        public static NetworkManager.Network network;
+        
         public static void SetMainChar(string s)
         {
             PlayerManager.LocalCharacterID = int.Parse(s.Split(' ')[1]);
-            n.Joined();
+            network.Joined();
+        }
+
+        public static void GetReady()
+        {
+            ConnectionHandler.Send("Ready");
+        }
+
+        public static void Ready()
+        {
+            network.Ready();
+        }
+
+        public static void StartGame(string s)
+        {
+            string[] info = s.Split('.');
+
+
+            int numPlayer = int.Parse(info[1]);
+            int i;
+            for (i = 0; i < numPlayer; i++)
+            {
+                string[] player = info[i + 2].Split(' ');
+                PlayerManager.AddPlayer(new Player(int.Parse(player[0]), new Vector3(int.Parse(player[1]), int.Parse(player[2]), int.Parse(player[3]))));
+            }
+
+            network.StartGame();
         }
 
     }
