@@ -12,7 +12,7 @@ public class SpellUIController : MonoBehaviour {
     private List<Spell> spells;
     private GameObject [] icons;
 
-    public void initialise(Character c, bool isMain)
+    public void initialise(Character c, bool isMain, CharacterController characterController)
     {
         character = c;
         spells = c.spells;
@@ -24,7 +24,7 @@ public class SpellUIController : MonoBehaviour {
             {
                 GameObject spellButton = (GameObject)Instantiate(spellIcon);
                 var spellButtonController = spellButton.GetComponent<SpellIconController>();
-                spellButtonController.initialise(spells[i]);
+                spellButtonController.initialise(spells[i], characterController);
                 spellButton.transform.SetParent(spellBar_go.transform, false);
                 spellButton.transform.localScale = new Vector3(1, 1, 1);
             }
