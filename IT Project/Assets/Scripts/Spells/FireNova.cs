@@ -3,35 +3,22 @@ using System.Collections;
 using UnityEngine.Networking;
 
 public class FireNova : Spell {
-	// The damage of level 1 FireNova
-	private const int INITIAL_DAMAGE = 40;
-	// The power of level 1 FireNova
-	private const float INITIAL_POWER = 800.0F;
+	// The damage of FireNova
+	private const int DAMAGE = 40;
+	// The power of FireNova
+	private const float POWER = 800.0F;
 	// The cool down time of FireNova (unit in frames)
 	private const int COOLDOWN = 1;
-	// The icon path used to genereate icon on spell bar
-	private const string ICON_PATH = "Textures/Spells/fireNova";
-	// Whether FireNova is a constant skill
-	private const bool ISCONST = true;
-	// The price of FireNova
-	private const int PRICE = 10;
-	// The name of FireNova
-	public const string NAME = "fire nova";
-	// The description of FireNova
-	public const string DESCRIPTION = "fire nova";
 	// The range within which ememies will be affected
-	private const float INITIAL_RANGE = 30.0F;
+	private const float RANGE = 60.0F;
 	// The time required for casting (unit in secs)
-	private const int INITIAL_CASTING_TIME = 5;
+	private const int CASTING_TIME = 5;
 	// The path of the prefab
 	private const string PREFAB_PATH = "Prefabs/FireNova";
-	// The increment in damage when upgrading the spell
-	public const int LVL_UP_DAMAGE_INCREMENT = 20;
-	// The increment in power when upgrading the spell
-	public const float LVL_UP_POWER_INCREMENT = 500.0f;
 
-	// The damage of FireNova
-	public int damage { get; private set; }
+
+	// The range of FireNova
+	public float range { get; set; }
 	// The power of FireNova
 	public float power { get; private set; }
 	// The casting time for the spell
@@ -39,34 +26,10 @@ public class FireNova : Spell {
 
 	/* The function initialises the FireNova object with basic properties.
 	 */
-	public FireNova() : base(COOLDOWN, ICON_PATH, ISCONST, PRICE, NAME, DESCRIPTION) {
-		damage = INITIAL_DAMAGE;
-		power = INITIAL_POWER;
-		castingTime = INITIAL_CASTING_TIME;
-	}
-
-//	/* The function takes three arguments, which are the character object, the transform of the character
-//	 * and the destination that the player decided to cast towards. Then the FireNova will be initialised
-//	 * and during the casting time player will be disabled for moving, after which enemies surrounded by
-//	 * player will be hit against will explosive force and player can move around again.
-//	 */ 
-//	public bool ApplyEffect(Character character,Transform charTransform,Vector3 destination) {
-//		FireNovaController fnc;
-//		GameObject fn = GameObject.Instantiate (fireNovaPrefab, charTransform.position, charTransform.rotation) as GameObject;
-//		fnc = fn.GetComponent<FireNovaController> ();
-//		fnc.damage = damage + character.baseAttack;
-//		fnc.power = power;
-//		fnc.castingTime = castingTime;
-//		NetworkServer.Spawn (fn);
-//		return fn != null;
-//	}
-
-	/* The function applies changes to the spell when upgrading it.
-	 */
-	public override void LevelUp () {
-		this.level++;
-		this.damage += LVL_UP_DAMAGE_INCREMENT;
-		this.power += LVL_UP_POWER_INCREMENT;
+	public FireNova() : base(COOLDOWN, DAMAGE) {
+		this.power = POWER;
+		this.castingTime = CASTING_TIME;
+		this.range = RANGE;
 	}
 
 }

@@ -10,17 +10,17 @@ public class SpellIconController : MonoBehaviour {
     private Image[] images;
 
     // Initialise the spell icon
-    public void initialise(Spell spell)
-    {
-        this.spell = spell;
-        this.icon = Resources.Load<Sprite>(spell.iconPath);
-        images = spellIcon.GetComponentsInChildren<Image>();
-        images[0].sprite = icon;
-        images[1].sprite = icon;
-        images[1].type = Image.Type.Filled;
-        images[1].fillMethod = Image.FillMethod.Radial360;
-        images[1].fillOrigin = (int)Image.Origin360.Top;
-    }
+//    public void initialise(Spell spell)
+//    {
+//        this.spell = spell;
+//        this.icon = Resources.Load<Sprite>(spell.iconPath);
+//        images = spellIcon.GetComponentsInChildren<Image>();
+//        images[0].sprite = icon;
+//        images[1].sprite = icon;
+//        images[1].type = Image.Type.Filled;
+//        images[1].fillMethod = Image.FillMethod.Radial360;
+//        images[1].fillOrigin = (int)Image.Origin360.Top;
+//    }
 
     // On click event
 	public void onclick()

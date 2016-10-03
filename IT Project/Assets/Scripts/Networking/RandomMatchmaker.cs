@@ -9,7 +9,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 
 	private string status;
 	private bool countdownStarted; 
-	public float timeLeft;
+	public float timeLeft { get; set; }
 
 	// Use this for initialization
 	void Start () {
@@ -51,7 +51,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 
 
 	[PunRPC]
-	public void ResetCountDown() {
+	void ResetCountDown() {
 		timeLeft = COUNTDOWN;
 	}
 
@@ -81,7 +81,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 		} else {
 			countdownStarted = true;
 			status = "Other players found, game will start in: ";
-			photonView.RPC ("ResetCountDown", PhotonTargets.All);
+			this.photonView.RPC ("ResetCountDown", PhotonTargets.All);
 		}
 	}
 

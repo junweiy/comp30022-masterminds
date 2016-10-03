@@ -3,7 +3,7 @@ using System.Collections;
 
 public class KeyboardMovement : Photon.MonoBehaviour {
 
-    public float velocity = 500f;
+    public float velocity = 1000f;
 	public float maxVelocity = 100f;
 	Rigidbody rb;
 
