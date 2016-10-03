@@ -12,6 +12,7 @@ public class GameStateRecorder : MonoBehaviour {
     private State state = State.Preparing;
 
     private GameObject[] characters;
+    private Vector3[] lastPos;
     private GameObject[] spells;
 
     private string folderPath;
@@ -43,6 +44,10 @@ public class GameStateRecorder : MonoBehaviour {
         );
 
         characters = getCharacters();
+        lastPos = new Vector3[characters.Length];
+        for (int i = 0; i < characters.Length; i++) {
+            lastPos[i] = Vector3.zero;
+        }
         replay.entries = new Queue<GameReplay.Entry>();
         frameCount = 0;
         state = State.Started;
@@ -77,7 +82,10 @@ public class GameStateRecorder : MonoBehaviour {
         foreach (var charObj in GameObject.FindGameObjectsWithTag("Character")) {
             var c = charObj;
             int idx = Array.IndexOf(characters, c);
-            recordsInThisFrame.Enqueue(new TransformRecord(idx, c.transform.position));
+            if (lastPos[idx] != c.transform.position) {
+                recordsInThisFrame.Enqueue(new TransformRecord(idx, c.transform.position));
+                lastPos[idx] = c.transform.position;
+            }
         }
     }
 

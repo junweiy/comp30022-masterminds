@@ -31,6 +31,7 @@ public class ReplaySceneController : MonoBehaviour {
 
     public void setPlayerPosition(int playerId, Vector3 pos) {
         characters[playerId].transform.position = pos;
+        Debug.Log("set player " + playerId.ToString() + " position to " + pos.ToString());
     }
     
 
@@ -81,10 +82,16 @@ public class ReplaySceneController : MonoBehaviour {
                 return;
             }
 
+            
             var nextEntry = replay.entries.Peek();
-            if (nextEntry.frameTime >= frameCount) {
+            while (nextEntry.frameTime <= frameCount) {
                 replay.entries.Dequeue();
                 nextEntry.record.applyEffect(this);
+                if (replay.entries.Count == 0) {
+                    finishReplay();
+                    return;
+                }
+                nextEntry = replay.entries.Peek();
             }
             frameCount += 1;
 
