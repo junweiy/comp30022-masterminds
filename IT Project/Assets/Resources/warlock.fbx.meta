@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: feeb4f88c0e21452db9296f71214748d
-timeCreated: 1474613313
+guid: 962ce6fd62859425a8ffce65cc893385
+timeCreated: 1475488312
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -79,7 +79,7 @@ ModelImporter:
     11100000: //RootNode
     13700000: Circle.001
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
