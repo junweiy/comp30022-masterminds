@@ -1,40 +1,46 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KeyboardMovement : MonoBehaviour {
+public class KeyboardMovement : Photon.MonoBehaviour {
 
-    public float velocity = 10f;
+    public float velocity = 500f;
+	public float maxVelocity = 100f;
+	Rigidbody rb;
 
 	// Use this for initialization
 	void Start () {
-	
+		rb = GetComponent<Rigidbody> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		//rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
+		if (!photonView.isMine) {
+			return;
+		}
 
         //Move front
-        if (Input.GetKey("w"))
+		if (Input.GetKey(KeyCode.W))
         {
-            this.transform.Translate(Vector3.forward * velocity * Time.deltaTime);
+			rb.AddForce (velocity * new Vector3(0,0,1), ForceMode.Acceleration);
         }
 
         //Move back
         if (Input.GetKey("s"))
         {
-            this.transform.Translate(Vector3.back * velocity * Time.deltaTime);
+			rb.AddForce (velocity * new Vector3(0,0,-1), ForceMode.Acceleration);
         }
 
         //Move left
         if (Input.GetKey("a"))
         {
-            this.transform.Translate(Vector3.left * velocity * Time.deltaTime);
+			rb.AddForce (velocity * new Vector3(-1,0,0), ForceMode.Acceleration);
         }
 
         //Move rignt
         if (Input.GetKey("d"))
         {
-            this.transform.Translate(Vector3.right * velocity * Time.deltaTime);
+			rb.AddForce (velocity * new Vector3(1,0,0), ForceMode.Acceleration);
         }
 
 

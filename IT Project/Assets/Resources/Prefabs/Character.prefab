@@ -134,6 +134,7 @@ GameObject:
   - 114: {fileID: 114000013536213106}
   - 114: {fileID: 114000013035146968}
   - 114: {fileID: 114000012868859454}
+  - 114: {fileID: 114000011281311440}
   m_Layer: 0
   m_Name: Character
   m_TagString: Character
@@ -361,8 +362,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!81 &81000010862489038
 AudioListener:
   m_ObjectHideFlags: 1
@@ -531,6 +532,18 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
+--- !u!114 &114000011281311440
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012457802078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1a7c23cd2885d439d25c9eefee0608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 10
 --- !u!114 &114000011788540498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -645,7 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charID: 0
-  isDead: 0
+  hp: 0
   numKilled: 0
   numDeath: 0
 --- !u!114 &114000013116237186
@@ -814,7 +827,7 @@ NavMeshAgent:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012457802078}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Speed: 80
   m_Acceleration: 80

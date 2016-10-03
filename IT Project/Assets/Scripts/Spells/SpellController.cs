@@ -26,7 +26,6 @@ public class SpellController : Photon.MonoBehaviour {
 		// Update cool down time for all spells
 		updateCoolDown(new Spell[]{fb,fn});
 
-
 		if (!photonView.isMine) {
 			return;
 		}

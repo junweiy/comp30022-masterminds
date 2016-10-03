@@ -7,7 +7,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 	private float hp;
 
 	// Update is called once per frame
-	void Update() {
+	void FixedUpdate() {
 		if (!photonView.isMine) {
 			transform.position = Vector3.Lerp(transform.position, this.correctPlayerPos, Time.deltaTime * 5);
 			transform.rotation = Quaternion.Lerp(transform.rotation, this.correctPlayerRot, Time.deltaTime * 5);

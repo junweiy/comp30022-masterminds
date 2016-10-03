@@ -48,7 +48,7 @@ public class FireBallController : Photon.MonoBehaviour {
 				}
 			}
 		} else {
-			PhotonNetwork.Destroy (this.gameObject);
+			Destroy (this.gameObject);
 		}
 
 	}

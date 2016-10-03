@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using Photon;
 
 public class RandomMatchmaker : Photon.PunBehaviour {
@@ -13,11 +13,11 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		PhotonNetwork.automaticallySyncScene = true;
 		status = "Connecting to matchmaking server";
 		countdownStarted = false;
 		timeLeft = COUNTDOWN;
 		PhotonNetwork.ConnectUsingSettings("V0.1");
-
 	}
 
 	void RestartCountdown() {
@@ -41,7 +41,18 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	}
 
 	public void CountdownFinished() {
-		StateController.switchBackToGamePlay ();
+		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController>();
+		gc.playersNumber = PhotonNetwork.playerList.Length;
+		if (PhotonNetwork.isMasterClient) {
+			PhotonNetwork.LoadLevel ("scenes/gameplay");
+		}
+
+	}
+
+
+	[PunRPC]
+	public void ResetCountDown() {
+		timeLeft = COUNTDOWN;
 	}
 
 	void Update() {
@@ -70,6 +81,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 		} else {
 			countdownStarted = true;
 			status = "Other players found, game will start in: ";
+			photonView.RPC ("ResetCountDown", PhotonTargets.All);
 		}
 	}
 

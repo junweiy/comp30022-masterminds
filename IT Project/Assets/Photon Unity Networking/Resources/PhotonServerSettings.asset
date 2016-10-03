@@ -38,4 +38,5 @@ MonoBehaviour:
   - SetUpVariableFireNova
   - RefreshPlayerList
   - StartGame
+  - ResetCountDown
   DisableAutoOpenWizard: 1

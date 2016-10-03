@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 
 public class GameController : Photon.MonoBehaviour {
+	public int playersNumber;
 
 	public void checkIfGameEnds() {
 		int numAlive = GameObject.FindGameObjectsWithTag ("Character").Length;
@@ -17,16 +18,16 @@ public class GameController : Photon.MonoBehaviour {
 				return new Vector3 (200,0,200);
 				break;
 			case 1:
-				return new Vector3 (1800,0,200);
+				return new Vector3 (200,0,800);
 				break;
 			case 2:
-				return new Vector3 (1800,0,1800);
+				return new Vector3 (800,0,200);
 				break;
 			case 3:
-				return new Vector3 (200,0,1800);
+				return new Vector3 (800,0,800);
 				break;
 			default:
-				return new Vector3 (1000,0,1000);
+				return new Vector3 (500,0,500);
 				break;
 		}
 	}
@@ -42,13 +43,25 @@ public class GameController : Photon.MonoBehaviour {
 		throw new UnityException ();
 	}
 
-
-
-	void Start() {
-		PhotonPlayer[] playerList = PhotonNetwork.playerList;
-
+	void SpawnPlayer() {
 		GameObject player = PhotonNetwork.Instantiate ("Prefabs/Character", GetNextSpawnPoint(GetIndex()),Quaternion.identity, 0);
 		player.GetComponent<CharacterController> ().SetControllable();
+	}
+
+	public void SceneInitialisation() {
+		SpawnPlayer ();
+
+	}
+
+	void Start() {
+		DontDestroyOnLoad (this.gameObject);
+	}
+
+	void Update() {
+		if (Input.GetKeyDown(KeyCode.X)) {
+			Debug.Log ("X");
+			SceneInitialisation();
+		}
 	}
 
 
