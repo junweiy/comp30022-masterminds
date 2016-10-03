@@ -5,6 +5,8 @@ using System.Collections;
 public class GameController : Photon.MonoBehaviour {
 	public int playersNumber;
 
+	public const int GAMEPLAY_SCENE_NUMBER = 1;
+
 	public void checkIfGameEnds() {
 		int numAlive = GameObject.FindGameObjectsWithTag ("Character").Length;
 		if (numAlive == 1) {
@@ -43,12 +45,18 @@ public class GameController : Photon.MonoBehaviour {
 		throw new UnityException ();
 	}
 
+	void OnLevelWasLoaded(int level) {
+		if (level == GAMEPLAY_SCENE_NUMBER) {
+			InitialiseGamePlay ();
+		}
+	}
+
 	void SpawnPlayer() {
 		GameObject player = PhotonNetwork.Instantiate ("Prefabs/Character", GetNextSpawnPoint(GetIndex()),Quaternion.identity, 0);
 		player.GetComponent<CharacterController> ().SetControllable();
 	}
 
-	public void SceneInitialisation() {
+	public void InitialiseGamePlay() {
 		SpawnPlayer ();
 
 	}
@@ -60,7 +68,7 @@ public class GameController : Photon.MonoBehaviour {
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.X)) {
 			Debug.Log ("X");
-			SceneInitialisation();
+			InitialiseGamePlay();
 		}
 	}
 
