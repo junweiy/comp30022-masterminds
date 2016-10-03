@@ -21,7 +21,7 @@ GameObject:
   - 224: {fileID: 224000013632103102}
   - 222: {fileID: 222000010423965266}
   - 114: {fileID: 114000013516573384}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 224000010829087060}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - 224: {fileID: 224000012278280668}
   - 222: {fileID: 222000010338797054}
   - 114: {fileID: 114000010861010884}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 224000013176692766}
   - 114: {fileID: 114000013116237186}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   - 114: {fileID: 114000010794207796}
   - 114: {fileID: 114000012381691766}
   - 114: {fileID: 114000014106367788}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   - 224: {fileID: 224000012081172790}
   - 222: {fileID: 222000012862065530}
   - 114: {fileID: 114000014051436820}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: SpellCastRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,6 +544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 10
+  maxVelocity: 100
 --- !u!114 &114000011788540498
 MonoBehaviour:
   m_ObjectHideFlags: 1
