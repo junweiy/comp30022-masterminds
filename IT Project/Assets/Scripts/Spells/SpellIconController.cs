@@ -4,10 +4,11 @@ using UnityEngine.UI;
 
 public class SpellIconController : MonoBehaviour {
 
-    //public GameObject spellIcon;
     private Spell spell { set; get; }
     //private Sprite icon { set; get; }
-    private Image[] images;
+    private Image spellBG;
+    private Image spellImage;
+
     public bool isClicked;
 
     // Initialise the spell icon
@@ -16,8 +17,8 @@ public class SpellIconController : MonoBehaviour {
         this.spell = spell;
         //Debug.Assert(spell != null);
         //this.icon = Resources.Load<Sprite>(spell.iconPath);
-        images = GetComponentsInChildren<Image>();
-        Debug.Log(images.Length.ToString());
+        spellBG = GetComponent<Image>();
+        spellImage = transform.GetChild(0).GetComponent<Image>();
         isClicked = false;
         //images[0].sprite = icon;
         //images[1].sprite = icon;
@@ -37,7 +38,7 @@ public class SpellIconController : MonoBehaviour {
     {
         if (spell.currentCooldown < spell.cooldown)
         {
-            images[1].fillAmount = spell.currentCooldown / spell.cooldown;
+            spellImage.fillAmount = spell.currentCooldown / spell.cooldown;
         }
     }
 }
