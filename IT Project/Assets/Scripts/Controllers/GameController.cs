@@ -18,19 +18,14 @@ public class GameController : Photon.MonoBehaviour {
 		switch (index) {
 			case 0:
 				return new Vector3 (200,0,200);
-				break;
 			case 1:
 				return new Vector3 (200,0,800);
-				break;
 			case 2:
 				return new Vector3 (800,0,200);
-				break;
 			case 3:
 				return new Vector3 (800,0,800);
-				break;
 			default:
 				return new Vector3 (500,0,500);
-				break;
 		}
 	}
 
@@ -58,7 +53,6 @@ public class GameController : Photon.MonoBehaviour {
 
 	public void InitialiseGamePlay() {
 		SpawnPlayer ();
-
 	}
 
 	void Start() {

@@ -14,17 +14,14 @@ public class Character : Photon.MonoBehaviour {
 
 	public int charID;
 
-	public float hp;
+	public float hp { get; set; }
 	private float maxHp { get; set; }
 	public int score { get; private set; }
-	public int coin { get; private set; }
 
-	public bool canMove { get; set; }
 	public bool isDead { get; private set; }
 	public int numKilled;
 	public int numDeath;
 
-    public List<Item> items { get; private set; }
 
 	public float range { get; set; }
 
@@ -37,49 +34,15 @@ public class Character : Photon.MonoBehaviour {
         maxHp = 100f;
         hp = 100f;
 		score = 0;
-		coin = 0;
 		numDeath = 0;
 		numKilled = 0;
 		isDead = false;
-		canMove = true;
-        items = new List<Item>();
     }
 
 	void Update() {
-		healthBarUI.SetHealthUI(HP,MaxHP);
+		healthBarUI.SetHealthUI(hp,maxHp);
 	}
-
-
-    /*****/
-
-
-    public void AddItem(Item i)
-    {
-		if (items.Count < MAXIMUM_NUMBER_OF_ITEM) {
-			items.Add(i);
-		} else {
-			throw new FullItemException ();
-		}
-        
-    }
-
-    public bool HasSpaceForItem()
-    {
-        return items.Count < MAXIMUM_NUMBER_OF_ITEM;
-    }
-
-    /*****/
-    public float HP {
-        get { return this.hp; }
-        set { this.hp = value; }
-    }
-
-    public float MaxHP
-    {
-        get { return this.maxHp; }
-        set { this.maxHp = value; }
-    }
-
+		
     public void TakeDamage(float f)
     {
         hp -= f;
@@ -92,19 +55,6 @@ public class Character : Photon.MonoBehaviour {
     private void OnDeath()
     {
         isDead = true;
-    }
-
-    /**
-     *  Coin and relative function
-     */
-
-	public void AddCoin(int c) {
-		this.coin += c;
-	}
-
-    public void DeductCoin(int c)
-    {
-		this.coin -= c;
     }
 
 	public int AddScore(int s) {
