@@ -16,30 +16,43 @@ public class SpellController : Photon.MonoBehaviour {
 	// the character model
 	public Character character;
 
-	void Start() {
+    //Spell UI script
+    private SpellIconController fireBallUI;
+    private SpellIconController fireNovaUI;
+
+
+    void Start() {
 		fb = new FireBall ();
 		fn = new FireNova ();
-		spellRange.enabled = false;
+        fireBallUI = GameObject.Find("FireBallIcon").GetComponent<SpellIconController>();
+        fireNovaUI = GameObject.Find("FireNovaIcon").GetComponent<SpellIconController>();
+        fireBallUI.initialise(fb);
+        fireNovaUI.initialise(fn);
+        spellRange.enabled = false;
 	}
 
 	void Update() {
 		// Update cool down time for all spells
 		updateCoolDown(new Spell[]{fb,fn});
 
-		if (!photonView.isMine) {
+        if (!photonView.isMine) {
 			return;
 		}
 
-		// Detect user input of casting spells
-		if (Input.GetKeyDown ("1")) {
+        // Detect user input of casting spells
+        //if (Input.GetKeyDown ("1")) {
+        if (fireBallUI.isClicked && fb.currentCooldown >= fb.cooldown) { 
 			FireBallController fbc = CastFireBall ();
 			photonView.RPC ("SetUpVariableFireBall", PhotonTargets.All, fbc.photonView.viewID);
 			fb.currentCooldown = 0;
+            fireBallUI.isClicked = false;
 		}
-		if (Input.GetKeyDown ("2")) {
+        //if (Input.GetKeyDown ("2")) {
+        if (fireNovaUI.isClicked && fn.currentCooldown >= fn.cooldown) { 
 			FireNovaController fnc = CastFireNova ();
 			photonView.RPC ("SetUpVariableFireNova", PhotonTargets.All, fnc.photonView.viewID);
 			fn.currentCooldown = 0;
+            fireNovaUI.isClicked = false;
 		}
 
 	}
