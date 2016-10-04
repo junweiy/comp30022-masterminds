@@ -1,94 +1,48 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Networking;
 
 /*
  *  This class is the main class for the character. It stores all the information about the character
  *  
  * 
  */ 
-public class Character : NetworkBehaviour {
+public class Character : Photon.MonoBehaviour {
 
     private const float DEFAULT_HP = 100f;
     public const int MAXIMUM_NUMBER_OF_ITEM = 6;
 
-	public int baseAttack { get;set; }
-	[SyncVar]
-    private float hp; 
+	public int charID;
+
+	public float hp { get; set; }
 	private float maxHp { get; set; }
 	public int score { get; private set; }
-	public int coin { get; private set; }
 
-	public bool canMove { get; set; }
-	public bool isDead;
-	[SyncVar]
+	public bool isDead { get; private set; }
 	public int numKilled;
-	[SyncVar]
 	public int numDeath;
 
-    public List<Item> items { get; private set; }
-	public List<Spell> spells { get; set; }
 
 	public float range { get; set; }
+
+	private HealthBarUI healthBarUI;
     
     void Start()
     {
-		baseAttack = 0;
+		this.healthBarUI = this.GetComponent<HealthBarUI> ();
+		charID = photonView.viewID;
         maxHp = 100f;
         hp = 100f;
 		score = 0;
-		coin = 0;
 		numDeath = 0;
 		numKilled = 0;
 		isDead = false;
-		canMove = true;
-        items = new List<Item>();
-		spells = new List<Spell> ();
-		AddSpell (new FireBall ());
-		AddSpell (new FireNova ());
     }
 
-
-
-    /*****/
-
-    public void AddSpell(Spell i)
-    {
-		spells.Add (i);
-        
-    }
-
-    /*****/
-
-
-    public void AddItem(Item i)
-    {
-		if (items.Count < MAXIMUM_NUMBER_OF_ITEM) {
-			items.Add(i);
-		} else {
-			throw new FullItemException ();
-		}
-        
-    }
-
-    public bool HasSpaceForItem()
-    {
-        return items.Count < MAXIMUM_NUMBER_OF_ITEM;
-    }
-
-    /*****/
-    public float HP {
-        get { return this.hp; }
-        set { this.hp = value; }
-    }
-
-    public float MaxHP
-    {
-        get { return this.maxHp; }
-        set { this.maxHp = value; }
-    }
-
+	void Update() {
+		healthBarUI.SetHealthUI(hp,maxHp);
+	}
+		
     public void TakeDamage(float f)
     {
         hp -= f;
@@ -100,21 +54,7 @@ public class Character : NetworkBehaviour {
 
     private void OnDeath()
     {
-		Debug.Log ("A");
         isDead = true;
-    }
-
-    /**
-     *  Coin and relative function
-     */
-
-	public void AddCoin(int c) {
-		this.coin += c;
-	}
-
-    public void DeductCoin(int c)
-    {
-		this.coin -= c;
     }
 
 	public int AddScore(int s) {

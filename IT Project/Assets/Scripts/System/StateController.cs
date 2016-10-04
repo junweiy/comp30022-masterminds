@@ -4,7 +4,7 @@ using System.Collections;
 
 public static class StateController {
 
-	public static bool finishRound() {
+	public static bool FinishRound() {
 		bool gameHasFinished = GlobalState.instance.numRoundsIncrement ();
 		if (gameHasFinished) {
 			switchToResult ();

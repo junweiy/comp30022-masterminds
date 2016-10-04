@@ -1,0 +1,414 @@
+fileFormatVersion: 2
+guid: dfffa65ebbe5d4d39b284f375d7716c8
+timeCreated: 1474610900
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bone
+    100002: Bone.002
+    100004: Bone.002_end
+    100006: Bone.004
+    100008: Bone.005
+    100010: Bone.006
+    100012: Bone.007
+    100014: Bone.007_end
+    100016: Bone.008
+    100018: Bone.009
+    100020: Bone.010
+    100022: Bone.011
+    100024: Bone.012
+    100026: Bone.013
+    100028: Bone.014
+    100030: Bone.015
+    100032: Bone.015_end
+    100034: Bone.016
+    100036: Bone.017
+    100038: Bone.018
+    100040: Bone.018_end
+    100042: Bone.019
+    100044: Bone.020
+    100046: Bone.020_end
+    100048: Bone.023
+    100050: Bone.023_end
+    100052: Camera
+    100054: Circle.001
+    100056: Move
+    100058: Point
+    100060: //RootNode
+    400000: Bone
+    400002: Bone.002
+    400004: Bone.002_end
+    400006: Bone.004
+    400008: Bone.005
+    400010: Bone.006
+    400012: Bone.007
+    400014: Bone.007_end
+    400016: Bone.008
+    400018: Bone.009
+    400020: Bone.010
+    400022: Bone.011
+    400024: Bone.012
+    400026: Bone.013
+    400028: Bone.014
+    400030: Bone.015
+    400032: Bone.015_end
+    400034: Bone.016
+    400036: Bone.017
+    400038: Bone.018
+    400040: Bone.018_end
+    400042: Bone.019
+    400044: Bone.020
+    400046: Bone.020_end
+    400048: Bone.023
+    400050: Bone.023_end
+    400052: Camera
+    400054: Circle.001
+    400056: Move
+    400058: Point
+    400060: //RootNode
+    4300000: Circle.001
+    7400000: Move|Action
+    7400002: Move|Cast
+    7400004: Move|Idle
+    7400006: Move|Move
+    7400008: Move|Rest.001
+    7400010: Circle.001|Action
+    7400012: Circle.001|Rest.001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Circle.001
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Move|Cast
+      takeName: Move|Cast
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Circle.001
+        weight: 1
+      - path: Move
+        weight: 1
+      - path: Move/Bone
+        weight: 1
+      - path: Move/Bone/Bone.002
+        weight: 1
+      - path: Move/Bone/Bone.002/Bone.002_end
+        weight: 1
+      - path: Move/Bone.004
+        weight: 1
+      - path: Move/Bone.004/Bone.005
+        weight: 1
+      - path: Move/Bone.004/Bone.005/Bone.006
+        weight: 1
+      - path: Move/Bone.004/Bone.005/Bone.006/Bone.007
+        weight: 1
+      - path: Move/Bone.004/Bone.005/Bone.006/Bone.007/Bone.007_end
+        weight: 1
+      - path: Move/Bone.008
+        weight: 1
+      - path: Move/Bone.008/Bone.009
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013/Bone.019
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013/Bone.019/Bone.020
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013/Bone.019/Bone.020/Bone.020_end
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013/Bone.023
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013/Bone.023/Bone.023_end
+        weight: 1
+      - path: Move/Bone.012
+        weight: 1
+      - path: Move/Bone.012/Bone.014
+        weight: 1
+      - path: Move/Bone.012/Bone.014/Bone.015
+        weight: 1
+      - path: Move/Bone.012/Bone.014/Bone.015/Bone.015_end
+        weight: 1
+      - path: Move/Bone.016
+        weight: 1
+      - path: Move/Bone.016/Bone.017
+        weight: 1
+      - path: Move/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Move/Bone.016/Bone.017/Bone.018/Bone.018_end
+        weight: 1
+      - path: Point
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Move|Idle
+      takeName: Move|Idle
+      firstFrame: 0
+      lastFrame: 976
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Circle.001
+        weight: 1
+      - path: Move
+        weight: 1
+      - path: Move/Bone
+        weight: 1
+      - path: Move/Bone/Bone.002
+        weight: 1
+      - path: Move/Bone/Bone.002/Bone.002_end
+        weight: 1
+      - path: Move/Bone.004
+        weight: 1
+      - path: Move/Bone.004/Bone.005
+        weight: 1
+      - path: Move/Bone.004/Bone.005/Bone.006
+        weight: 1
+      - path: Move/Bone.004/Bone.005/Bone.006/Bone.007
+        weight: 1
+      - path: Move/Bone.004/Bone.005/Bone.006/Bone.007/Bone.007_end
+        weight: 1
+      - path: Move/Bone.008
+        weight: 1
+      - path: Move/Bone.008/Bone.009
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013/Bone.019
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013/Bone.019/Bone.020
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013/Bone.019/Bone.020/Bone.020_end
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013/Bone.023
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013/Bone.023/Bone.023_end
+        weight: 1
+      - path: Move/Bone.012
+        weight: 1
+      - path: Move/Bone.012/Bone.014
+        weight: 1
+      - path: Move/Bone.012/Bone.014/Bone.015
+        weight: 1
+      - path: Move/Bone.012/Bone.014/Bone.015/Bone.015_end
+        weight: 1
+      - path: Move/Bone.016
+        weight: 1
+      - path: Move/Bone.016/Bone.017
+        weight: 1
+      - path: Move/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Move/Bone.016/Bone.017/Bone.018/Bone.018_end
+        weight: 1
+      - path: Point
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Move|Move
+      takeName: Move|Move
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Circle.001
+        weight: 1
+      - path: Move
+        weight: 1
+      - path: Move/Bone
+        weight: 1
+      - path: Move/Bone/Bone.002
+        weight: 1
+      - path: Move/Bone/Bone.002/Bone.002_end
+        weight: 1
+      - path: Move/Bone.004
+        weight: 1
+      - path: Move/Bone.004/Bone.005
+        weight: 1
+      - path: Move/Bone.004/Bone.005/Bone.006
+        weight: 1
+      - path: Move/Bone.004/Bone.005/Bone.006/Bone.007
+        weight: 1
+      - path: Move/Bone.004/Bone.005/Bone.006/Bone.007/Bone.007_end
+        weight: 1
+      - path: Move/Bone.008
+        weight: 1
+      - path: Move/Bone.008/Bone.009
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013/Bone.019
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013/Bone.019/Bone.020
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013/Bone.019/Bone.020/Bone.020_end
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013/Bone.023
+        weight: 1
+      - path: Move/Bone.008/Bone.009/Bone.010/Bone.011/Bone.013/Bone.023/Bone.023_end
+        weight: 1
+      - path: Move/Bone.012
+        weight: 1
+      - path: Move/Bone.012/Bone.014
+        weight: 1
+      - path: Move/Bone.012/Bone.014/Bone.015
+        weight: 1
+      - path: Move/Bone.012/Bone.014/Bone.015/Bone.015_end
+        weight: 1
+      - path: Move/Bone.016
+        weight: 1
+      - path: Move/Bone.016/Bone.017
+        weight: 1
+      - path: Move/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Move/Bone.016/Bone.017/Bone.018/Bone.018_end
+        weight: 1
+      - path: Point
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
