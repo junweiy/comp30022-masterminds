@@ -1,44 +1,62 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class SpellIconController : MonoBehaviour {
 
-    private Spell spell { set; get; }
-    //private Sprite icon { set; get; }
+    private SpellController spellController;
+    public Spell spell;
     private Image spellBG;
     private Image spellImage;
 
     public bool isClicked;
 
     // Initialise the spell icon
-    public void initialise(Spell spell)
+    void Start()
     {
-        this.spell = spell;
-        //Debug.Assert(spell != null);
-        //this.icon = Resources.Load<Sprite>(spell.iconPath);
+        spellController = GetMainPlayerController<SpellController>();
         spellBG = GetComponent<Image>();
         spellImage = transform.GetChild(0).GetComponent<Image>();
         isClicked = false;
-        //images[0].sprite = icon;
-        //images[1].sprite = icon;
-        //images[1].type = Image.Type.Filled;
-        //images[1].fillMethod = Image.FillMethod.Radial360;
-        //images[1].fillOrigin = (int)Image.Origin360.Top;
+    }
+
+    public GameObject FindMainPlayer()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Character");
+        foreach (GameObject player in players)
+        {
+            if (player.GetPhotonView().isMine)
+            {
+                return player;
+            }
+        }
+        throw new UnityException();
+
+    }
+
+    public T GetMainPlayerController<T>()
+    {
+        GameObject mainPlayer = FindMainPlayer();
+        return mainPlayer.GetComponent<T>();
     }
 
     // On click event
     public void onclick()
     {
-        isClicked = true;
+        if (spell.currentCooldown >= spell.cooldown)
+        {
+            spellController.CastSpell(spell);
+        }
     }
 
     // Update the display of image
     void Update()
     {
-        if (spell.currentCooldown < spell.cooldown)
+        Debug.Assert(this.spell != null);
+        if (this.spell.currentCooldown < this.spell.cooldown)
         {
-            spellImage.fillAmount = spell.currentCooldown / spell.cooldown;
+            spellImage.fillAmount = this.spell.currentCooldown / this.spell.cooldown;
         }
     }
 }
