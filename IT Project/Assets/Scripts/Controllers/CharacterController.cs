@@ -39,22 +39,11 @@ public class CharacterController : Photon.MonoBehaviour {
 			return;
 		}
 
-		if (Input.GetKey(KeyCode.R)) {
-			Debug.Log ("Chatting");
-			this.GetComponent<PhotonVoiceRecorder> ().Transmit = true;
-		}
-
-		if (Input.GetKeyUp (KeyCode.R)) {
-			Debug.Log ("Stop Chatting");
-			this.GetComponent<PhotonVoiceRecorder> ().Transmit = false;
-		}
-
 		// Detect user input of movement
 
 		Vector3 joyStickMovement = GameObject.FindGameObjectWithTag ("JoyStick").GetComponent<VirtualJoyStick> ().GetStickPosition();
 		if (joyStickMovement != Vector3.zero) {
 			rb.AddForce (joyStickMovement * VELOCITY, ForceMode.Acceleration);
-			Debug.Log (joyStickMovement * VELOCITY);
 		}
 		rb.velocity = Vector3.ClampMagnitude (rb.velocity,MAX_VELOCITY);
 
