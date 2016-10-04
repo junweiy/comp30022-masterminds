@@ -53,7 +53,7 @@ public class ResultPageController : MonoBehaviour {
     }
 
 	public void returnToMainMenu() {
-		StateController.switchToMainMenu ();
+		StateController.SwitchToMainMenu ();
 	}
 
 	public void saveReplay() {
