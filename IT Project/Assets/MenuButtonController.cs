@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 
-public class MenuButtonController : MonoBehaviour {
+public class MenuButtonController : Photon.MonoBehaviour {
 
     public GameObject menuPanel;
     public GameObject menuButton;
@@ -24,6 +24,7 @@ public class MenuButtonController : MonoBehaviour {
     public void MainMenuButtonOnClick()
     {
         StateController.SwitchToMainMenu();
+		PhotonNetwork.Disconnect ();
     }
 
     //void Update()

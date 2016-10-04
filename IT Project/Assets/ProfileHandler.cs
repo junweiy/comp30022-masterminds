@@ -42,8 +42,11 @@ public class ProfileHandler : MonoBehaviour {
 				GameObject.Find("Canvas").transform.FindChild ("Login").gameObject.SetActive (false);
 				GameObject.Find("Canvas").transform.FindChild ("MainMenu").gameObject.SetActive (true);
 			}
-			// TODO
-			// UploadGameResultToCloud();
+			if (isLogedIn && !alreadyUpdated) {
+				// TODO
+				// UploadGameResultToCloud();
+			}
+
 		}
 	}
 }

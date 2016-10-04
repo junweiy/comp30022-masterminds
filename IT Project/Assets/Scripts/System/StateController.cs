@@ -21,7 +21,7 @@ public static class StateController {
 	}
 
 	public static void switchToProfile() {
-		SceneManager.LoadScene ("scenes/profile");
+		SceneManager.LoadScene ("scenes/Profile");
 	}
 
 	public static void SwitchToMainMenu() {

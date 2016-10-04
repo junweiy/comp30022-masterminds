@@ -14,8 +14,8 @@ public class Character : Photon.MonoBehaviour {
 
 	public int charID;
 
-	public float hp { get; set; }
-	private float maxHp { get; set; }
+	public int hp { get; set; }
+	private int maxHp { get; set; }
 
 	public bool isDead { get; private set; }
 	public int numKilled;
@@ -30,8 +30,8 @@ public class Character : Photon.MonoBehaviour {
     {
 		this.healthBarUI = this.GetComponent<HealthBarUI> ();
 		charID = photonView.viewID;
-        maxHp = 100f;
-        hp = 100f;
+        maxHp = 100;
+        hp = 100;
 		numDeath = 0;
 		numKilled = 0;
 		isDead = false;
@@ -41,7 +41,7 @@ public class Character : Photon.MonoBehaviour {
 		healthBarUI.SetHealthUI(hp,maxHp);
 	}
 		
-    public void TakeDamage(float f)
+    public void TakeDamage(int f)
     {
         hp -= f;
         if (hp <= 0 && !isDead) {

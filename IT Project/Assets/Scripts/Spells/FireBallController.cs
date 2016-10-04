@@ -26,7 +26,7 @@ public class FireBallController : Photon.MonoBehaviour {
 	void Update() {
 		distanceTravelled += VELOCITY * Time.deltaTime;
 		if (distanceTravelled >= RANGE) {
-			PhotonNetwork.Destroy (this.gameObject);
+			Destroy (this.gameObject);
 		}
 	}
 		
