@@ -8,12 +8,14 @@ using System.Runtime.Serialization;
 using System.IO;
 
 public class GameStateRecorder : MonoBehaviour {
-    enum State { Preparing, Started, Ended }
+    enum State { Preparing, Started, Paused, Ended }
     private State state = State.Preparing;
 
-    private GameObject[] characters;
-    private Vector3[] lastPos;
-    private GameObject[] spells;
+    private Dictionary<int, int> idMap = new Dictionary<int, int>();
+    List<GameObject> characterObjs = new List<GameObject>();
+    List<Character> characters = new List<Character>();
+    private int numCharRecorded = 0;
+    private Dictionary<GameObject, Vector3> lastPos = new Dictionary<GameObject, Vector3>();
 
     private string folderPath;
 
@@ -30,62 +32,45 @@ public class GameStateRecorder : MonoBehaviour {
         Application.targetFrameRate = TARGET_FRAMERATE;
 	}
 
-    void startRecording() {
+    void StartRecording() {
+        Debug.Log("Started Recording");
         replay = new GameReplay();
-        //replay.info = new ReplayInfo(
-        //    getGameVersion(),
-        //    getCharacters(),
-        //    getSpells(),
-        //    TARGET_FRAMERATE);
+        UpdateCharacterList();
+
         replay.info = new ReplayInfo(
             getGameVersion(),
-            getCharacters().Length,
+            characters.Count,
             TARGET_FRAMERATE
         );
 
-        characters = getCharacters();
-        lastPos = new Vector3[characters.Length];
-        for (int i = 0; i < characters.Length; i++) {
-            lastPos[i] = Vector3.zero;
-        }
         replay.entries = new Queue<GameReplay.Entry>();
         frameCount = 0;
         state = State.Started;
     }
 
-    GameObject[] getCharacters() {
-        return GameObject.FindGameObjectsWithTag("Character").ToArray();
-    }
-
-    GameObject[] getSpells() {
-        //throw new System.NotImplementedException();
-
-        return new GameObject[1];
-    }
 
     string getGameVersion() {
-        //throw new System.NotImplementedException();
-
-        return "";
+        return "0.1";
     }
 
-    void addSpellRecord(Spell s, Character c) {
-        // TODO bad implementation to be improved
-        //recordsInThisFrame.Enqueue(new PutSpellRecord(
-        //    Array.IndexOf(replay.info.characters, c),
-        //    Array.IndexOf(replay.info.spells, s)
-        //));
-
+    void AddSpellRecord(Spell s, Character c) {
+        recordsInThisFrame.Enqueue(new CastSpellRecord(
+            characters.IndexOf(c),
+            ReplayTypeConverter.GetTypeFromSpell(s)
+        ));
     }
 
-    void addPosRecords() {
-        foreach (var charObj in GameObject.FindGameObjectsWithTag("Character")) {
-            var c = charObj;
-            int idx = Array.IndexOf(characters, c);
-            if (lastPos[idx] != c.transform.position) {
-                recordsInThisFrame.Enqueue(new TransformRecord(idx, c.transform.position));
-                lastPos[idx] = c.transform.position;
+    void AddPosRecords() {
+        int i = 0;
+        foreach (var charObj in characterObjs) {
+            if (charObj != null) {
+                var pos = charObj.transform.position;
+                if (!lastPos.ContainsKey(charObj) || lastPos[charObj] != pos) {
+                    recordsInThisFrame.Enqueue(new TransformRecord(i, pos));
+                    lastPos[charObj] = pos;
+                }
             }
+            i += 1;
         }
     }
 
@@ -96,35 +81,54 @@ public class GameStateRecorder : MonoBehaviour {
         replay.entries.Enqueue(newEntry);
     }
 
-    void finishRecording() {
+    void FinishRecording() {
+        Debug.Log("Finished Recording");
         state = State.Ended;
-        saveRecord();
+        SaveRecord();
     }
 
-    void saveRecord() {
+    void SaveRecord() {
         IFormatter formatter = new BinaryFormatter();
         Stream stream = new FileStream(folderPath + "1.rep", FileMode.Create, FileAccess.Write, FileShare.None);
         formatter.Serialize(stream, replay);
     }
 
+    // Not an actual flush to disk, but could be changed to do so
+    void Flush() {
+        while (recordsInThisFrame.Count != 0) {
+            var record = recordsInThisFrame.Dequeue();
+            addEntry(record);
+        }
+    }
+
+    void UpdateCharacterList() {
+        foreach (var charObj in GameObject.FindGameObjectsWithTag("Character")) {
+            int objId = charObj.GetInstanceID();
+            if (!idMap.ContainsKey(objId)) {
+                idMap.Add(objId, numCharRecorded);
+                numCharRecorded += 1;
+                characterObjs.Add(charObj);
+                characters.Add(charObj.GetComponent<Character>());
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update() {
+
         if (Input.GetKeyDown(KeyCode.S)) {
-            startRecording();
+            StartRecording();
         } else if (Input.GetKeyDown(KeyCode.E)) {
-            finishRecording();
+            FinishRecording();
         }
 
+        
 
         if (state == State.Started) {
 
-            addPosRecords();
+            AddPosRecords();
 
-            while (recordsInThisFrame.Count != 0) {
-                var record = recordsInThisFrame.Dequeue();
-                addEntry(record);
-            }
-            
+            Flush();
             frameCount += 1;
 
         }

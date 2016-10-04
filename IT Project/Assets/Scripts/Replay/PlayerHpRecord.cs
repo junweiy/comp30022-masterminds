@@ -8,6 +8,6 @@ public class PlayerHpRecord : ReplayRecord {
     public float hp;
 
     public void applyEffect(ReplaySceneController c) {
-        c.setPlayerHp(playerId, hp);
+        c.SetPlayerHp(playerId, hp);
     }
 }

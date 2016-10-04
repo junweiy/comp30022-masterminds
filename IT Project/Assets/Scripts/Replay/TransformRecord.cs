@@ -11,7 +11,7 @@ public class TransformRecord : ReplayRecord {
 
 
     public void applyEffect(ReplaySceneController c) {
-        c.setPlayerPosition(playerId, new Vector3(x, y, z));
+        c.SetPlayerPosition(playerId, new Vector3(x, y, z));
     }
 
     public TransformRecord(int playerId, Vector3 position) {

@@ -4,97 +4,116 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using Replay;
 
 public class ReplaySceneController : MonoBehaviour {
 
-    public GameObject characterPrefab;
+    public GameObject CharacterPrefab;
 
-    enum State { Preparing, Started, Ended }
+    enum State { Preparing, Started, Paused, Ended }
 
     private State state = State.Preparing;
     
-    GameObject[] characters;
-    GameObject[] spells;
+    GameObject[] characterObjs;
 
     private string path;
 
     GameReplay replay;
     int frameCount = 0;
 
-    public void setPlayerHp(int playerId, float hp) {
-        throw new System.NotImplementedException();
+    public void SetPlayerHp(int playerId, float hp) {
+        characterObjs[playerId].GetComponent<CharacterController>().character.hp = hp;
     }
 
-    public void putSpell(int playerId, int spellId) {
-        throw new System.NotImplementedException();
+    public void SetSpellCast(int playerId, SpellType spellType) {
+        var spell = ReplayTypeConverter.GetSpellFromType(spellType);
+        characterObjs[playerId].GetComponent<SpellController>().CastSpell(spell);
     }
 
-    public void setPlayerPosition(int playerId, Vector3 pos) {
-        characters[playerId].transform.position = pos;
-        Debug.Log("set player " + playerId.ToString() + " position to " + pos.ToString());
+    public void SetPlayerPosition(int playerId, Vector3 pos) {
+        characterObjs[playerId].transform.position = pos;
+        //Debug.Log("set player " + playerId.ToString() + " position to " + pos.ToString());
     }
     
 
     // Use this for initialization
     void Start () {
         path = Application.dataPath + "/Replays/";
-        GameReplay p = openReplay(path + "1.rep");
-        loadReplay(p);
+        GameReplay p = OpenReplay(path + "1.rep");
+        LoadReplay(p);
+        StartReplay();
     }
 
-    GameReplay openReplay(string filePath) {
+    GameReplay OpenReplay(string filePath) {
         IFormatter formatter = new BinaryFormatter();
         Stream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
         return (GameReplay)formatter.Deserialize(stream);
     }
 
-    void loadReplay(GameReplay replay) {
+    void LoadReplay(GameReplay replay) {
         this.replay = replay;
         var info = replay.info;
         Application.targetFrameRate = info.targetFrameRate;
-        //characters = info.characters;
-        //spells = info.spells;
-        loadCharacters(info.numCharacters);
-        state = State.Started;
+        LoadCharacters(info.numCharacters);
         frameCount = 0;
     }
 
-    void loadCharacters(int numCharacters) {
-        List<GameObject> chars = new List<GameObject>();
-        for (int i = 0; i < numCharacters; i++) {
-            var o = GameObject.Instantiate(characterPrefab);
-            chars.Add(o);
-        }
-        this.characters = chars.ToArray();
+    void StartReplay() {
+        state = State.Started;
     }
 
-    void finishReplay() {
+    void LoadCharacters(int numCharacters) {
+        List<GameObject> chars = new List<GameObject>();
+        for (int i = 0; i < numCharacters; i++) {
+            var o = GameObject.Instantiate(CharacterPrefab);
+            chars.Add(o);
+        }
+        this.characterObjs = chars.ToArray();
+    }
+
+    void FinishReplay() {
         state = State.Ended;
         // TODO
     }
 
+    public void Pause() {
+        state = State.Paused;
+    }
+
+    public void Continue() {
+        state = State.Started;
+    }
+
     // Update is called once per frame
     void Update () {
-	    if (state == State.Started) {
+
+        if (Input.GetKeyDown("p")) {
+            if (state == State.Started) {
+                Pause();
+            } else if (state == State.Paused) {
+                Continue();
+            }
+        }
+
+        if (state == State.Started) {
 
             if (replay.entries.Count == 0) {
-                finishReplay();
+                FinishReplay();
                 return;
             }
 
-            
             var nextEntry = replay.entries.Peek();
             while (nextEntry.frameTime <= frameCount) {
                 replay.entries.Dequeue();
                 nextEntry.record.applyEffect(this);
                 if (replay.entries.Count == 0) {
-                    finishReplay();
+                    FinishReplay();
                     return;
                 }
                 nextEntry = replay.entries.Peek();
             }
-            frameCount += 1;
 
+            frameCount += 1;
         }
 	}
 }
