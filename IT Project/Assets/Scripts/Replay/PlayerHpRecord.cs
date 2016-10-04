@@ -10,4 +10,9 @@ public class PlayerHpRecord : ReplayRecord {
     public void applyEffect(ReplaySceneController c) {
         c.SetPlayerHp(playerId, hp);
     }
+
+    public PlayerHpRecord(float hp, int playerId) {
+        this.hp = hp;
+        this.playerId = playerId;
+    }
 }

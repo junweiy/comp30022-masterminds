@@ -53,7 +53,17 @@ public class GameStateRecorder : MonoBehaviour {
         return "0.1";
     }
 
-    void AddSpellRecord(Spell s, Character c) {
+    public void AddHpRecord(float hp, Character c) {
+        recordsInThisFrame.Enqueue(new PlayerHpRecord(
+            hp, characters.IndexOf(c)
+        ));
+    }
+
+    public int getPlayerIdFromObject(GameObject characterObj) {
+        return idMap[characterObj.GetInstanceID()];
+    }
+
+    public void AddSpellRecord(Spell s, Character c) {
         recordsInThisFrame.Enqueue(new CastSpellRecord(
             characters.IndexOf(c),
             ReplayTypeConverter.GetTypeFromSpell(s)
