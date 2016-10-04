@@ -23,7 +23,7 @@ public class MenuButtonController : MonoBehaviour {
 
     public void MainMenuButtonOnClick()
     {
-        StateController.switchToMainMenu();
+        StateController.SwitchToMainMenu();
     }
 
     //void Update()

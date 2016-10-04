@@ -3,15 +3,18 @@ using System;
 using System.Collections;
 
 public class GameController : Photon.MonoBehaviour {
+	public const int MAINMENU_SCENE_NUMBER = 0;
+	public const int GAMEPLAY_SCENE_NUMBER = 2;
+
 	public int playersNumber;
 
-	public const int GAMEPLAY_SCENE_NUMBER = 1;
-
-	public void checkIfGameEnds() {
+	public bool checkIfGameEnds() {
 		int numAlive = GameObject.FindGameObjectsWithTag ("Character").Length;
 		if (numAlive == 1) {
-			StateController.FinishRound ();
+			StateController.SwitchToResult ();
+			return true;
 		}
+		return false;
 	}
 
 	Vector3 GetNextSpawnPoint(int index) {
@@ -44,6 +47,9 @@ public class GameController : Photon.MonoBehaviour {
 		if (level == GAMEPLAY_SCENE_NUMBER) {
 			InitialiseGamePlay ();
 		}
+		if (level == MAINMENU_SCENE_NUMBER) {
+			Destroy (this.gameObject);
+		}
 	}
 
 	void SpawnPlayer() {
@@ -59,12 +65,7 @@ public class GameController : Photon.MonoBehaviour {
 		DontDestroyOnLoad (this.gameObject);
 	}
 
-	void Update() {
-		if (Input.GetKeyDown(KeyCode.X)) {
-			Debug.Log ("X");
-			InitialiseGamePlay();
-		}
-	}
+
 
 
 

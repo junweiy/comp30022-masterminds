@@ -72,6 +72,7 @@ public class MainMenuController : MonoBehaviour {
 			if (outcome == false) {
 				Debug.LogWarning ("login failed");
 			} else {
+				GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().LoggedIn(email);
 				gotoMainMenu ();
 			}
 		} catch (ProfileMessagingException e) {
@@ -96,7 +97,7 @@ public class MainMenuController : MonoBehaviour {
 	}
 
 	public void gotoMultiModePage() {
-		switchTo (multiModePage);
+		StateController.SwitchToMatching ();
 	}
 
 }

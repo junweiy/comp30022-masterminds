@@ -319,6 +319,7 @@ GameObject:
   - 222: {fileID: 476888229}
   - 114: {fileID: 476888228}
   - 114: {fileID: 476888227}
+  - 114: {fileID: 476888230}
   m_Layer: 0
   m_Name: ReturnToMainMenu
   m_TagString: Untagged
@@ -384,8 +385,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: returnToMain
+      - m_Target: {fileID: 476888230}
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -430,6 +431,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 476888225}
+--- !u!114 &476888230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 476888225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4474638e0d74942c08e90e236f160f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &752278535
 GameObject:
   m_ObjectHideFlags: 0

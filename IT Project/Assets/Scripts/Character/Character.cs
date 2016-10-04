@@ -16,7 +16,6 @@ public class Character : Photon.MonoBehaviour {
 
 	public float hp { get; set; }
 	private float maxHp { get; set; }
-	public int score { get; private set; }
 
 	public bool isDead { get; private set; }
 	public int numKilled;
@@ -33,7 +32,6 @@ public class Character : Photon.MonoBehaviour {
 		charID = photonView.viewID;
         maxHp = 100f;
         hp = 100f;
-		score = 0;
 		numDeath = 0;
 		numKilled = 0;
 		isDead = false;
@@ -54,17 +52,10 @@ public class Character : Photon.MonoBehaviour {
 
     private void OnDeath()
     {
-        isDead = true;
+		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController>();
+		if (!gc.checkIfGameEnds ()) {
+			// TODO
+		}
     }
-
-	public int AddScore(int s) {
-		this.score += s;
-		return this.score;
-	}
-
-	public int DeductScore(int s) {
-		this.score = Mathf.Max(this.score - s, 0);
-		return this.score;
-	}
 		
 }
