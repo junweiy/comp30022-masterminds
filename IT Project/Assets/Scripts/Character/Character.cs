@@ -14,7 +14,6 @@ public class Character : Photon.MonoBehaviour {
 
 	public int charID;
 
-	public int baseAttack { get;set; }
 	public float hp;
 	private float maxHp { get; set; }
 	public int score { get; private set; }
@@ -35,7 +34,6 @@ public class Character : Photon.MonoBehaviour {
     {
 		this.healthBarUI = this.GetComponent<HealthBarUI> ();
 		charID = photonView.viewID;
-		baseAttack = 0;
         maxHp = 100f;
         hp = 100f;
 		score = 0;

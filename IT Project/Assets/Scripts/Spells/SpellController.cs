@@ -56,15 +56,16 @@ public class SpellController : Photon.MonoBehaviour {
 	void SetUpVariableFireBall(int viewID) {
 		FireBallController fbc = PhotonView.Find (viewID).gameObject.GetComponent<FireBallController>();
 		fbc.charID = photonView.viewID;
-		fbc.damage = fb.damage + character.baseAttack;
+		fbc.damage = fb.damage;
 	}
 
 	[PunRPC]
 	void SetUpVariableFireNova(int viewID) {
 		FireNovaController fnc = PhotonView.Find (viewID).gameObject.GetComponent<FireNovaController>();
 		fnc.charID = photonView.viewID;
-		fnc.damage = fn.damage + character.baseAttack;
+		fnc.damage = fn.damage;
 		fnc.power = fn.power;
+		fnc.range = fn.range;
 		fnc.castingTime = fn.castingTime;
 	}
 
@@ -80,21 +81,5 @@ public class SpellController : Photon.MonoBehaviour {
 		GameObject fn = PhotonNetwork.Instantiate ("Prefabs/FireNova", this.transform.position, this.transform.rotation, 0);
 		return fn.GetComponent<FireNovaController> ();
 	}
-
-//	void Cast(Spell s) {
-//		if (s.currentCooldown < s.cooldown) {
-//			return;
-//		}
-//		if (s.isInstantSpell) {
-//			Transform t = transform.Find (SPELL_SPAWN_NAME);
-//			s.ApplyEffect(character, transform, t.position);
-//		} else {
-//
-//		}
-//		s.currentCooldown = 0;
-//	}
-
-
-
-
+		
 }

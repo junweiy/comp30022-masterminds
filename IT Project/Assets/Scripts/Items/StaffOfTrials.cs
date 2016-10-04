@@ -25,13 +25,13 @@ public class StaffOfTrials : Item {
 	/* The function applies the effect of the equipment when the character wears it.
 	 */
 	public override void ApplyEffect(Character ply) {
-		ply.baseAttack += attackIncreased;
+		//ply.baseAttack += attackIncreased;
 	}
 
 	/* The function removes the effect of the equipment when the character takes it off.
 	 */
 	public override void RemoveEffect(Character ply) {
-		ply.baseAttack -= attackIncreased;
+		//ply.baseAttack -= attackIncreased;
 	}
 
 	/* The function applies changes to the spell when upgrading it.
