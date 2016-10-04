@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ProfileHandler : MonoBehaviour {
+public class ProfileHandler : Photon.MonoBehaviour {
 
 	public const int MAINMENU_SCENE_NUMBER = 0;
+	public const int RESULT_SCENE_NUMBER = 3;
 
 	public bool isLogedIn;
 	public string userName;
@@ -30,6 +31,10 @@ public class ProfileHandler : MonoBehaviour {
 		this.alreadyUpdated = false;
 	}
 
+	public void ResetStats() {
+		this.alreadyUpdated = true;
+	}
+
 	public void LoggedIn(string userName) {
 		this.isLogedIn = true;
 		this.userName = userName;
@@ -46,7 +51,16 @@ public class ProfileHandler : MonoBehaviour {
 				// TODO
 				// UploadGameResultToCloud();
 			}
+		}
 
+		if (level == RESULT_SCENE_NUMBER) {
+			ResultPageController rpc = GameObject.FindGameObjectWithTag ("ResultPageController").GetComponent<ResultPageController> ();
+			rpc.isWinner = won;
+			rpc.userName = userName;
+			rpc.kill = kill;
+			rpc.death = death;
 		}
 	}
+
+
 }

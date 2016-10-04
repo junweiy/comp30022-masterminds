@@ -39,4 +39,5 @@ MonoBehaviour:
   - RefreshPlayerList
   - StartGame
   - ResetCountDown
+  - UpdateProfileForWinner
   DisableAutoOpenWizard: 1

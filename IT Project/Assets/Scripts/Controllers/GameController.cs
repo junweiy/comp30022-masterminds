@@ -2,19 +2,19 @@
 using System;
 using System.Collections;
 
-public class GameController : Photon.MonoBehaviour {
+public class GameController : Photon.PunBehaviour {
 	public const int MAINMENU_SCENE_NUMBER = 0;
 	public const int GAMEPLAY_SCENE_NUMBER = 2;
 
-	public int playersNumber;
-
-	public bool checkIfGameEnds() {
-		int numAlive = GameObject.FindGameObjectsWithTag ("Character").Length;
-		if (numAlive == 1) {
-			StateController.SwitchToResult ();
-			return true;
+	public bool CheckIfGameEnds() {
+		GameObject[] players = GameObject.FindGameObjectsWithTag ("Character");
+		int numAlive = 0;
+		foreach (GameObject player in players) {
+			if (!player.GetComponent<Character>().isDead) {
+				numAlive++;
+			}
 		}
-		return false;
+		return numAlive == 1;
 	}
 
 	Vector3 GetNextSpawnPoint(int index) {
@@ -53,12 +53,19 @@ public class GameController : Photon.MonoBehaviour {
 	}
 
 	void SpawnPlayer() {
-		GameObject player = PhotonNetwork.Instantiate ("Prefabs/Character", GetNextSpawnPoint(GetIndex()),Quaternion.identity, 0);
+		GameObject player = PhotonNetwork.Instantiate ("Prefabs/Character", GetNextSpawnPoint(GetIndex()), Quaternion.identity, 0);
 		player.GetComponent<CharacterController> ().SetControllable();
 	}
 
 	public void InitialiseGamePlay() {
 		SpawnPlayer ();
+	}
+
+	public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
+		if (CheckIfGameEnds()) {
+			PhotonNetwork.Disconnect ();
+			StateController.SwitchToResult ();
+		}
 	}
 
 	void Start() {

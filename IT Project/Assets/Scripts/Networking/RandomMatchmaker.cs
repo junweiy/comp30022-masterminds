@@ -41,8 +41,6 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	}
 
 	public void CountdownFinished() {
-		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController>();
-		gc.playersNumber = PhotonNetwork.playerList.Length;
 		if (PhotonNetwork.isMasterClient) {
 			PhotonNetwork.LoadLevel ("scenes/gameplay");
 		}
@@ -95,12 +93,6 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 			status = "Player left the room, waiting For other players to join in";
 			RestartCountdown ();
 		}
-	}
-
-	// Called when click on back to main menu button
-	public override void OnLeftRoom() {
-		PhotonNetwork.Disconnect ();
-		// TODO switch scene
 	}
 
 }

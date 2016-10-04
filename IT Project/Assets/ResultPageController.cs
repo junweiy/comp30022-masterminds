@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ResultPageController : MonoBehaviour {
 
-    private bool isWinner;
-    Character[] chars;
+    public bool isWinner;
+	public string userName;
+	public int kill;
+	public int death;
 
     public GameObject playerResult;
     public RectTransform playerList;
@@ -14,7 +17,7 @@ public class ResultPageController : MonoBehaviour {
     // Update is called once per frame
     void Start()
     {
-        loadData();
+        
         //display result (win or lose)
         if (isWinner)
         {
@@ -26,15 +29,15 @@ public class ResultPageController : MonoBehaviour {
         }
 
         // generate a panel to display details of result for each user
-        for (int i = 0; i < chars.Length; i++)
+        for (int i = 0; i < 1; i++)
         {
             GameObject userDetail = (GameObject)Instantiate(playerResult);
             Text[] texts;
             texts = userDetail.GetComponentsInChildren<Text>();
-            //texts[0].text = chars[i].player.username;
-            //texts[1].text = chars[i].player.userId.ToString();
-            //texts[2].text = chars[i].numKill.ToString();
-            texts[3].text = chars[i].numDeath.ToString();
+			texts [0].text = userName;
+			texts [1].text = " ";
+			texts [2].text = kill.ToString ();
+			texts[3].text = death.ToString ();
 
             userDetail.transform.SetParent(playerList, false);
             userDetail.transform.localScale = new Vector3(1, 1, 1);
@@ -43,14 +46,6 @@ public class ResultPageController : MonoBehaviour {
 
     }
 
-    public void loadData()
-    {
-        //Character current = GlobalState.instance.currentChar;
-        //this.chars = GlobalState.instance.gameController.characters;
-        //int maxScore = chars.Max(c => c.score);
-        //Character[] winners = chars.Where(c => c.score == maxScore).ToArray();
-        //this.isWinner = winners.Contains(current);
-    }
 
 	public void returnToMainMenu() {
 		StateController.SwitchToMainMenu ();
