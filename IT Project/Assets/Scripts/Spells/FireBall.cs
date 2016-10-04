@@ -10,10 +10,6 @@ public class FireBall : Spell {
 	// The path of the prefab
 	public const string PREFAB_PATH = "Prefabs/Fireball";
 
-
-	// The damage of Fireball
-	public int damage { get; private set; }
-
 	/* The function initialises the Fireball object with basic properties.
 	 */
 	public FireBall() : base(COOLDOWN, DAMAGE) {
