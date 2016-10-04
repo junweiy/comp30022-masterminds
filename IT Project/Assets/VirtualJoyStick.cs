@@ -17,9 +17,9 @@ public class VirtualJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
         joyStickImg = transform.GetChild(0).GetComponent<Image>();
     }
 
-    public Vector2 stickPosition()
+    public Vector3 GetStickPosition()
     {
-        return new Vector2(inputVector.x, inputVector.z);
+        return inputVector;
     }
 
     public virtual void OnDrag(PointerEventData ped)
