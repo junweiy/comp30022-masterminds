@@ -40,7 +40,7 @@ public class VirtualJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     }
     public virtual void OnPointerDown(PointerEventData ped)
     {
-        OnDrag(ped);
+        //OnDrag(ped);
     }
     public virtual void OnPointerUp(PointerEventData ped)
     {
