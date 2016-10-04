@@ -4,33 +4,28 @@ using UnityEngine.UI;
 
 public class SpellIconController : MonoBehaviour {
 
-    private Spell spell { set; get; }
-    //private Sprite icon { set; get; }
+    public Spell spell;
     private Image spellBG;
     private Image spellImage;
+    private SpellController spellController;
 
     public bool isClicked;
 
     // Initialise the spell icon
-    public void initialise(Spell spell)
+    void Start()
     {
-        this.spell = spell;
-        //Debug.Assert(spell != null);
-        //this.icon = Resources.Load<Sprite>(spell.iconPath);
         spellBG = GetComponent<Image>();
         spellImage = transform.GetChild(0).GetComponent<Image>();
-        isClicked = false;
-        //images[0].sprite = icon;
-        //images[1].sprite = icon;
-        //images[1].type = Image.Type.Filled;
-        //images[1].fillMethod = Image.FillMethod.Radial360;
-        //images[1].fillOrigin = (int)Image.Origin360.Top;
+        spellController = GetMainPlayerController<SpellController>();
     }
 
     // On click event
     public void onclick()
     {
-        isClicked = true;
+        if(spell.currentCooldown >= spell.cooldown)
+        {
+            spellController.CastSpell(spell);
+        }
     }
 
     // Update the display of image
@@ -40,5 +35,25 @@ public class SpellIconController : MonoBehaviour {
         {
             spellImage.fillAmount = spell.currentCooldown / spell.cooldown;
         }
+    }
+
+    public GameObject FindMainPlayer()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Character");
+        foreach (GameObject player in players)
+        {
+            if (player.GetPhotonView().isMine)
+            {
+                return player;
+            }
+        }
+        throw new UnityException();
+
+    }
+
+    public T GetMainPlayerController<T>()
+    {
+        GameObject mainPlayer = FindMainPlayer();
+        return mainPlayer.GetComponent<T>();
     }
 }
