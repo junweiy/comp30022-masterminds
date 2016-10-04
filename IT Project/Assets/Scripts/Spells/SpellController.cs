@@ -4,8 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class SpellController : Photon.MonoBehaviour {
-	// The name of object used to spawn spells
-	private string SPELL_SPAWN_NAME = "SpellSpawn";
+	// The distance of spawned fireball from player
+	private float FIREBALL_SPAWN_DISTANCE = 20f;
 
 	// The image of spell range
 	public Image spellRange;
@@ -84,11 +84,21 @@ public class SpellController : Photon.MonoBehaviour {
 
 
 	public FireBallController CastFireBall () {
-		Transform t = transform.Find (SPELL_SPAWN_NAME);
-		Vector3 pos = this.transform.position + (t.position - this.transform.position) / 2;
-		GameObject fb = PhotonNetwork.Instantiate ("Prefabs/Fireball", pos, new Quaternion(0,0,0,0), 0);
+		GameObject fb;
+		Quaternion destinationAngle;
+		Vector3 joyStickMovement = GameObject.FindGameObjectWithTag ("JoyStick").GetComponent<VirtualJoyStick> ().GetStickPosition();
+		Vector3 spawnPosition = this.transform.position + joyStickMovement * FIREBALL_SPAWN_DISTANCE;
+		if (joyStickMovement != Vector3.zero) {
+			destinationAngle = Quaternion.LookRotation (joyStickMovement);
+			Debug.Log (destinationAngle);
+		} else {
+			destinationAngle = Quaternion.Euler (Vector3.zero);
+		}
+
+		fb = PhotonNetwork.Instantiate ("Prefabs/Fireball", spawnPosition, destinationAngle, 0);
 		return fb.GetComponent<FireBallController> ();
 	}
+		
 
 	public FireNovaController CastFireNova() {
 		GameObject fn = PhotonNetwork.Instantiate ("Prefabs/FireNova", this.transform.position, this.transform.rotation, 0);

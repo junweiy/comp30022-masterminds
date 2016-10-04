@@ -18,7 +18,7 @@ public class FireBallController : Photon.MonoBehaviour {
 	public float distanceTravelled;
 
 	void Start() {
-		this.GetComponent<Rigidbody> ().velocity = new Vector3(VELOCITY,0,0);
+		this.GetComponent<Rigidbody> ().velocity = VELOCITY * ( this.transform.rotation * new Vector3(0,0,1));
 		distanceTravelled = 0;
 	}
 
