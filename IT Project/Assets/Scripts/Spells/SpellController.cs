@@ -17,6 +17,8 @@ public class SpellController : Photon.MonoBehaviour {
     private SpellIconController fireBallUI;
     private SpellIconController fireNovaUI;
 
+    public GameStateRecorder recorder;
+
 
     void Start() {
 		fb = new FireBall ();
@@ -81,12 +83,18 @@ public class SpellController : Photon.MonoBehaviour {
 		}
 
 		fb = PhotonNetwork.Instantiate ("Prefabs/Fireball", spawnPosition, destinationAngle, 0);
+        if (recorder != null) {
+            recorder.AddPutSpellRecord(new FireBall(), fb.transform);
+        }
 		return fb.GetComponent<FireBallController> ();
 	}
 		
 
 	public FireNovaController CastFireNova() {
-		GameObject fn = PhotonNetwork.Instantiate ("Prefabs/FireNova", this.transform.position, this.transform.rotation, 0);
+        GameObject fn = PhotonNetwork.Instantiate("Prefabs/FireNova", this.transform.position, this.transform.rotation, 0);
+        if (recorder != null) {
+            recorder.AddPutSpellRecord(new FireNova(), fn.transform);
+        }
 		return fn.GetComponent<FireNovaController> ();
 	}
 		

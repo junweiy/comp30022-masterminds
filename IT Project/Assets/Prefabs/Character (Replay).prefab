@@ -312,7 +312,7 @@ Rigidbody:
   m_Drag: 3
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
@@ -520,8 +520,8 @@ MonoBehaviour:
   - {fileID: 4000012866016136}
   - {fileID: 114000013242800552}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114000011298772010
 MonoBehaviour:
@@ -652,7 +652,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011783725864}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7b58331d087b4989935e740e05da72d, type: 3}
   m_Name: 

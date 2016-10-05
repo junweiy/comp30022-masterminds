@@ -13,6 +13,7 @@ public class GameStateRecorder : MonoBehaviour {
 
     private Dictionary<int, int> idMap = new Dictionary<int, int>();
     List<GameObject> characterObjs = new List<GameObject>();
+    List<GameObject> spellObjs = new List<GameObject>();
     List<Character> characters = new List<Character>();
     private int numCharRecorded = 0;
     private Dictionary<GameObject, Vector3> lastPos = new Dictionary<GameObject, Vector3>();
@@ -43,6 +44,10 @@ public class GameStateRecorder : MonoBehaviour {
             TARGET_FRAMERATE
         );
 
+        foreach (var charObj in characterObjs) {
+            charObj.GetComponent<SpellController>().recorder = this;
+        }
+
         replay.entries = new Queue<GameReplay.Entry>();
         frameCount = 0;
         state = State.Started;
@@ -53,50 +58,55 @@ public class GameStateRecorder : MonoBehaviour {
         return "0.1";
     }
 
-    public void AddHpRecord(int hp, Character c) {
-        recordsInThisFrame.Enqueue(new PlayerHpRecord(
-            hp, characters.IndexOf(c)
-        ));
-    }
+    //public void AddHpRecord(int hp, Character c) {
+    //    recordsInThisFrame.Enqueue(new PlayerHpRecord(
+    //        hp, characters.IndexOf(c)
+    //    ));
+    //}
 
     public int getPlayerIdFromObject(GameObject characterObj) {
         return idMap[characterObj.GetInstanceID()];
     }
 
-	public void AddSpellRecord(Spell s, Transform transform) {
+	public void AddPutSpellRecord(Spell s, Transform transform) {
+        recordsInThisFrame.Enqueue(new PutSpellRecord(s, transform));
 	}
 
-    void addSpellRecord(Spell s, Character c) {
-        recordsInThisFrame.Enqueue(new CastSpellRecord(
-            characters.IndexOf(c),
-            ReplayTypeConverter.GetTypeFromSpell(s)
-        ));
-    }
+    //public void addInstantiateRecords() {
 
-    void AddPosRecords() {
+    //}
+
+    //public void addDestroyRecords() {
+
+    //}
+
+    //void addSpellRecord(Spell s, Character c) {
+    //    recordsInThisFrame.Enqueue(new CastSpellRecord(
+    //        characters.IndexOf(c),
+    //        ReplayTypeConverter.GetTypeFromSpell(s)
+    //    ));
+    //}
+
+    void addPosRecords() {
         int i = 0;
         foreach (var charObj in characterObjs) {
             if (charObj != null) {
-				int hp = charObj.GetComponent<Character> ().hp;
-				recordsInThisFrame.Enqueue (new PlayerHpRecord (hp, i));
-//                if (!lastPos.ContainsKey(charObj) || lastPos[charObj] != pos) {
-//                    recordsInThisFrame.Enqueue(new TransformRecord(i, pos));
-//                    lastPos[charObj] = pos;
-//                }
+                var pos = charObj.transform.position;
+                if (!lastPos.ContainsKey(charObj) || lastPos[charObj] != pos) {
+                    recordsInThisFrame.Enqueue(new TransformRecord(i, pos));
+                    lastPos[charObj] = pos;
+                }
             }
             i += 1;
         }
     }
 
-	void AddHpRecords() {
+	void addHpRecords() {
 		int i = 0;
 		foreach (var charObj in characterObjs) {
 			if (charObj != null) {
-				var pos = charObj.transform.position;
-				if (!lastPos.ContainsKey(charObj) || lastPos[charObj] != pos) {
-					recordsInThisFrame.Enqueue(new TransformRecord(i, pos));
-					lastPos[charObj] = pos;
-				}
+                int hp = charObj.GetComponent<Character>().hp;
+                recordsInThisFrame.Enqueue(new PlayerHpRecord(hp, i));
 			}
 			i += 1;
 		}
@@ -154,7 +164,11 @@ public class GameStateRecorder : MonoBehaviour {
 
         if (state == State.Started) {
 
-            AddPosRecords();
+            //addInstantiateRecords();
+            addPosRecords();
+            addHpRecords();
+            //addDestroyRecords();
+            
 
             Flush();
             frameCount += 1;

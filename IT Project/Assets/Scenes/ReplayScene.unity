@@ -1249,10 +1249,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1548872027}
-  m_LocalRotation: {x: 0.37047395, y: 0.12173305, z: -0.021294111, w: 0.920585}
-  m_LocalPosition: {x: 646, y: 272, z: -25}
+  m_LocalRotation: {x: 0.6980819, y: -0.029717388, z: 0.030364329, w: 0.7147563}
+  m_LocalPosition: {x: 1000, y: 932, z: 588}
   m_LocalScale: {x: 1.0151876, y: 1.0151876, z: 1.0151876}
-  m_LocalEulerAnglesHint: {x: 43.413002, y: 16.359001, z: 3.91}
+  m_LocalEulerAnglesHint: {x: 88.628006, y: -0.20700002, z: 4.524}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -1284,6 +1284,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterPrefab: {fileID: 1000011783725864, guid: f9af1c153c19c0c4b8ed7dca92ae6c19,
+    type: 2}
+  FireballPrefab: {fileID: 1000011636598674, guid: 993acc0e6e6d7c6428748dcadafba1db,
+    type: 2}
+  FireNovaPrefab: {fileID: 1000010108898470, guid: 596e7e6c121844388bf44a11f9aad7b2,
     type: 2}
 --- !u!4 &1754990836
 Transform:

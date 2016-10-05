@@ -9,6 +9,8 @@ using Replay;
 public class ReplaySceneController : MonoBehaviour {
 
     public GameObject CharacterPrefab;
+    public GameObject FireballPrefab;
+    public GameObject FireNovaPrefab;
 
     enum State { Preparing, Started, Paused, Ended }
 
@@ -33,6 +35,20 @@ public class ReplaySceneController : MonoBehaviour {
     public void SetPlayerPosition(int playerId, Vector3 pos) {
         characterObjs[playerId].transform.position = pos;
         //Debug.Log("set player " + playerId.ToString() + " position to " + pos.ToString());
+    }
+
+    public void IntantiateSpellWithTransform(SpellType spellType, Vector3 positon, Quaternion rotation) {
+        GameObject obj;
+        if (spellType == SpellType.Fireball) {
+            obj = GameObject.Instantiate(FireballPrefab);
+        } else if (spellType == SpellType.FireNova) {
+            obj = GameObject.Instantiate(FireNovaPrefab);
+        } else {
+            return;
+        }
+
+        obj.transform.position = positon;
+        obj.transform.rotation = rotation;
     }
     
 

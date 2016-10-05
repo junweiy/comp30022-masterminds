@@ -14,7 +14,19 @@ public class Character : Photon.MonoBehaviour {
 
 	public int charID;
 
-	public int hp;
+    int _hp;
+
+	public int hp {
+        get {
+            return _hp;
+        }
+        set {
+            _hp = value;
+            if (value <= 0 && !isDead) {
+                OnDeath();
+            }
+        }
+    }
 	private int maxHp { get; set; }
 
 	public bool isDead { get; private set; }
@@ -44,10 +56,6 @@ public class Character : Photon.MonoBehaviour {
     public void TakeDamage(int f)
     {
         hp -= f;
-        if (hp <= 0 && !isDead) {
-            OnDeath();
-        }
-
     }
 
     private void OnDeath()
