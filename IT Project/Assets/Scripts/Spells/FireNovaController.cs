@@ -33,16 +33,13 @@ public class FireNovaController : Photon.MonoBehaviour {
 	}
 
 	public void castFireNova() {
-		Debug.Log (range);
 		// After casting time find all objects within casting range
 		Collider[] colliders = Physics.OverlapSphere(this.transform.position, range);
-		Debug.Log (colliders.Length);
 		foreach (Collider hit in colliders) {
 			if (!hit.CompareTag(CHARACTER_TAG)) {
 				continue;
 			}
 			Character anotherCharacter = hit.GetComponent<Character> (); 
-			Debug.Log (charID + " " + anotherCharacter.charID);
 			if (anotherCharacter.charID.Equals(charID)) {
 				continue;
 			}
@@ -53,7 +50,7 @@ public class FireNovaController : Photon.MonoBehaviour {
 				anotherCharacter.TakeDamage (damage);
 				if (anotherCharacter.isDead) {
 					anotherCharacter.numDeath++;
-					PhotonView.Find (charID).gameObject.GetComponent<Character> ().numKilled++;
+					PhotonView.Find (charID).gameObject.GetComponent<Character> ().Killed();
 				}
 
 			}

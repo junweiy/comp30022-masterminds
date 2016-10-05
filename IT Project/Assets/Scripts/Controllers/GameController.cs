@@ -5,6 +5,7 @@ using System.Collections;
 public class GameController : Photon.PunBehaviour {
 	public const int MAINMENU_SCENE_NUMBER = 0;
 	public const int GAMEPLAY_SCENE_NUMBER = 2;
+	public const int RESULT_SCENE_NUMBER = 3;
 
 	public bool CheckIfGameEnds() {
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Character");
@@ -67,6 +68,21 @@ public class GameController : Photon.PunBehaviour {
 			StateController.SwitchToResult ();
 		}
 	}
+
+	public IEnumerator SwitchToResultWithDelay() {
+		yield return new WaitForSecondsRealtime (2);
+		PhotonNetwork.LoadLevel (RESULT_SCENE_NUMBER);
+
+	}
+
+	public void DisplayGameOverMessage() {
+		// TODO display
+		if (PhotonNetwork.isMasterClient) {
+			StartCoroutine ("SwitchToResultWithDelay");
+		}
+	}
+
+
 
 	void Start() {
 		DontDestroyOnLoad (this.gameObject);

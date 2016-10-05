@@ -29,6 +29,7 @@ public class ProfileHandler : Photon.MonoBehaviour {
 		this.death = death;
 		this.won = won;
 		this.alreadyUpdated = false;
+		Debug.Log ("Updated with " + kill + " " + death);
 	}
 
 	public void ResetStats() {

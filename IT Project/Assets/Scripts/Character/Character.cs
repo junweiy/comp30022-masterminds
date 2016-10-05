@@ -53,22 +53,28 @@ public class Character : Photon.MonoBehaviour {
     private void OnDeath()
     {
 		isDead = true;
+		numDeath++;
 		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController>();
 		if (gc.CheckIfGameEnds ()) {
-			ProfileHandler ph = GameObject.FindGameObjectWithTag ("ProfileHandler").GetComponent<ProfileHandler>();
-			if (photonView.isMine) {
-				ph.UpdateProfile (this.numKilled, this.numDeath, false);
-			}
-			this.photonView.RPC ("UpdateProfileForWinner", PhotonTargets.All);
-			StateController.SwitchToResult ();
+			UpdateProfile (false);
+			gc.DisplayGameOverMessage ();
 		}
+		Destroy (this.gameObject);
     }
 
-	[PunRPC]
-	void UpdateProfileForWinner() {
-		if (!isDead && photonView.isMine) {
+	public void Killed() {
+		numKilled++;
+		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController>();
+		if (gc.CheckIfGameEnds ()) {
+			UpdateProfile (true);
+			gc.DisplayGameOverMessage ();
+		}
+	}
+		
+	public void UpdateProfile(bool win) {
+		if (photonView.isMine) {
 			ProfileHandler ph = GameObject.FindGameObjectWithTag ("ProfileHandler").GetComponent<ProfileHandler>();
-			ph.UpdateProfile (this.numKilled, this.numDeath, true);
+			ph.UpdateProfile (this.numKilled, this.numDeath, win);
 		}
 	}
 		
