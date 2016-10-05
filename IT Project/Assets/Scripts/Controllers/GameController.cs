@@ -51,6 +51,9 @@ public class GameController : Photon.PunBehaviour {
 		if (level == MAINMENU_SCENE_NUMBER) {
 			Destroy (this.gameObject);
 		}
+		if (level == RESULT_SCENE_NUMBER) {
+			PhotonNetwork.Disconnect ();
+		}
 	}
 
 	void SpawnPlayer() {
@@ -63,16 +66,15 @@ public class GameController : Photon.PunBehaviour {
 	}
 
 	public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
-		if (CheckIfGameEnds()) {
+		if (PhotonNetwork.playerList.Length == 1) {
 			PhotonNetwork.Disconnect ();
-			StateController.SwitchToResult ();
+			StateController.SwitchToMainMenu ();
 		}
 	}
 
 	public IEnumerator SwitchToResultWithDelay() {
-		yield return new WaitForSecondsRealtime (2);
+		yield return new WaitForSecondsRealtime (1);
 		PhotonNetwork.LoadLevel (RESULT_SCENE_NUMBER);
-
 	}
 
 	public void DisplayGameOverMessage() {
@@ -81,8 +83,7 @@ public class GameController : Photon.PunBehaviour {
 			StartCoroutine ("SwitchToResultWithDelay");
 		}
 	}
-
-
+		
 
 	void Start() {
 		DontDestroyOnLoad (this.gameObject);

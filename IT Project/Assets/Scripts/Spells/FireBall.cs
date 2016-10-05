@@ -4,7 +4,7 @@ using System.Collections;
 
 public class FireBall : Spell {
 	// The damage of Fireball
-	private const int DAMAGE = 60;
+	private const int DAMAGE = 20;
 	// The cool down time of Fireball (unit in frames)
 	private const int COOLDOWN = 10;
 	// The path of the prefab

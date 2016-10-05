@@ -331,8 +331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7047599e36c5e04fa27b73438014261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthDropPerTime: 0
-  healthDropSecondsInterval: 0
+  healthDropPerTime: 5
+  healthDropSecondsInterval: 2
 --- !u!1 &545759618
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,9 +566,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3ef09ff12a24c55bd7990697f7a25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsBetweenShrinking: 0
-  minScalableSizeRatio: 0
-  sizeShrunkPerTime: 0
+  secondsBetweenShrinking: 5
+  minScalableSizeRatio: 0.2
+  sizeShrunkPerTime: 10
 --- !u!1001 &971933881
 Prefab:
   m_ObjectHideFlags: 0
