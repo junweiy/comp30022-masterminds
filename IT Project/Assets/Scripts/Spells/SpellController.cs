@@ -7,9 +7,6 @@ public class SpellController : Photon.MonoBehaviour {
 	// The distance of spawned fireball from player
 	private float FIREBALL_SPAWN_DISTANCE = 20f;
 
-	// The image of spell range
-	public Image spellRange;
-
 	FireBall fb;
 	FireNova fn;
 
@@ -32,7 +29,6 @@ public class SpellController : Photon.MonoBehaviour {
             fireNovaUI.spell = fn;
         }
         
-        spellRange.enabled = false;
 	}
 
 	void Update() {

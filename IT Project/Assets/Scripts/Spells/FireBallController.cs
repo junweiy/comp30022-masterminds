@@ -26,7 +26,7 @@ public class FireBallController : Photon.MonoBehaviour {
 	void Update() {
 		distanceTravelled += VELOCITY * Time.deltaTime;
 		if (distanceTravelled >= RANGE) {
-			PhotonNetwork.Destroy (this.gameObject);
+			Destroy (this.gameObject);
 		}
 	}
 		
@@ -44,7 +44,7 @@ public class FireBallController : Photon.MonoBehaviour {
 				c.TakeDamage (damage);
 				if (c.isDead) {
 					c.numDeath++;
-					PhotonView.Find (charID).gameObject.GetComponent<Character> ().numKilled++;
+					PhotonView.Find (charID).gameObject.GetComponent<Character> ().Killed();
 				}
 			}
 		} else {

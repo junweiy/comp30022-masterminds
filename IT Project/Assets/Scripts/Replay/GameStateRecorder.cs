@@ -53,7 +53,7 @@ public class GameStateRecorder : MonoBehaviour {
         return "0.1";
     }
 
-    public void AddHpRecord(float hp, Character c) {
+    public void AddHpRecord(int hp, Character c) {
         recordsInThisFrame.Enqueue(new PlayerHpRecord(
             hp, characters.IndexOf(c)
         ));
@@ -63,7 +63,10 @@ public class GameStateRecorder : MonoBehaviour {
         return idMap[characterObj.GetInstanceID()];
     }
 
-    public void AddSpellRecord(Spell s, Character c) {
+	public void AddSpellRecord(Spell s, Transform transform) {
+	}
+
+    void addSpellRecord(Spell s, Character c) {
         recordsInThisFrame.Enqueue(new CastSpellRecord(
             characters.IndexOf(c),
             ReplayTypeConverter.GetTypeFromSpell(s)
@@ -74,15 +77,30 @@ public class GameStateRecorder : MonoBehaviour {
         int i = 0;
         foreach (var charObj in characterObjs) {
             if (charObj != null) {
-                var pos = charObj.transform.position;
-                if (!lastPos.ContainsKey(charObj) || lastPos[charObj] != pos) {
-                    recordsInThisFrame.Enqueue(new TransformRecord(i, pos));
-                    lastPos[charObj] = pos;
-                }
+				int hp = charObj.GetComponent<Character> ().hp;
+				recordsInThisFrame.Enqueue (new PlayerHpRecord (hp, i));
+//                if (!lastPos.ContainsKey(charObj) || lastPos[charObj] != pos) {
+//                    recordsInThisFrame.Enqueue(new TransformRecord(i, pos));
+//                    lastPos[charObj] = pos;
+//                }
             }
             i += 1;
         }
     }
+
+	void AddHpRecords() {
+		int i = 0;
+		foreach (var charObj in characterObjs) {
+			if (charObj != null) {
+				var pos = charObj.transform.position;
+				if (!lastPos.ContainsKey(charObj) || lastPos[charObj] != pos) {
+					recordsInThisFrame.Enqueue(new TransformRecord(i, pos));
+					lastPos[charObj] = pos;
+				}
+			}
+			i += 1;
+		}
+	}
 
     void addEntry(ReplayRecord record) {
         var newEntry = new GameReplay.Entry();

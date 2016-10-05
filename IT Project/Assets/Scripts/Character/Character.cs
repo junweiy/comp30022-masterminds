@@ -14,9 +14,8 @@ public class Character : Photon.MonoBehaviour {
 
 	public int charID;
 
-	public float hp { get; set; }
-	private float maxHp { get; set; }
-	public int score { get; private set; }
+	public int hp;
+	private int maxHp { get; set; }
 
 	public bool isDead { get; private set; }
 	public int numKilled;
@@ -31,9 +30,8 @@ public class Character : Photon.MonoBehaviour {
     {
 		this.healthBarUI = this.GetComponent<HealthBarUI> ();
 		charID = photonView.viewID;
-        maxHp = 100f;
-        hp = 100f;
-		score = 0;
+        maxHp = 100;
+        hp = 100;
 		numDeath = 0;
 		numKilled = 0;
 		isDead = false;
@@ -43,7 +41,7 @@ public class Character : Photon.MonoBehaviour {
 		healthBarUI.SetHealthUI(hp,maxHp);
 	}
 		
-    public void TakeDamage(float f)
+    public void TakeDamage(int f)
     {
         hp -= f;
         if (hp <= 0 && !isDead) {
@@ -54,17 +52,31 @@ public class Character : Photon.MonoBehaviour {
 
     private void OnDeath()
     {
-        isDead = true;
+		isDead = true;
+		numDeath++;
+		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController>();
+		if (gc.CheckIfGameEnds ()) {
+			UpdateProfile (false);
+			gc.DisplayGameOverMessage ();
+		}
+		Destroy (this.gameObject);
     }
 
-	public int AddScore(int s) {
-		this.score += s;
-		return this.score;
+	public void Killed() {
+		numKilled++;
+		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController>();
+		if (gc.CheckIfGameEnds ()) {
+			UpdateProfile (true);
+			gc.DisplayGameOverMessage ();
+		}
 	}
-
-	public int DeductScore(int s) {
-		this.score = Mathf.Max(this.score - s, 0);
-		return this.score;
+		
+	public void UpdateProfile(bool win) {
+		if (photonView.isMine) {
+			ProfileHandler ph = GameObject.FindGameObjectWithTag ("ProfileHandler").GetComponent<ProfileHandler>();
+			ph.UpdateProfile (this.numKilled, this.numDeath, win);
+		}
 	}
+		
 		
 }

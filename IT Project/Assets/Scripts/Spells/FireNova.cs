@@ -4,7 +4,7 @@ using UnityEngine.Networking;
 
 public class FireNova : Spell {
 	// The damage of FireNova
-	private const int DAMAGE = 40;
+	private const int DAMAGE = 30;
 	// The power of FireNova
 	private const float POWER = 800.0F;
 	// The cool down time of FireNova (unit in frames)

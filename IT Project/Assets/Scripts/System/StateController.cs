@@ -4,21 +4,11 @@ using System.Collections;
 
 public static class StateController {
 
-	public static bool FinishRound() {
-		bool gameHasFinished = GlobalState.instance.numRoundsIncrement ();
-		if (gameHasFinished) {
-			switchToResult ();
-		} else {
-			switchToShop ();
-		}
-		return gameHasFinished;
-	}
-
-	public static void switchBackToGamePlay() {
+	public static void SwitchToGamePlay() {
 		SceneManager.LoadScene ("scenes/gameplay");
 	}
 
-	public static void switchToResult() {
+	public static void SwitchToResult() {
 		SceneManager.LoadScene ("scenes/result");
 	}
 
@@ -29,18 +19,17 @@ public static class StateController {
 	public static void switchToRoom() {
 		SceneManager.LoadScene ("scenes/room");
 	}
-		
-	public static void switchToNewRound() { 
-		SceneManager.LoadScene ("scenes/gameplay");
-		//GlobalState.instance.gameController.prepareForNextRound ();
-	}
 
 	public static void switchToProfile() {
-		SceneManager.LoadScene ("scenes/profile");
+		SceneManager.LoadScene ("scenes/Profile");
 	}
 
-	public static void switchToMainMenu() {
+	public static void SwitchToMainMenu() {
 		SceneManager.LoadScene ("scenes/MainMenu");
+	}
+
+	public static void SwitchToMatching() {
+		SceneManager.LoadScene ("scenes/Matching");
 	}
 		
 }

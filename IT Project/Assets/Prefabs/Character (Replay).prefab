@@ -67,7 +67,7 @@ GameObject:
   - 114: {fileID: 114000012174088036}
   - 114: {fileID: 114000012719468524}
   m_Layer: 0
-  m_Name: Character
+  m_Name: Character (Replay)
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -520,8 +520,8 @@ MonoBehaviour:
   - {fileID: 4000012866016136}
   - {fileID: 114000013242800552}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 1
+  instantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &114000011298772010
 MonoBehaviour:
@@ -711,7 +711,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729361e7535de4a3c9147b78e5674ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellRange: {fileID: 0}
   character: {fileID: 114000012207885474}
 --- !u!124 &124000011259381618
 Behaviour:

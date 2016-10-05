@@ -21,7 +21,7 @@ public class ReplaySceneController : MonoBehaviour {
     GameReplay replay;
     int frameCount = 0;
 
-    public void SetPlayerHp(int playerId, float hp) {
+    public void SetPlayerHp(int playerId, int hp) {
         characterObjs[playerId].GetComponent<CharacterController>().character.hp = hp;
     }
 

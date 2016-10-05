@@ -38,6 +38,6 @@ public class ProfileController : MonoBehaviour {
 	}
 
 	public void ClosePage() {
-		StateController.switchToMainMenu();
+		StateController.SwitchToMainMenu();
 	}
 }

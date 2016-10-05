@@ -2,16 +2,20 @@
 using System;
 using System.Collections;
 
-public class GameController : Photon.MonoBehaviour {
-	public int playersNumber;
+public class GameController : Photon.PunBehaviour {
+	public const int MAINMENU_SCENE_NUMBER = 0;
+	public const int GAMEPLAY_SCENE_NUMBER = 2;
+	public const int RESULT_SCENE_NUMBER = 3;
 
-	public const int GAMEPLAY_SCENE_NUMBER = 1;
-
-	public void checkIfGameEnds() {
-		int numAlive = GameObject.FindGameObjectsWithTag ("Character").Length;
-		if (numAlive == 1) {
-			StateController.FinishRound ();
+	public bool CheckIfGameEnds() {
+		GameObject[] players = GameObject.FindGameObjectsWithTag ("Character");
+		int numAlive = 0;
+		foreach (GameObject player in players) {
+			if (!player.GetComponent<Character>().isDead) {
+				numAlive++;
+			}
 		}
+		return numAlive == 1;
 	}
 
 	Vector3 GetNextSpawnPoint(int index) {
@@ -44,10 +48,16 @@ public class GameController : Photon.MonoBehaviour {
 		if (level == GAMEPLAY_SCENE_NUMBER) {
 			InitialiseGamePlay ();
 		}
+		if (level == MAINMENU_SCENE_NUMBER) {
+			Destroy (this.gameObject);
+		}
+		if (level == RESULT_SCENE_NUMBER) {
+			PhotonNetwork.Disconnect ();
+		}
 	}
 
 	void SpawnPlayer() {
-		GameObject player = PhotonNetwork.Instantiate ("Prefabs/Character", GetNextSpawnPoint(GetIndex()),Quaternion.identity, 0);
+		GameObject player = PhotonNetwork.Instantiate ("Prefabs/Character", GetNextSpawnPoint(GetIndex()), Quaternion.identity, 0);
 		player.GetComponent<CharacterController> ().SetControllable();
 	}
 
@@ -55,16 +65,31 @@ public class GameController : Photon.MonoBehaviour {
 		SpawnPlayer ();
 	}
 
+	public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
+		if (PhotonNetwork.playerList.Length == 1) {
+			PhotonNetwork.Disconnect ();
+			StateController.SwitchToMainMenu ();
+		}
+	}
+
+	public IEnumerator SwitchToResultWithDelay() {
+		yield return new WaitForSecondsRealtime (1);
+		PhotonNetwork.LoadLevel (RESULT_SCENE_NUMBER);
+	}
+
+	public void DisplayGameOverMessage() {
+		// TODO display
+		if (PhotonNetwork.isMasterClient) {
+			StartCoroutine ("SwitchToResultWithDelay");
+		}
+	}
+		
+
 	void Start() {
 		DontDestroyOnLoad (this.gameObject);
 	}
 
-	void Update() {
-		if (Input.GetKeyDown(KeyCode.X)) {
-			Debug.Log ("X");
-			InitialiseGamePlay();
-		}
-	}
+
 
 
 

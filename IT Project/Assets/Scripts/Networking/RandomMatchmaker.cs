@@ -20,6 +20,16 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 		PhotonNetwork.ConnectUsingSettings("V0.1");
 	}
 
+	// Check for
+	IEnumerator CheckForPlayers() {
+		yield return new WaitForSeconds (2);
+		if (PhotonNetwork.playerList.Length > 1) {
+			countdownStarted = true;
+			status = "Other players found, game will start in: ";
+			this.photonView.RPC ("ResetCountDown", PhotonTargets.All);
+		}
+	}
+
 	void RestartCountdown() {
 		countdownStarted = false;
 		timeLeft = COUNTDOWN;
@@ -29,7 +39,10 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 		
 		GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
 		GUI.Label (new Rect(Screen.width/3, Screen.height/2,300,20), status);
-		GUI.Label (new Rect(Screen.width/2, Screen.height/3,100,20), ((int)timeLeft).ToString());
+		if (countdownStarted) {
+			GUI.Label (new Rect(Screen.width/2, Screen.height/3,100,20), ((int)timeLeft).ToString());
+		}
+
 	}
 
 	public override void OnJoinedLobby () {
@@ -41,8 +54,6 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	}
 
 	public void CountdownFinished() {
-		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController>();
-		gc.playersNumber = PhotonNetwork.playerList.Length;
 		if (PhotonNetwork.isMasterClient) {
 			PhotonNetwork.LoadLevel ("scenes/gameplay");
 		}
@@ -78,6 +89,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	public override void OnJoinedRoom() {
 		if (PhotonNetwork.playerList.Length == 1) {
 			status = "Waiting For other players to join in";
+			StartCoroutine ("CheckForPlayers");
 		} else {
 			countdownStarted = true;
 			status = "Other players found, game will start in: ";
@@ -95,12 +107,6 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 			status = "Player left the room, waiting For other players to join in";
 			RestartCountdown ();
 		}
-	}
-
-	// Called when click on back to main menu button
-	public override void OnLeftRoom() {
-		PhotonNetwork.Disconnect ();
-		// TODO switch scene
 	}
 
 }

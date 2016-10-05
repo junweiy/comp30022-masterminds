@@ -8,6 +8,8 @@ TagManager:
   - HUDCanvas
   - Fire
   - JoyStick
+  - ProfileHandler
+  - ResultPageController
   layers:
   - Default
   - TransparentFX
