@@ -11,6 +11,7 @@ public class CharacterController : Photon.MonoBehaviour {
 
 	public const float VELOCITY = 100f;
 	public const float MAX_VELOCITY = 200f;
+    public bool isSpeaking;
 	Rigidbody rb;
 
 	// Use this for initialization
@@ -19,6 +20,7 @@ public class CharacterController : Photon.MonoBehaviour {
 		enabled = photonView.isMine;
 		character = GetComponent<Character>();
 		rb = GetComponent<Rigidbody> ();
+        isSpeaking = GetComponent<PhotonVoiceRecorder>().IsTransmitting;
 	}
 
 	public void SetControllable() {
@@ -47,8 +49,7 @@ public class CharacterController : Photon.MonoBehaviour {
 		}
 		rb.velocity = Vector3.ClampMagnitude (rb.velocity,MAX_VELOCITY);
 
-	}
-		
+	}	
 
 
 }
