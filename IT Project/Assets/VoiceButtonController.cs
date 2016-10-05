@@ -5,15 +5,22 @@ using System.Collections;
 public class VoiceButtonController : MonoBehaviour {
 
 	private GameObject mainPlayer;
+    private GameObject speakerIcon;
 
 	void Start() {
 		mainPlayer = FindMainPlayer ();
+        speakerIcon = mainPlayer.transform.GetChild(2).GetChild(1).gameObject;
 	}
 
 	void ToggleRecording(GameObject mainPlayer) {
 		bool isTransimitting = mainPlayer.GetComponent<PhotonVoiceRecorder> ().Transmit;
 		mainPlayer.GetComponent<PhotonVoiceRecorder> ().Transmit = !isTransimitting;
 	}
+
+    void ToggleSpeakerIcon(GameObject mainPlayer)
+    {
+        speakerIcon.SetActive(mainPlayer.GetComponent<PhotonVoiceRecorder>().Transmit);
+    }
 
 	public static GameObject FindMainPlayer() {
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Character");
@@ -36,5 +43,6 @@ public class VoiceButtonController : MonoBehaviour {
     {
 		Debug.Log ("Clicked");
 		ToggleRecording (mainPlayer);
+        ToggleSpeakerIcon(mainPlayer);
     }
 }
