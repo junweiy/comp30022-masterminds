@@ -11,7 +11,7 @@ public static class StateController {
 	public static void SwitchToResult() {
 		SceneManager.LoadScene ("scenes/result");
 	}
-
+		
 	public static void switchToShop() {
 		SceneManager.LoadScene ("scenes/shop");
 	}

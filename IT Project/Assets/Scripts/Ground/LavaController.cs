@@ -31,8 +31,18 @@ public class LavaController : MonoBehaviour {
 		yield return new WaitForSeconds (healthDropSecondsInterval);
 		while (characterList.Contains (player)) {
 			player.TakeDamage (healthDropPerTime);
+			if (GameController.CheckIfGameEnds() && !FindMainCharacter ().isDead) {
+				FindMainCharacter ().UpdateProfile (true);
+			}
 			yield return new WaitForSeconds (healthDropSecondsInterval);
 		}
 	}
 
+	public static Character FindMainCharacter() {
+		GameObject mainPlayer = VoiceButtonController.FindMainPlayer ();
+		if (mainPlayer != null) {
+			return mainPlayer.GetComponent<Character> ();
+		}
+		return null;
+	}
 }

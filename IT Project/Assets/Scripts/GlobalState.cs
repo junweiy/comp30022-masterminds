@@ -105,6 +105,5 @@ public class GlobalState {
 		GlobalState.instance._profile = ProfileMessenger.GetProfileByEmail (email);
 		return true;
 	}
-
-
+		
 }

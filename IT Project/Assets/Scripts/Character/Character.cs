@@ -55,7 +55,7 @@ public class Character : Photon.MonoBehaviour {
 		isDead = true;
 		numDeath++;
 		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController>();
-		if (gc.CheckIfGameEnds ()) {
+		if (GameController.CheckIfGameEnds ()) {
 			UpdateProfile (false);
 			gc.DisplayGameOverMessage ();
 		}
@@ -65,7 +65,7 @@ public class Character : Photon.MonoBehaviour {
 	public void Killed() {
 		numKilled++;
 		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController>();
-		if (gc.CheckIfGameEnds ()) {
+		if (GameController.CheckIfGameEnds ()) {
 			UpdateProfile (true);
 			gc.DisplayGameOverMessage ();
 		}

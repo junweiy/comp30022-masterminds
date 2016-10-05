@@ -9,8 +9,8 @@ public class CharacterController : Photon.MonoBehaviour {
 	// the character model
 	public Character character;
 
-	public const float VELOCITY = 100f;
-	public const float MAX_VELOCITY = 200f;
+	public const float VELOCITY = 200f;
+	public const float MAX_VELOCITY = 300f;
     public bool isSpeaking;
 	Rigidbody rb;
 

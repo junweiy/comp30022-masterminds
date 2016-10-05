@@ -29,8 +29,7 @@ public class VoiceButtonController : MonoBehaviour {
 				return player;
 			}
 		}
-		throw new UnityException ();
-		
+		return null;
 	}
 
 	public static T GetMainPlayerController<T>() {
