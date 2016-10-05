@@ -49,8 +49,17 @@ public class ProfileHandler : Photon.MonoBehaviour {
 				GameObject.Find("Canvas").transform.FindChild ("MainMenu").gameObject.SetActive (true);
 			}
 			if (isLogedIn && !alreadyUpdated) {
-				// TODO
-				// UploadGameResultToCloud();
+				// TODO need to fix
+//				Profile oldProfile = ProfileMessenger.GetProfileByEmail(userName);
+//				oldProfile.numDeath += death;
+//				oldProfile.numPlayerKilled += kill;
+//				if (won) {
+//					oldProfile.numGamesWon++;
+//				} else {
+//					oldProfile.numGamesLost++;
+//				}
+//				ResetStats ();
+//				ProfileMessenger.submitNewProfile (oldProfile);
 			}
 		}
 

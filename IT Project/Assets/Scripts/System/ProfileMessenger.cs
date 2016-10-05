@@ -71,7 +71,7 @@ public class ProfileMessenger {
 		}
 	}
 
-	public static Profile getProfileByEmail(string email) {
+	public static Profile GetProfileByEmail(string email) {
 		string token = ProfileMessenger.password;
 
 		ProfileUpdateRequestWithEmail req = new ProfileUpdateRequestWithEmail ();
