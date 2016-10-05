@@ -52,6 +52,9 @@ public class Character : Photon.MonoBehaviour {
 
     private void OnDeath()
     {
+		if (isDead) {
+			return;
+		}
 		isDead = true;
 		numDeath++;
 		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController>();
@@ -59,8 +62,49 @@ public class Character : Photon.MonoBehaviour {
 			UpdateProfile (false);
 			gc.DisplayGameOverMessage ();
 		}
-		Destroy (this.gameObject);
+		if (photonView.isMine) {
+			DisableAndObserveOtherPlayer ();
+		}
+
     }
+
+	void DisableAndObserveOtherPlayer() {
+		FocusCameraOnOtherPlayer ();
+		MoveToHiddenPlace ();
+		DisableUI ();
+	}
+
+	void MoveToHiddenPlace() {
+		this.transform.position = new Vector3 (0,0,1000);
+		this.transform.localScale = new Vector3 (0, 0, 0);
+		this.GetComponent<CharacterController> ().enabled = false;
+	}
+
+	void FocusCameraOnOtherPlayer() {
+		GameObject anotherPlayer = FindAnotherPlayerAlive ();
+		transform.FindChild ("CameraRig").gameObject.SetActive (false);
+		GameObject cameraRig = anotherPlayer.transform.FindChild ("CameraRig").gameObject;
+		Debug.Log (anotherPlayer.GetComponent<Character>().charID);
+		cameraRig.GetComponent<CameraControl> ().enabled = true;
+		cameraRig.GetComponentInChildren<Camera> ().enabled = true;
+		cameraRig.GetComponentInChildren<AudioListener> ().enabled = true;
+	}
+
+	GameObject FindAnotherPlayerAlive() {
+		GameObject[] players = GameObject.FindGameObjectsWithTag ("Character");
+		foreach (GameObject player in players) {
+			if (!player.GetComponent<Character> ().isDead) {
+				return player;
+			}
+		}
+		return null;
+	}
+
+	void DisableUI() {
+		GameObject.FindGameObjectWithTag ("JoyStick").SetActive (false);
+		GameObject.FindGameObjectWithTag ("SpellButton").SetActive (false);
+	}
+
 
 	public void Killed() {
 		numKilled++;
