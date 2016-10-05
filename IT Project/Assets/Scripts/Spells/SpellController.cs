@@ -75,13 +75,12 @@ public class SpellController : Photon.MonoBehaviour {
 		Vector3 spawnPosition = this.transform.position + joyStickMovement * FIREBALL_SPAWN_DISTANCE;
 		if (joyStickMovement != Vector3.zero) {
 			destinationAngle = Quaternion.LookRotation (joyStickMovement);
-			Debug.Log (destinationAngle);
-		} else {
-			destinationAngle = Quaternion.Euler (Vector3.zero);
+			fb = PhotonNetwork.Instantiate ("Prefabs/Fireball", spawnPosition, destinationAngle, 0);
+			return fb.GetComponent<FireBallController> ();
 		}
+		return null;
 
-		fb = PhotonNetwork.Instantiate ("Prefabs/Fireball", spawnPosition, destinationAngle, 0);
-		return fb.GetComponent<FireBallController> ();
+
 	}
 		
 
@@ -95,6 +94,9 @@ public class SpellController : Photon.MonoBehaviour {
         if (spell is FireBall)
         {
             FireBallController fbc = CastFireBall();
+			if (fbc == null) {
+				return;
+			}
             photonView.RPC("SetUpVariableFireBall", PhotonTargets.All, fbc.photonView.viewID);
             fb.currentCooldown = 0;
         }
