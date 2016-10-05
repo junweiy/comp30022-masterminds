@@ -30,6 +30,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	IEnumerator CheckForPlayers() {
 		yield return new WaitForSeconds (2);
 		if (PhotonNetwork.playerList.Length > 1) {
+			Debug.Log ("X");
 			countdownStarted = true;
 			status = "Other players found, game will start in: ";
 			this.photonView.RPC ("ResetCountDown", PhotonTargets.All);

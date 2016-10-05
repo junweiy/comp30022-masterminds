@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class SpellController : Photon.MonoBehaviour {
 	// The distance of spawned fireball from player
-	private float FIREBALL_SPAWN_DISTANCE = 20f;
+	private float FIREBALL_SPAWN_DISTANCE = 30f;
 
 	FireBall fb;
 	FireNova fn;

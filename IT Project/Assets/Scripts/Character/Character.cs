@@ -14,7 +14,7 @@ public class Character : Photon.MonoBehaviour {
 
 	public int charID;
 
-	public int hp { get; set; }
+	public int hp;
 	private int maxHp { get; set; }
 
 	public bool isDead { get; private set; }

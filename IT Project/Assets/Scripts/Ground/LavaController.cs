@@ -15,23 +15,20 @@ public class LavaController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision collision) {
-		if (collision.gameObject.name == "Character") {
-			Debug.Log ("1");
+		if (collision.gameObject.tag == "Character") {
 			characterList.Add (collision.gameObject.GetComponent<CharacterController>().character);
 			StartCoroutine (Damage(collision.gameObject.GetComponent<CharacterController>().character));
 		}
-
-
 	}
 
 	void OnCollisionExit(Collision collision) {
-		if (collision.gameObject.name == "Character") {
-			Debug.Log ("2");
+		if (collision.gameObject.tag == "Character") {
 			characterList.Remove (collision.gameObject.GetComponent<CharacterController>().character);
 		}
 	}
 
 	IEnumerator Damage (Character player) {
+		yield return new WaitForSeconds (healthDropSecondsInterval);
 		while (characterList.Contains (player)) {
 			player.TakeDamage (healthDropPerTime);
 			yield return new WaitForSeconds (healthDropSecondsInterval);
