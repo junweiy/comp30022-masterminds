@@ -92,7 +92,12 @@ public class MainMenuController : MonoBehaviour {
 		StateController.switchToProfile ();
 	}
 
-	public void gotoSingleModePage() {
+    //public void gotoReplay() {
+    //    StateController.SwitchToReplay();
+    //}
+
+
+    public void gotoSingleModePage() {
 		switchTo (singleModePage);
 	}
 
