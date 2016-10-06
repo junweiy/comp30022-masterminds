@@ -43,6 +43,7 @@ public class ReplaySceneController : MonoBehaviour {
             obj = GameObject.Instantiate(FireballPrefab);
         } else if (spellType == SpellType.FireNova) {
             obj = GameObject.Instantiate(FireNovaPrefab);
+			obj.GetComponent<FireNovaController> ().castingTime = FireNova.CASTING_TIME;
         } else {
             return;
         }

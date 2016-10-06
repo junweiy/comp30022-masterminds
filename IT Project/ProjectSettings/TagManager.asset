@@ -5,14 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Character
-  - HUDCanvas
-  - Fire
   - JoyStick
   - ProfileHandler
-  - ResultPageController
-  - Spell
-  - MainMenu
-  - LoginMenu
+  - SpellButton
+  - Camera
   layers:
   - Default
   - TransparentFX

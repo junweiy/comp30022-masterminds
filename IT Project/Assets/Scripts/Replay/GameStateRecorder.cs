@@ -45,7 +45,9 @@ public class GameStateRecorder : MonoBehaviour {
         );
 
         foreach (var charObj in characterObjs) {
-            charObj.GetComponent<SpellController>().recorder = this;
+			charObj.GetComponent<SpellController> ().onCastSpellActions.Add(delegate(Spell s, Transform trans) {
+				AddPutSpellRecord(s, trans);
+			});
         }
 
         replay.entries = new Queue<GameReplay.Entry>();

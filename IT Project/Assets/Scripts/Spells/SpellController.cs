@@ -2,13 +2,16 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class SpellController : Photon.MonoBehaviour {
 	// The distance of spawned fireball from player
-	private float FIREBALL_SPAWN_DISTANCE = 20f;
+	private float FIREBALL_SPAWN_DISTANCE = 30f;
 
 	FireBall fb;
 	FireNova fn;
+
+	public List<Action<Spell, Transform>> onCastSpellActions = new List<Action<Spell, Transform>>();
 
 	// the character model
 	public Character character;
@@ -16,8 +19,6 @@ public class SpellController : Photon.MonoBehaviour {
     //Spell UI script
     private SpellIconController fireBallUI;
     private SpellIconController fireNovaUI;
-
-    public GameStateRecorder recorder;
 
 
     void Start() {
@@ -77,25 +78,29 @@ public class SpellController : Photon.MonoBehaviour {
 		Vector3 spawnPosition = this.transform.position + joyStickMovement * FIREBALL_SPAWN_DISTANCE;
 		if (joyStickMovement != Vector3.zero) {
 			destinationAngle = Quaternion.LookRotation (joyStickMovement);
-			Debug.Log (destinationAngle);
-		} else {
-			destinationAngle = Quaternion.Euler (Vector3.zero);
+			fb = PhotonNetwork.Instantiate ("Prefabs/Fireball", spawnPosition, destinationAngle, 0);
+			foreach (var a in onCastSpellActions) {
+				a (new FireBall (), fb.transform);
+			}
+			return fb.GetComponent<FireBallController> ();
 		}
 
-		fb = PhotonNetwork.Instantiate ("Prefabs/Fireball", spawnPosition, destinationAngle, 0);
-        if (recorder != null) {
-            recorder.AddPutSpellRecord(new FireBall(), fb.transform);
-        }
-		return fb.GetComponent<FireBallController> ();
+
+
+		return null;
+
 	}
 		
 
 	public FireNovaController CastFireNova() {
-        GameObject fn = PhotonNetwork.Instantiate("Prefabs/FireNova", this.transform.position, this.transform.rotation, 0);
-        if (recorder != null) {
-            recorder.AddPutSpellRecord(new FireNova(), fn.transform);
-        }
+		GameObject fn = PhotonNetwork.Instantiate ("Prefabs/FireNova", this.transform.position, this.transform.rotation, 0);
+
+		foreach (var a in onCastSpellActions) {
+			a (new FireNova (), fn.transform);
+		}
+
 		return fn.GetComponent<FireNovaController> ();
+
 	}
 		
     public void CastSpell(Spell spell)
@@ -103,6 +108,9 @@ public class SpellController : Photon.MonoBehaviour {
         if (spell is FireBall)
         {
             FireBallController fbc = CastFireBall();
+			if (fbc == null) {
+				return;
+			}
             photonView.RPC("SetUpVariableFireBall", PhotonTargets.All, fbc.photonView.viewID);
             fb.currentCooldown = 0;
         }

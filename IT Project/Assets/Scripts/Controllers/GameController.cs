@@ -7,7 +7,7 @@ public class GameController : Photon.PunBehaviour {
 	public const int GAMEPLAY_SCENE_NUMBER = 2;
 	public const int RESULT_SCENE_NUMBER = 3;
 
-	public bool CheckIfGameEnds() {
+	public static bool CheckIfGameEnds() {
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Character");
 		int numAlive = 0;
 		foreach (GameObject player in players) {
@@ -18,22 +18,22 @@ public class GameController : Photon.PunBehaviour {
 		return numAlive == 1;
 	}
 
-	Vector3 GetNextSpawnPoint(int index) {
+	public static Vector3 GetNextSpawnPoint(int index) {
 		switch (index) {
 			case 0:
-				return new Vector3 (200,0,200);
+				return new Vector3 (200,5,200);
 			case 1:
-				return new Vector3 (200,0,800);
+				return new Vector3 (200,5,800);
 			case 2:
-				return new Vector3 (800,0,200);
+				return new Vector3 (800,5,200);
 			case 3:
-				return new Vector3 (800,0,800);
+				return new Vector3 (800,5,800);
 			default:
-				return new Vector3 (500,0,500);
+				return new Vector3 (500,5,500);
 		}
 	}
 
-	int GetIndex() {
+	public static int GetIndex() {
 		PhotonPlayer[] players = PhotonNetwork.playerList;
 		Array.Sort (players);
 		for (int i = 0; i < players.Length; i++) {
@@ -76,6 +76,7 @@ public class GameController : Photon.PunBehaviour {
 		yield return new WaitForSecondsRealtime (1);
 		PhotonNetwork.LoadLevel (RESULT_SCENE_NUMBER);
 	}
+		
 
 	public void DisplayGameOverMessage() {
 		// TODO display
