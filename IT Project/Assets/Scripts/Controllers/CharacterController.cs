@@ -14,6 +14,8 @@ public class CharacterController : Photon.MonoBehaviour {
     public bool isSpeaking;
 	Rigidbody rb;
 
+	private Quaternion lastRotation;
+
 	// Use this for initialization
 	public void Start() {
 		this.gameObject.tag = "Character";
@@ -50,11 +52,14 @@ public class CharacterController : Photon.MonoBehaviour {
 		rb.velocity = Vector3.ClampMagnitude (rb.velocity,MAX_VELOCITY);
 
 
-		if(!joyStickMovement.Equals(Vector3.zero)){
+		if (!joyStickMovement.Equals (Vector3.zero)) {
 			Vector3 targetDir = joyStickMovement;
 			float step = 10;
-			Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0F);
-			transform.rotation = Quaternion.LookRotation(newDir);
+			Vector3 newDir = Vector3.RotateTowards (transform.forward, targetDir, step, 0.0F);
+			lastRotation = Quaternion.LookRotation (newDir);
+			transform.rotation = lastRotation;
+		} else {
+			transform.rotation = lastRotation;
 		}
 
 	}	

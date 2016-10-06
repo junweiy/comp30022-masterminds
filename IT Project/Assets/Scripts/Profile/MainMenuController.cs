@@ -54,6 +54,7 @@ public class MainMenuController : MonoBehaviour {
 				Debug.LogWarning ("register failed");
 			} else {
 				GlobalState.loadProfileWithUid ( (int) uid);
+				GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().LoggedIn(email);
 				gotoMainMenu ();
 			}
 		} catch (ProfileMessagingException e) {

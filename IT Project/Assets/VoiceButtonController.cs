@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class VoiceButtonController : MonoBehaviour {
+public class VoiceButtonController : Photon.MonoBehaviour {
 
 	private GameObject mainPlayer;
     private GameObject speakerIcon;
@@ -16,9 +16,9 @@ public class VoiceButtonController : MonoBehaviour {
 		bool isTransimitting = mainPlayer.GetComponent<PhotonVoiceRecorder> ().Transmit;
 		mainPlayer.GetComponent<PhotonVoiceRecorder> ().Transmit = !isTransimitting;
 	}
-
+		
     void ToggleSpeakerIcon(GameObject mainPlayer)
-    {
+	{
         speakerIcon.SetActive(mainPlayer.GetComponent<PhotonVoiceRecorder>().Transmit);
     }
 
