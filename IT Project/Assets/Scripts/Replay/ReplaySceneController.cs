@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using Replay;
+using UnityEngine.UI;
 
 public class ReplaySceneController : MonoBehaviour {
 
@@ -12,9 +13,30 @@ public class ReplaySceneController : MonoBehaviour {
     public GameObject FireballPrefab;
     public GameObject FireNovaPrefab;
 
+    public Text ButtonLabel;
+
     enum State { Preparing, Started, Paused, Ended }
 
-    private State state = State.Preparing;
+    private State _state = State.Preparing;
+    private State state {
+        get {
+            return _state;
+        } set {
+            _state = value;
+
+            if (ButtonLabel != null) {
+                if (value == State.Preparing) {
+                    ButtonLabel.text = "Preparing";
+                } else if (value == State.Started) {
+                    ButtonLabel.text = "Pause";
+                } else if (value == State.Paused) {
+                    ButtonLabel.text = "Continue";
+                } else if (value == State.Ended) {
+                    ButtonLabel.text = "Replay Ended";
+                }
+            }
+        }
+    }
     
     GameObject[] characterObjs;
 
@@ -27,6 +49,7 @@ public class ReplaySceneController : MonoBehaviour {
         characterObjs[playerId].GetComponent<CharacterController>().character.hp = hp;
     }
 
+    // unused for now
     public void SetSpellCast(int playerId, SpellType spellType) {
         var spell = ReplayTypeConverter.GetSpellFromType(spellType);
         characterObjs[playerId].GetComponent<SpellController>().CastSpell(spell);
@@ -41,6 +64,8 @@ public class ReplaySceneController : MonoBehaviour {
         GameObject obj;
         if (spellType == SpellType.Fireball) {
             obj = GameObject.Instantiate(FireballPrefab);
+            obj.GetComponent<FireBallController>().enableDamage = false;
+            obj.GetComponent<FireBallController>().charID = -1;
         } else if (spellType == SpellType.FireNova) {
             obj = GameObject.Instantiate(FireNovaPrefab);
 			obj.GetComponent<FireNovaController> ().castingTime = FireNova.CASTING_TIME;
@@ -93,6 +118,14 @@ public class ReplaySceneController : MonoBehaviour {
         // TODO
     }
 
+    public void TriggerPauseContinue() {
+        if(state == State.Started) {
+            Pause();
+        } else if (state == State.Paused) {
+            Continue();
+        }
+    }
+
     public void Pause() {
         state = State.Paused;
     }
@@ -105,11 +138,7 @@ public class ReplaySceneController : MonoBehaviour {
     void Update () {
 
         if (Input.GetKeyDown("p")) {
-            if (state == State.Started) {
-                Pause();
-            } else if (state == State.Paused) {
-                Continue();
-            }
+            TriggerPauseContinue();
         }
 
         if (state == State.Started) {

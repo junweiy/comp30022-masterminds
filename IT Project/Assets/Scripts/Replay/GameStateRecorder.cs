@@ -74,13 +74,6 @@ public class GameStateRecorder : MonoBehaviour {
         recordsInThisFrame.Enqueue(new PutSpellRecord(s, transform));
 	}
 
-    //public void addInstantiateRecords() {
-
-    //}
-
-    //public void addDestroyRecords() {
-
-    //}
 
     //void addSpellRecord(Spell s, Character c) {
     //    recordsInThisFrame.Enqueue(new CastSpellRecord(
@@ -124,6 +117,7 @@ public class GameStateRecorder : MonoBehaviour {
     void FinishRecording() {
         Debug.Log("Finished Recording");
         state = State.Ended;
+        Flush();
         SaveRecord();
     }
 
@@ -170,7 +164,10 @@ public class GameStateRecorder : MonoBehaviour {
             addPosRecords();
             addHpRecords();
             //addDestroyRecords();
-            
+
+            if (GameController.CheckIfGameEnds()) {
+                FinishRecording();
+            }
 
             Flush();
             frameCount += 1;
