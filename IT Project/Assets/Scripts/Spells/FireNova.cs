@@ -8,7 +8,7 @@ public class FireNova : Spell {
 	// The power of FireNova
 	private const float POWER = 800.0F;
 	// The cool down time of FireNova (unit in frames)
-	private const int COOLDOWN = 1;
+	private const int COOLDOWN = 5;
 	// The range within which ememies will be affected
 	private const float RANGE = 60.0F;
 	// The time required for casting (unit in secs)

@@ -21,15 +21,15 @@ public class GameController : Photon.PunBehaviour {
 	public static Vector3 GetNextSpawnPoint(int index) {
 		switch (index) {
 			case 0:
-				return new Vector3 (200,5,200);
+				return new Vector3 (200,10,200);
 			case 1:
-				return new Vector3 (200,5,800);
+				return new Vector3 (200,10,800);
 			case 2:
-				return new Vector3 (800,5,200);
+				return new Vector3 (800,10,200);
 			case 3:
-				return new Vector3 (800,5,800);
+				return new Vector3 (800,10,800);
 			default:
-				return new Vector3 (500,5,500);
+				return new Vector3 (500,10,500);
 		}
 	}
 

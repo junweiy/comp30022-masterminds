@@ -49,6 +49,14 @@ public class CharacterController : Photon.MonoBehaviour {
 		}
 		rb.velocity = Vector3.ClampMagnitude (rb.velocity,MAX_VELOCITY);
 
+
+		if(!joyStickMovement.Equals(Vector3.zero)){
+			Vector3 targetDir = joyStickMovement;
+			float step = 10;
+			Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0F);
+			transform.rotation = Quaternion.LookRotation(newDir);
+		}
+
 	}	
 
 
