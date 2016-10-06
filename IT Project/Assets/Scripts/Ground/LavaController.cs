@@ -16,6 +16,7 @@ public class LavaController : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.tag == "Character") {
+			Debug.Log ("Enter");
 			characterList.Add (collision.gameObject.GetComponent<CharacterController>().character);
 			StartCoroutine (Damage(collision.gameObject.GetComponent<CharacterController>().character));
 		}
