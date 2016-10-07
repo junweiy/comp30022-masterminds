@@ -16,7 +16,7 @@ public class MainMenuController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
 	}
 	
 	// Update is called once per frame
@@ -54,6 +54,7 @@ public class MainMenuController : MonoBehaviour {
 				Debug.LogWarning ("register failed");
 			} else {
 				GlobalState.loadProfileWithUid ( (int) uid);
+				GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().LoggedIn(email);
 				gotoMainMenu ();
 			}
 		} catch (ProfileMessagingException e) {

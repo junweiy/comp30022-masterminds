@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -22,7 +21,6 @@ public class Character : Photon.MonoBehaviour {
 	public int numKilled;
 	public int numDeath;
 
-	public List<Action> onDeathActions;
 
 	public float range { get; set; }
 
@@ -37,7 +35,6 @@ public class Character : Photon.MonoBehaviour {
 		numDeath = 0;
 		numKilled = 0;
 		isDead = false;
-		onDeathActions = new List<Action> ();
     }
 
 	void Update() {
@@ -67,10 +64,6 @@ public class Character : Photon.MonoBehaviour {
 		}
 		if (photonView.isMine) {
 			DisableAndObserveOtherPlayer ();
-		}
-
-		foreach (var a in onDeathActions) {
-			a ();
 		}
 
     }

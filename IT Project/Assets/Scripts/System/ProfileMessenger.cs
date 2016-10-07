@@ -25,9 +25,10 @@ public class ProfileMessenger {
 		NewProfileRequest m = new NewProfileRequest ();
 		m.newProfile = profile;
 		m.uid = profile.uid;
+		m.timestamp = getTimeStamp ();
 		m.token = ProfileMessenger.password;
 
-		form.AddField ("profile", JsonUtility.ToJson(m));
+		form.AddField ("message", JsonUtility.ToJson(m));
 		WWW w = new WWW (updateProfileUrl, form);
 		// wait until complete
 		while (!w.isDone) {
@@ -36,8 +37,10 @@ public class ProfileMessenger {
 			Debug.Log(w.error);
 		}
 		else {
+			Debug.Log (w.text);
 			throwExceptionIfError (w.text);
 			Debug.Log("Finished submitting profile");
+			GlobalState.loadProfileWithUid (profile.uid);
 		}
 	}
 
@@ -172,6 +175,7 @@ public class ProfileMessenger {
 		public Profile newProfile;
 		public int uid;
 		public string token;
+		public int timestamp;
 	}
 
 	[System.Serializable]
