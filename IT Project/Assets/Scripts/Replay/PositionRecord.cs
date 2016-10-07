@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 
 [System.Serializable]
-public class TransformRecord : ReplayRecord {
+public class PositionRecord : ReplayRecord {
     public int playerId;
     public float x;
     public float y;
@@ -14,7 +14,7 @@ public class TransformRecord : ReplayRecord {
         c.SetPlayerPosition(playerId, new Vector3(x, y, z));
     }
 
-    public TransformRecord(int playerId, Vector3 position) {
+    public PositionRecord(int playerId, Vector3 position) {
         this.playerId = playerId;
         this.x = position.x;
         this.y = position.y;

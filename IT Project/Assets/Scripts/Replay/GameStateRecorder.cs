@@ -8,8 +8,7 @@ using System.Runtime.Serialization;
 using System.IO;
 
 public class GameStateRecorder : MonoBehaviour {
-    enum State { Preparing, Started, Paused, Ended }
-    private State state = State.Preparing;
+    private ReplayState state = ReplayState.Preparing;
 
     private Dictionary<int, int> idMap = new Dictionary<int, int>();
     List<GameObject> characterObjs = new List<GameObject>();
@@ -17,8 +16,6 @@ public class GameStateRecorder : MonoBehaviour {
     List<Character> characters = new List<Character>();
     private int numCharRecorded = 0;
     private Dictionary<GameObject, Vector3> lastPos = new Dictionary<GameObject, Vector3>();
-
-    private string folderPath;
 
     GameReplay replay;
 
@@ -29,7 +26,6 @@ public class GameStateRecorder : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        folderPath = Application.dataPath + "/Replays/";
         Application.targetFrameRate = TARGET_FRAMERATE;
 	}
 
@@ -52,19 +48,12 @@ public class GameStateRecorder : MonoBehaviour {
 
         replay.entries = new Queue<GameReplay.Entry>();
         frameCount = 0;
-        state = State.Started;
+        state = ReplayState.Started;
     }
-
 
     string getGameVersion() {
         return "0.1";
     }
-
-    //public void AddHpRecord(int hp, Character c) {
-    //    recordsInThisFrame.Enqueue(new PlayerHpRecord(
-    //        hp, characters.IndexOf(c)
-    //    ));
-    //}
 
     public int getPlayerIdFromObject(GameObject characterObj) {
         return idMap[characterObj.GetInstanceID()];
@@ -74,21 +63,13 @@ public class GameStateRecorder : MonoBehaviour {
         recordsInThisFrame.Enqueue(new PutSpellRecord(s, transform));
 	}
 
-
-    //void addSpellRecord(Spell s, Character c) {
-    //    recordsInThisFrame.Enqueue(new CastSpellRecord(
-    //        characters.IndexOf(c),
-    //        ReplayTypeConverter.GetTypeFromSpell(s)
-    //    ));
-    //}
-
     void addPosRecords() {
         int i = 0;
         foreach (var charObj in characterObjs) {
             if (charObj != null) {
                 var pos = charObj.transform.position;
                 if (!lastPos.ContainsKey(charObj) || lastPos[charObj] != pos) {
-                    recordsInThisFrame.Enqueue(new TransformRecord(i, pos));
+                    recordsInThisFrame.Enqueue(new PositionRecord(i, pos));
                     lastPos[charObj] = pos;
                 }
             }
@@ -116,19 +97,13 @@ public class GameStateRecorder : MonoBehaviour {
 
     void FinishRecording() {
         Debug.Log("Finished Recording");
-        state = State.Ended;
-        Flush();
-        SaveRecord();
-    }
-
-    void SaveRecord() {
-        IFormatter formatter = new BinaryFormatter();
-        Stream stream = new FileStream(folderPath + "1.rep", FileMode.Create, FileAccess.Write, FileShare.None);
-        formatter.Serialize(stream, replay);
+        state = ReplayState.Ended;
+        FlushPendingRecodsToReplayObject();
+        GlobalState.instance.ReplayToSave = replay;
     }
 
     // Not an actual flush to disk, but could be changed to do so
-    void Flush() {
+    void FlushPendingRecodsToReplayObject() {
         while (recordsInThisFrame.Count != 0) {
             var record = recordsInThisFrame.Dequeue();
             addEntry(record);
@@ -158,7 +133,7 @@ public class GameStateRecorder : MonoBehaviour {
 
         
 
-        if (state == State.Started) {
+        if (state == ReplayState.Started) {
 
             //addInstantiateRecords();
             addPosRecords();
@@ -169,7 +144,7 @@ public class GameStateRecorder : MonoBehaviour {
                 FinishRecording();
             }
 
-            Flush();
+            FlushPendingRecodsToReplayObject();
             frameCount += 1;
 
         }

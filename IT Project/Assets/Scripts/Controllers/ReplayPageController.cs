@@ -6,16 +6,17 @@ using System.IO;
 
 public class ReplayPageController : MonoBehaviour {
 
-    GameObject buttonPrefab;
+    public GameObject ButtonPrefab;
+    public GameObject ScrollViewContent;
 
-    void loadReplays(string folderPath) {
-        // load all files with extension rep in the replay folder
-        string[] filePaths = Directory.GetFiles(folderPath, "*.rep");
+    void loadReplays() {
+        var filePaths = ReplayIO.GetReplayFilepaths();
 
         // generate each button for each replay
         foreach (var filePath in filePaths) {
-            var fileName = Path.GetFileName(filePath);
-            var newButton = GameObject.Instantiate(buttonPrefab);
+            var fileName = Path.GetFileNameWithoutExtension(filePath);
+            var newButton = GameObject.Instantiate(ButtonPrefab);
+            newButton.transform.SetParent(ScrollViewContent.transform);
             newButton.GetComponent<ReplayItemButtonScript>().setText(fileName);
             newButton.GetComponent<Button>().onClick.AddListener(delegate {
                 openReplay(filePath);
@@ -24,7 +25,8 @@ public class ReplayPageController : MonoBehaviour {
     }
 
     void openReplay(string filePath) {
-        //throw new System.NotImplementedException();
+        GlobalState.instance.ReplayToLoad = ReplayIO.LoadReplayFromFilepath(filePath);
+        StateController.SwitchToReplayScene();
     }
 
     public void goToMainMenu() {
@@ -33,6 +35,6 @@ public class ReplayPageController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //loadReplays(Application.dataPath + "/Replays/";);
+        loadReplays();
     }
 }

@@ -15,23 +15,22 @@ public class ReplaySceneController : MonoBehaviour {
 
     public Text ButtonLabel;
 
-    enum State { Preparing, Started, Paused, Ended }
 
-    private State _state = State.Preparing;
-    private State state {
+    private ReplayState _state = ReplayState.Preparing;
+    private ReplayState state {
         get {
             return _state;
         } set {
             _state = value;
 
             if (ButtonLabel != null) {
-                if (value == State.Preparing) {
+                if (value == ReplayState.Preparing) {
                     ButtonLabel.text = "Preparing";
-                } else if (value == State.Started) {
+                } else if (value == ReplayState.Started) {
                     ButtonLabel.text = "Pause";
-                } else if (value == State.Paused) {
+                } else if (value == ReplayState.Paused) {
                     ButtonLabel.text = "Continue";
-                } else if (value == State.Ended) {
+                } else if (value == ReplayState.Ended) {
                     ButtonLabel.text = "Replay Ended";
                 }
             }
@@ -57,8 +56,7 @@ public class ReplaySceneController : MonoBehaviour {
 
     public void SetPlayerPosition(int playerId, Vector3 pos) {
         characterObjs[playerId].transform.position = pos;
-        //Debug.Log("set player " + playerId.ToString() + " position to " + pos.ToString());
-    }
+   }
 
     public void IntantiateSpellWithTransform(SpellType spellType, Vector3 positon, Quaternion rotation) {
         GameObject obj;
@@ -80,16 +78,14 @@ public class ReplaySceneController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        path = Application.dataPath + "/Replays/";
-        GameReplay p = OpenReplay(path + "1.rep");
+        GameReplay p = GlobalState.instance.ReplayToLoad;
+
+        if (p == null) {
+            Debug.LogError("ReplayToLoad is empty");
+        }
+
         LoadReplay(p);
         StartReplay();
-    }
-
-    GameReplay OpenReplay(string filePath) {
-        IFormatter formatter = new BinaryFormatter();
-        Stream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-        return (GameReplay)formatter.Deserialize(stream);
     }
 
     void LoadReplay(GameReplay replay) {
@@ -101,7 +97,7 @@ public class ReplaySceneController : MonoBehaviour {
     }
 
     void StartReplay() {
-        state = State.Started;
+        state = ReplayState.Started;
     }
 
     void LoadCharacters(int numCharacters) {
@@ -114,24 +110,23 @@ public class ReplaySceneController : MonoBehaviour {
     }
 
     void FinishReplay() {
-        state = State.Ended;
-        // TODO
+        state = ReplayState.Ended;
     }
 
     public void TriggerPauseContinue() {
-        if(state == State.Started) {
+        if(state == ReplayState.Started) {
             Pause();
-        } else if (state == State.Paused) {
+        } else if (state == ReplayState.Paused) {
             Continue();
         }
     }
 
     public void Pause() {
-        state = State.Paused;
+        state = ReplayState.Paused;
     }
 
     public void Continue() {
-        state = State.Started;
+        state = ReplayState.Started;
     }
 
     // Update is called once per frame
@@ -141,7 +136,7 @@ public class ReplaySceneController : MonoBehaviour {
             TriggerPauseContinue();
         }
 
-        if (state == State.Started) {
+        if (state == ReplayState.Started) {
 
             if (replay.entries.Count == 0) {
                 FinishReplay();
