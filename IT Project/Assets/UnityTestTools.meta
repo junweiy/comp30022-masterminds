@@ -1,7 +1,11 @@
 fileFormatVersion: 2
 guid: 674463919617f4dd28bb5ef94ee621f8
 folderAsset: yes
+<<<<<<< HEAD
 timeCreated: 1475840495
+=======
+timeCreated: 1473588863
+>>>>>>> replay-gamestate
 licenseType: Free
 DefaultImporter:
   userData: 

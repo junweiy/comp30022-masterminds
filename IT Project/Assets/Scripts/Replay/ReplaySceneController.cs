@@ -36,7 +36,7 @@ public class ReplaySceneController : MonoBehaviour {
             }
         }
     }
-    
+
     GameObject[] characterObjs;
 
     private string path;
@@ -56,7 +56,15 @@ public class ReplaySceneController : MonoBehaviour {
 
     public void SetPlayerPosition(int playerId, Vector3 pos) {
         characterObjs[playerId].transform.position = pos;
-   }
+    }
+
+    public void SetPlayerRotation(int playerId, Quaternion rot) {
+        characterObjs[playerId].transform.rotation = rot;
+    }
+
+    public void SetPlayerScale(int playerId, Vector3 scale) {
+        characterObjs[playerId].transform.localScale = scale;
+    }
 
     public void IntantiateSpellWithTransform(SpellType spellType, Vector3 positon, Quaternion rotation) {
         GameObject obj;
