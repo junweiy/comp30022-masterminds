@@ -16,6 +16,8 @@ public class GameStateRecorder : MonoBehaviour {
     List<Character> characters = new List<Character>();
     private int numCharRecorded = 0;
     private Dictionary<GameObject, Vector3> lastPos = new Dictionary<GameObject, Vector3>();
+    private Dictionary<GameObject, Vector3> lastScale = new Dictionary<GameObject, Vector3>();
+    private Dictionary<GameObject, Quaternion> lastRot = new Dictionary<GameObject, Quaternion>();
 
     GameReplay replay;
 
@@ -63,14 +65,26 @@ public class GameStateRecorder : MonoBehaviour {
         recordsInThisFrame.Enqueue(new PutSpellRecord(s, transform));
 	}
 
-    void addPosRecords() {
+    void addTransformRecords() {
         int i = 0;
         foreach (var charObj in characterObjs) {
             if (charObj != null) {
                 var pos = charObj.transform.position;
+                var rot = charObj.transform.rotation;
+                var scl = charObj.transform.localScale;
                 if (!lastPos.ContainsKey(charObj) || lastPos[charObj] != pos) {
-                    recordsInThisFrame.Enqueue(new PositionRecord(i, pos));
+                    recordsInThisFrame.Enqueue(new CharacterPositionRecord(i, pos));
                     lastPos[charObj] = pos;
+                }
+
+                if (!lastRot.ContainsKey(charObj) || lastRot[charObj] != rot) {
+                    recordsInThisFrame.Enqueue(new CharacterRotationRecord(i, rot));
+                    lastRot[charObj] = rot;
+                }
+
+                if (!lastScale.ContainsKey(charObj) || lastScale[charObj] != scl) {
+                    recordsInThisFrame.Enqueue(new CharacterScaleRecord(i, scl));
+                    lastScale[charObj] = scl;
                 }
             }
             i += 1;
@@ -136,7 +150,7 @@ public class GameStateRecorder : MonoBehaviour {
         if (state == ReplayState.Started) {
 
             //addInstantiateRecords();
-            addPosRecords();
+            addTransformRecords();
             addHpRecords();
             //addDestroyRecords();
 
