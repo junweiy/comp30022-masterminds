@@ -31,8 +31,8 @@ public class RecordHandler : MonoBehaviour {
 
 	public void SetGround(float scale, float time) {
 		GameObject ground = GameObject.FindGameObjectWithTag ("Ground");
-		ground.transform.localScale.x = scale;
-		ground.transform.localScale.z = scale;
+		Vector3 tempScale = new Vector3 (scale, 1, scale);
+		ground.transform.localScale = tempScale;
 		ground.GetComponent<GroundController> ().timePassed = time;
     }
 
