@@ -23,7 +23,7 @@ public class GlobalState {
 		}
 		set {
 			if (_currentChar != null) {
-				Debug.LogWarning ("currentChar is overriden");
+				Debug.LogWarning ("currentChar is overritten");
 			}
 			_currentChar = value;
 		}
@@ -36,7 +36,7 @@ public class GlobalState {
 		}
 		set {
 			if (_gameController != null) {
-				Debug.LogWarning ("gameController is overriden");
+				Debug.LogWarning ("gameController is overritten");
 			}
 			_gameController = value;
 		}
@@ -105,5 +105,27 @@ public class GlobalState {
 		GlobalState.instance._profile = ProfileMessenger.GetProfileByEmail (email);
 		return true;
 	}
-		
+
+    private GameReplay replayToSave;
+    public GameReplay ReplayToSave {
+        get {
+            return replayToSave;
+        }
+        set {
+            replayToSave = value;
+        }
+    }
+
+
+    private GameReplay replayToLoad;
+    public GameReplay ReplayToLoad {
+        get {
+            return replayToLoad;
+        }
+        set {
+            replayToLoad = value;
+        }
+    }
+
+
 }

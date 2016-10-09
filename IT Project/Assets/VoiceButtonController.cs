@@ -24,7 +24,7 @@ public class VoiceButtonController : Photon.MonoBehaviour {
 		GameObject playerIcon = player.transform.GetChild (2).GetChild (1).gameObject;
 		playerIcon.SetActive(!playerIcon.GetActive());
     }
-
+    
 	public static GameObject FindMainPlayer() {
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Character");
 		foreach (GameObject player in players) {

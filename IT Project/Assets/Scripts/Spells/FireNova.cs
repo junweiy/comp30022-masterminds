@@ -12,7 +12,7 @@ public class FireNova : Spell {
 	// The range within which ememies will be affected
 	private const float RANGE = 60.0F;
 	// The time required for casting (unit in secs)
-	private const int CASTING_TIME = 5;
+	public const int CASTING_TIME = 5;
 	// The path of the prefab
 	private const string PREFAB_PATH = "Prefabs/FireNova";
 

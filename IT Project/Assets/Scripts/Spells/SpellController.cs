@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class SpellController : Photon.MonoBehaviour {
 	// The distance of spawned fireball from player
@@ -9,6 +10,8 @@ public class SpellController : Photon.MonoBehaviour {
 
 	FireBall fb;
 	FireNova fn;
+
+	public List<Action<Spell, Transform>> onCastSpellActions = new List<Action<Spell, Transform>>();
 
 	// the character model
 	public Character character;
@@ -76,17 +79,28 @@ public class SpellController : Photon.MonoBehaviour {
 		if (joyStickMovement != Vector3.zero) {
 			destinationAngle = Quaternion.LookRotation (joyStickMovement);
 			fb = PhotonNetwork.Instantiate ("Prefabs/Fireball", spawnPosition, destinationAngle, 0);
+			foreach (var a in onCastSpellActions) {
+				a (new FireBall (), fb.transform);
+			}
 			return fb.GetComponent<FireBallController> ();
 		}
-		return null;
 
+
+
+		return null;
 
 	}
 		
 
 	public FireNovaController CastFireNova() {
 		GameObject fn = PhotonNetwork.Instantiate ("Prefabs/FireNova", this.transform.position, this.transform.rotation, 0);
+
+		foreach (var a in onCastSpellActions) {
+			a (new FireNova (), fn.transform);
+		}
+
 		return fn.GetComponent<FireNovaController> ();
+
 	}
 		
     public void CastSpell(Spell spell)

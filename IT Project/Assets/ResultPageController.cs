@@ -25,7 +25,7 @@ public class ResultPageController : MonoBehaviour {
         }
         else
         {
-            result.GetComponent<Text>().text = "LOSE";
+            result.GetComponent<Text>().text = "DEFEAT";
         }
 
         // generate a panel to display details of result for each user
@@ -52,7 +52,6 @@ public class ResultPageController : MonoBehaviour {
 	}
 
 	public void saveReplay() {
-		// TODO
-		Debug.LogWarning ("Replay function not implemented yet");
+        ReplayIO.SaveReplayWithTimeAsFilename(GlobalState.instance.ReplayToSave);
 	}
 }
