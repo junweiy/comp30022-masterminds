@@ -10,21 +10,18 @@ using System.IO;
 public class GameStateRecorder : MonoBehaviour {
     private ReplayState state = ReplayState.Preparing;
 
-    private Dictionary<int, int> idMap = new Dictionary<int, int>();
-    List<GameObject> characterObjs = new List<GameObject>();
-    List<GameObject> spellObjs = new List<GameObject>();
-    List<Character> characters = new List<Character>();
-    private int numCharRecorded = 0;
-    private Dictionary<GameObject, Vector3> lastPos = new Dictionary<GameObject, Vector3>();
-    private Dictionary<GameObject, Vector3> lastScale = new Dictionary<GameObject, Vector3>();
-    private Dictionary<GameObject, Quaternion> lastRot = new Dictionary<GameObject, Quaternion>();
+    HashSet<int> charIdSet = new HashSet<int>();
+    Dictionary<int, Vector3> lastPos = new Dictionary<int, Vector3>();
+    Dictionary<int, Vector3> lastScale = new Dictionary<int, Vector3>();
+    Dictionary<int, Quaternion> lastRot = new Dictionary<int, Quaternion>();
+    Dictionary<int, int> lastHp = new Dictionary<int, int>();
 
     GameReplay replay;
 
     const int TARGET_FRAMERATE = 60;
 
     int frameCount = 0;
-    Queue<Record> recordsInThisFrame = new Queue<Record>();
+    Queue<Record> pending = new Queue<Record>();
 
 	// Use this for initialization
 	void Start () {
@@ -34,19 +31,12 @@ public class GameStateRecorder : MonoBehaviour {
     void StartRecording() {
         Debug.Log("Started Recording");
         replay = new GameReplay();
-        UpdateCharacterList();
+        FindAndSetupNewCharacter();
 
         replay.info = new ReplayInfo(
             getGameVersion(),
-            characters.Count,
             TARGET_FRAMERATE
         );
-
-        foreach (var charObj in characterObjs) {
-			charObj.GetComponent<SpellController> ().onCastSpellActions.Add(delegate(Spell s, Transform trans) {
-				AddPutSpellRecord(s, trans);
-			});
-        }
 
         replay.entries = new Queue<GameReplay.Entry>();
         frameCount = 0;
@@ -57,49 +47,18 @@ public class GameStateRecorder : MonoBehaviour {
         return "0.1";
     }
 
-    public int getPlayerIdFromObject(GameObject characterObj) {
-        return idMap[characterObj.GetInstanceID()];
-    }
-
 	public void AddPutSpellRecord(Spell s, Transform transform) {
         //recordsInThisFrame.Enqueue(new PutSpellRecord(s, transform));
 	}
 
     void addTransformRecords() {
-        int i = 0;
-        foreach (var charObj in characterObjs) {
-            if (charObj != null) {
-                var pos = charObj.transform.position;
-                var rot = charObj.transform.rotation;
-                var scl = charObj.transform.localScale;
-                if (!lastPos.ContainsKey(charObj) || lastPos[charObj] != pos) {
-                    recordsInThisFrame.Enqueue(new PositionRecord(i, pos));
-                    lastPos[charObj] = pos;
-                }
-
-                if (!lastRot.ContainsKey(charObj) || lastRot[charObj] != rot) {
-                    recordsInThisFrame.Enqueue(new RotationRecord(i, rot));
-                    lastRot[charObj] = rot;
-                }
-
-                if (!lastScale.ContainsKey(charObj) || lastScale[charObj] != scl) {
-                    recordsInThisFrame.Enqueue(new ScaleRecord(i, scl));
-                    lastScale[charObj] = scl;
-                }
-            }
-            i += 1;
-        }
+        StateReader.GetChangedTransFormRecordsWithTag(
+            "Character", lastPos, lastRot, lastScale
+        ).ForEach(pending.Enqueue);
     }
 
 	void addHpRecords() {
-		int i = 0;
-		foreach (var charObj in characterObjs) {
-			if (charObj != null) {
-                int hp = charObj.GetComponent<Character>().hp;
-                recordsInThisFrame.Enqueue(new PlayerHpRecord(hp, i));
-			}
-			i += 1;
-		}
+        StateReader.GetChangedHpRecords(lastHp).ForEach(pending.Enqueue);
 	}
 
     void addEntry(Record record) {
@@ -118,20 +77,22 @@ public class GameStateRecorder : MonoBehaviour {
 
     // Not an actual flush to disk, but could be changed to do so
     void FlushPendingRecodsToReplayObject() {
-        while (recordsInThisFrame.Count != 0) {
-            var record = recordsInThisFrame.Dequeue();
+        while (pending.Count != 0) {
+            var record = pending.Dequeue();
             addEntry(record);
         }
     }
 
-    void UpdateCharacterList() {
+    void FindAndSetupNewCharacter() {
         foreach (var charObj in GameObject.FindGameObjectsWithTag("Character")) {
             int objId = charObj.GetInstanceID();
-            if (!idMap.ContainsKey(objId)) {
-                idMap.Add(objId, numCharRecorded);
-                numCharRecorded += 1;
-                characterObjs.Add(charObj);
-                characters.Add(charObj.GetComponent<Character>());
+            if (!charIdSet.Contains(objId)) {
+                charIdSet.Add(objId);
+                charObj.GetComponent<SpellController>().onCastSpellActions.Add(
+                    delegate (Spell s, Transform trans) {
+                        AddPutSpellRecord(s, trans);
+                    }
+                );
             }
         }
     }
@@ -149,10 +110,9 @@ public class GameStateRecorder : MonoBehaviour {
 
         if (state == ReplayState.Started) {
 
-            //addInstantiateRecords();
+            FindAndSetupNewCharacter();
             addTransformRecords();
             addHpRecords();
-            //addDestroyRecords();
 
             if (GameController.CheckIfGameEnds()) {
                 FinishRecording();

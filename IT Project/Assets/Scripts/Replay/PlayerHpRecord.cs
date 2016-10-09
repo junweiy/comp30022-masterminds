@@ -11,7 +11,7 @@ public class PlayerHpRecord : Record {
         c.SetPlayerHp(id, hp);
     }
 
-    public PlayerHpRecord(int hp, int objId) {
+    public PlayerHpRecord(int objId, int hp) {
         this.hp = hp;
         this.id = objId;
     }

@@ -14,8 +14,8 @@ public class ScaleRecord : Record {
         c.SetScale(id, new Vector3(x, y, z));
     }
 
-    public ScaleRecord(int playerId, Vector3 scale) {
-        this.id = playerId;
+    public ScaleRecord(int objId, Vector3 scale) {
+        this.id = objId;
         this.x = scale.x;
         this.y = scale.y;
         this.z = scale.z;

@@ -6,27 +6,30 @@ using System;
 
 public class RecordHandler : MonoBehaviour {
 
-    Dictionary<int, GameObject> gameObjMap = new Dictionary<int, GameObject>();
+    public GameObject CharacterPrefab;
+    public GameObject FireballPrefab;
+    public GameObject FireNovaPrefab;
+
+    protected Dictionary<int, GameObject> gameObjMap = new Dictionary<int, GameObject>();
 
     public void SetCharId(int objId, int charId) {
-        var obj = gameObjMap[objId];
-        obj.GetComponent<Character>().charID = charId;
+        gameObjMap[objId].GetComponent<Character>().charID = charId;
     }
 
-    public void SetPlayerHp(object playerId, int hp) {
-        throw new NotImplementedException();
+    public void SetPlayerHp(int objId, int hp) {
+        gameObjMap[objId].GetComponent<Character>().hp = hp;
     }
 
     public void SetPosition(int objId, Vector3 position) {
-        throw new System.NotImplementedException();
+        gameObjMap[objId].transform.position = position;
     }
 
     public void SetRotation(int objId, Quaternion rotation) {
-        throw new System.NotImplementedException();
+        gameObjMap[objId].transform.rotation = rotation;
     }
 
     public void SetScale(int objId, Vector3 scale) {
-        throw new System.NotImplementedException();
+        gameObjMap[objId].transform.localScale = scale;
     }
 
 	public void SetGround(float scale, float time) {
@@ -42,6 +45,11 @@ public class RecordHandler : MonoBehaviour {
 
     public void ApplyRecord(Record record) {
         record.applyEffect(this);
+    }
+
+    public void AddCharacter(int recordObjId) {
+        var o = GameObject.Instantiate(CharacterPrefab);
+        gameObjMap[recordObjId] = o;
     }
 
 

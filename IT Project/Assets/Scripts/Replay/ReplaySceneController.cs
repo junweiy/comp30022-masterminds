@@ -3,15 +3,9 @@ using System.Collections.Generic;
 using Replay;
 using UnityEngine.UI;
 
-public class ReplaySceneController : MonoBehaviour {
-
-    public GameObject CharacterPrefab;
-    public GameObject FireballPrefab;
-    public GameObject FireNovaPrefab;
+public class ReplaySceneController : RecordHandler {
 
     public Text ButtonLabel;
-
-
     private ReplayState _state = ReplayState.Preparing;
     private ReplayState state {
         get {
@@ -33,34 +27,8 @@ public class ReplaySceneController : MonoBehaviour {
         }
     }
 
-    GameObject[] characterObjs;
-
-    private string path;
-
     GameReplay replay;
     int frameCount = 0;
-
-    public void SetPlayerHp(int playerId, int hp) {
-        characterObjs[playerId].GetComponent<CharacterController>().character.hp = hp;
-    }
-
-    // unused for now
-    public void SetSpellCast(int playerId, SpellType spellType) {
-        var spell = ReplayTypeConverter.GetSpellFromType(spellType);
-        characterObjs[playerId].GetComponent<SpellController>().CastSpell(spell);
-    }
-
-    public void SetPlayerPosition(int playerId, Vector3 pos) {
-        characterObjs[playerId].transform.position = pos;
-    }
-
-    public void SetPlayerRotation(int playerId, Quaternion rot) {
-        characterObjs[playerId].transform.rotation = rot;
-    }
-
-    public void SetPlayerScale(int playerId, Vector3 scale) {
-        characterObjs[playerId].transform.localScale = scale;
-    }
 
     public void IntantiateSpellWithTransform(SpellType spellType, Vector3 positon, Quaternion rotation) {
         GameObject obj;
@@ -96,7 +64,6 @@ public class ReplaySceneController : MonoBehaviour {
         this.replay = replay;
         var info = replay.info;
         Application.targetFrameRate = info.targetFrameRate;
-        LoadCharacters(info.numCharacters);
         frameCount = 0;
     }
 
@@ -104,14 +71,7 @@ public class ReplaySceneController : MonoBehaviour {
         state = ReplayState.Started;
     }
 
-    void LoadCharacters(int numCharacters) {
-        List<GameObject> chars = new List<GameObject>();
-        for (int i = 0; i < numCharacters; i++) {
-            var o = GameObject.Instantiate(CharacterPrefab);
-            chars.Add(o);
-        }
-        this.characterObjs = chars.ToArray();
-    }
+    
 
     void FinishReplay() {
         state = ReplayState.Ended;
@@ -150,7 +110,7 @@ public class ReplaySceneController : MonoBehaviour {
             var nextEntry = replay.entries.Peek();
             while (nextEntry.frameTime <= frameCount) {
                 replay.entries.Dequeue();
-                //nextEntry.record.applyEffect(this);
+                nextEntry.record.applyEffect(this);
                 if (replay.entries.Count == 0) {
                     FinishReplay();
                     return;

@@ -14,8 +14,8 @@ public class PositionRecord : Record {
         c.SetPosition(id, new Vector3(x, y, z));
     }
 
-    public PositionRecord(int playerId, Vector3 position) {
-        this.id = playerId;
+    public PositionRecord(int objId, Vector3 position) {
+        this.id = objId;
         this.x = position.x;
         this.y = position.y;
         this.z = position.z;
