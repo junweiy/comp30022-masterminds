@@ -29,8 +29,11 @@ public class RecordHandler : MonoBehaviour {
         throw new System.NotImplementedException();
     }
 
-    public void SetGround() {
-        throw new System.NotImplementedException();
+	public void SetGround(float scale, float time) {
+		GameObject ground = GameObject.FindGameObjectWithTag ("Ground");
+		ground.transform.localScale.x = scale;
+		ground.transform.localScale.z = scale;
+		ground.GetComponent<GroundController> ().timePassed = time;
     }
 
     public void InstantiateSpellWith(SpellType type, int casterId, Vector3 position, Quaternion rotation) {

@@ -9,6 +9,9 @@ TagManager:
   - ProfileHandler
   - SpellButton
   - Camera
+  - MainMenu
+  - LoginMenu
+  - Ground
   layers:
   - Default
   - TransparentFX
