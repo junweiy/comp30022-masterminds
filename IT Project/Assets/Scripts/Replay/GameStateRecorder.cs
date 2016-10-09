@@ -24,7 +24,7 @@ public class GameStateRecorder : MonoBehaviour {
     const int TARGET_FRAMERATE = 60;
 
     int frameCount = 0;
-    Queue<ReplayRecord> recordsInThisFrame = new Queue<ReplayRecord>();
+    Queue<Record> recordsInThisFrame = new Queue<Record>();
 
 	// Use this for initialization
 	void Start () {
@@ -62,7 +62,7 @@ public class GameStateRecorder : MonoBehaviour {
     }
 
 	public void AddPutSpellRecord(Spell s, Transform transform) {
-        recordsInThisFrame.Enqueue(new PutSpellRecord(s, transform));
+        //recordsInThisFrame.Enqueue(new PutSpellRecord(s, transform));
 	}
 
     void addTransformRecords() {
@@ -73,17 +73,17 @@ public class GameStateRecorder : MonoBehaviour {
                 var rot = charObj.transform.rotation;
                 var scl = charObj.transform.localScale;
                 if (!lastPos.ContainsKey(charObj) || lastPos[charObj] != pos) {
-                    recordsInThisFrame.Enqueue(new CharacterPositionRecord(i, pos));
+                    recordsInThisFrame.Enqueue(new PositionRecord(i, pos));
                     lastPos[charObj] = pos;
                 }
 
                 if (!lastRot.ContainsKey(charObj) || lastRot[charObj] != rot) {
-                    recordsInThisFrame.Enqueue(new CharacterRotationRecord(i, rot));
+                    recordsInThisFrame.Enqueue(new RotationRecord(i, rot));
                     lastRot[charObj] = rot;
                 }
 
                 if (!lastScale.ContainsKey(charObj) || lastScale[charObj] != scl) {
-                    recordsInThisFrame.Enqueue(new CharacterScaleRecord(i, scl));
+                    recordsInThisFrame.Enqueue(new ScaleRecord(i, scl));
                     lastScale[charObj] = scl;
                 }
             }
@@ -102,7 +102,7 @@ public class GameStateRecorder : MonoBehaviour {
 		}
 	}
 
-    void addEntry(ReplayRecord record) {
+    void addEntry(Record record) {
         var newEntry = new GameReplay.Entry();
         newEntry.frameTime = frameCount;
         newEntry.record = record;

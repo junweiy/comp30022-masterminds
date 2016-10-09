@@ -1,9 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
 using Replay;
 using UnityEngine.UI;
 
@@ -154,7 +150,7 @@ public class ReplaySceneController : MonoBehaviour {
             var nextEntry = replay.entries.Peek();
             while (nextEntry.frameTime <= frameCount) {
                 replay.entries.Dequeue();
-                nextEntry.record.applyEffect(this);
+                //nextEntry.record.applyEffect(this);
                 if (replay.entries.Count == 0) {
                     FinishReplay();
                     return;

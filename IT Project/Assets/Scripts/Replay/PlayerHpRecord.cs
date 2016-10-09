@@ -3,16 +3,16 @@ using System.Collections;
 using System;
 
 [System.Serializable]
-public class PlayerHpRecord : ReplayRecord {
-    public int playerId;
+public class PlayerHpRecord : Record {
+    public int id;
     public int hp;
 
-    public void applyEffect(ReplaySceneController c) {
-        c.SetPlayerHp(playerId, hp);
+    public void applyEffect(RecordHandler c) {
+        c.SetPlayerHp(id, hp);
     }
 
-    public PlayerHpRecord(int hp, int playerId) {
+    public PlayerHpRecord(int hp, int objId) {
         this.hp = hp;
-        this.playerId = playerId;
+        this.id = objId;
     }
 }
