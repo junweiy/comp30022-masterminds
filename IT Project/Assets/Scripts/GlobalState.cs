@@ -102,9 +102,8 @@ public class GlobalState {
 	}
 
 	public static bool loadProfileWithEmail(string email) {
-		GlobalState.instance._profile = ProfileMessenger.getProfileByEmail (email);
+		GlobalState.instance._profile = ProfileMessenger.GetProfileByEmail (email);
 		return true;
 	}
-
-
+		
 }

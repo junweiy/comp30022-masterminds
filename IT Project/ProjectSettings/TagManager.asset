@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - ShopWindow
   - Character
-  - HUDCanvas
-  - Fire
-  - SpellBar
+  - JoyStick
+  - ProfileHandler
+  - SpellButton
+  - Camera
   layers:
   - Default
   - TransparentFX

@@ -2,24 +2,19 @@
 using System.Collections;
 using UnityEngine.Networking;
 
-public class FireNovaController : NetworkBehaviour { 
+public class FireNovaController : Photon.MonoBehaviour { 
 	// The tag of the character
 	public const string CHARACTER_TAG = "Character";
+	// Character view ID
+	public int charID;
 	// The damage of spell at current level
-	[SyncVar]
 	public int damage;
 	// The range of spell at current level
-	[SyncVar]
 	public float range;
 	// The power of spell at current level
-	[SyncVar]
 	public float power;
 	// The casting time of spell at current level
-	[SyncVar]
 	public int castingTime;
-	// Character netID that cast the spell
-	[SyncVar]
-	public NetworkInstanceId chId;
 
 	public float timePassed;
 
@@ -38,25 +33,24 @@ public class FireNovaController : NetworkBehaviour {
 	}
 
 	public void castFireNova() {
-		Character originalCharacter = NetworkHelper.GetObjectFromNetIdValue<Character> (chId.Value, this.isServer);
 		// After casting time find all objects within casting range
 		Collider[] colliders = Physics.OverlapSphere(this.transform.position, range);
 		foreach (Collider hit in colliders) {
 			if (!hit.CompareTag(CHARACTER_TAG)) {
 				continue;
 			}
-			if (hit.gameObject.GetComponent<Character> ().Equals (originalCharacter)) {
+			Character anotherCharacter = hit.GetComponent<Character> (); 
+			if (anotherCharacter.charID.Equals(charID)) {
 				continue;
 			}
 			// all players around will be pushed with certain amount of power
 			Rigidbody rb = hit.GetComponent<Rigidbody> ();
 			if (rb != null) {
-				Character anotherCharacter = hit.GetComponent<Character> (); 
 				rb.AddExplosionForce (power, transform.position, range);
 				anotherCharacter.TakeDamage (damage);
 				if (anotherCharacter.isDead) {
 					anotherCharacter.numDeath++;
-					originalCharacter.numKilled++;
+					PhotonView.Find (charID).gameObject.GetComponent<Character> ().Killed();
 				}
 
 			}

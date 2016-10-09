@@ -18,10 +18,10 @@ public class ProfileController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		p = GlobalState.instance.profile;
-		displayInfo ();
+		DisplayInfo ();
 	}
 
-	void displayInfo() {
+	void DisplayInfo() {
 		userNameField.GetComponent<Text> ().text = p.userName;
 		userIdField.GetComponent<Text> ().text = p.uid.ToString();
 		gamePlayedField.GetComponent<Text> ().text = p.numGamesPlayed.ToString();
@@ -34,10 +34,10 @@ public class ProfileController : MonoBehaviour {
 
 	void Update() {
 		// TODO investigate on why this must be in update()
-		displayInfo ();
+		DisplayInfo ();
 	}
 
-	public void closePage() {
-		StateController.switchToMainMenu();
+	public void ClosePage() {
+		StateController.SwitchToMainMenu();
 	}
 }

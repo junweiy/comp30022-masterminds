@@ -26,8 +26,7 @@ GameObject:
   - 114: {fileID: 114000013730329770}
   - 199: {fileID: 199000013648290588}
   - 198: {fileID: 198000014293239662}
-  - 114: {fileID: 114000011477064954}
-  - 114: {fileID: 114000011238884480}
+  - 114: {fileID: 114000011900749550}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: Untagged
@@ -98,8 +97,8 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 4
-  m_CollisionDetection: 0
---- !u!114 &114000011238884480
+  m_CollisionDetection: 1
+--- !u!114 &114000011900749550
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -107,50 +106,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011636598674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 3
-  m_SendInterval: 0
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
---- !u!114 &114000011477064954
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011636598674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 153
-    i1: 58
-    i2: 204
-    i3: 14
-    i4: 110
-    i5: 109
-    i6: 124
-    i7: 100
-    i8: 40
-    i9: 116
-    i10: 141
-    i11: 202
-    i12: 218
-    i13: 251
-    i14: 161
-    i15: 219
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &114000013730329770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,12 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96f11c00d56ec34b9113b5a6c87e396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRotation: {x: 0, y: 0, z: 0, w: 0}
-  velocity: NaN
-  range: 0
+  charID: 0
   damage: 10
   distanceTravelled: 0
-  positionChange: {x: 0, y: 0, z: 0}
 --- !u!135 &135000011889760044
 SphereCollider:
   m_ObjectHideFlags: 1
