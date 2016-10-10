@@ -29,25 +29,7 @@ public class ReplaySceneController : RecordHandler {
 
     GameReplay replay;
     int frameCount = 0;
-
-    public void IntantiateSpellWithTransform(SpellType spellType, Vector3 positon, Quaternion rotation) {
-        GameObject obj;
-        if (spellType == SpellType.Fireball) {
-            obj = GameObject.Instantiate(FireballPrefab);
-            obj.GetComponent<FireBallController>().enableDamage = false;
-            obj.GetComponent<FireBallController>().charID = -1;
-        } else if (spellType == SpellType.FireNova) {
-            obj = GameObject.Instantiate(FireNovaPrefab);
-			obj.GetComponent<FireNovaController> ().castingTime = FireNova.CASTING_TIME;
-        } else {
-            return;
-        }
-
-        obj.transform.position = positon;
-        obj.transform.rotation = rotation;
-    }
     
-
     // Use this for initialization
     void Start () {
         GameReplay p = GlobalState.instance.ReplayToLoad;

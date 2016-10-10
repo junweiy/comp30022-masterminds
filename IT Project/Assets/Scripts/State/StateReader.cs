@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public static class StateReader {
 
@@ -76,6 +77,27 @@ public static class StateReader {
             }
         }
         return records;
+    }
+
+    public static List<Record> GetInstantiateCharRecords(
+        HashSet<GameObject> recordedChars, Action<GameObject> onAdded) {
+
+        var records = new List<Record>();
+        foreach (var obj in GameObject.FindGameObjectsWithTag("Character")) {
+            if (!recordedChars.Contains(obj)) {
+                recordedChars.Add(obj);
+                records.Add(new AddCharacterRecord(
+                    obj.GetInstanceID(), obj.GetComponent<Character>().charID
+                ));
+                onAdded(obj);
+            }
+        }
+        return records;
+
+    }
+
+    public static List<Record> GetInstantiateCharRecords(HashSet<GameObject> recordedChars) {
+        return GetInstantiateCharRecords(recordedChars, delegate (GameObject o) { });
     }
 
     // TODO -- for Junwei juju

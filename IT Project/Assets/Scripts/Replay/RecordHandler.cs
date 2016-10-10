@@ -12,10 +12,6 @@ public class RecordHandler : MonoBehaviour {
 
     protected Dictionary<int, GameObject> gameObjMap = new Dictionary<int, GameObject>();
 
-    public void SetCharId(int objId, int charId) {
-        gameObjMap[objId].GetComponent<Character>().charID = charId;
-    }
-
     public void SetPlayerHp(int objId, int hp) {
         gameObjMap[objId].GetComponent<Character>().hp = hp;
     }
@@ -40,15 +36,30 @@ public class RecordHandler : MonoBehaviour {
     }
 
     public void InstantiateSpellWith(SpellType type, int casterId, Vector3 position, Quaternion rotation) {
-        throw new System.NotImplementedException();
+        GameObject obj;
+        if (type == SpellType.Fireball) {
+            obj = GameObject.Instantiate(FireballPrefab);
+            obj.GetComponent<FireBallController>().enableDamage = false;
+            obj.GetComponent<FireBallController>().charID = casterId;
+        } else if (type == SpellType.FireNova) {
+            obj = GameObject.Instantiate(FireNovaPrefab);
+            obj.GetComponent<FireNovaController>().castingTime = FireNova.CASTING_TIME;
+            obj.GetComponent<FireNovaController>().charID = casterId;
+        } else {
+            return;
+        }
+
+        obj.transform.position = position;
+        obj.transform.rotation = rotation;
     }
 
     public void ApplyRecord(Record record) {
         record.applyEffect(this);
     }
 
-    public void AddCharacter(int recordObjId) {
+    public void InstantiateCharacterWith(int recordObjId, int charId) {
         var o = GameObject.Instantiate(CharacterPrefab);
+        o.GetComponent<Character>().charID = charId;
         gameObjMap[recordObjId] = o;
     }
 
