@@ -16,12 +16,15 @@ public class VoiceButtonController : Photon.MonoBehaviour {
 		bool isTransimitting = mainPlayer.GetComponent<PhotonVoiceRecorder> ().Transmit;
 		mainPlayer.GetComponent<PhotonVoiceRecorder> ().Transmit = !isTransimitting;
 	}
-		
-    void ToggleSpeakerIcon(GameObject mainPlayer)
-	{
-        speakerIcon.SetActive(mainPlayer.GetComponent<PhotonVoiceRecorder>().Transmit);
-    }
 
+	[PunRPC]
+    void ToggleSpeakerIcon(int charID)
+	{
+		GameObject player = PhotonView.Find (charID).gameObject;
+		GameObject playerIcon = player.transform.GetChild (2).GetChild (1).gameObject;
+		playerIcon.SetActive(!playerIcon.GetActive());
+    }
+    
 	public static GameObject FindMainPlayer() {
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Character");
 		foreach (GameObject player in players) {
@@ -42,6 +45,6 @@ public class VoiceButtonController : Photon.MonoBehaviour {
     {
 		Debug.Log ("Clicked");
 		ToggleRecording (mainPlayer);
-        ToggleSpeakerIcon(mainPlayer);
+		photonView.RPC ("ToggleSpeakerIcon", PhotonTargets.All, mainPlayer.GetComponent<Character> ().charID);
     }
 }

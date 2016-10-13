@@ -100,7 +100,7 @@ public class Character : Photon.MonoBehaviour {
 		return null;
 	}
 
-	void DisableUI() {
+	public static void DisableUI() {
 		GameObject.FindGameObjectWithTag ("JoyStick").SetActive (false);
 		GameObject.FindGameObjectWithTag ("SpellButton").SetActive (false);
 	}

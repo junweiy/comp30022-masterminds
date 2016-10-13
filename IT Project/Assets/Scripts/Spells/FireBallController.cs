@@ -17,8 +17,12 @@ public class FireBallController : Photon.MonoBehaviour {
 
 	public float distanceTravelled;
 
+    public bool enableDamage = true;
+
+
+
 	void Start() {
-		this.GetComponent<Rigidbody> ().velocity = VELOCITY * ( this.transform.rotation * new Vector3(0,0,1));
+		SetVelocity ();
 		distanceTravelled = 0;
 	}
 
@@ -29,19 +33,25 @@ public class FireBallController : Photon.MonoBehaviour {
 			Destroy (this.gameObject);
 		}
 	}
+
+	void SetVelocity() {
+		this.GetComponent<Rigidbody> ().velocity = VELOCITY * ( this.transform.rotation * new Vector3(0,0,1));
+	}
 		
 
 	/* The function detects if the fireball hits on any other player while flying. If it does, 
 	 * damage will be caused and the fireball will disappear.
 	 */ 
-	void OnCollisionEnter(Collision collision) {
+	public virtual void OnCollisionEnter(Collision collision) {
 		Character c;
 		GameObject gameObject = collision.gameObject;
 		if (gameObject.tag == CHARACTER_TAG) {
 			c = gameObject.GetComponent<Character> ();
 			if (!c.charID.Equals(charID)) {
 				Destroy (this.gameObject);
-				c.TakeDamage (damage);
+                if (enableDamage) {
+				    c.TakeDamage (damage);
+                }
 				if (c.isDead) {
 					c.numDeath++;
 					PhotonView.Find (charID).gameObject.GetComponent<Character> ().Killed();

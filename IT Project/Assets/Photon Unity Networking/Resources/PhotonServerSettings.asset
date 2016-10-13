@@ -41,4 +41,7 @@ MonoBehaviour:
   - ResetCountDown
   - UpdateProfileForWinner
   - ToggleSpeakerIcon
+  - Continue
+  - Pause
+  - PlayAnim
   DisableAutoOpenWizard: 1

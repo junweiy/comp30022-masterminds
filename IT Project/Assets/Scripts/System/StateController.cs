@@ -31,5 +31,9 @@ public static class StateController {
 	public static void SwitchToMatching() {
 		SceneManager.LoadScene ("scenes/Matching");
 	}
+
+    public static void SwitchToReplayScene() {
+        SceneManager.LoadScene("scenes/replayscene");
+    }
 		
 }

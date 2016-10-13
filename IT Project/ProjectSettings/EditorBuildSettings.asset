@@ -21,3 +21,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Room.unity
   - enabled: 0
     path: Assets/PUNVoice/TestVoice/TestVoice-Scene.unity
+  - enabled: 1
+    path: Assets/Scenes/ReplayScene.unity
