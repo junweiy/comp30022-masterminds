@@ -19,8 +19,10 @@ public class FireBallController : Photon.MonoBehaviour {
 
     public bool enableDamage = true;
 
+
+
 	void Start() {
-		this.GetComponent<Rigidbody> ().velocity = VELOCITY * ( this.transform.rotation * new Vector3(0,0,1));
+		SetVelocity ();
 		distanceTravelled = 0;
 	}
 
@@ -30,6 +32,10 @@ public class FireBallController : Photon.MonoBehaviour {
 		if (distanceTravelled >= RANGE) {
 			Destroy (this.gameObject);
 		}
+	}
+
+	void SetVelocity() {
+		this.GetComponent<Rigidbody> ().velocity = VELOCITY * ( this.transform.rotation * new Vector3(0,0,1));
 	}
 		
 

@@ -9,6 +9,8 @@ TagManager:
   - ProfileHandler
   - SpellButton
   - Camera
+  - FireBall
+  - FireNova
   layers:
   - Default
   - TransparentFX
