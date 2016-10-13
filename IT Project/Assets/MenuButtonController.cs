@@ -36,6 +36,8 @@ public class MenuButtonController : Photon.MonoBehaviour {
 	void Pause() {
 		joyStick.SetActive(false);
 		spellButton.SetActive (false);
+		pauseButton.GetComponentInChildren<Text>().text = "Continue";
+		pauseMessage.SetActive(true);
 		Time.timeScale = 0;
 	}
 
@@ -43,6 +45,8 @@ public class MenuButtonController : Photon.MonoBehaviour {
 	void Continue() {
 		joyStick.SetActive(true);
 		spellButton.SetActive (true);
+		pauseButton.GetComponentInChildren<Text>().text = "Pause";
+		pauseMessage.SetActive(false);
 		Time.timeScale = 1;
 	}
 
@@ -51,12 +55,8 @@ public class MenuButtonController : Photon.MonoBehaviour {
 		
 		if (Time.timeScale > 0) {
 			photonView.RPC ("Pause", PhotonTargets.All);
-            pauseButton.GetComponentInChildren<Text>().text = "Continue";
-            pauseMessage.SetActive(true);
 		} else {
 			photonView.RPC ("Continue", PhotonTargets.All);
-            pauseButton.GetComponentInChildren<Text>().text = "Pause";
-            pauseMessage.SetActive(false);
 		}
 	}
 
