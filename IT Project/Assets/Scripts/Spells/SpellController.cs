@@ -72,10 +72,12 @@ public class SpellController : Photon.MonoBehaviour {
 
 
 	public FireBallController CastFireBall () {
+
 		GameObject fb;
 		Quaternion destinationAngle;
 		Vector3 joyStickMovement = GameObject.FindGameObjectWithTag ("JoyStick").GetComponent<VirtualJoyStick> ().GetStickPosition();
 		Vector3 spawnPosition = this.transform.position + joyStickMovement * FIREBALL_SPAWN_DISTANCE;
+
 		if (joyStickMovement != Vector3.zero) {
 			destinationAngle = Quaternion.LookRotation (joyStickMovement);
 			fb = PhotonNetwork.Instantiate ("Prefabs/Fireball", spawnPosition, destinationAngle, 0);
@@ -93,6 +95,7 @@ public class SpellController : Photon.MonoBehaviour {
 		
 
 	public FireNovaController CastFireNova() {
+
 		GameObject fn = PhotonNetwork.Instantiate ("Prefabs/FireNova", this.transform.position, this.transform.rotation, 0);
 
 		foreach (var a in onCastSpellActions) {
@@ -105,6 +108,8 @@ public class SpellController : Photon.MonoBehaviour {
 		
     public void CastSpell(Spell spell)
     {
+		photonView.RPC ("PlayAnim", PhotonTargets.All, "Move|Cast");
+
         if (spell is FireBall)
         {
             FireBallController fbc = CastFireBall();

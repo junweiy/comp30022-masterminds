@@ -43,4 +43,5 @@ MonoBehaviour:
   - ToggleSpeakerIcon
   - Continue
   - Pause
+  - PlayAnim
   DisableAutoOpenWizard: 1
