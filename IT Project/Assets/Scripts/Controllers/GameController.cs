@@ -91,8 +91,13 @@ public class GameController : Photon.PunBehaviour {
 	}
 
 
-
-
+	public static Character FindMainCharacter() {
+		GameObject mainPlayer = VoiceButtonController.FindMainPlayer ();
+		if (mainPlayer != null) {
+			return mainPlayer.GetComponent<Character> ();
+		}
+		return null;
+	}
 
 
 }

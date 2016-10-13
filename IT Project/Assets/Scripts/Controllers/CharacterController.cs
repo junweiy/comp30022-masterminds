@@ -44,8 +44,12 @@ public class CharacterController : Photon.MonoBehaviour {
 		}
 
 		// Detect user input of movement
-
-		Vector3 joyStickMovement = GameObject.FindGameObjectWithTag ("JoyStick").GetComponent<VirtualJoyStick> ().GetStickPosition();
+		GameObject joyStick = GameObject.FindGameObjectWithTag ("JoyStick");
+		if (joyStick == null) {
+			return;
+		}
+		VirtualJoyStick vjs = joyStick.GetComponent<VirtualJoyStick> ();
+		Vector3 joyStickMovement = vjs.GetStickPosition();
 		if (joyStickMovement != Vector3.zero) {
 			rb.AddForce (joyStickMovement * VELOCITY, ForceMode.Acceleration);
 		}
