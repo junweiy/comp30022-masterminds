@@ -62,11 +62,28 @@ public class CharacterController : Photon.MonoBehaviour {
 			Vector3 newDir = Vector3.RotateTowards (transform.forward, targetDir, step, 0.0F);
 			lastRotation = Quaternion.LookRotation (newDir);
 			transform.rotation = lastRotation;
+
+			photonView.RPC ("PlayAnim", PhotonTargets.All, "Move|Move");
+
 		} else {
 			transform.rotation = lastRotation;
+			photonView.RPC ("PlayAnim", PhotonTargets.All, "Move|Idle");
+
 		}
 
-	}	
+	}
+
+	[PunRPC]
+	void PlayAnim(string name) {
+		Animation anim = transform.GetChild(3).GetComponent<Animation>();
+		if (anim.IsPlaying ("Move|Cast")) {
+			return;
+		}
+		anim.Play (name);
+	}
+
+
+
 
 
 }
