@@ -11,6 +11,8 @@ public class GroundController : MonoBehaviour {
 	public float sizeShrunkPerTime;
 	// The initial scale
 	private Vector3 initialScale;
+    // The MiniMapGround
+    public GameObject miniMapGround;
 
 	void Start () {
 		StartCoroutine (Scale ());
@@ -26,7 +28,8 @@ public class GroundController : MonoBehaviour {
 			tempSize.y = transform.localScale.y;
 			tempSize.z = transform.localScale.z - sizeShrunkPerTime;
 			transform.localScale = tempSize;
-		}
+            miniMapGround.transform.localScale = tempSize;
+        }
 
 
 	}
