@@ -13,6 +13,8 @@ public class GroundController : MonoBehaviour {
 	private Vector3 initialScale;
 	// Time passed
 	private float timePassed;
+    // MiniMap Ground
+    public GameObject miniMap;
 
 	void Start () {
 		timePassed = 0;
@@ -28,6 +30,7 @@ public class GroundController : MonoBehaviour {
 				tempSize.y = transform.localScale.y;
 				tempSize.z = transform.localScale.z - sizeShrunkPerTime;
 				transform.localScale = tempSize;
+                miniMap.transform.localScale = tempSize;
 			}
 		}
 	}
