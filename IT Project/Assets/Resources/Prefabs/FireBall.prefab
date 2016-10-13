@@ -29,7 +29,7 @@ GameObject:
   - 114: {fileID: 114000011900749550}
   m_Layer: 0
   m_Name: FireBall
-  m_TagString: Spell
+  m_TagString: FireBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,6 +137,7 @@ MonoBehaviour:
   charID: 0
   damage: 10
   distanceTravelled: 0
+  enableDamage: 1
 --- !u!135 &135000011889760044
 SphereCollider:
   m_ObjectHideFlags: 1

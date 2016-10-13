@@ -31,7 +31,6 @@ public class ReplayCameraControl : MonoBehaviour {
             );
 
             if (lastZoomDist != null) {
-
                 this.GetComponent<Camera>().fieldOfView -= (dist - (float)lastZoomDist) * ZoomSpeed;
             }
 

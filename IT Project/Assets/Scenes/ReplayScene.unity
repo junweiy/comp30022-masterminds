@@ -661,7 +661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0f8d24904cf5747b4349cd265c9988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SlideSpeed: 5
+  SlideSpeed: 2
   ZoomSpeed: 5
 --- !u!4 &504263129
 Transform:
