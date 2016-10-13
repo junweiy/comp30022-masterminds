@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MenuButtonController : Photon.MonoBehaviour {
 
@@ -10,6 +12,7 @@ public class MenuButtonController : Photon.MonoBehaviour {
     public GameObject mainMenuButton;
 	public GameObject joyStick;
 	public GameObject spellButton;
+    public GameObject pauseMessage;
 
 	public void MenuButtonOnClick()
     {
@@ -48,8 +51,12 @@ public class MenuButtonController : Photon.MonoBehaviour {
 		
 		if (Time.timeScale > 0) {
 			photonView.RPC ("Pause", PhotonTargets.All);
+            pauseButton.GetComponentInChildren<Text>().text = "Continue";
+            pauseMessage.SetActive(true);
 		} else {
 			photonView.RPC ("Continue", PhotonTargets.All);
+            pauseButton.GetComponentInChildren<Text>().text = "Pause";
+            pauseMessage.SetActive(false);
 		}
 	}
 
