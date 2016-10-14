@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ProfileMessenger {
+public static class ProfileMessenger {
 	public static string updateProfileUrl = "http://115.146.95.82/masterminds/profile/update.py";
 	public static string getProfileUrl = "http://115.146.95.82/masterminds/profile/getProfile.py";
 	public static string newUserUrl = "http://115.146.95.82/masterminds/profile/newUser.py";

@@ -20,22 +20,22 @@ public class StateRecorder : MonoBehaviour {
         pending.Enqueue(new PutSpellRecord(s, transform, casterId));
     }
 
-    protected void addRecords(List<Record> records) {
+    protected void enqueueRecords(List<Record> records) {
         records.ForEach(pending.Enqueue);
     }
 
     protected void addTransformRecords() {
-        addRecords(StateReader.GetChangedTransFormRecordsWithTag(
+        enqueueRecords(StateReader.GetChangedTransFormRecordsWithTag(
             "Character", lastPos, lastRot, lastScale
         ));
     }
 
     protected void addHpRecords() {
-        addRecords(StateReader.GetChangedHpRecords(lastHp));
+        enqueueRecords(StateReader.GetChangedHpRecords(lastHp));
     }
 
     protected void addInstantiateCharRecords() {
-        addRecords(StateReader.GetInstantiateCharRecords(recordedChars, setupNewCharacter));
+        enqueueRecords(StateReader.GetInstantiateCharRecords(recordedChars, setupNewCharacter));
     }
 
     void setupNewCharacter(GameObject character) {

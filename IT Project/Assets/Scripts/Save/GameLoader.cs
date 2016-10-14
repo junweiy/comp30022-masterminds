@@ -1,15 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameLoader : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+public class GameLoader : RecordHandler {
+    public void Load(GameSave save) {
+        foreach(var record in save.Records) {
+            record.applyEffect(this);
+        }
+    }
 }
