@@ -35,5 +35,10 @@ public static class StateController {
     public static void SwitchToReplayScene() {
         SceneManager.LoadScene("scenes/replayscene");
     }
+
+    public static void SwitchToReplaySelection()
+    {
+        SceneManager.LoadScene("scenes/ReplaySelection");
+    }
 		
 }
