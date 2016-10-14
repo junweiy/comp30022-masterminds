@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 
+[Serializable]
 public class AddCharacterRecord : Record {
 
     public int ObjId;

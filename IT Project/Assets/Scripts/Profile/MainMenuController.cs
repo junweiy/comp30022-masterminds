@@ -93,9 +93,9 @@ public class MainMenuController : MonoBehaviour {
 		StateController.switchToProfile ();
 	}
 
-    //public void gotoReplay() {
-    //    StateController.SwitchToReplay();
-    //}
+    public void gotoreplay() {
+        StateController.SwitchToReplayScene();
+    }
 
 
     public void gotoSingleModePage() {
