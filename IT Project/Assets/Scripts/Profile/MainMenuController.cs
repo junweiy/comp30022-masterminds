@@ -94,7 +94,7 @@ public class MainMenuController : MonoBehaviour {
 	}
 
     public void gotoreplay() {
-        StateController.SwitchToReplayScene();
+        StateController.SwitchToReplaySelection();
     }
 
 
