@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Runtime.Serialization;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class GameSaver : StateRecorder {
 
@@ -7,6 +10,20 @@ public class GameSaver : StateRecorder {
         addRecords();
         SaveInfo info = new SaveInfo();
         GameSave save = new GameSave(pending, info);
-        SaveFileMessenger.UploadSaveFile(save);
+        //SaveFileMessenger.UploadSaveFile(save);
+        CreateFile(save);
+    }
+
+    public void CreateFile(GameSave save) {
+        string filePath = Application.dataPath + "/test.sav";
+        IFormatter formatter = new BinaryFormatter();
+        Stream stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
+        formatter.Serialize(stream, save);
+    }
+
+    public void Update() {
+        if (Input.GetKeyDown(KeyCode.O)) {
+            Save();
+        }
     }
 }
