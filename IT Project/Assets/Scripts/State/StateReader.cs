@@ -103,7 +103,7 @@ public static class StateReader {
     public static GroundRecord GetGroundRecord() {
 		GameObject ground = GameObject.FindGameObjectWithTag ("Ground");
 		GroundController gc = ground.GetComponent<GroundController> ();
-		return new GroundController (ground.transform.localScale, gc.timePassed);
+		return new GroundRecord (ground.transform.localScale, gc.timePassed);
     }
 
 
