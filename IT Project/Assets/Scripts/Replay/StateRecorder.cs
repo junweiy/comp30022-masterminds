@@ -46,6 +46,8 @@ public class StateRecorder : MonoBehaviour {
         );
     }
 
+
+
     // Update is called once per frame
     protected void addRecords() {
             addInstantiateCharRecords();

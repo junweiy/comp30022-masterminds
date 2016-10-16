@@ -100,9 +100,10 @@ public static class StateReader {
         return GetInstantiateCharRecords(recordedChars, delegate (GameObject o) { });
     }
 
-    // TODO -- for Junwei juju
     public static GroundRecord GetGroundRecord() {
-        throw new System.NotImplementedException();
+		GameObject ground = GameObject.FindGameObjectWithTag ("Ground");
+		GroundController gc = ground.GetComponent<GroundController> ();
+		return new GroundController (ground.transform.localScale, gc.timePassed);
     }
 
 
