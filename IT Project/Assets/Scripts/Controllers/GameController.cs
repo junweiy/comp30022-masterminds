@@ -8,6 +8,8 @@ public class GameController : Photon.PunBehaviour {
 	public const int RESULT_SCENE_NUMBER = 3;
 
 	public static bool CheckIfGameEnds() {
+		GameObject recorder = GameObject.FindGameObjectWithTag ("Recorder");
+		GameStateRecorder gsr = recorder.GetComponent<GameStateRecorder> ();
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Character");
 		int numAlive = 0;
 		foreach (GameObject player in players) {
@@ -15,7 +17,12 @@ public class GameController : Photon.PunBehaviour {
 				numAlive++;
 			}
 		}
-		return numAlive == 1;
+		if (numAlive == 1) {
+			gsr.FinishRecording ();
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public static Vector3 GetNextSpawnPoint(int index) {

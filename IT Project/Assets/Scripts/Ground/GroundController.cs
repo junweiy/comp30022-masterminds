@@ -11,14 +11,17 @@ public class GroundController : MonoBehaviour {
 	public float sizeShrunkPerTime;
 	// Time passed since last shrink
 	public float timePassed;
+	// Initial scale
+	public float initialScale;
 
 	void Start () {
+		initialScale = transform.localScale.x;
 		timePassed = 0;
 	}
 
 	void Update() {
 		timePassed += Time.deltaTime;
-		if (timePassed >= secondsBetweenShrinking && transform.localScale.x > minScalableSizeRatio) {
+		if (timePassed >= secondsBetweenShrinking && transform.localScale.x > initialScale * minScalableSizeRatio) {
 			timePassed -= secondsBetweenShrinking;
 			Scale ();
 		}

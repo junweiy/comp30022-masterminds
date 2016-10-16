@@ -10,6 +10,8 @@ using System.IO;
 public class GameStateRecorder : StateRecorder {
     private ReplayState state = ReplayState.Preparing;
 
+	bool started;
+
     GameReplay replay;
 
     const int TARGET_FRAMERATE = 60;
@@ -19,10 +21,13 @@ public class GameStateRecorder : StateRecorder {
 	// Use this for initialization
 	void Start () {
         Application.targetFrameRate = TARGET_FRAMERATE;
+		started = false;
+		StartRecording ();
 	}
 
     void StartRecording() {
         Debug.Log("Started Recording");
+		started = true;
         replay = new GameReplay();
 
         replay.info = new ReplayInfo(
@@ -42,11 +47,15 @@ public class GameStateRecorder : StateRecorder {
         replay.entries.Enqueue(newEntry);
     }
 
-    void FinishRecording() {
+    public void FinishRecording() {
+		if (!started) {
+			return;
+		}
         Debug.Log("Finished Recording");
         state = ReplayState.Ended;
         FlushPendingRecodsToReplayObject();
         GlobalState.instance.ReplayToSave = replay;
+		started = false;
     }
 
     // Not an actual flush to disk, but could be changed to do so
@@ -69,9 +78,7 @@ public class GameStateRecorder : StateRecorder {
         if (state == ReplayState.Started) {
             addRecords();
 
-            if (GameController.CheckIfGameEnds()) {
-                FinishRecording();
-            }
+
 
             FlushPendingRecodsToReplayObject();
             frameCount += 1;

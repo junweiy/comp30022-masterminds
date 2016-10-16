@@ -12,6 +12,8 @@ TagManager:
   - MainMenu
   - LoginMenu
   - Ground
+  - Spell
+  - Recorder
   layers:
   - Default
   - TransparentFX
