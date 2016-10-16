@@ -13,6 +13,7 @@ public class Character : Photon.MonoBehaviour {
     public const int MAXIMUM_NUMBER_OF_ITEM = 6;
 
 	public int charID;
+	public string userName;
 
 	public int hp;
 	private int maxHp { get; set; }
@@ -30,6 +31,9 @@ public class Character : Photon.MonoBehaviour {
     {
 		this.healthBarUI = this.GetComponent<HealthBarUI> ();
 		charID = photonView.viewID;
+		if (photonView.isMine) {
+			userName = GameObject.FindGameObjectWithTag ("ProfileHandler").GetComponent<ProfileHandler> ().userName;
+		}
         maxHp = 100;
         hp = 100;
 		numDeath = 0;
