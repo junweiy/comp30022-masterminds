@@ -38,6 +38,10 @@ public class StateRecorder : MonoBehaviour {
         enqueueRecords(StateReader.GetInstantiateCharRecords(recordedChars, setupNewCharacter));
     }
 
+	protected void addGroundrecord() {
+		pending.Enqueue (StateReader.GetGroundRecord ());
+	}
+
     void setupNewCharacter(GameObject character) {
         character.GetComponent<SpellController>().onCastSpellActions.Add(
             delegate (Spell s, Transform trans, int casterId) {
@@ -53,6 +57,7 @@ public class StateRecorder : MonoBehaviour {
             addInstantiateCharRecords();
             addTransformRecords();
             addHpRecords();
+			addGroundrecord ();
     }
 
 

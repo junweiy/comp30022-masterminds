@@ -628,6 +628,7 @@ MonoBehaviour:
   minScalableSizeRatio: 0.2
   sizeShrunkPerTime: 10
   timePassed: 0
+  initialScale: 0
 --- !u!1 &968044475
 GameObject:
   m_ObjectHideFlags: 0

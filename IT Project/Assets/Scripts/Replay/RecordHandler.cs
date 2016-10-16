@@ -57,9 +57,10 @@ public class RecordHandler : MonoBehaviour {
         record.applyEffect(this);
     }
 
-    public void InstantiateCharacterWith(int recordObjId, int charId) {
+    public void InstantiateCharacterWith(int recordObjId, int charId, string userName ) {
         var o = GameObject.Instantiate(CharacterPrefab);
         o.GetComponent<Character>().charID = charId;
+		o.GetComponent<Character> ().userName = userName;
         gameObjMap[recordObjId] = o;
     }
 

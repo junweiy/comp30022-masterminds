@@ -87,7 +87,7 @@ public static class StateReader {
             if (!recordedChars.Contains(obj)) {
                 recordedChars.Add(obj);
                 records.Add(new AddCharacterRecord(
-                    obj.GetInstanceID(), obj.GetComponent<Character>().charID
+					obj.GetInstanceID(), obj.GetComponent<Character>().charID, obj.GetComponent<Character>().userName
                 ));
                 onAdded(obj);
             }
@@ -105,7 +105,6 @@ public static class StateReader {
 		GroundController gc = ground.GetComponent<GroundController> ();
 		return new GroundRecord (ground.transform.localScale.x, gc.timePassed);
     }
-
 
     
 }
