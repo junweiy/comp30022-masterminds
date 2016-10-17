@@ -71,10 +71,12 @@ public class ReplaySceneController : RecordHandler {
 
     public void Pause() {
         state = ReplayState.Paused;
+        Time.timeScale = 0;
     }
 
     public void Continue() {
         state = ReplayState.Started;
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
