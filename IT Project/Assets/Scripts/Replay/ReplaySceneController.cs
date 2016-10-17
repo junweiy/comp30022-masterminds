@@ -53,7 +53,9 @@ public class ReplaySceneController : RecordHandler {
         state = ReplayState.Started;
     }
 
-    
+    public void Exit() {
+        StateController.SwitchToReplaySelection();
+    }
 
     void FinishReplay() {
         state = ReplayState.Ended;

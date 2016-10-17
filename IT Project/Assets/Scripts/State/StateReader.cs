@@ -100,10 +100,18 @@ public static class StateReader {
         return GetInstantiateCharRecords(recordedChars, delegate (GameObject o) { });
     }
 
-    public static GroundRecord GetGroundRecord() {
-		GameObject ground = GameObject.FindGameObjectWithTag ("Ground");
-		GroundController gc = ground.GetComponent<GroundController> ();
-		return new GroundRecord (ground.transform.localScale.x, gc.timePassed);
+    public static GroundRecord GetGroundRecord(float lastGroundSize) {
+        GameObject ground = GameObject.FindGameObjectWithTag("Ground");
+        GroundController gc = ground.GetComponent<GroundController>();
+        float scale = ground.transform.localScale.x;
+        if (scale != lastGroundSize) {
+            if (scale != 100f) {
+                Debug.Log("Ground Scale: " + ground.transform.localScale.x);
+            }
+            return new GroundRecord(ground.transform.localScale.x, gc.timePassed);
+        } else {
+            return null;
+        }
     }
 
     

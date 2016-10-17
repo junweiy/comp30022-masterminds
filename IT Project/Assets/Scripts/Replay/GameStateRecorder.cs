@@ -77,9 +77,6 @@ public class GameStateRecorder : StateRecorder {
 
         if (state == ReplayState.Started) {
             addRecords();
-
-
-
             FlushPendingRecodsToReplayObject();
             frameCount += 1;
         }

@@ -9,6 +9,7 @@ public class StateRecorder : MonoBehaviour {
     Dictionary<int, Vector3> lastScale = new Dictionary<int, Vector3>();
     Dictionary<int, Quaternion> lastRot = new Dictionary<int, Quaternion>();
     Dictionary<int, int> lastHp = new Dictionary<int, int>();
+    float lastGroundSize = -1;
 
     protected Queue<Record> pending = new Queue<Record>();
 
@@ -39,7 +40,10 @@ public class StateRecorder : MonoBehaviour {
     }
 
 	protected void addGroundrecord() {
-		pending.Enqueue (StateReader.GetGroundRecord ());
+        Record rec = StateReader.GetGroundRecord(lastGroundSize);
+        if (rec != null) {
+            pending.Enqueue(rec);
+        } 
 	}
 
     void setupNewCharacter(GameObject character) {
@@ -49,8 +53,6 @@ public class StateRecorder : MonoBehaviour {
             }
         );
     }
-
-
 
     // Update is called once per frame
     protected void addRecords() {
