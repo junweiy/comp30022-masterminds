@@ -69,6 +69,10 @@ public class GameStateRecorder : StateRecorder {
 
     // Update is called once per frame
     void Update() {
+		GameObject mainChar = GameObject.FindGameObjectWithTag ("Character");
+		if (mainChar != null) {
+			Debug.Log (mainChar.GetComponent<Character> ().hp);
+		}
         if (Input.GetKeyDown(KeyCode.S)) {
             StartRecording();
         } else if (Input.GetKeyDown(KeyCode.E)) {

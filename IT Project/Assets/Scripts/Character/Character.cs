@@ -26,7 +26,7 @@ public class Character : Photon.MonoBehaviour {
 	public float range { get; set; }
 
 	private HealthBarUI healthBarUI;
-    
+
     void Start()
     {
 		this.healthBarUI = this.GetComponent<HealthBarUI> ();
