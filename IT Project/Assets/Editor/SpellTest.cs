@@ -3,28 +3,28 @@ using UnityEditor;
 using NUnit.Framework;
 using System;
 
-// The test will test the behaviour of fire ball and fire nova spells
 public class SpellTest {
-	FireBall fb;
-	FireNova fn;
-	Character character;
-	GameObject characterObject;
-	Transform t;
-	Vector3 des;
-
+	
+	private const float COOLDOWN = 5;
+	private const float DAMAGE = 10;
 
 
 	[SetUp]
 	public void Start() {
-		fb = new FireBall ();
-		fn = new FireNova ();
-		character = new Character ();
-		characterObject = new GameObject ();
-		t = characterObject.transform;
-		des = new Vector3 (0, 0, 0);
+		
 	}
 
+	[Test]
+	public void InitializeSpell(){
+		Spell s = new Spell (COOLDOWN, DAMAGE);
+		Assert.AreEqual (s.currentCooldown, COOLDOWN);
+		Assert.AreEqual (s.cooldown, COOLDOWN);
 
+		Spell s2 = new Spell ();
+		Assert.AreEqual (s.currentCooldown, 0);
+		Assert.AreEqual (s.cooldown, 0);
+		Assert.AreEqual (s.damage, 0);
+	}
 
 
 
