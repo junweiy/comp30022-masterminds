@@ -6,7 +6,13 @@ using UnityEngine.UI;
 public class ReplaySceneController : RecordHandler {
 
     public Text ButtonLabel;
+    public GameObject pauseButton;
+    public GameObject endMessage;
+    //public Slider speedSlider;
+    //public Text sliderText;
+    //private decimal replaySpeed;
     private ReplayState _state = ReplayState.Preparing;
+
     private ReplayState state {
         get {
             return _state;
@@ -58,6 +64,7 @@ public class ReplaySceneController : RecordHandler {
     }
 
     void FinishReplay() {
+        endMessage.SetActive(true);
         state = ReplayState.Ended;
     }
 
@@ -71,11 +78,13 @@ public class ReplaySceneController : RecordHandler {
 
     public void Pause() {
         state = ReplayState.Paused;
+        pauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Continue");
         Time.timeScale = 0;
     }
 
     public void Continue() {
         state = ReplayState.Started;
+        pauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Pause");
         Time.timeScale = 1;
     }
 
@@ -92,6 +101,10 @@ public class ReplaySceneController : RecordHandler {
                 FinishReplay();
                 return;
             }
+
+            //replaySpeed = (decimal)speedSlider.value;
+            //Time.timeScale = (float)System.Decimal.Round(replaySpeed, 1);
+            //sliderText.text = Time.timeScale.ToString("0.0");
 
             var nextEntry = replay.entries.Peek();
             while (nextEntry.frameTime <= frameCount) {

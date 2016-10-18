@@ -15,8 +15,11 @@ public class GameSaver : StateRecorder {
     }
 
     public void CreateFile(GameSave save) {
-		string saveFilePath = Application.dataPath + "/SaveFiles/";
-		Directory.CreateDirectory (saveFilePath);
+		string saveFilePath = Application.persistentDataPath + "/SaveFiles/";
+        if (!Directory.Exists(saveFilePath))
+        {
+            Directory.CreateDirectory(saveFilePath);
+        }
         string filePath = saveFilePath + "/test.sav";
         IFormatter formatter = new BinaryFormatter();
         Stream stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
