@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GroundController : MonoBehaviour {
+public class GroundController : Photon.MonoBehaviour {
 
 	// Seconds between every shrink
 	public float secondsBetweenShrinking;
@@ -27,6 +27,23 @@ public class GroundController : MonoBehaviour {
 		}
 	}
 
+	public void SetTimePassedForAll(float timePassed) {
+		this.photonView.RPC ("SetTimePassedRPC", PhotonTargets.All, timePassed); 
+	}
+
+	[PunRPC]
+	public void SetTimePassedRPC(float timePassed) {
+		this.timePassed = timePassed;
+	}
+
+	public void SetScaleForAll(float scale) {
+		this.photonView.RPC ("SetScaleRPC", PhotonTargets.All, scale); 
+	}
+
+	[PunRPC]
+	public void SetScaleRPC(float scale) {
+		this.transform.localScale = new Vector3(scale, 1, scale);
+	}
 
 	void Scale() {
 		Vector3 tempSize = transform.localScale;

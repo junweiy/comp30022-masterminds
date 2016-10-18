@@ -7,6 +7,8 @@ public class GameController : Photon.PunBehaviour {
 	public const int GAMEPLAY_SCENE_NUMBER = 2;
 	public const int RESULT_SCENE_NUMBER = 3;
 
+	string x;
+
 	public static bool CheckIfGameEnds() {
 		GameObject recorder = GameObject.FindGameObjectWithTag ("Recorder");
 		GameStateRecorder gsr = recorder.GetComponent<GameStateRecorder> ();
@@ -53,7 +55,8 @@ public class GameController : Photon.PunBehaviour {
 
 	void OnLevelWasLoaded(int level) {
 		if (level == GAMEPLAY_SCENE_NUMBER) {
-			InitialiseGamePlay ();
+			// TODO
+			//InitialiseGamePlay ();
 		}
 		if (level == MAINMENU_SCENE_NUMBER) {
 			Destroy (this.gameObject);
@@ -63,9 +66,10 @@ public class GameController : Photon.PunBehaviour {
 		}
 	}
 
-	void SpawnPlayer() {
+	public GameObject SpawnPlayer() {
 		GameObject player = PhotonNetwork.Instantiate ("Prefabs/Character", GetNextSpawnPoint(GetIndex()), Quaternion.identity, 0);
 		player.GetComponent<CharacterController> ().SetControllable();
+		return player;
 	}
 
 	public void InitialiseGamePlay() {
@@ -86,13 +90,18 @@ public class GameController : Photon.PunBehaviour {
 		
 
 	public void DisplayGameOverMessage() {
-		// TODO display
 		if (PhotonNetwork.isMasterClient) {
 			StartCoroutine ("SwitchToResultWithDelay");
 		}
 	}
-		
 
+
+
+	void OnGUI() {
+		GUILayout.Label(GameObject.FindGameObjectsWithTag("Character").Length.ToString());
+	}
+		
+		
 	void Start() {
 		DontDestroyOnLoad (this.gameObject);
 	}

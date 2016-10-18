@@ -10,7 +10,7 @@ public class AddCharacterRecord : Record {
 	public string UserName;
 
     public void applyEffect(RecordHandler c) {
-        c.InstantiateCharacterWith(ObjId, CharId, UserName);
+		c.InstantiateCharacterWith(ObjId, CharId, UserName);
     }
 
 	public AddCharacterRecord(int objId, int charId, String userName) {

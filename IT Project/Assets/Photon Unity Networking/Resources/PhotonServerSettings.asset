@@ -41,4 +41,12 @@ MonoBehaviour:
   - ResetCountDown
   - UpdateProfileForWinner
   - ToggleSpeakerIcon
+  - GetOwnership
+  - RequestOwnership
+  - SetControllableForPlayers
+  - SetPositionRPC
+  - SetRotationRPC
+  - SetHPRPC
+  - SetScaleRPC
+  - SetTimePassedRPC
   DisableAutoOpenWizard: 1

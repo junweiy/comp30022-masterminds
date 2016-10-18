@@ -126,5 +126,42 @@ public class Character : Photon.MonoBehaviour {
 		}
 	}
 		
+
+	public static GameObject FindCharacterWithUserName(string userName) {
+		GameObject[] characters = GameObject.FindGameObjectsWithTag ("Character");
+		foreach (GameObject character in characters) {
+			if (character.GetComponent<Character> ().userName == userName) {
+				return character;
+			}
+		}
+		return null;
+	}
+
+	public void SetPositionForAll(Vector3 pos) {
+		this.photonView.RPC ("SetPositionRPC", PhotonTargets.All, pos); 
+	}
+
+	public void SetHPForAll(int hp) {
+		this.photonView.RPC ("SetHPRPC", PhotonTargets.All, hp); 
+	}
+
+	public void SetRotationForAll(Quaternion rot) {
+		this.photonView.RPC ("SetRotationRPC", PhotonTargets.All, rot); 
+	}
 		
+	[PunRPC]
+	public void SetPositionRPC(Vector3 pos) {
+		this.transform.position = pos;
+	}
+
+	[PunRPC]
+	public void SetRotationRPC(Quaternion rot) {
+		this.transform.rotation = rot;
+	}
+
+	[PunRPC]
+	public void SetHPRPC(int hp) {
+		this.hp = hp;
+	}
+
 }

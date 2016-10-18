@@ -98,6 +98,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	}
 
 	public override void OnJoinedRoom() {
+		PhotonNetwork.playerName = GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().userName;
 		if (PhotonNetwork.playerList.Length == 1) {
 			status = "Waiting For other players to join in";
 			StartCoroutine ("CheckForPlayers");
