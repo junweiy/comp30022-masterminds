@@ -12,6 +12,8 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	private bool countdownStarted; 
 	public float timeLeft { get; set; }
 
+	public bool loadedFromFile;
+
     //UI text
     public Text countDownUI;
     public Text statusUI;
@@ -30,7 +32,6 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	IEnumerator CheckForPlayers() {
 		yield return new WaitForSeconds (2);
 		if (PhotonNetwork.playerList.Length > 1) {
-			Debug.Log ("X");
 			countdownStarted = true;
 			status = "Other players found, game will start in: ";
 			this.photonView.RPC ("ResetCountDown", PhotonTargets.All);
@@ -61,12 +62,18 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	}
 
 	public void CountdownFinished() {
+		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
+		gc.loadedFromFile = loadedFromFile;
 		if (PhotonNetwork.isMasterClient) {
 			PhotonNetwork.LoadLevel ("scenes/gameplay");
 		}
 
 	}
 
+	[PunRPC]
+	void SetLoadFile(bool loaded) {
+		loadedFromFile = loaded;
+	}
 
 	[PunRPC]
 	void ResetCountDown() {
@@ -100,7 +107,12 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	public override void OnJoinedRoom() {
 		PhotonNetwork.playerName = GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().userName;
 		if (PhotonNetwork.playerList.Length == 1) {
-			status = "Waiting For other players to join in";
+			if (loadedFromFile) {
+				status = "Save loaded, Waiting For other players to join in";
+			} else {
+				status = "Waiting For other players to join in";
+			}
+
 			StartCoroutine ("CheckForPlayers");
 		} else {
 			countdownStarted = true;
@@ -110,6 +122,12 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	}
 
 	public override void OnPhotonPlayerConnected(PhotonPlayer player) {
+		if (loadedFromFile) {
+			this.photonView.RPC("SetLoadFile", PhotonTargets.All, true);
+		} else {
+			this.photonView.RPC("SetLoadFile", PhotonTargets.All, false);
+		}
+
 		status = "Other players found, game will start in: ";
 		countdownStarted = true;
 	}

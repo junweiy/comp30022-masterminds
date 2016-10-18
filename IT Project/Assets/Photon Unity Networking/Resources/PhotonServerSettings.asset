@@ -49,4 +49,5 @@ MonoBehaviour:
   - SetHPRPC
   - SetScaleRPC
   - SetTimePassedRPC
+  - SetLoadFile
   DisableAutoOpenWizard: 1

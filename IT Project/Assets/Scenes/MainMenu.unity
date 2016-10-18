@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692504, g: 0.4967869, b: 0.57508504, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.5750856, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -3121,6 +3121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeaeccb12814945b6861661aa3c4b5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadedFromFile: 0
   isLogedIn: 0
   userName: 
   kill: 0
@@ -3339,7 +3340,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2012856186}
-        m_MethodName: loadGame
+        m_MethodName: LoadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

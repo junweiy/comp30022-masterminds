@@ -14,6 +14,9 @@ TagManager:
   - Ground
   - Spell
   - Recorder
+  - MatchMaker
+  - Loader
+  - Saver
   layers:
   - Default
   - TransparentFX

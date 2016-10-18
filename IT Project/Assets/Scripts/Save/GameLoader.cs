@@ -12,7 +12,9 @@ public class GameLoader : RecordHandler {
     }
 
     public GameSave ReadFile() {
-        string filePath = Application.dataPath + "/test.sav";
+		string saveFilePath = Application.dataPath + "/SaveFiles/";
+		Directory.CreateDirectory (saveFilePath);
+        string filePath = saveFilePath + "/test.sav";
         IFormatter formatter = new BinaryFormatter();
         Stream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
         return (GameSave)formatter.Deserialize(stream);

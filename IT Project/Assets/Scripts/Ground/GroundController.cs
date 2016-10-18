@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class GroundController : Photon.MonoBehaviour {
-
+	// Initial scale
+	public Vector3 initialScale = new Vector3 (100, 0, 100);
 	// Seconds between every shrink
 	public float secondsBetweenShrinking;
 	// The minimum size presented as a ratio to the initial size
@@ -11,17 +12,15 @@ public class GroundController : Photon.MonoBehaviour {
 	public float sizeShrunkPerTime;
 	// Time passed since last shrink
 	public float timePassed;
-	// Initial scale
-	public float initialScale;
+
 
 	void Start () {
-		initialScale = transform.localScale.x;
 		timePassed = 0;
 	}
 
 	void Update() {
 		timePassed += Time.deltaTime;
-		if (timePassed >= secondsBetweenShrinking && transform.localScale.x > initialScale * minScalableSizeRatio) {
+		if (timePassed >= secondsBetweenShrinking && transform.localScale.x > initialScale.x * minScalableSizeRatio) {
 			timePassed -= secondsBetweenShrinking;
 			Scale ();
 		}

@@ -7,7 +7,7 @@ public class GameController : Photon.PunBehaviour {
 	public const int GAMEPLAY_SCENE_NUMBER = 2;
 	public const int RESULT_SCENE_NUMBER = 3;
 
-	string x;
+	public bool loadedFromFile;
 
 	public static bool CheckIfGameEnds() {
 		GameObject recorder = GameObject.FindGameObjectWithTag ("Recorder");
@@ -55,8 +55,15 @@ public class GameController : Photon.PunBehaviour {
 
 	void OnLevelWasLoaded(int level) {
 		if (level == GAMEPLAY_SCENE_NUMBER) {
-			// TODO
-			//InitialiseGamePlay ();
+			if (!loadedFromFile) {
+				InitialiseGamePlay ();
+			} else {
+				if (PhotonNetwork.isMasterClient) {
+					GameLoader gl = GameObject.FindGameObjectWithTag ("Loader").GetComponent<GameLoader> ();
+					GameSave save = gl.ReadFile ();
+					gl.Load (save);
+				}
+			}
 		}
 		if (level == MAINMENU_SCENE_NUMBER) {
 			Destroy (this.gameObject);
@@ -94,16 +101,11 @@ public class GameController : Photon.PunBehaviour {
 			StartCoroutine ("SwitchToResultWithDelay");
 		}
 	}
-
-
-
-	void OnGUI() {
-		GUILayout.Label(GameObject.FindGameObjectsWithTag("Character").Length.ToString());
-	}
 		
 		
 	void Start() {
 		DontDestroyOnLoad (this.gameObject);
+
 	}
 
 

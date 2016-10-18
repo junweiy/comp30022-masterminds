@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692504, g: 0.4967869, b: 0.57508504, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.5750856, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -356,7 +356,7 @@ GameObject:
   - 114: {fileID: 430109361}
   m_Layer: 0
   m_Name: Loader
-  m_TagString: Untagged
+  m_TagString: Loader
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67bab8dc19089649ba502fa9400e37e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterPrefab: {fileID: 1000011783725864, guid: f9af1c153c19c0c4b8ed7dca92ae6c19,
+  CharacterPrefab: {fileID: 1000012457802078, guid: b9bfc1849909f406986351883e5f1bb4,
     type: 2}
   FireballPrefab: {fileID: 1000011636598674, guid: 993acc0e6e6d7c6428748dcadafba1db,
     type: 2}
@@ -787,7 +787,7 @@ GameObject:
   - 114: {fileID: 968044476}
   m_Layer: 0
   m_Name: Saver
-  m_TagString: Untagged
+  m_TagString: Saver
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -12,7 +12,7 @@ public class FireBallController : Photon.MonoBehaviour {
 
 	// Character ID that cast the spell
 	public int charID;
-
+ 	
 	public int damage;
 
 	public float distanceTravelled;

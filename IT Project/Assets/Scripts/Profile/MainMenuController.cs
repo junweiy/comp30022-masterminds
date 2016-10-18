@@ -104,12 +104,16 @@ public class MainMenuController : MonoBehaviour {
 
     // for multiPlayer button
 	public void gotoMultiModePage() {
+		ProfileHandler ph = GameObject.FindGameObjectWithTag ("ProfileHandler").GetComponent<ProfileHandler> ();
+		ph.loadedFromFile = false;
 		StateController.SwitchToMatching ();
 	}
 
     // for load button
-    public void loadGame()
+    public void LoadGame()
     {
+		ProfileHandler ph = GameObject.FindGameObjectWithTag ("ProfileHandler").GetComponent<ProfileHandler> ();
+		ph.loadedFromFile = true;
         StateController.SwitchToMatching();
     }
 }

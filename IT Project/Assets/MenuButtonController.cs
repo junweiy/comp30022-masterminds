@@ -30,7 +30,8 @@ public class MenuButtonController : Photon.MonoBehaviour {
 
     public void SaveButtonOnClick()
     {
-        //TODO: for save button
+		GameSaver gs = GameObject.FindGameObjectWithTag ("Saver").GetComponent<GameSaver> ();
+		gs.Save ();
     }
 
     //void Update()
