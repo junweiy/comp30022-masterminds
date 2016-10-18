@@ -4,7 +4,7 @@ using System;
 using Replay;
 
 [System.Serializable]
-public class PutSpellRecord : ReplayRecord {
+public class PutSpellRecord : Record {
 
     public SpellType spellType;
 
@@ -17,13 +17,15 @@ public class PutSpellRecord : ReplayRecord {
     public float quaternionZ;
     public float quaternionW;
 
-    public void applyEffect(ReplaySceneController c) {
+    public int casterId;
+
+    public void applyEffect(RecordHandler c) {
         Vector3 position = new Vector3(positionX, positionY, positionZ);
         Quaternion rotation = new Quaternion(quaternionX, quaternionY, quaternionZ, quaternionW);
-        c.IntantiateSpellWithTransform(spellType, position, rotation);
+        c.InstantiateSpellWith(spellType, casterId, position, rotation);
     }
 
-    public PutSpellRecord(Spell s, Transform trans) {
+    public PutSpellRecord(Spell s, Transform trans, int casterId) {
         this.spellType = ReplayTypeConverter.GetTypeFromSpell(s);
         this.positionX = trans.position.x;
         this.positionY = trans.position.y;
@@ -32,6 +34,7 @@ public class PutSpellRecord : ReplayRecord {
         this.quaternionY = trans.rotation.y;
         this.quaternionZ = trans.rotation.z;
         this.quaternionW = trans.rotation.w;
+        this.casterId = casterId;
     }
 
 

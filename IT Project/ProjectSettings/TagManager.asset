@@ -9,8 +9,14 @@ TagManager:
   - ProfileHandler
   - SpellButton
   - Camera
-  - FireBall
-  - FireNova
+  - MainMenu
+  - LoginMenu
+  - Ground
+  - Spell
+  - Recorder
+  - MatchMaker
+  - Loader
+  - Saver
   layers:
   - Default
   - TransparentFX
