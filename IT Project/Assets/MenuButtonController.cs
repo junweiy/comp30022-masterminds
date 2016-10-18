@@ -8,6 +8,7 @@ public class MenuButtonController : Photon.MonoBehaviour {
     public GameObject menuButton;
     public GameObject pauseButton;
     public GameObject mainMenuButton;
+    public GameObject saveButton;
 
 	public void MenuButtonOnClick()
     {
@@ -25,6 +26,11 @@ public class MenuButtonController : Photon.MonoBehaviour {
     {
         StateController.SwitchToMainMenu();
 		PhotonNetwork.Disconnect ();
+    }
+
+    public void SaveButtonOnClick()
+    {
+        //TODO: for save button
     }
 
     //void Update()

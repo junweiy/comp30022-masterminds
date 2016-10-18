@@ -102,8 +102,14 @@ public class MainMenuController : MonoBehaviour {
 		switchTo (singleModePage);
 	}
 
+    // for multiPlayer button
 	public void gotoMultiModePage() {
 		StateController.SwitchToMatching ();
 	}
 
+    // for load button
+    public void loadGame()
+    {
+        StateController.SwitchToMatching();
+    }
 }
