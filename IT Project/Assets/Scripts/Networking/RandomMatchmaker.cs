@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.IO;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -81,9 +82,6 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	}
 
 	void Update() {
-		if (!PhotonNetwork.connected) {
-			return;
-		}
 
 		if (countdownStarted) {
 			timeLeft -= Time.deltaTime;
@@ -104,13 +102,21 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 		PhotonNetwork.CreateRoom (null);
 	}
 
+	public bool LoadFileExists() {
+		return File.Exists(Application.dataPath + "/SaveFiles/test.sav");
+	}
+	
+
 	public override void OnJoinedRoom() {
 		PhotonNetwork.playerName = GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().userName;
 		if (PhotonNetwork.playerList.Length == 1) {
-			if (loadedFromFile) {
-				status = "Save loaded, Waiting For other players to join in";
+			if (loadedFromFile && LoadFileExists()) {
+				status = "Save loaded, Waiting For other players to join in.";
+			} else if (loadedFromFile && !LoadFileExists()) {
+				status = "Save file not found, Please return to main menu.";
+				PhotonNetwork.Disconnect ();
 			} else {
-				status = "Waiting For other players to join in";
+				status = "Waiting For other players to join in.";
 			}
 
 			StartCoroutine ("CheckForPlayers");
