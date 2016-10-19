@@ -51,4 +51,6 @@ MonoBehaviour:
   - SetTimePassedRPC
   - SetLoadFile
   - PlayAnim
+  - Continue
+  - Pause
   DisableAutoOpenWizard: 1
