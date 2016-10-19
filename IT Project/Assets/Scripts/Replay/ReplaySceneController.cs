@@ -1,22 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
 using Replay;
 using UnityEngine.UI;
 
-public class ReplaySceneController : MonoBehaviour {
-
-    public GameObject CharacterPrefab;
-    public GameObject FireballPrefab;
-    public GameObject FireNovaPrefab;
+public class ReplaySceneController : RecordHandler {
 
     public Text ButtonLabel;
-
-
+    public GameObject pauseButton;
+    public GameObject endMessage;
+    //public Slider speedSlider;
+    //public Text sliderText;
+    //private decimal replaySpeed;
     private ReplayState _state = ReplayState.Preparing;
+
     private ReplayState state {
         get {
             return _state;
@@ -37,53 +33,9 @@ public class ReplaySceneController : MonoBehaviour {
         }
     }
 
-    GameObject[] characterObjs;
-
-    private string path;
-
     GameReplay replay;
     int frameCount = 0;
-
-    public void SetPlayerHp(int playerId, int hp) {
-        characterObjs[playerId].GetComponent<CharacterController>().character.hp = hp;
-    }
-
-    // unused for now
-    public void SetSpellCast(int playerId, SpellType spellType) {
-        var spell = ReplayTypeConverter.GetSpellFromType(spellType);
-        characterObjs[playerId].GetComponent<SpellController>().CastSpell(spell);
-    }
-
-    public void SetPlayerPosition(int playerId, Vector3 pos) {
-        characterObjs[playerId].transform.position = pos;
-    }
-
-    public void SetPlayerRotation(int playerId, Quaternion rot) {
-        characterObjs[playerId].transform.rotation = rot;
-    }
-
-    public void SetPlayerScale(int playerId, Vector3 scale) {
-        characterObjs[playerId].transform.localScale = scale;
-    }
-
-    public void IntantiateSpellWithTransform(SpellType spellType, Vector3 positon, Quaternion rotation) {
-        GameObject obj;
-        if (spellType == SpellType.Fireball) {
-            obj = GameObject.Instantiate(FireballPrefab);
-            obj.GetComponent<FireBallController>().enableDamage = false;
-            obj.GetComponent<FireBallController>().charID = -1;
-        } else if (spellType == SpellType.FireNova) {
-            obj = GameObject.Instantiate(FireNovaPrefab);
-			obj.GetComponent<FireNovaController> ().castingTime = FireNova.CASTING_TIME;
-        } else {
-            return;
-        }
-
-        obj.transform.position = positon;
-        obj.transform.rotation = rotation;
-    }
     
-
     // Use this for initialization
     void Start () {
         GameReplay p = GlobalState.instance.ReplayToLoad;
@@ -100,7 +52,6 @@ public class ReplaySceneController : MonoBehaviour {
         this.replay = replay;
         var info = replay.info;
         Application.targetFrameRate = info.targetFrameRate;
-        LoadCharacters(info.numCharacters);
         frameCount = 0;
     }
 
@@ -108,16 +59,12 @@ public class ReplaySceneController : MonoBehaviour {
         state = ReplayState.Started;
     }
 
-    void LoadCharacters(int numCharacters) {
-        List<GameObject> chars = new List<GameObject>();
-        for (int i = 0; i < numCharacters; i++) {
-            var o = GameObject.Instantiate(CharacterPrefab);
-            chars.Add(o);
-        }
-        this.characterObjs = chars.ToArray();
+    public void Exit() {
+        StateController.SwitchToReplaySelection();
     }
 
     void FinishReplay() {
+        endMessage.SetActive(true);
         state = ReplayState.Ended;
     }
 
@@ -131,10 +78,14 @@ public class ReplaySceneController : MonoBehaviour {
 
     public void Pause() {
         state = ReplayState.Paused;
+        pauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Continue");
+        Time.timeScale = 0;
     }
 
     public void Continue() {
         state = ReplayState.Started;
+        pauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Pause");
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -150,6 +101,10 @@ public class ReplaySceneController : MonoBehaviour {
                 FinishReplay();
                 return;
             }
+
+            //replaySpeed = (decimal)speedSlider.value;
+            //Time.timeScale = (float)System.Decimal.Round(replaySpeed, 1);
+            //sliderText.text = Time.timeScale.ToString("0.0");
 
             var nextEntry = replay.entries.Peek();
             while (nextEntry.frameTime <= frameCount) {

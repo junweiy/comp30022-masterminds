@@ -14,6 +14,8 @@ public class CharacterController : Photon.MonoBehaviour {
     public bool isSpeaking;
 	Rigidbody rb;
 
+	private bool controlling;
+
 	private Quaternion lastRotation;
 
 	// Use this for initialization
@@ -23,6 +25,7 @@ public class CharacterController : Photon.MonoBehaviour {
 		character = GetComponent<Character>();
 		rb = GetComponent<Rigidbody> ();
         isSpeaking = GetComponent<PhotonVoiceRecorder>().IsTransmitting;
+		controlling = false;
 	}
 
 	public void SetControllable() {
@@ -41,6 +44,11 @@ public class CharacterController : Photon.MonoBehaviour {
 
 		if (!photonView.isMine) {
 			return;
+		}
+			
+		if (!controlling && PhotonNetwork.playerName == this.gameObject.GetComponent<Character> ().userName) {
+			SetControllable ();
+			controlling = true;
 		}
 
 		// Detect user input of movement

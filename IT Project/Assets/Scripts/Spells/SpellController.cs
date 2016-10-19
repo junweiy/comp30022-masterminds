@@ -11,7 +11,7 @@ public class SpellController : Photon.MonoBehaviour {
 	FireBall fb;
 	FireNova fn;
 
-	public List<Action<Spell, Transform>> onCastSpellActions = new List<Action<Spell, Transform>>();
+	public List<Action<Spell, Transform, int>> onCastSpellActions = new List<Action<Spell, Transform, int>>();
 
 	// the character model
 	public Character character;
@@ -82,7 +82,7 @@ public class SpellController : Photon.MonoBehaviour {
 			destinationAngle = Quaternion.LookRotation (joyStickMovement);
 			fb = PhotonNetwork.Instantiate ("Prefabs/Fireball", spawnPosition, destinationAngle, 0);
 			foreach (var a in onCastSpellActions) {
-				a (new FireBall (), fb.transform);
+				a (new FireBall (), fb.transform, -1); // TODO
 			}
 			return fb.GetComponent<FireBallController> ();
 		}
@@ -99,7 +99,7 @@ public class SpellController : Photon.MonoBehaviour {
 		GameObject fn = PhotonNetwork.Instantiate ("Prefabs/FireNova", this.transform.position, this.transform.rotation, 0);
 
 		foreach (var a in onCastSpellActions) {
-			a (new FireNova (), fn.transform);
+			a (new FireNova (), fn.transform, -1); // TODO
 		}
 
 		return fn.GetComponent<FireNovaController> ();

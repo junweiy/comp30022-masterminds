@@ -31,6 +31,10 @@ public class SpellIconController : MonoBehaviour {
     // Update the display of image
     void Update()
     {
+		if (spellController == null) {
+			spellController = GetMainPlayerController<SpellController>();
+		}
+
         if (spell.currentCooldown < spell.cooldown)
         {
             spellImage.fillAmount = spell.currentCooldown / spell.cooldown;

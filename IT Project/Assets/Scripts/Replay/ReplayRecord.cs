@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface ReplayRecord {
+public interface Record {
 
-    void applyEffect(ReplaySceneController c);
+    void applyEffect(RecordHandler c);
 	
 }

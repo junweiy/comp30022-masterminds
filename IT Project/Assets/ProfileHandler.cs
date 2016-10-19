@@ -4,8 +4,10 @@ using System.Collections;
 public class ProfileHandler : Photon.MonoBehaviour {
 
 	public const int MAINMENU_SCENE_NUMBER = 0;
+	public const int MATCHING_SCENE_NUMBER = 1;
 	public const int RESULT_SCENE_NUMBER = 3;
 
+	public bool loadedFromFile;
 	public bool isLogedIn;
 	public string userName;
 	public int kill;
@@ -16,6 +18,7 @@ public class ProfileHandler : Photon.MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		loadedFromFile = false;
 		isLogedIn = false;
 		alreadyUpdated = true;
 		DontDestroyOnLoad (this.gameObject);
@@ -34,6 +37,7 @@ public class ProfileHandler : Photon.MonoBehaviour {
 
 	public void ResetStats() {
 		this.alreadyUpdated = true;
+		loadedFromFile = false;
 	}
 
 	public void LoggedIn(string userName) {
@@ -50,6 +54,7 @@ public class ProfileHandler : Photon.MonoBehaviour {
 			}
 			if (isLogedIn && !alreadyUpdated) {
 				Profile oldProfile = ProfileMessenger.GetProfileByEmail(userName);
+				oldProfile.numGamesPlayed += 1;
 				oldProfile.numDeath += death;
 				oldProfile.numPlayerKilled += kill;
 				if (won) {
@@ -60,6 +65,11 @@ public class ProfileHandler : Photon.MonoBehaviour {
 				ResetStats ();
 				ProfileMessenger.submitNewProfile (oldProfile);
 			}
+		}
+
+		if (level == MATCHING_SCENE_NUMBER) {
+			RandomMatchmaker rm = GameObject.FindGameObjectWithTag ("MatchMaker").GetComponent<RandomMatchmaker> ();
+			rm.loadedFromFile = loadedFromFile;
 		}
 
 		if (level == RESULT_SCENE_NUMBER) {

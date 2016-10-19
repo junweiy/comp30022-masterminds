@@ -93,8 +93,7 @@ public class MainMenuController : MonoBehaviour {
 		StateController.switchToProfile ();
 	}
 
-    public void gotoReplay()
-    {
+    public void gotoreplay() {
         StateController.SwitchToReplaySelection();
     }
 
@@ -103,8 +102,18 @@ public class MainMenuController : MonoBehaviour {
 		switchTo (singleModePage);
 	}
 
+    // for multiPlayer button
 	public void gotoMultiModePage() {
+		ProfileHandler ph = GameObject.FindGameObjectWithTag ("ProfileHandler").GetComponent<ProfileHandler> ();
+		ph.loadedFromFile = false;
 		StateController.SwitchToMatching ();
 	}
 
+    // for load button
+    public void LoadGame()
+    {
+		ProfileHandler ph = GameObject.FindGameObjectWithTag ("ProfileHandler").GetComponent<ProfileHandler> ();
+		ph.loadedFromFile = true;
+        StateController.SwitchToMatching();
+    }
 }

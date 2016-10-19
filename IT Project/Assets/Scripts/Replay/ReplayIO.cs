@@ -5,7 +5,7 @@ using System;
 using UnityEngine;
 
 public static class ReplayIO {
-    public static string FolderPath = Application.dataPath + "/Replays/";
+    public static string FolderPath = Application.persistentDataPath + "/Replays/";
 
     public static void SaveReplayAs(string filepath, GameReplay replay) {
         IFormatter formatter = new BinaryFormatter();
@@ -16,6 +16,10 @@ public static class ReplayIO {
     public static void SaveReplayWithTimeAsFilename(GameReplay replay) {
         DateTime now = DateTime.Now;
         string filename = string.Format("{0:HH_mm_dd_MM_yyyy}.rep", now);
+        if (!Directory.Exists(FolderPath))
+        {
+            Directory.CreateDirectory(FolderPath);
+        }
         SaveReplayAs(FolderPath + filename, replay);
     }
 
@@ -26,6 +30,10 @@ public static class ReplayIO {
     }
 
     public static string[] GetReplayFilepaths() {
+        if (!Directory.Exists(FolderPath))
+        {
+            Directory.CreateDirectory(FolderPath);
+        }
         return Directory.GetFiles(FolderPath, "*.rep");
     }
 }
