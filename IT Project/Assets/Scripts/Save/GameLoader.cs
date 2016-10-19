@@ -12,7 +12,7 @@ public class GameLoader : RecordHandler {
     }
 
     public GameSave ReadFile() {
-		string saveFilePath = Application.dataPath + "/SaveFiles/";
+		string saveFilePath = Application.persistentDataPath + "/SaveFiles/";
 		Directory.CreateDirectory (saveFilePath);
         string filePath = saveFilePath + "/test.sav";
         IFormatter formatter = new BinaryFormatter();
