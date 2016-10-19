@@ -83,6 +83,10 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 
 	void Update() {
 
+		if (PhotonNetwork.inRoom && loadedFromFile && !PhotonNetwork.isMasterClient) {
+			status = "Game loaded from player " + PhotonNetwork.masterClient.name+ ".";
+		}
+
 		if (countdownStarted && timeLeft > 0) {
 			timeLeft -= Time.deltaTime;
 		}
