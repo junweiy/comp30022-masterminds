@@ -1188,6 +1188,7 @@ MonoBehaviour:
   minScalableSizeRatio: 0.2
   sizeShrunkPerTime: 0
   timePassed: 0
+  miniMap: {fileID: 634687736}
 --- !u!23 &634687739
 MeshRenderer:
   m_ObjectHideFlags: 0

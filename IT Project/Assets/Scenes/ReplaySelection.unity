@@ -339,7 +339,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -40}
-  m_SizeDelta: {x: 480, y: -80}
+  m_SizeDelta: {x: 450, y: -80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &520605775
 MonoBehaviour:
@@ -366,7 +366,7 @@ MonoBehaviour:
   m_Content: {fileID: 1374409859}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -516,7 +516,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: a2d2922ad73f6874c95ee423568f54c2, type: 2}
   m_Color: {r: 0.50980395, g: 0.11764706, b: 0.84313726, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -524,8 +524,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: cc9ef04b236018547b093faafbb34299, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -709,9 +709,8 @@ GameObject:
   - 224: {fileID: 1374409859}
   - 222: {fileID: 1374409862}
   - 114: {fileID: 1374409861}
-  - 114: {fileID: 1374409860}
   - 114: {fileID: 1374409863}
-  - 114: {fileID: 1374409864}
+  - 114: {fileID: 1374409860}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -732,10 +731,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 520605774}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 574, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1374409860
 MonoBehaviour:
@@ -745,18 +744,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1374409858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1297475563, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: -2095666955, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
+    m_Top: 10
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 20
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 450, y: 60}
+  m_Spacing: {x: 0, y: 15}
+  m_Constraint: 1
+  m_ConstraintCount: 1
 --- !u!114 &1374409861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,7 +771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.23529412, g: 0.23529412, b: 0.47058824, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -803,18 +805,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!114 &1374409864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1374409858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1200242548, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 1
 --- !u!1 &1427936941
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +854,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_Material: {fileID: 2100000, guid: a2d2922ad73f6874c95ee423568f54c2, type: 2}
   m_Color: {r: 0.23529412, g: 0.23529412, b: 0.47058824, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -872,8 +862,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 16214510c4ddf8f4e9cc2dcb1e959fb3, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1007,7 +997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec45ec010bbcdce46bdadeae836883fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ButtonPrefab: {fileID: 1000010077574380, guid: c2640c9d334088946bd67779da3bd8f0,
+  ButtonPrefab: {fileID: 1000014076232880, guid: c2640c9d334088946bd67779da3bd8f0,
     type: 2}
   ScrollViewContent: {fileID: 1374409858}
 --- !u!222 &1795271102

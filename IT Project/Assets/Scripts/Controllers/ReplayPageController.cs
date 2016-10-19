@@ -17,6 +17,7 @@ public class ReplayPageController : MonoBehaviour {
             var fileName = Path.GetFileNameWithoutExtension(filePath);
             var newButton = GameObject.Instantiate(ButtonPrefab);
             newButton.transform.SetParent(ScrollViewContent.transform);
+            newButton.transform.localScale = new Vector3(1, 1, 1);
             newButton.GetComponent<ReplayItemButtonScript>().setText(fileName);
             newButton.GetComponent<Button>().onClick.AddListener(delegate {
                 openReplay(filePath);
