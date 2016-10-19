@@ -36,7 +36,7 @@ public class RecordHandler : MonoBehaviour {
     public void SetRotation(int objId, Quaternion rotation) {
 		if (PhotonNetwork.connected) {
 			if (gameObjMap [objId].GetComponent<Character> () != null) {
-				gameObjMap [objId].GetComponent<Character> ().SetRotationForAll (rotation);
+				//gameObjMap [objId].GetComponent<Character> ().SetRotationForAll (rotation);
 			} else {
 				gameObjMap [objId].transform.rotation = rotation;
 			}
