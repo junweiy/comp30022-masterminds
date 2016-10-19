@@ -12,6 +12,8 @@ public class GroundController : Photon.MonoBehaviour {
 	public float sizeShrunkPerTime;
 	// Time passed since last shrink
 	public float timePassed;
+    // MiniMapGround
+    public GameObject miniMap;
 
 
 	void Start () {
@@ -42,7 +44,8 @@ public class GroundController : Photon.MonoBehaviour {
 	[PunRPC]
 	public void SetScaleRPC(float scale) {
 		this.transform.localScale = new Vector3(scale, 1, scale);
-	}
+        miniMap.transform.localScale = this.transform.localScale;
+    }
 
 	void Scale() {
 		Vector3 tempSize = transform.localScale;
@@ -50,6 +53,7 @@ public class GroundController : Photon.MonoBehaviour {
 		tempSize.y = transform.localScale.y;
 		tempSize.z = transform.localScale.z - sizeShrunkPerTime;
 		transform.localScale = tempSize;
+        miniMap.transform.localScale = tempSize;
 	}
 
 }
