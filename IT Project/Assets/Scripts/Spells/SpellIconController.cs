@@ -33,6 +33,7 @@ public class SpellIconController : MonoBehaviour {
     {
 		if (spellController == null) {
 			spellController = GetMainPlayerController<SpellController>();
+			return;
 		}
 
         if (spell.currentCooldown < spell.cooldown)

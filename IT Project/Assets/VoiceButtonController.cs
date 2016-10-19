@@ -9,7 +9,21 @@ public class VoiceButtonController : Photon.MonoBehaviour {
 
 	void Start() {
 		mainPlayer = FindMainPlayer ();
-        speakerIcon = mainPlayer.transform.GetChild(2).GetChild(1).gameObject;
+		if (mainPlayer != null) {
+			speakerIcon = mainPlayer.transform.GetChild(2).GetChild(1).gameObject;
+		}
+        
+	}
+
+	void Update() {
+		if (mainPlayer == null) {
+			mainPlayer = FindMainPlayer ();
+			if (mainPlayer != null) {
+				speakerIcon = mainPlayer.transform.GetChild (2).GetChild (1).gameObject;
+			} else {
+				return;
+			}
+		}
 	}
 
 	void ToggleRecording(GameObject mainPlayer) {

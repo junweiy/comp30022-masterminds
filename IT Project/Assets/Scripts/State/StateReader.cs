@@ -106,7 +106,6 @@ public static class StateReader {
         float scale = ground.transform.localScale.x;
         if (scale != lastGroundSize) {
             if (scale != 100f) {
-                Debug.Log("Ground Scale: " + ground.transform.localScale.x);
             }
             return new GroundRecord(ground.transform.localScale.x, gc.timePassed);
         } else {
