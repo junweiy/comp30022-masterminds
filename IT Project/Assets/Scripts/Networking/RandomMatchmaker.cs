@@ -83,7 +83,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 
 	void Update() {
 
-		if (countdownStarted) {
+		if (countdownStarted && timeLeft > 0) {
 			timeLeft -= Time.deltaTime;
 		}
 
@@ -91,9 +91,13 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 			PhotonNetwork.room.visible = false;
 			CountdownFinished ();
 		}
-
         // update UI
-        countDownUI.text = ((int)timeLeft).ToString();
+		if (countdownStarted) {
+			countDownUI.text = ((int)timeLeft).ToString();	
+		} else {
+			countDownUI.text = "";	
+		}
+        
         statusUI.text = status.ToString();
         connectionStatusUI.text = PhotonNetwork.connectionStateDetailed.ToString();
 	}

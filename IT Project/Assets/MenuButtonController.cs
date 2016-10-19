@@ -9,6 +9,9 @@ public class MenuButtonController : Photon.MonoBehaviour {
     public GameObject menuButton;
     public GameObject pauseButton;
     public GameObject mainMenuButton;
+	public GameObject joyStick;
+	public GameObject spellButton;
+	public GameObject pauseMessage;
     public Image savedImage;
     private int saveCoolDown = 5;
     private float currentCoolDown = 0;
@@ -37,6 +40,34 @@ public class MenuButtonController : Photon.MonoBehaviour {
 		GameSaver gs = GameObject.FindGameObjectWithTag ("Saver").GetComponent<GameSaver> ();
 		gs.Save ();
     }
+
+	public void PauseButtonOnClick() {
+
+		if (Time.timeScale > 0) {
+			photonView.RPC ("Pause", PhotonTargets.All);
+		} else {
+			photonView.RPC ("Continue", PhotonTargets.All);
+		}
+	}
+
+	[PunRPC]
+	void Pause() {
+		joyStick.SetActive(false);
+		spellButton.SetActive (false);
+		//pauseButton.GetComponentInChildren<Text>().text = "Continue";
+		//pauseMessage.SetActive(true);
+		Time.timeScale = 0;
+	}
+
+	[PunRPC]
+	void Continue() {
+		joyStick.SetActive(true);
+		spellButton.SetActive (true);
+		//pauseButton.GetComponentInChildren<Text>().text = "Pause";
+		//pauseMessage.SetActive(false);
+		Time.timeScale = 1;
+	}
+
 
 
     void Update()
