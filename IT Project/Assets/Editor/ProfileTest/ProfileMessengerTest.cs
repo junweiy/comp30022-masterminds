@@ -21,7 +21,7 @@ public class ProfileMessengerTest {
 
 	[Test]
 	[ExpectedException(typeof(ProfileMessagingException))]
-	public void MethodTest()
+	public void NullUserTest()
 	{
 		ProfileMessenger.createNewUser("","");
 	}
@@ -31,7 +31,11 @@ public class ProfileMessengerTest {
 	public void CreateAndGetTest() {
 
 		//create a user and get it and see if they have same user id
-		int pid = (int)ProfileMessenger.createNewUser(DummyUsername,DummmyEmail);
+		int pid;
+		try{
+			pid = (int)ProfileMessenger.createNewUser(DummyUsername,DummmyEmail);
+		}catch(ProfileMessagingException e) { return;}
+
 		Profile p = ProfileMessenger.GetProfileByEmail(DummmyEmail);
 		Assert.AreEqual (p.uid, pid);
 

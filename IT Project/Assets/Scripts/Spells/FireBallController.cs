@@ -9,14 +9,10 @@ public class FireBallController : Photon.MonoBehaviour {
 	public const float VELOCITY = 300;
 	// The range that can be chosen to cast within
 	private const float RANGE = 600;
-
 	// Character ID that cast the spell
 	public int charID;
- 	
 	public int damage;
-
 	public float distanceTravelled;
-
     public bool enableDamage = true;
 
 

@@ -6,7 +6,7 @@ using System;
 public class SpellTest {
 	
 	private const float COOLDOWN = 5;
-	private const float DAMAGE = 10;
+	private const int DAMAGE = 10;
 
 
 	[SetUp]
