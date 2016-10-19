@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MenuButtonController : Photon.MonoBehaviour {
 
@@ -8,7 +9,9 @@ public class MenuButtonController : Photon.MonoBehaviour {
     public GameObject menuButton;
     public GameObject pauseButton;
     public GameObject mainMenuButton;
-    public GameObject saveButton;
+    public Image savedImage;
+    private int saveCoolDown = 5;
+    private float currentCoolDown = 0;
 
 	public void MenuButtonOnClick()
     {
@@ -30,10 +33,26 @@ public class MenuButtonController : Photon.MonoBehaviour {
 
     public void SaveButtonOnClick()
     {
+        currentCoolDown = saveCoolDown;
 		GameSaver gs = GameObject.FindGameObjectWithTag ("Saver").GetComponent<GameSaver> ();
 		gs.Save ();
     }
 
+
+    void Update()
+    {
+        Color temp = savedImage.color;
+        temp.a = currentCoolDown / saveCoolDown;
+        savedImage.color = temp;
+        if (currentCoolDown >= 0)
+        {
+            currentCoolDown -= Time.deltaTime;
+        }
+        else
+        {
+            currentCoolDown = 0;
+        }
+    }
     //void Update()
     //{
     //    if (menuPanel.activeInHierarchy)
