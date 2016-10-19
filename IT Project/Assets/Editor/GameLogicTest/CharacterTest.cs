@@ -16,8 +16,6 @@ public class CharacterTest {
 		character = characterObject.GetComponent<Character> ();
     }
 
-    
-
     [Test]
     public void TakeDamageTest() {
 
