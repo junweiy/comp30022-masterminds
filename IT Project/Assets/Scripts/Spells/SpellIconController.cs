@@ -42,7 +42,7 @@ public class SpellIconController : MonoBehaviour {
         }
     }
 
-    public GameObject FindMainPlayer()
+    public static GameObject FindMainPlayer()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Character");
         foreach (GameObject player in players)
@@ -52,13 +52,16 @@ public class SpellIconController : MonoBehaviour {
                 return player;
             }
         }
-        throw new UnityException();
+        return null;
 
     }
 
     public T GetMainPlayerController<T>()
     {
         GameObject mainPlayer = FindMainPlayer();
+		if (mainPlayer == null) {
+			return default(T);
+		}
         return mainPlayer.GetComponent<T>();
     }
 }

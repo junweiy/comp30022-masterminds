@@ -7,6 +7,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 	private int hp;
 	private string userName;
 
+
 	// Update is called once per frame
 	void FixedUpdate() {
 		if (!PhotonNetwork.connected) {

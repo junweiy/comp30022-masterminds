@@ -9,14 +9,14 @@ using System.Collections.Generic;
  */ 
 public class Character : Photon.MonoBehaviour {
 
-    private const float DEFAULT_HP = 100f;
+    private const int DEFAULT_HP = 100;
     public const int MAXIMUM_NUMBER_OF_ITEM = 6;
 
 	public int charID;
 	public string userName;
 
-	public int hp;
-	private int maxHp { get; set; }
+	public int hp = DEFAULT_HP;
+	private int maxHp;
 
 	public bool isDead { get; private set; }
 	public int numKilled;
@@ -27,6 +27,13 @@ public class Character : Photon.MonoBehaviour {
 
 	private HealthBarUI healthBarUI;
 
+	void Awake() {
+		maxHp = DEFAULT_HP;
+		numDeath = 0;
+		numKilled = 0;
+		isDead = false;
+	}
+
     void Start()
     {
 		this.healthBarUI = this.GetComponent<HealthBarUI> ();
@@ -34,11 +41,6 @@ public class Character : Photon.MonoBehaviour {
 		if (photonView.isMine) {
 			userName = GameObject.FindGameObjectWithTag ("ProfileHandler").GetComponent<ProfileHandler> ().userName;
 		}
-        maxHp = 100;
-        hp = 100;
-		numDeath = 0;
-		numKilled = 0;
-		isDead = false;
     }
 
 	void Update() {
@@ -151,16 +153,19 @@ public class Character : Photon.MonoBehaviour {
 		
 	[PunRPC]
 	public void SetPositionRPC(Vector3 pos) {
+		Debug.Log (pos);
 		this.transform.position = pos;
 	}
 
 	[PunRPC]
 	public void SetRotationRPC(Quaternion rot) {
+		Debug.Log (rot);
 		this.transform.rotation = rot;
 	}
 
 	[PunRPC]
 	public void SetHPRPC(int hp) {
+		Debug.Log (hp);
 		this.hp = hp;
 	}
 

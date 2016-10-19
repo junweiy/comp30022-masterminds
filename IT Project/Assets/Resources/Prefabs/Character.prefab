@@ -1533,6 +1533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7b58331d087b4989935e740e05da72d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updateThisTime: 0
 --- !u!114 &114000012381691766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1603,12 +1604,11 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 1
+  synchronization: 2
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
+  ownershipTransfer: 1
   ObservedComponents:
-  - {fileID: 4000010374224458}
   - {fileID: 114000012160746348}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
@@ -1626,7 +1626,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charID: 0
-  hp: 0
+  userName: 
+  hp: 100
   numKilled: 0
   numDeath: 0
 --- !u!114 &114000013116237186
