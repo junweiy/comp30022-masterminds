@@ -103,7 +103,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	}
 
 	public bool LoadFileExists() {
-		return File.Exists(Application.dataPath + "/SaveFiles/test.sav");
+		return File.Exists(Application.persistentDataPath + "/SaveFiles/test.sav");
 	}
 	
 
