@@ -14,6 +14,7 @@ public class ResultPageController : MonoBehaviour {
     public RectTransform playerList;
     public GameObject result;
     public GameObject savedImage;
+    public Button saveButton;
 
     // Update is called once per frame
     void Start()
@@ -54,6 +55,7 @@ public class ResultPageController : MonoBehaviour {
 
 	public void saveReplay() {
         savedImage.SetActive(true);
+        saveButton.interactable = false;
         ReplayIO.SaveReplayWithTimeAsFilename(GlobalState.instance.ReplayToSave);
 	}
 }
