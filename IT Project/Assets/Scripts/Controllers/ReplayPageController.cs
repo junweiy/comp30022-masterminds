@@ -20,7 +20,7 @@ public class ReplayPageController : MonoBehaviour {
             newButton.transform.localScale = new Vector3(1, 1, 1);
             newButton.GetComponent<ReplayItemButtonScript>().setText(fileName);
             newButton.GetComponent<Button>().onClick.AddListener(delegate {
-                openReplay(filePath);
+                openReplay(filePath) ;
             });
         }
     }
