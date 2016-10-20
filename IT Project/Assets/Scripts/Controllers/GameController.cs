@@ -3,9 +3,9 @@ using System;
 using System.Collections;
 
 public class GameController : Photon.PunBehaviour {
-	public const int MAINMENU_SCENE_NUMBER = 0;
-	public const int GAMEPLAY_SCENE_NUMBER = 2;
-	public const int RESULT_SCENE_NUMBER = 3;
+	public const int MAINMENU_SCENE_NUMBER = 1;
+	public const int GAMEPLAY_SCENE_NUMBER = 3;
+	public const int RESULT_SCENE_NUMBER = 4;
 
 	public bool loadedFromFile;
 

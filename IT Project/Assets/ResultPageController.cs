@@ -37,9 +37,8 @@ public class ResultPageController : MonoBehaviour {
             Text[] texts;
             texts = userDetail.GetComponentsInChildren<Text>();
 			texts [0].text = userName;
-			texts [1].text = " ";
-			texts [2].text = kill.ToString ();
-			texts[3].text = death.ToString ();
+			texts [1].text = kill.ToString ();
+			texts [2].text = death.ToString ();
 
             userDetail.transform.SetParent(playerList, false);
             userDetail.transform.localScale = new Vector3(1, 1, 1);

@@ -3,9 +3,9 @@ using System.Collections;
 
 public class ProfileHandler : Photon.MonoBehaviour {
 
-	public const int MAINMENU_SCENE_NUMBER = 0;
-	public const int MATCHING_SCENE_NUMBER = 1;
-	public const int RESULT_SCENE_NUMBER = 3;
+	public const int MAINMENU_SCENE_NUMBER = 1;
+	public const int MATCHING_SCENE_NUMBER = 2;
+	public const int RESULT_SCENE_NUMBER = 4;
 
 	public bool loadedFromFile;
 	public bool isLogedIn;
