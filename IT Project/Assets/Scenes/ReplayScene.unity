@@ -233,7 +233,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2133,7 +2133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f18f578fcf9e224285a3991c152778e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterPrefab: {fileID: 1000011783725864, guid: f9af1c153c19c0c4b8ed7dca92ae6c19,
+  CharacterPrefab: {fileID: 1000012281556644, guid: 72d1395e6a3bb494ca387d060ceacf79,
     type: 2}
   FireballPrefab: {fileID: 1000011636598674, guid: 993acc0e6e6d7c6428748dcadafba1db,
     type: 2}
