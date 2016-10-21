@@ -5,7 +5,6 @@ using Replay;
 
 [System.Serializable]
 public class PutSpellRecord : IRecord {
-
     public SpellType SpellType;
 
     public float PositionX;
@@ -36,6 +35,4 @@ public class PutSpellRecord : IRecord {
         this.QuaternionW = trans.rotation.w;
         this.CasterId = casterId;
     }
-
-
 }

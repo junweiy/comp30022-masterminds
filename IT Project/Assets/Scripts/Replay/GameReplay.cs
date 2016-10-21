@@ -2,7 +2,6 @@
 
 [System.Serializable]
 public class GameReplay {
-
     [System.Serializable]
     public class Entry {
         public int FrameTime;
@@ -11,5 +10,4 @@ public class GameReplay {
 
     public Queue<Entry> Entries;
     public ReplayInfo Info;
-
 }

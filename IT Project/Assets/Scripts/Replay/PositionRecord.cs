@@ -20,5 +20,4 @@ public class PositionRecord : IRecord {
         this.Y = position.y;
         this.Z = position.z;
     }
-
 }

@@ -12,5 +12,4 @@ public class ReplayInfo {
         this.GameVersion = gameVersion;
         this.TargetFrameRate = targetFrameRate;
     }
-
 }

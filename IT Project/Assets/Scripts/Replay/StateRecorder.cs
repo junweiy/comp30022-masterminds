@@ -38,28 +38,24 @@ public class StateRecorder : MonoBehaviour {
         EnqueueRecords(StateReader.GetInstantiateCharRecords(_recordedChars, SetupNewCharacter));
     }
 
-	protected void AddGroundrecord() {
+    protected void AddGroundrecord() {
         IRecord rec = StateReader.GetGroundRecord(_lastGroundSize);
         if (rec != null) {
             Pending.Enqueue(rec);
-        } 
-	}
+        }
+    }
 
     private void SetupNewCharacter(GameObject character) {
         character.GetComponent<SpellController>().OnCastSpellActions.Add(
-            delegate (Spell s, Transform trans, int casterId) {
-                AddPutSpellRecord(s, trans, casterId);
-            }
+            delegate(Spell s, Transform trans, int casterId) { AddPutSpellRecord(s, trans, casterId); }
         );
     }
 
     // Update is called once per frame
     protected void AddRecords() {
-            AddInstantiateCharRecords();
-            AddTransformRecords();
-            AddHpRecords();
-			AddGroundrecord ();
+        AddInstantiateCharRecords();
+        AddTransformRecords();
+        AddHpRecords();
+        AddGroundrecord();
     }
-
-
 }

@@ -18,18 +18,17 @@ public class GameStateRecorder : StateRecorder {
 
     private int _frameCount = 0;
 
-	// Use this for initialization
-    private void Start () {
+    // Use this for initialization
+    private void Start() {
         Application.targetFrameRate = TARGET_FRAMERATE;
-		_started = false;
-		StartRecording ();
-	}
+        _started = false;
+        StartRecording();
+    }
 
     private void StartRecording() {
         Debug.Log("Started Recording");
-		_started = true;
-        _replay = new GameReplay
-        {
+        _started = true;
+        _replay = new GameReplay {
             Info = new ReplayInfo(
                 GetGameVersion(),
                 TARGET_FRAMERATE
@@ -43,21 +42,22 @@ public class GameStateRecorder : StateRecorder {
     }
 
     private void AddEntry(IRecord record) {
-        var newEntry = new GameReplay.Entry();
-        newEntry.FrameTime = _frameCount;
-        newEntry.Record = record;
+        var newEntry = new GameReplay.Entry {
+            FrameTime = _frameCount,
+            Record = record
+        };
         _replay.Entries.Enqueue(newEntry);
     }
 
     public void FinishRecording() {
-		if (!_started) {
-			return;
-		}
+        if (!_started) {
+            return;
+        }
         Debug.Log("Finished Recording");
         _state = ReplayState.Ended;
         FlushPendingRecodsToReplayObject();
         GlobalState.Instance.ReplayToSave = _replay;
-		_started = false;
+        _started = false;
     }
 
     // Not an actual flush to disk, but could be changed to do so
@@ -71,10 +71,11 @@ public class GameStateRecorder : StateRecorder {
 
     // Update is called once per frame
     private void Update() {
-		GameObject mainChar = GameObject.FindGameObjectWithTag ("Character");
+        GameObject mainChar = GameObject.FindGameObjectWithTag("Character");
         if (Input.GetKeyDown(KeyCode.S)) {
             StartRecording();
-        } else if (Input.GetKeyDown(KeyCode.E)) {
+        }
+        else if (Input.GetKeyDown(KeyCode.E)) {
             FinishRecording();
         }
 
@@ -84,6 +85,4 @@ public class GameStateRecorder : StateRecorder {
             _frameCount += 1;
         }
     }
-
-
 }

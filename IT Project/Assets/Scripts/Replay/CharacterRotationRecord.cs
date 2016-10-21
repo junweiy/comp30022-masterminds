@@ -22,5 +22,4 @@ public class RotationRecord : IRecord {
         this.Z = rotation.z;
         this.W = rotation.w;
     }
-
 }

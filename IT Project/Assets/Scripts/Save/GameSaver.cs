@@ -5,7 +5,6 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 public class GameSaver : StateRecorder {
-
     public void Save() {
         AddRecords();
         SaveInfo info = new SaveInfo();
@@ -15,9 +14,8 @@ public class GameSaver : StateRecorder {
     }
 
     public void CreateFile(GameSave save) {
-		string saveFilePath = Application.persistentDataPath + "/SaveFiles/";
-        if (!Directory.Exists(saveFilePath))
-        {
+        string saveFilePath = Application.persistentDataPath + "/SaveFiles/";
+        if (!Directory.Exists(saveFilePath)) {
             Directory.CreateDirectory(saveFilePath);
         }
         string filePath = saveFilePath + "/test.sav";

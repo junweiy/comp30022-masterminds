@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using System.IO;
 
 public class ReplayPageController : MonoBehaviour {
-
     public GameObject ButtonPrefab;
     public GameObject ScrollViewContent;
 
@@ -19,9 +18,7 @@ public class ReplayPageController : MonoBehaviour {
             newButton.transform.SetParent(ScrollViewContent.transform);
             newButton.transform.localScale = new Vector3(1, 1, 1);
             newButton.GetComponent<ReplayItemButtonScript>().SetText(fileName);
-            newButton.GetComponent<Button>().onClick.AddListener(delegate {
-                OpenReplay(filePath) ;
-            });
+            newButton.GetComponent<Button>().onClick.AddListener(delegate { OpenReplay(filePath); });
         }
     }
 
@@ -34,8 +31,8 @@ public class ReplayPageController : MonoBehaviour {
         StateController.SwitchToMainMenu();
     }
 
-	// Use this for initialization
-    private void Start () {
+    // Use this for initialization
+    private void Start() {
         LoadReplays();
     }
 }

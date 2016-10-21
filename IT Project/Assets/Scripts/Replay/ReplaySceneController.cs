@@ -4,7 +4,6 @@ using Replay;
 using UnityEngine.UI;
 
 public class ReplaySceneController : RecordHandler {
-
     public Text ButtonLabel;
     public GameObject PauseButton;
     public GameObject EndMessage;
@@ -14,19 +13,21 @@ public class ReplaySceneController : RecordHandler {
     private ReplayState _state = ReplayState.Preparing;
 
     private ReplayState State {
-        get {
-            return _state;
-        } set {
+        get { return _state; }
+        set {
             _state = value;
 
             if (ButtonLabel != null) {
                 if (value == ReplayState.Preparing) {
                     ButtonLabel.text = "Preparing";
-                } else if (value == ReplayState.Started) {
+                }
+                else if (value == ReplayState.Started) {
                     ButtonLabel.text = "Pause";
-                } else if (value == ReplayState.Paused) {
+                }
+                else if (value == ReplayState.Paused) {
                     ButtonLabel.text = "Continue";
-                } else if (value == ReplayState.Ended) {
+                }
+                else if (value == ReplayState.Ended) {
                     ButtonLabel.text = "Replay Ended";
                 }
             }
@@ -35,9 +36,9 @@ public class ReplaySceneController : RecordHandler {
 
     private GameReplay _replay;
     private int _frameCount = 0;
-    
+
     // Use this for initialization
-    private void Start () {
+    private void Start() {
         GameReplay p = GlobalState.Instance.ReplayToLoad;
 
         if (p == null) {
@@ -69,9 +70,10 @@ public class ReplaySceneController : RecordHandler {
     }
 
     public void TriggerPauseContinue() {
-        if(State == ReplayState.Started) {
+        if (State == ReplayState.Started) {
             Pause();
-        } else if (State == ReplayState.Paused) {
+        }
+        else if (State == ReplayState.Paused) {
             Continue();
         }
     }
@@ -89,14 +91,12 @@ public class ReplaySceneController : RecordHandler {
     }
 
     // Update is called once per frame
-    private void Update () {
-
+    private void Update() {
         if (Input.GetKeyDown("p")) {
             TriggerPauseContinue();
         }
 
         if (State == ReplayState.Started) {
-
             if (_replay.Entries.Count == 0) {
                 FinishReplay();
                 return;
@@ -119,5 +119,5 @@ public class ReplaySceneController : RecordHandler {
 
             _frameCount += 1;
         }
-	}
+    }
 }

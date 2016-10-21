@@ -20,5 +20,4 @@ public class ScaleRecord : IRecord {
         this.Y = scale.y;
         this.Z = scale.z;
     }
-
 }

@@ -1,4 +1,10 @@
 ﻿namespace Replay {
-    public enum SpellType { Fireball, FireNova }
-    public enum CharacterType { Character }
+    public enum SpellType {
+        Fireball,
+        FireNova
+    }
+
+    public enum CharacterType {
+        Character
+    }
 }
