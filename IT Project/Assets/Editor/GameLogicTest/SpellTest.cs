@@ -17,13 +17,13 @@ public class SpellTest {
 	[Test]
 	public void InitializeSpell(){
 		Spell s = new Spell (COOLDOWN, DAMAGE);
-		Assert.AreEqual (s.currentCooldown, COOLDOWN);
-		Assert.AreEqual (s.cooldown, COOLDOWN);
+		Assert.AreEqual (s.CurrentCooldown, COOLDOWN);
+		Assert.AreEqual (s.Cooldown, COOLDOWN);
 
 		Spell s2 = new Spell ();
-		Assert.AreEqual (s.currentCooldown, 0);
-		Assert.AreEqual (s.cooldown, 0);
-		Assert.AreEqual (s.damage, 0);
+		Assert.AreEqual (s.CurrentCooldown, 0);
+		Assert.AreEqual (s.Cooldown, 0);
+		Assert.AreEqual (s.Damage, 0);
 	}
 
 

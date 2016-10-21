@@ -12,9 +12,9 @@ public class FireNovaTest {
 	public void CreateTest()
 	{
 		FireNova fb = new FireNova();
-		Assert.AreEqual (fb.currentCooldown, COOLDOWN);
-		Assert.AreEqual (fb.cooldown, COOLDOWN);
-		Assert.AreEqual (fb.damage, DAMAGE);
+		Assert.AreEqual (fb.CurrentCooldown, COOLDOWN);
+		Assert.AreEqual (fb.Cooldown, COOLDOWN);
+		Assert.AreEqual (fb.Damage, DAMAGE);
 	}
 
 

@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-using UnityEngine;
 using UnityEditor;
 using NUnit.Framework;
 using System;
@@ -23,7 +21,7 @@ public class ProfileMessengerTest {
 	[ExpectedException(typeof(ProfileMessagingException))]
 	public void NullUserTest()
 	{
-		ProfileMessenger.createNewUser("","");
+		ProfileMessenger.CreateNewUser("","");
 	}
 
 	/*  It tests the creation of a player profle by creating and get.*/
@@ -33,11 +31,11 @@ public class ProfileMessengerTest {
 		//create a user and get it and see if they have same user id
 		int pid;
 		try{
-			pid = (int)ProfileMessenger.createNewUser(DummyUsername,DummmyEmail);
+			pid = (int)ProfileMessenger.CreateNewUser(DummyUsername,DummmyEmail);
 		}catch(ProfileMessagingException e) { return;}
 
 		Profile p = ProfileMessenger.GetProfileByEmail(DummmyEmail);
-		Assert.AreEqual (p.uid, pid);
+		Assert.AreEqual (p.Uid, pid);
 
 	}
 

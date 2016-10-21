@@ -13,8 +13,8 @@ public class FireBallTest {
 	public void CreateTest()
 	{
 		FireBall fb = new FireBall();
-		Assert.AreEqual (fb.currentCooldown, COOLDOWN);
-		Assert.AreEqual (fb.cooldown, COOLDOWN);
-		Assert.AreEqual (fb.damage, DAMAGE);
+		Assert.AreEqual (fb.CurrentCooldown, COOLDOWN);
+		Assert.AreEqual (fb.Cooldown, COOLDOWN);
+		Assert.AreEqual (fb.Damage, DAMAGE);
 	}
 }

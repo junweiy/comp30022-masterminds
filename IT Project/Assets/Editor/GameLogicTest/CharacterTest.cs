@@ -19,16 +19,16 @@ public class CharacterTest {
     [Test]
     public void TakeDamageTest() {
 
-		float currHP = character.hp;
+		float currHP = character.Hp;
 		character.TakeDamage (DAMAGE_TAKEN_FOR_TESTING);
-		Assert.AreEqual (character.hp, currHP - DAMAGE_TAKEN_FOR_TESTING);
+		Assert.AreEqual (character.Hp, currHP - DAMAGE_TAKEN_FOR_TESTING);
 		// Alway take damage until he died.
-		while (character.hp > 0) {
+		while (character.Hp > 0) {
 			character.TakeDamage (DAMAGE_TAKEN_FOR_TESTING);
 		}
 		// if character is died, its hp should be zero and can't be less than 0.
-		Assert.True (character.isDead);
-		Assert.True (character.hp == 0);
+		Assert.True (character.IsDead);
+		Assert.True (character.Hp == 0);
 
     }
 

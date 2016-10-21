@@ -20,7 +20,7 @@ public class FireBallControllerTest {
 
 		characterObject = UnityEngine.Object.Instantiate(Resources.Load("Prefabs/Character", typeof(GameObject))) as GameObject;
 		character = characterObject.GetComponent<Character> ();
-		character.hp = 100;
+		character.Hp = 100;
 	}
 
 
@@ -30,9 +30,9 @@ public class FireBallControllerTest {
 		// First test that when fireball hit the player
 		// The player will take damage based on the damage of the fireball
 		// set the damage of fireball
-		fbController.damage = DAMAGE;
+		fbController.Damage = DAMAGE;
 		//record previous hp
-		float previoushp = character.hp;
+		float previoushp = character.Hp;
 		//fbController.OnCollisionEnter (characterObject);
 		//can't create a collision object in test. Collision can only be created by Unity's physics engine.
 		//
