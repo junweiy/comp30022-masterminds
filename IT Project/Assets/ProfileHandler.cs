@@ -17,7 +17,7 @@ public class ProfileHandler : Photon.MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+    private void Start () {
 		LoadedFromFile = false;
 		IsLogedIn = false;
 		AlreadyUpdated = true;
@@ -45,7 +45,7 @@ public class ProfileHandler : Photon.MonoBehaviour {
 		this.UserName = userName;
 	}
 
-	void OnLevelWasLoaded(int level) {
+    private void OnLevelWasLoaded(int level) {
 
 		if (level == MAINMENU_SCENE_NUMBER) {
 			if (IsLogedIn) {

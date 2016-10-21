@@ -4,12 +4,12 @@ using System.Collections;
 public class IgnoreRotation : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+    private void Start () {
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+    private void Update () {
         this.transform.rotation = Quaternion.identity;
 	}
 }

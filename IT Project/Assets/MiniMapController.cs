@@ -3,8 +3,7 @@ using System.Collections;
 
 public class MiniMapController : MonoBehaviour
 {
-
-    void Start()
+    private void Start()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Character");
         foreach (GameObject player in players)

@@ -163,7 +163,7 @@ public class PhotonConverter : Photon.MonoBehaviour
         return scripts;
     }
 
-    static void ConvertScripts(List<string> scriptPathList)
+    private static void ConvertScripts(List<string> scriptPathList)
     {
         bool ignoreWarningIsLogged = false;
 
@@ -192,7 +192,7 @@ public class PhotonConverter : Photon.MonoBehaviour
         }
     }
 
-    static void ConvertToPhotonAPI(string file)
+    private static void ConvertToPhotonAPI(string file)
     {
         string text = File.ReadAllText(file);
 
@@ -356,7 +356,7 @@ public class PhotonConverter : Photon.MonoBehaviour
         }
     }
 
-    static string PregReplace(string input, string[] pattern, string[] replacements)
+    private static string PregReplace(string input, string[] pattern, string[] replacements)
     {
         if (replacements.Length != pattern.Length)
             Debug.LogError("Replacement and Pattern Arrays must be balanced");
@@ -368,13 +368,14 @@ public class PhotonConverter : Photon.MonoBehaviour
 
         return input;
     }
-    static string PregReplace(string input, string pattern, string replacement)
+
+    private static string PregReplace(string input, string pattern, string replacement)
     {
         return Regex.Replace(input, pattern, replacement);
 
     }
 
-    static void EnsureFolder(string path)
+    private static void EnsureFolder(string path)
     {
         if (!Directory.Exists(path))
         {
@@ -384,7 +385,7 @@ public class PhotonConverter : Photon.MonoBehaviour
         }
     }
 
-    static int ConvertNetworkView(NetworkView[] netViews, bool isScene)
+    private static int ConvertNetworkView(NetworkView[] netViews, bool isScene)
     {
         for (int i = netViews.Length - 1; i >= 0; i--)
         {
@@ -428,12 +429,12 @@ public class PhotonConverter : Photon.MonoBehaviour
         return netViews.Length;
     }
 
-    static void Output(string str)
+    private static void Output(string str)
     {
         Debug.Log(((int)EditorApplication.timeSinceStartup) + " " + str);
     }
 
-    static void ConversionError(string file, string str)
+    private static void ConversionError(string file, string str)
     {
         Debug.LogError("Scrip conversion[" + file + "]: " + str);
     }

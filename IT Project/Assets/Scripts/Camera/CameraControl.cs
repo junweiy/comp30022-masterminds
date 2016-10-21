@@ -4,8 +4,8 @@ using System.Collections;
 public class CameraControl : MonoBehaviour {
     
     // The target that the camera will follow
-    public Transform MTarget; 
-	Quaternion _rotation;
+    public Transform MTarget;
+    private Quaternion _rotation;
 
     private void Awake()
     {
@@ -20,7 +20,7 @@ public class CameraControl : MonoBehaviour {
         this.transform.position = MTarget.position;
     }
 
-	void LateUpdate() {
+    private void LateUpdate() {
 		
 		transform.rotation = _rotation;
 	}

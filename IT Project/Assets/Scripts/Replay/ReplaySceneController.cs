@@ -33,11 +33,11 @@ public class ReplaySceneController : RecordHandler {
         }
     }
 
-    GameReplay _replay;
-    int _frameCount = 0;
+    private GameReplay _replay;
+    private int _frameCount = 0;
     
     // Use this for initialization
-    void Start () {
+    private void Start () {
         GameReplay p = GlobalState.Instance.ReplayToLoad;
 
         if (p == null) {
@@ -48,14 +48,14 @@ public class ReplaySceneController : RecordHandler {
         StartReplay();
     }
 
-    void LoadReplay(GameReplay replay) {
+    private void LoadReplay(GameReplay replay) {
         this._replay = replay;
         var info = replay.Info;
         Application.targetFrameRate = info.TargetFrameRate;
         _frameCount = 0;
     }
 
-    void StartReplay() {
+    private void StartReplay() {
         State = ReplayState.Started;
     }
 
@@ -63,7 +63,7 @@ public class ReplaySceneController : RecordHandler {
         StateController.SwitchToReplaySelection();
     }
 
-    void FinishReplay() {
+    private void FinishReplay() {
         EndMessage.SetActive(true);
         State = ReplayState.Ended;
     }
@@ -89,7 +89,7 @@ public class ReplaySceneController : RecordHandler {
     }
 
     // Update is called once per frame
-    void Update () {
+    private void Update () {
 
         if (Input.GetKeyDown("p")) {
             TriggerPauseContinue();

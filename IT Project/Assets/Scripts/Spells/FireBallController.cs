@@ -20,21 +20,20 @@ public class FireBallController : Photon.MonoBehaviour {
     public bool EnableDamage = true;
 
 
-
-	void Start() {
+    private void Start() {
 		SetVelocity ();
 		DistanceTravelled = 0;
 	}
 
 
-	void Update() {
+    private void Update() {
 		DistanceTravelled += VELOCITY * Time.deltaTime;
 		if (DistanceTravelled >= RANGE) {
 			Destroy (this.gameObject);
 		}
 	}
 
-	void SetVelocity() {
+    private void SetVelocity() {
 		this.GetComponent<Rigidbody> ().velocity = VELOCITY * ( this.transform.rotation * new Vector3(0,0,1));
 	}
 		

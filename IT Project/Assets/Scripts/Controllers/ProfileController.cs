@@ -16,12 +16,12 @@ public class ProfileController : MonoBehaviour {
 	private Profile _p;
 
 	// Use this for initialization
-	void Start () {
+    private void Start () {
 		_p = GlobalState.Instance.Profile;
 		DisplayInfo ();
 	}
 
-	void DisplayInfo() {
+    private void DisplayInfo() {
 		UserNameField.GetComponent<Text> ().text = _p.UserName;
 		UserIdField.GetComponent<Text> ().text = _p.Uid.ToString();
 		GamePlayedField.GetComponent<Text> ().text = _p.NumGamesPlayed.ToString();
@@ -32,7 +32,7 @@ public class ProfileController : MonoBehaviour {
 		NumDeathField.GetComponent<Text> ().text = _p.NumDeath.ToString ();
 	}
 
-	void Update() {
+    private void Update() {
 		// TODO investigate on why this must be in update()
 		DisplayInfo ();
 	}

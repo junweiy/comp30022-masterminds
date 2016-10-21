@@ -8,7 +8,7 @@ public class LoginPanelController : MonoBehaviour {
     public string UserName;
 	
 	// Update is called once per frame
-	void Update () {
+    private void Update () {
         if (this.gameObject.activeInHierarchy)
         {
             UserName = UserNameInput.text.ToString();

@@ -1204,7 +1204,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
         }
     }
 
-    void RemovePlayer(int ID, PhotonPlayer player)
+    private void RemovePlayer(int ID, PhotonPlayer player)
     {
         this.mActors.Remove(ID);
         if (!player.isLocal)
@@ -1213,7 +1213,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
         }
     }
 
-    void RebuildPlayerListCopies()
+    private void RebuildPlayerListCopies()
     {
         this.mPlayerListCopy = new PhotonPlayer[this.mActors.Count];
         this.mActors.Values.CopyTo(this.mPlayerListCopy, 0);
@@ -4004,7 +4004,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
     }
 
 
-	string LogObjectArray(object[] data)
+    private string LogObjectArray(object[] data)
 	{
 	    if (data == null) return "null";
         string[] sb = new string[data.Length];
@@ -4231,7 +4231,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
     /// Returns true if both objects are almost identical.
     /// Used to check whether two objects are similar enough to skip an update.
     /// </summary>
-    bool ObjectIsSameWithInprecision(object one, object two)
+    private bool ObjectIsSameWithInprecision(object one, object two)
     {
         if (one == null || two == null)
         {

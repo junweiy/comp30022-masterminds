@@ -12,7 +12,7 @@ public class SpellIconController : MonoBehaviour {
     public bool IsClicked;
 
     // Initialise the spell icon
-    void Start()
+    private void Start()
     {
         _spellBg = GetComponent<Image>();
         _spellImage = transform.GetChild(0).GetComponent<Image>();
@@ -29,7 +29,7 @@ public class SpellIconController : MonoBehaviour {
     }
 
     // Update the display of image
-    void Update()
+    private void Update()
     {
 		if (_spellController == null) {
 			_spellController = GetMainPlayerController<SpellController>();

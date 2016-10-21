@@ -7,7 +7,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 
 
 	// Update is called once per frame
-	void FixedUpdate() {
+    private void FixedUpdate() {
 		if (!PhotonNetwork.connected) {
 			return;
 		}
@@ -17,7 +17,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 		}
 	}
 
-	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+    private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			// We own this player: send the others our data
 			stream.SendNext (GetComponent<Character> ().Hp);

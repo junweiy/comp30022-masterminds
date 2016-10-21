@@ -11,7 +11,7 @@ public class VirtualJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 
     public object RectransformUtility { get; private set; }
 
-    void Start()
+    private void Start()
     {
         _joyStickBg = GetComponent<Image>();
         _joyStickImg = transform.GetChild(0).GetComponent<Image>();

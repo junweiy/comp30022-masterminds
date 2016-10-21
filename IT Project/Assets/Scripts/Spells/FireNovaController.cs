@@ -20,12 +20,13 @@ public class FireNovaController : Photon.MonoBehaviour {
 
 
 	/* The function utilised coroutine to achieve casting time effect.
-	 */ 
-	void Start () {
+	 */
+
+    private void Start () {
 		TimePassed = 0;
 	}
 
-	void Update() {
+    private void Update() {
 		TimePassed+= Time.deltaTime;
 		if (TimePassed >= CastingTime) {
 			CastFireNova ();

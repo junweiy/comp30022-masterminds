@@ -21,7 +21,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
     public Text ConnectionStatusUi;
 
 	// Use this for initialization
-	void Start () {
+    private void Start () {
 		PhotonNetwork.automaticallySyncScene = true;
 		_status = "Connecting to matchmaking server";
 		_countdownStarted = false;
@@ -30,7 +30,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	}
 
 	// Check for
-	IEnumerator CheckForPlayers() {
+    private IEnumerator CheckForPlayers() {
 		yield return new WaitForSeconds (2);
 		if (PhotonNetwork.playerList.Length > 1) {
 			_countdownStarted = true;
@@ -39,7 +39,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 		}
 	}
 
-	void RestartCountdown() {
+    private void RestartCountdown() {
 		_countdownStarted = false;
 		TimeLeft = COUNTDOWN;
 	}
@@ -72,16 +72,16 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	}
 
 	[PunRPC]
-	void SetLoadFile(bool loaded) {
+	private void SetLoadFile(bool loaded) {
 		LoadedFromFile = loaded;
 	}
 
 	[PunRPC]
-	void ResetCountDown() {
+	private void ResetCountDown() {
 		TimeLeft = COUNTDOWN;
 	}
 
-	void Update() {
+    private void Update() {
 
 		if (PhotonNetwork.inRoom && LoadedFromFile && !PhotonNetwork.isMasterClient) {
 			_status = "Game loaded from player " + PhotonNetwork.masterClient.name+ ".";

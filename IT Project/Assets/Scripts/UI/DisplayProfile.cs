@@ -6,8 +6,8 @@ public class DisplayProfile : MonoBehaviour {
 
     public Profile Profile;
     public GameObject Details;
-	
-	void Update () {
+
+    private void Update () {
         SetText("User", Profile.UserName, 0);
         SetText("User", Profile.Uid.ToString(), 1);
         SetText("numGamesPlayed", Profile.NumGamesPlayed.ToString(),1);
@@ -19,7 +19,7 @@ public class DisplayProfile : MonoBehaviour {
     }
 
     //load content from profile, and set the related text field
-    void SetText(string transName, string profileContent, int childNum)
+    private void SetText(string transName, string profileContent, int childNum)
     {
         Transform temp = Details.transform.Find(transName);
         Text[] texts;

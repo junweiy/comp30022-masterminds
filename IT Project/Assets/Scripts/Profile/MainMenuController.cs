@@ -15,12 +15,12 @@ public class MainMenuController : MonoBehaviour {
 	public GameObject AlertPage;
 
 	// Use this for initialization
-	void Start () {
+    private void Start () {
 		Screen.orientation = ScreenOrientation.LandscapeLeft;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+    private void Update () {
 		// TODO Keybord action for testing, shuold probably provide a feature to switch user properly
 		if (Input.GetKeyDown (KeyCode.S) && MainMenuPage.activeSelf) {
 			SwitchTo (LoginPage);

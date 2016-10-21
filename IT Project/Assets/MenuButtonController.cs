@@ -51,7 +51,7 @@ public class MenuButtonController : Photon.MonoBehaviour {
 	}
 
 	[PunRPC]
-	void Pause() {
+	private void Pause() {
 		JoyStick.SetActive(false);
 		SpellButton.SetActive (false);
         PauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Continue");
@@ -60,7 +60,7 @@ public class MenuButtonController : Photon.MonoBehaviour {
 	}
 
 	[PunRPC]
-	void Continue() {
+	private void Continue() {
 		JoyStick.SetActive(true);
 		SpellButton.SetActive (true);
         PauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Pause");
@@ -69,8 +69,7 @@ public class MenuButtonController : Photon.MonoBehaviour {
 	}
 
 
-
-    void Update()
+    private void Update()
     {
         Color temp = SavedImage.color;
         temp.a = _currentCoolDown / _saveCoolDown;

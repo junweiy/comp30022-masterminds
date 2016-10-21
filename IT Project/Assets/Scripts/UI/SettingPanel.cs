@@ -7,12 +7,12 @@ public class SettingPanel : MonoBehaviour {
 	public GameObject settingPanel;
 
 	// Use this for initialization
-	void Start () {
+    private void Start () {
 		settingPanel.SetActive (false);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+    private void Update () {
 	
 	}
 

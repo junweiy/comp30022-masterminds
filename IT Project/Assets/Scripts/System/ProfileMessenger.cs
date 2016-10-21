@@ -11,7 +11,7 @@ public static class ProfileMessenger {
 		return System.DateTime.Now.Millisecond;
 	}
 
-	static void ThrowExceptionIfError(string text) {
+    private static void ThrowExceptionIfError(string text) {
 		Debug.Log (text);
 		ErrorResponse res = JsonUtility.FromJson<ErrorResponse> (text);
 		if (res.Code != -1 && res.Code != 0 && res.Message != null) {
@@ -128,7 +128,7 @@ public static class ProfileMessenger {
 
 
 	[System.Serializable]
-	class NewUserRequest {
+	private class NewUserRequest {
 		public string UserName;
 		public string Email;
 		public int Timestamp;
@@ -136,14 +136,14 @@ public static class ProfileMessenger {
 	}
 
 	[System.Serializable]
-	class NewUserResponse {
+	private class NewUserResponse {
 		public int Code;
 		public string Message;
 		public int Uid;
 	}
 
 	[System.Serializable]
-	class ProfileUpdateRequestWithUid {
+	private class ProfileUpdateRequestWithUid {
 		public int Uid;
 		public string Token;
 		public int Timestamp;
@@ -154,7 +154,7 @@ public static class ProfileMessenger {
 	}
 
 	[System.Serializable]
-	class ProfileUpdateRequestWithEmail {
+	private class ProfileUpdateRequestWithEmail {
 		public string Email;
 		public string Token;
 		public int Timestamp;
@@ -165,13 +165,13 @@ public static class ProfileMessenger {
 	}
 
 	[System.Serializable]
-	class ProfileUpdateResponse {
+	private class ProfileUpdateResponse {
 		public int Code;
 		public Profile Profile;
 	}
 
 	[System.Serializable]
-	class NewProfileRequest {
+	private class NewProfileRequest {
 		public Profile NewProfile;
 		public int Uid;
 		public string Token;
@@ -179,7 +179,7 @@ public static class ProfileMessenger {
 	}
 
 	[System.Serializable]
-	class ErrorResponse {
+	private class ErrorResponse {
 		public int Code;
 		public string Message;
 	}

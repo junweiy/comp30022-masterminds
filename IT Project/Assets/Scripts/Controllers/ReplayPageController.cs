@@ -9,7 +9,7 @@ public class ReplayPageController : MonoBehaviour {
     public GameObject ButtonPrefab;
     public GameObject ScrollViewContent;
 
-    void LoadReplays() {
+    private void LoadReplays() {
         var filePaths = ReplayIo.GetReplayFilepaths();
 
         // generate each button for each replay
@@ -25,7 +25,7 @@ public class ReplayPageController : MonoBehaviour {
         }
     }
 
-    void OpenReplay(string filePath) {
+    private void OpenReplay(string filePath) {
         GlobalState.Instance.ReplayToLoad = ReplayIo.LoadReplayFromFilepath(filePath);
         StateController.SwitchToReplayScene();
     }
@@ -35,7 +35,7 @@ public class ReplayPageController : MonoBehaviour {
     }
 
 	// Use this for initialization
-	void Start () {
+    private void Start () {
         LoadReplays();
     }
 }

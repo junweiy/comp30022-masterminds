@@ -12,7 +12,7 @@ public class CharacterController : Photon.MonoBehaviour {
 	public const float VELOCITY = 200f;
 	public const float MAX_VELOCITY = 300f;
     public bool IsSpeaking;
-	Rigidbody _rb;
+    private Rigidbody _rb;
 
 	private bool _controlling;
 
@@ -40,7 +40,7 @@ public class CharacterController : Photon.MonoBehaviour {
 
 
 	// Update is called once per frame
-	void Update () {
+    private void Update () {
 
 		if (!photonView.isMine) {
 			return;
@@ -82,7 +82,7 @@ public class CharacterController : Photon.MonoBehaviour {
 	}
 
 	[PunRPC]
-	void PlayAnim(string name) {
+	private void PlayAnim(string name) {
 		Animation anim = transform.GetChild(3).GetComponent<Animation>();
 		if (anim.IsPlaying ("Move|Cast")) {
 			return;

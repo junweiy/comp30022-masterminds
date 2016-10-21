@@ -17,7 +17,7 @@ public class ResultPageController : MonoBehaviour {
     public Button SaveButton;
 
     // Update is called once per frame
-    void Start()
+    private void Start()
     {
         
         //display result (win or lose)

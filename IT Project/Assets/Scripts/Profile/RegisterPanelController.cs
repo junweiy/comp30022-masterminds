@@ -11,7 +11,7 @@ public class RegisterPanelController : MonoBehaviour {
 
 	
 	// Update is called once per frame
-	void Update () {
+    private void Update () {
         UserName = UserNameInput.text.ToString();
         Email = EmailInput.text.ToString();
 	}

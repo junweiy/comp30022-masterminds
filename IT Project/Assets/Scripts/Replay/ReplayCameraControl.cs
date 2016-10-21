@@ -6,12 +6,12 @@ public class ReplayCameraControl : MonoBehaviour {
     public float SlideSpeed = 5f;
     public float ZoomSpeed = 5f;
 
-    Vector2? _lastSlidePoint;
-    float? _lastZoomDist;
+    private Vector2? _lastSlidePoint;
+    private float? _lastZoomDist;
 
 
     // Update is called once per frame
-    void Update() {
+    private void Update() {
         if (Input.touchCount == 1) {
             Vector2 touchPos = Input.touches[0].position;
             if (_lastSlidePoint != null) {

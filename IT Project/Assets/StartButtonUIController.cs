@@ -11,12 +11,12 @@ public class StartButtonUiController : MonoBehaviour {
     private bool _increaseCoolDown = false;
 
 	// Use this for initialization
-	void Start () {
+    private void Start () {
         _startImage = GetComponent<Image>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+    private void Update () {
         Color temp = _startImage.color;
         temp.a = _currentCoolDown / _coolDown;
         _startImage.color = temp;

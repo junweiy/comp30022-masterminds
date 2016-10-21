@@ -10,37 +10,39 @@ using System.IO;
 public class GameStateRecorder : StateRecorder {
     private ReplayState _state = ReplayState.Preparing;
 
-	bool _started;
+    private bool _started;
 
-    GameReplay _replay;
+    private GameReplay _replay;
 
-    const int TARGET_FRAMERATE = 60;
+    private const int TARGET_FRAMERATE = 60;
 
-    int _frameCount = 0;
+    private int _frameCount = 0;
 
 	// Use this for initialization
-	void Start () {
+    private void Start () {
         Application.targetFrameRate = TARGET_FRAMERATE;
 		_started = false;
 		StartRecording ();
 	}
 
-    void StartRecording() {
+    private void StartRecording() {
         Debug.Log("Started Recording");
 		_started = true;
-        _replay = new GameReplay();
+        _replay = new GameReplay
+        {
+            Info = new ReplayInfo(
+                GetGameVersion(),
+                TARGET_FRAMERATE
+            ),
+            Entries = new Queue<GameReplay.Entry>()
+        };
 
-        _replay.Info = new ReplayInfo(
-            GetGameVersion(),
-            TARGET_FRAMERATE
-        );
 
-        _replay.Entries = new Queue<GameReplay.Entry>();
         _frameCount = 0;
         _state = ReplayState.Started;
     }
 
-    void AddEntry(IRecord record) {
+    private void AddEntry(IRecord record) {
         var newEntry = new GameReplay.Entry();
         newEntry.FrameTime = _frameCount;
         newEntry.Record = record;
@@ -59,7 +61,7 @@ public class GameStateRecorder : StateRecorder {
     }
 
     // Not an actual flush to disk, but could be changed to do so
-    void FlushPendingRecodsToReplayObject() {
+    private void FlushPendingRecodsToReplayObject() {
         while (Pending.Count != 0) {
             var record = Pending.Dequeue();
             AddEntry(record);
@@ -68,7 +70,7 @@ public class GameStateRecorder : StateRecorder {
 
 
     // Update is called once per frame
-    void Update() {
+    private void Update() {
 		GameObject mainChar = GameObject.FindGameObjectWithTag ("Character");
         if (Input.GetKeyDown(KeyCode.S)) {
             StartRecording();

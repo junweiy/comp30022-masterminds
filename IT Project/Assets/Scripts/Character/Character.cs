@@ -27,14 +27,14 @@ public class Character : Photon.MonoBehaviour {
 
 	private HealthBarUi _healthBarUi;
 
-	void Awake() {
+    private void Awake() {
 		_maxHp = DEFAULT_HP;
 		NumDeath = 0;
 		NumKilled = 0;
 		IsDead = false;
 	}
 
-    void Start()
+    private void Start()
     {
 		this._healthBarUi = this.GetComponent<HealthBarUi> ();
 		CharId = photonView.viewID;
@@ -43,7 +43,7 @@ public class Character : Photon.MonoBehaviour {
 		}
     }
 
-	void Update() {
+    private void Update() {
 		_healthBarUi.SetHealthUi(Hp,_maxHp);
 	}
 		
@@ -74,19 +74,19 @@ public class Character : Photon.MonoBehaviour {
 
     }
 
-	void DisableAndObserveOtherPlayer() {
+    private void DisableAndObserveOtherPlayer() {
 		FocusCameraOnOtherPlayer ();
 		MoveToHiddenPlace ();
 		DisableUi ();
 	}
 
-	void MoveToHiddenPlace() {
+    private void MoveToHiddenPlace() {
 		this.transform.position = new Vector3 (0,0,1000);
 		this.transform.localScale = new Vector3 (0, 0, 0);
 		this.GetComponent<CharacterController> ().enabled = false;
 	}
 
-	void FocusCameraOnOtherPlayer() {
+    private void FocusCameraOnOtherPlayer() {
 		GameObject anotherPlayer = FindAnotherPlayerAlive ();
 		transform.FindChild ("CameraRig").gameObject.SetActive (false);
 		GameObject cameraRig = anotherPlayer.transform.FindChild ("CameraRig").gameObject;
@@ -96,7 +96,7 @@ public class Character : Photon.MonoBehaviour {
 		cameraRig.GetComponentInChildren<AudioListener> ().enabled = true;
 	}
 
-	GameObject FindAnotherPlayerAlive() {
+    private GameObject FindAnotherPlayerAlive() {
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Character");
 		foreach (GameObject player in players) {
 			if (!player.GetComponent<Character> ().IsDead) {

@@ -4,8 +4,8 @@ using System;
 
 [System.Serializable]
 public class GroundRecord : IRecord {
-	float _scale;
-	float _timePassedSinceLastShrink;
+    private float _scale;
+    private float _timePassedSinceLastShrink;
 
     public void ApplyEffect(RecordHandler c) {
 		c.SetGround (_scale, _timePassedSinceLastShrink);

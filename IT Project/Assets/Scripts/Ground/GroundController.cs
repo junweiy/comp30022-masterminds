@@ -16,11 +16,11 @@ public class GroundController : Photon.MonoBehaviour {
     public GameObject MiniMap;
 
 
-	void Start () {
+    private void Start () {
 		TimePassed = 0;
 	}
 
-	void Update() {
+    private void Update() {
 		TimePassed += Time.deltaTime;
 		if (TimePassed >= SecondsBetweenShrinking && transform.localScale.x > InitialScale.x * MinScalableSizeRatio) {
 			TimePassed -= SecondsBetweenShrinking;
@@ -47,7 +47,7 @@ public class GroundController : Photon.MonoBehaviour {
         MiniMap.transform.localScale = this.transform.localScale;
     }
 
-	void Scale() {
+    private void Scale() {
 		Vector3 tempSize = transform.localScale;
 		tempSize.x = transform.localScale.x - SizeShrunkPerTime;
 		tempSize.y = transform.localScale.y;

@@ -8,8 +8,8 @@ public class SpellController : Photon.MonoBehaviour {
 	// The distance of spawned fireball from player
 	private float _fireballSpawnDistance = 30f;
 
-	FireBall _fb;
-	FireNova _fn;
+    private FireBall _fb;
+    private FireNova _fn;
 
 	public List<Action<Spell, Transform, int>> OnCastSpellActions = new List<Action<Spell, Transform, int>>();
 
@@ -21,7 +21,7 @@ public class SpellController : Photon.MonoBehaviour {
     private SpellIconController _fireNovaUi;
 
 
-    void Start() {
+    private void Start() {
 		_fb = new FireBall ();
 		_fn = new FireNova ();
         if (Character.photonView.isMine)
@@ -34,7 +34,7 @@ public class SpellController : Photon.MonoBehaviour {
         
 	}
 
-	void Update() {
+    private void Update() {
 		// Update cool down time for all spells
 		UpdateCoolDown(new Spell[]{_fb,_fn});
 
@@ -54,14 +54,14 @@ public class SpellController : Photon.MonoBehaviour {
 	}
 
 	[PunRPC]
-	void SetUpVariableFireBall(int viewId) {
+	private void SetUpVariableFireBall(int viewId) {
 		FireBallController fbc = PhotonView.Find (viewId).gameObject.GetComponent<FireBallController>();
 		fbc.CharId = photonView.viewID;
 		fbc.Damage = _fb.Damage;
 	}
 
 	[PunRPC]
-	void SetUpVariableFireNova(int viewId) {
+	private void SetUpVariableFireNova(int viewId) {
 		FireNovaController fnc = PhotonView.Find (viewId).gameObject.GetComponent<FireNovaController>();
 		fnc.CharId = photonView.viewID;
 		fnc.Damage = _fn.Damage;

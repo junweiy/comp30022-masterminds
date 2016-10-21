@@ -53,7 +53,7 @@ public class GameController : Photon.PunBehaviour {
 		throw new UnityException ();
 	}
 
-	void OnLevelWasLoaded(int level) {
+    private void OnLevelWasLoaded(int level) {
 		if (level == GAMEPLAY_SCENE_NUMBER) {
 			if (!LoadedFromFile) {
 				InitialiseGamePlay ();
@@ -101,9 +101,9 @@ public class GameController : Photon.PunBehaviour {
 			StartCoroutine ("SwitchToResultWithDelay");
 		}
 	}
-		
-		
-	void Start() {
+
+
+    private void Start() {
 		DontDestroyOnLoad (this.gameObject);
 
 	}
