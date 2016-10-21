@@ -22,8 +22,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
             // We own this player: send the others our data
             stream.SendNext(GetComponent<Character>().Hp);
             stream.SendNext(GetComponent<Character>().UserName);
-        }
-        else {
+        } else {
             // Network player, receive data
             this._hp = (int) stream.ReceiveNext();
             this._userName = (string) stream.ReceiveNext();

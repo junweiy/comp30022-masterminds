@@ -29,8 +29,7 @@ public class ReplayCameraControl : MonoBehaviour {
 //                ));
             }
             _lastSlidePoint = touchPos;
-        }
-        else if (Input.touchCount == 2) {
+        } else if (Input.touchCount == 2) {
             float dist = Vector2.Distance(
                 Input.touches[0].position,
                 Input.touches[1].position
@@ -46,8 +45,7 @@ public class ReplayCameraControl : MonoBehaviour {
             }
 
             _lastZoomDist = dist;
-        }
-        else {
+        } else {
             _lastSlidePoint = null;
             _lastZoomDist = null;
         }

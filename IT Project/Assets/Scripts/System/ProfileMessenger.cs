@@ -34,8 +34,7 @@ public static class ProfileMessenger {
         while (!w.isDone) {}
         if (!string.IsNullOrEmpty(w.error)) {
             Debug.Log(w.error);
-        }
-        else {
+        } else {
             Debug.Log(w.text);
             ThrowExceptionIfError(w.text);
             Debug.Log("Finished submitting profile");
@@ -64,8 +63,7 @@ public static class ProfileMessenger {
         if (!string.IsNullOrEmpty(w.error)) {
             Debug.Log(w.error);
             return null;
-        }
-        else {
+        } else {
             ThrowExceptionIfError(w.text);
             var res = JsonUtility.FromJson<ProfileUpdateResponse>(w.text);
             return res.Profile;
@@ -89,8 +87,7 @@ public static class ProfileMessenger {
         if (!string.IsNullOrEmpty(w.error)) {
             Debug.Log(w.error);
             return null;
-        }
-        else {
+        } else {
             ThrowExceptionIfError(w.text);
             var res = JsonUtility.FromJson<ProfileUpdateResponse>(w.text);
             return res.Profile;
@@ -111,8 +108,7 @@ public static class ProfileMessenger {
         if (!string.IsNullOrEmpty(w.error)) {
             Debug.Log(w.error);
             return null;
-        }
-        else {
+        } else {
             ThrowExceptionIfError(w.text);
             var res = JsonUtility.FromJson<NewUserResponse>(w.text);
             return res.Uid;

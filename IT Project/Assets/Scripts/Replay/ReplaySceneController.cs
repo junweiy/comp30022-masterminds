@@ -20,14 +20,11 @@ public class ReplaySceneController : RecordHandler {
             if (ButtonLabel != null) {
                 if (value == ReplayState.Preparing) {
                     ButtonLabel.text = "Preparing";
-                }
-                else if (value == ReplayState.Started) {
+                } else if (value == ReplayState.Started) {
                     ButtonLabel.text = "Pause";
-                }
-                else if (value == ReplayState.Paused) {
+                } else if (value == ReplayState.Paused) {
                     ButtonLabel.text = "Continue";
-                }
-                else if (value == ReplayState.Ended) {
+                } else if (value == ReplayState.Ended) {
                     ButtonLabel.text = "Replay Ended";
                 }
             }
@@ -72,8 +69,7 @@ public class ReplaySceneController : RecordHandler {
     public void TriggerPauseContinue() {
         if (State == ReplayState.Started) {
             Pause();
-        }
-        else if (State == ReplayState.Paused) {
+        } else if (State == ReplayState.Paused) {
             Continue();
         }
     }

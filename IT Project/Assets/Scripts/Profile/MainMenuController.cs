@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+
 // ReSharper disable All
 
 public class MainMenuController : MonoBehaviour {
@@ -20,8 +21,7 @@ public class MainMenuController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    private void Update() {
-    }
+    private void Update() {}
 
     private void DisableAllPages() {
         MainMenuPage.SetActive(false);
@@ -48,14 +48,12 @@ public class MainMenuController : MonoBehaviour {
             int? uid = ProfileMessenger.CreateNewUser(userName, email);
             if (uid == null) {
                 Debug.LogWarning("register failed");
-            }
-            else {
+            } else {
                 GlobalState.LoadProfileWithUid((int) uid);
                 GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().LoggedIn(email);
                 GotoMainMenu();
             }
-        }
-        catch (ProfileMessagingException e) {
+        } catch (ProfileMessagingException e) {
             DisplayError(e);
         }
     }
@@ -70,13 +68,11 @@ public class MainMenuController : MonoBehaviour {
             bool outcome = GlobalState.LoadProfileWithEmail(email);
             if (outcome == false) {
                 Debug.LogWarning("login failed");
-            }
-            else {
+            } else {
                 GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().LoggedIn(email);
                 GotoMainMenu();
             }
-        }
-        catch (ProfileMessagingException e) {
+        } catch (ProfileMessagingException e) {
             DisplayError(e);
         }
     }

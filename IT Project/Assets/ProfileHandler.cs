@@ -57,8 +57,7 @@ public class ProfileHandler : Photon.MonoBehaviour {
                 oldProfile.NumPlayerKilled += Kill;
                 if (Won) {
                     oldProfile.NumGamesWon++;
-                }
-                else {
+                } else {
                     oldProfile.NumGamesLost++;
                 }
                 ResetStats();

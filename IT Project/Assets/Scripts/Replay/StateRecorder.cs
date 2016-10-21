@@ -25,9 +25,10 @@ public class StateRecorder : MonoBehaviour {
     }
 
     protected void AddTransformRecords() {
-        EnqueueRecords(StateReader.GetChangedTransFormRecordsWithTag(
-            "Character", _lastPos, _lastRot, _lastScale
-        ));
+        EnqueueRecords(
+            StateReader.GetChangedTransFormRecordsWithTag(
+                "Character", _lastPos, _lastRot, _lastScale
+            ));
     }
 
     protected void AddHpRecords() {

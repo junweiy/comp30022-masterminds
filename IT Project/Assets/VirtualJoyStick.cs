@@ -21,7 +21,8 @@ public class VirtualJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 
     public virtual void OnDrag(PointerEventData ped) {
         Vector2 pos;
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_joyStickBg.rectTransform, ped.position,
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            _joyStickBg.rectTransform, ped.position,
             ped.pressEventCamera, out pos)) {
             pos.x = pos.x/_joyStickBg.rectTransform.sizeDelta.x;
             pos.y = pos.y/_joyStickBg.rectTransform.sizeDelta.y;
@@ -30,7 +31,8 @@ public class VirtualJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
             _inputVector = (_inputVector.magnitude > 1.0f) ? _inputVector.normalized : _inputVector;
 
             _joyStickImg.rectTransform.anchoredPosition =
-                new Vector3(_inputVector.x*(_joyStickBg.rectTransform.sizeDelta.x/3),
+                new Vector3(
+                    _inputVector.x*(_joyStickBg.rectTransform.sizeDelta.x/3),
                     _inputVector.z*(_joyStickBg.rectTransform.sizeDelta.y/3));
         }
     }

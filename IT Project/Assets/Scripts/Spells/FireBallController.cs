@@ -57,8 +57,7 @@ public class FireBallController : Photon.MonoBehaviour {
                     PhotonView.Find(CharId).gameObject.GetComponent<Character>().Killed();
                 }
             }
-        }
-        else {
+        } else {
             Destroy(this.gameObject);
         }
     }

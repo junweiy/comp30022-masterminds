@@ -22,8 +22,7 @@ public class GameController : Photon.PunBehaviour {
         if (numAlive == 1) {
             gsr.FinishRecording();
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -58,8 +57,7 @@ public class GameController : Photon.PunBehaviour {
         if (level == GAMEPLAY_SCENE_NUMBER) {
             if (!LoadedFromFile) {
                 InitialiseGamePlay();
-            }
-            else {
+            } else {
                 if (PhotonNetwork.isMasterClient) {
                     GameLoader gl = GameObject.FindGameObjectWithTag("Loader").GetComponent<GameLoader>();
                     GameSave save = gl.ReadFile();
@@ -76,7 +74,8 @@ public class GameController : Photon.PunBehaviour {
     }
 
     public GameObject SpawnPlayer() {
-        GameObject player = PhotonNetwork.Instantiate("Prefabs/Character", GetNextSpawnPoint(GetIndex()),
+        GameObject player = PhotonNetwork.Instantiate(
+            "Prefabs/Character", GetNextSpawnPoint(GetIndex()),
             Quaternion.identity, 0);
         player.GetComponent<CharacterController>().SetControllable();
         return player;

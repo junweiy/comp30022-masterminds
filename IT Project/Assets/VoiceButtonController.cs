@@ -18,8 +18,7 @@ public class VoiceButtonController : Photon.MonoBehaviour {
             _mainPlayer = FindMainPlayer();
             if (_mainPlayer != null) {
                 _speakerIcon = _mainPlayer.transform.GetChild(2).GetChild(1).gameObject;
-            }
-            else {
+            } else {
                 return;
             }
         }

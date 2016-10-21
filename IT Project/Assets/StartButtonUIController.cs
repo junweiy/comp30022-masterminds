@@ -20,15 +20,12 @@ public class StartButtonUiController : MonoBehaviour {
         _startImage.color = temp;
         if (_currentCoolDown > 0 && !_increaseCoolDown) {
             _currentCoolDown -= Time.deltaTime;
-        }
-        else if (_currentCoolDown <= 0 && !_increaseCoolDown) {
+        } else if (_currentCoolDown <= 0 && !_increaseCoolDown) {
             _currentCoolDown += Time.deltaTime;
             _increaseCoolDown = true;
-        }
-        else if (_currentCoolDown < _coolDown + 0.3f && _increaseCoolDown) {
+        } else if (_currentCoolDown < _coolDown + 0.3f && _increaseCoolDown) {
             _currentCoolDown += Time.deltaTime;
-        }
-        else {
+        } else {
             _currentCoolDown -= Time.deltaTime;
             _increaseCoolDown = false;
         }

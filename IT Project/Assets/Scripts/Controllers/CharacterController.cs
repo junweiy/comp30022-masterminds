@@ -70,8 +70,7 @@ public class CharacterController : Photon.MonoBehaviour {
             transform.rotation = _lastRotation;
 
             photonView.RPC("PlayAnim", PhotonTargets.All, "Move|Move");
-        }
-        else {
+        } else {
             transform.rotation = _lastRotation;
             photonView.RPC("PlayAnim", PhotonTargets.All, "Move|Idle");
         }

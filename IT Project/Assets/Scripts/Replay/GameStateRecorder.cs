@@ -74,8 +74,7 @@ public class GameStateRecorder : StateRecorder {
         GameObject mainChar = GameObject.FindGameObjectWithTag("Character");
         if (Input.GetKeyDown(KeyCode.S)) {
             StartRecording();
-        }
-        else if (Input.GetKeyDown(KeyCode.E)) {
+        } else if (Input.GetKeyDown(KeyCode.E)) {
             FinishRecording();
         }
 

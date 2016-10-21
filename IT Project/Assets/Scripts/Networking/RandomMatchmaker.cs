@@ -95,8 +95,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
         // update UI
         if (_countdownStarted) {
             CountDownUi.text = ((int) TimeLeft).ToString();
-        }
-        else {
+        } else {
             CountDownUi.text = "";
         }
 
@@ -119,18 +118,15 @@ public class RandomMatchmaker : Photon.PunBehaviour {
         if (PhotonNetwork.playerList.Length == 1) {
             if (LoadedFromFile && LoadFileExists()) {
                 _status = "Save loaded, Waiting For other players to join in.";
-            }
-            else if (LoadedFromFile && !LoadFileExists()) {
+            } else if (LoadedFromFile && !LoadFileExists()) {
                 _status = "Save file not found, Please return to main menu.";
                 PhotonNetwork.Disconnect();
-            }
-            else {
+            } else {
                 _status = "Waiting For other players to join in.";
             }
 
             StartCoroutine("CheckForPlayers");
-        }
-        else {
+        } else {
             _countdownStarted = true;
             _status = "Other players found, game will start in: ";
             this.photonView.RPC("ResetCountDown", PhotonTargets.All);
@@ -140,8 +136,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
     public override void OnPhotonPlayerConnected(PhotonPlayer player) {
         if (LoadedFromFile) {
             this.photonView.RPC("SetLoadFile", PhotonTargets.All, true);
-        }
-        else {
+        } else {
             this.photonView.RPC("SetLoadFile", PhotonTargets.All, false);
         }
 

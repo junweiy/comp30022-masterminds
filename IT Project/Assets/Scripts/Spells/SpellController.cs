@@ -89,7 +89,8 @@ public class SpellController : Photon.MonoBehaviour {
 
 
     public FireNovaController CastFireNova() {
-        GameObject fn = PhotonNetwork.Instantiate("Prefabs/FireNova", this.transform.position, this.transform.rotation,
+        GameObject fn = PhotonNetwork.Instantiate(
+            "Prefabs/FireNova", this.transform.position, this.transform.rotation,
             0);
 
         foreach (var a in OnCastSpellActions) {

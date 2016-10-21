@@ -18,8 +18,7 @@ public class MenuButtonController : Photon.MonoBehaviour {
     public void MenuButtonOnClick() {
         if (MenuPanel.activeInHierarchy) {
             MenuPanel.SetActive(false);
-        }
-        else {
+        } else {
             MenuPanel.SetActive(true);
         }
     }
@@ -38,8 +37,7 @@ public class MenuButtonController : Photon.MonoBehaviour {
     public void PauseButtonOnClick() {
         if (Time.timeScale > 0) {
             photonView.RPC("Pause", PhotonTargets.All);
-        }
-        else {
+        } else {
             photonView.RPC("Continue", PhotonTargets.All);
         }
     }
@@ -69,8 +67,7 @@ public class MenuButtonController : Photon.MonoBehaviour {
         SavedImage.color = temp;
         if (_currentCoolDown >= 0) {
             _currentCoolDown -= Time.deltaTime;
-        }
-        else {
+        } else {
             _currentCoolDown = 0;
         }
     }
