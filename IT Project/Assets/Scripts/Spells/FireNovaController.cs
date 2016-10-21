@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.Networking;
 
 public class FireNovaController : Photon.MonoBehaviour {
     // The tag of the character

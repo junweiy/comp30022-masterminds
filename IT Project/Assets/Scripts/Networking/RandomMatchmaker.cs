@@ -2,8 +2,6 @@
 using System.IO;
 using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using Photon;
 
 public class RandomMatchmaker : Photon.PunBehaviour {
     public const int COUNTDOWN = 10;

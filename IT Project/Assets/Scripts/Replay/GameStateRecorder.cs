@@ -1,11 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
-using System.IO;
 
 public class GameStateRecorder : StateRecorder {
     private ReplayState _state = ReplayState.Preparing;
@@ -71,7 +65,6 @@ public class GameStateRecorder : StateRecorder {
 
     // Update is called once per frame
     private void Update() {
-        GameObject mainChar = GameObject.FindGameObjectWithTag("Character");
         if (Input.GetKeyDown(KeyCode.S)) {
             StartRecording();
         } else if (Input.GetKeyDown(KeyCode.E)) {

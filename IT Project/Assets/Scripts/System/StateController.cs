@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Collections;
+﻿using UnityEngine.SceneManagement;
 
 public static class StateController {
     public static void SwitchToGamePlay() {

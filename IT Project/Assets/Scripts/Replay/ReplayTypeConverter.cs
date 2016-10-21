@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using Replay;
+﻿using Replay;
 
 public static class ReplayTypeConverter {
     public static CharacterType GetTypeFromCharacter(Character character) {

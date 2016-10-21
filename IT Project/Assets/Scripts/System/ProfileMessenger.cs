@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public static class ProfileMessenger {
     public static string UpdateProfileUrl = "http://115.146.95.82/masterminds/profile/update.py";

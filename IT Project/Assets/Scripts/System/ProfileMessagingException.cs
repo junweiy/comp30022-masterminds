@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
+﻿using System;
 
 public class ProfileMessagingException : Exception {
     public int Code { get; private set; }

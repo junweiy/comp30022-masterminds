@@ -1,8 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.Networking;
-using System.Collections;
-
-public class FireBall : Spell {
+﻿public class FireBall : Spell {
     // The damage of Fireball
     private const int DAMAGE = 20;
     // The cool down time of Fireball (unit in frames)

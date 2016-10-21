@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.Networking;
-using System.Collections;
+﻿using UnityEngine.Networking;
 
 public static class NetworkHelper {
     public static T GetObjectFromNetIdValue<T>(uint netIdValue, bool isServer) {

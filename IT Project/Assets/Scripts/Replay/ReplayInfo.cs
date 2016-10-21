@@ -1,8 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using Replay;
-
-[System.Serializable]
+﻿[System.Serializable]
 public class ReplayInfo {
     public string GameVersion;
     public int TargetFrameRate;

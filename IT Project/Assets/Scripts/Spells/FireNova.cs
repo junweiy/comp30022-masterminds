@@ -1,8 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.Networking;
-
-public class FireNova : Spell {
+﻿public class FireNova : Spell {
     // The damage of FireNova
     private const int DAMAGE = 30;
     // The power of FireNova

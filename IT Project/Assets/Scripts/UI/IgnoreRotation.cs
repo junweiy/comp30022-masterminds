@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class IgnoreRotation : MonoBehaviour {
     // Use this for initialization

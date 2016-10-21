@@ -1,8 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Networking;
-using System.Collections;
-using System.Collections.Generic;
 
 public class CharacterController : Photon.MonoBehaviour {
     // the character model

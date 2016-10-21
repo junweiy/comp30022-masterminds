@@ -13,12 +13,11 @@
 namespace ExitGames.Client.Photon.LoadBalancing
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics;
 #if UNITY_4_0 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_4 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7 || UNITY_5 || UNITY_5_0 || UNITY_5_1 || UNITY_6
     using Hashtable = ExitGames.Client.Photon.Hashtable;
-    using SupportClass = ExitGames.Client.Photon.SupportClass;
+
 #endif
 
     #region Enums

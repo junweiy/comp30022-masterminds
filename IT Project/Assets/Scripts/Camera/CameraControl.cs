@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CameraControl : MonoBehaviour {
     // The target that the camera will follow

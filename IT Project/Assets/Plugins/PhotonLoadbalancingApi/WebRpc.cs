@@ -1,5 +1,4 @@
-﻿using ExitGames.Client.Photon;
-using ExitGames.Client.Photon.LoadBalancing;
+﻿using ExitGames.Client.Photon.LoadBalancing;
 using System.Collections.Generic;
 
 namespace ExitGames.Client.Photon

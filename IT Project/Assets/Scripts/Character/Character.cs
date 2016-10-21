@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 /*
  *  This class is the main class for the character. It stores all the information about the character

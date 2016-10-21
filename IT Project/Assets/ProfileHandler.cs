@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ProfileHandler : Photon.MonoBehaviour {
     public const int MAINMENU_SCENE_NUMBER = 1;

@@ -1,7 +1,4 @@
-﻿using System;
-
-
-public class PlayerStats {
+﻿public class PlayerStats {
     public string UserName;
     public int Kill;
     public int Death;

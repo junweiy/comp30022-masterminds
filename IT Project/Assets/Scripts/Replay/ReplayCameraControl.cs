@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ReplayCameraControl : MonoBehaviour {
     public float SlideSpeed = 5f;

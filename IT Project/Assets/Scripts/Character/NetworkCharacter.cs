@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using Photon;
-
-public class NetworkCharacter : Photon.MonoBehaviour {
+﻿public class NetworkCharacter : Photon.MonoBehaviour {
     private int _hp;
     private string _userName;
 

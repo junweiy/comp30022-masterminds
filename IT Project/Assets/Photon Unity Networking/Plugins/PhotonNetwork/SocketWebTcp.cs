@@ -8,9 +8,6 @@
 // <author>developer@exitgames.com</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections;
-using UnityEngine;
 using SupportClassPun = ExitGames.Client.Photon.SupportClass;
 
 #if UNITY_WEBGL || UNITY_XBOXONE

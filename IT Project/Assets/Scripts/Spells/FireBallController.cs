@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
-using System.Collections;
 
 public class FireBallController : Photon.MonoBehaviour {
     // The tag of the character

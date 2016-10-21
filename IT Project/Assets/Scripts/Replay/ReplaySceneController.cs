@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-using Replay;
 using UnityEngine.UI;
 
 public class ReplaySceneController : RecordHandler {

@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-
-public abstract class Spell {
+﻿public abstract class Spell {
     // The cool down time of spell (unit in frames)
     public float Cooldown { get; private set; }
     // The current cool down time

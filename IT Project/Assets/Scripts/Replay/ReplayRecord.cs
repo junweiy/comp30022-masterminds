@@ -1,6 +1,3 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public interface IRecord {
+﻿public interface IRecord {
     void ApplyEffect(RecordHandler c);
 }

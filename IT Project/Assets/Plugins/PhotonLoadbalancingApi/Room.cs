@@ -11,8 +11,6 @@
 
 namespace ExitGames.Client.Photon.LoadBalancing
 {
-    using System;
-    using System.Collections;
     using System.Collections.Generic;
     using ExitGames.Client.Photon;
 
