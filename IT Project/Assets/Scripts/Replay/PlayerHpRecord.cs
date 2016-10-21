@@ -3,16 +3,16 @@ using System.Collections;
 using System;
 
 [System.Serializable]
-public class PlayerHpRecord : Record {
-    public int id;
-    public int hp;
+public class PlayerHpRecord : IRecord {
+    public int Id;
+    public int Hp;
 
-    public void applyEffect(RecordHandler c) {
-        c.SetPlayerHp(id, hp);
+    public void ApplyEffect(RecordHandler c) {
+        c.SetPlayerHp(Id, Hp);
     }
 
     public PlayerHpRecord(int objId, int hp) {
-        this.hp = hp;
-        this.id = objId;
+        this.Hp = hp;
+        this.Id = objId;
     }
 }

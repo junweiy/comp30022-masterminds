@@ -9,23 +9,23 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 
 	public const int COUNTDOWN = 10;
 
-	private string status;
-	private bool countdownStarted; 
-	public float timeLeft { get; set; }
+	private string _status;
+	private bool _countdownStarted; 
+	public float TimeLeft { get; set; }
 
-	public bool loadedFromFile;
+	public bool LoadedFromFile;
 
     //UI text
-    public Text countDownUI;
-    public Text statusUI;
-    public Text connectionStatusUI;
+    public Text CountDownUi;
+    public Text StatusUi;
+    public Text ConnectionStatusUi;
 
 	// Use this for initialization
 	void Start () {
 		PhotonNetwork.automaticallySyncScene = true;
-		status = "Connecting to matchmaking server";
-		countdownStarted = false;
-		timeLeft = COUNTDOWN;
+		_status = "Connecting to matchmaking server";
+		_countdownStarted = false;
+		TimeLeft = COUNTDOWN;
 		PhotonNetwork.ConnectUsingSettings("V0.1");
 	}
 
@@ -33,15 +33,15 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	IEnumerator CheckForPlayers() {
 		yield return new WaitForSeconds (2);
 		if (PhotonNetwork.playerList.Length > 1) {
-			countdownStarted = true;
-			status = "Other players found, game will start in: ";
+			_countdownStarted = true;
+			_status = "Other players found, game will start in: ";
 			this.photonView.RPC ("ResetCountDown", PhotonTargets.All);
 		}
 	}
 
 	void RestartCountdown() {
-		countdownStarted = false;
-		timeLeft = COUNTDOWN;
+		_countdownStarted = false;
+		TimeLeft = COUNTDOWN;
 	}
 
 	//void OnGUI() {
@@ -64,7 +64,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 
 	public void CountdownFinished() {
 		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
-		gc.loadedFromFile = loadedFromFile;
+		gc.LoadedFromFile = LoadedFromFile;
 		if (PhotonNetwork.isMasterClient) {
 			PhotonNetwork.LoadLevel ("scenes/gameplay");
 		}
@@ -73,37 +73,37 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 
 	[PunRPC]
 	void SetLoadFile(bool loaded) {
-		loadedFromFile = loaded;
+		LoadedFromFile = loaded;
 	}
 
 	[PunRPC]
 	void ResetCountDown() {
-		timeLeft = COUNTDOWN;
+		TimeLeft = COUNTDOWN;
 	}
 
 	void Update() {
 
-		if (PhotonNetwork.inRoom && loadedFromFile && !PhotonNetwork.isMasterClient) {
-			status = "Game loaded from player " + PhotonNetwork.masterClient.name+ ".";
+		if (PhotonNetwork.inRoom && LoadedFromFile && !PhotonNetwork.isMasterClient) {
+			_status = "Game loaded from player " + PhotonNetwork.masterClient.name+ ".";
 		}
 
-		if (countdownStarted && timeLeft > 0) {
-			timeLeft -= Time.deltaTime;
+		if (_countdownStarted && TimeLeft > 0) {
+			TimeLeft -= Time.deltaTime;
 		}
 
-		if (timeLeft <= 0) {
+		if (TimeLeft <= 0) {
 			PhotonNetwork.room.visible = false;
 			CountdownFinished ();
 		}
         // update UI
-		if (countdownStarted) {
-			countDownUI.text = ((int)timeLeft).ToString();	
+		if (_countdownStarted) {
+			CountDownUi.text = ((int)TimeLeft).ToString();	
 		} else {
-			countDownUI.text = "";	
+			CountDownUi.text = "";	
 		}
         
-        statusUI.text = status.ToString();
-        connectionStatusUI.text = PhotonNetwork.connectionStateDetailed.ToString();
+        StatusUi.text = _status.ToString();
+        ConnectionStatusUi.text = PhotonNetwork.connectionStateDetailed.ToString();
 	}
 		
 	public override void OnPhotonRandomJoinFailed (object[] codeAndMsg) {
@@ -116,39 +116,39 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 	
 
 	public override void OnJoinedRoom() {
-		PhotonNetwork.playerName = GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().userName;
+		PhotonNetwork.playerName = GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().UserName;
 		if (PhotonNetwork.playerList.Length == 1) {
-			if (loadedFromFile && LoadFileExists()) {
-				status = "Save loaded, Waiting For other players to join in.";
-			} else if (loadedFromFile && !LoadFileExists()) {
-				status = "Save file not found, Please return to main menu.";
+			if (LoadedFromFile && LoadFileExists()) {
+				_status = "Save loaded, Waiting For other players to join in.";
+			} else if (LoadedFromFile && !LoadFileExists()) {
+				_status = "Save file not found, Please return to main menu.";
 				PhotonNetwork.Disconnect ();
 			} else {
-				status = "Waiting For other players to join in.";
+				_status = "Waiting For other players to join in.";
 			}
 
 			StartCoroutine ("CheckForPlayers");
 		} else {
-			countdownStarted = true;
-			status = "Other players found, game will start in: ";
+			_countdownStarted = true;
+			_status = "Other players found, game will start in: ";
 			this.photonView.RPC ("ResetCountDown", PhotonTargets.All);
 		}
 	}
 
 	public override void OnPhotonPlayerConnected(PhotonPlayer player) {
-		if (loadedFromFile) {
+		if (LoadedFromFile) {
 			this.photonView.RPC("SetLoadFile", PhotonTargets.All, true);
 		} else {
 			this.photonView.RPC("SetLoadFile", PhotonTargets.All, false);
 		}
 
-		status = "Other players found, game will start in: ";
-		countdownStarted = true;
+		_status = "Other players found, game will start in: ";
+		_countdownStarted = true;
 	}
 
 	public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
 		if (PhotonNetwork.playerList.Length == 1) {
-			status = "Player left the room, waiting For other players to join in";
+			_status = "Player left the room, waiting For other players to join in";
 			RestartCountdown ();
 		}
 	}

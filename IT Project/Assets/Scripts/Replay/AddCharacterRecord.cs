@@ -3,13 +3,13 @@ using System.Collections;
 using System;
 
 [Serializable]
-public class AddCharacterRecord : Record {
+public class AddCharacterRecord : IRecord {
 
     public int ObjId;
     public int CharId;
 	public string UserName;
 
-    public void applyEffect(RecordHandler c) {
+    public void ApplyEffect(RecordHandler c) {
 		c.InstantiateCharacterWith(ObjId, CharId, UserName);
     }
 

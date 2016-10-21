@@ -7,7 +7,7 @@ public class GameController : Photon.PunBehaviour {
 	public const int GAMEPLAY_SCENE_NUMBER = 3;
 	public const int RESULT_SCENE_NUMBER = 4;
 
-	public bool loadedFromFile;
+	public bool LoadedFromFile;
 
 	public static bool CheckIfGameEnds() {
 		GameObject recorder = GameObject.FindGameObjectWithTag ("Recorder");
@@ -15,7 +15,7 @@ public class GameController : Photon.PunBehaviour {
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Character");
 		int numAlive = 0;
 		foreach (GameObject player in players) {
-			if (!player.GetComponent<Character>().isDead) {
+			if (!player.GetComponent<Character>().IsDead) {
 				numAlive++;
 			}
 		}
@@ -55,7 +55,7 @@ public class GameController : Photon.PunBehaviour {
 
 	void OnLevelWasLoaded(int level) {
 		if (level == GAMEPLAY_SCENE_NUMBER) {
-			if (!loadedFromFile) {
+			if (!LoadedFromFile) {
 				InitialiseGamePlay ();
 			} else {
 				if (PhotonNetwork.isMasterClient) {

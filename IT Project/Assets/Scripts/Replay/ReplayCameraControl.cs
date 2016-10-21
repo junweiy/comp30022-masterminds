@@ -6,16 +6,16 @@ public class ReplayCameraControl : MonoBehaviour {
     public float SlideSpeed = 5f;
     public float ZoomSpeed = 5f;
 
-    Vector2? lastSlidePoint;
-    float? lastZoomDist;
+    Vector2? _lastSlidePoint;
+    float? _lastZoomDist;
 
 
     // Update is called once per frame
     void Update() {
         if (Input.touchCount == 1) {
             Vector2 touchPos = Input.touches[0].position;
-            if (lastSlidePoint != null) {
-                var movement = (Vector2)lastSlidePoint - Input.touches[0].position;
+            if (_lastSlidePoint != null) {
+                var movement = (Vector2)_lastSlidePoint - Input.touches[0].position;
 				Vector3 pos = new Vector3 (0, 0, 0);
 				pos.x = this.transform.position.x + movement.x * SlideSpeed;
 				pos.y = this.transform.position.y;
@@ -29,7 +29,7 @@ public class ReplayCameraControl : MonoBehaviour {
 //                    movement.y * SlideSpeed
 //                ));
             }
-            lastSlidePoint = touchPos;
+            _lastSlidePoint = touchPos;
 
         } else if (Input.touchCount == 2) {
             float dist = Vector2.Distance(
@@ -37,19 +37,19 @@ public class ReplayCameraControl : MonoBehaviour {
                     Input.touches[1].position
             );
 
-            if (lastZoomDist != null) {
+            if (_lastZoomDist != null) {
 				Vector3 pos = new Vector3 (0, 0, 0);
 				pos.x = this.transform.position.x;
-				pos.y = this.transform.position.y - ((dist - (float)lastZoomDist) * ZoomSpeed);
+				pos.y = this.transform.position.y - ((dist - (float)_lastZoomDist) * ZoomSpeed);
 				pos.z = this.transform.position.z;
 				Mathf.Clamp (pos.y, 100f, 700f);
 				this.transform.position = pos;
             }
 
-            lastZoomDist = dist;
+            _lastZoomDist = dist;
         } else {
-            lastSlidePoint = null;
-            lastZoomDist = null;
+            _lastSlidePoint = null;
+            _lastZoomDist = null;
         }
     }
 }

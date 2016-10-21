@@ -11,25 +11,25 @@ public class FireBallController : Photon.MonoBehaviour {
 	private const float RANGE = 600;
 
 	// Character ID that cast the spell
-	public int charID;
+	public int CharId;
  	
-	public int damage;
+	public int Damage;
 
-	public float distanceTravelled;
+	public float DistanceTravelled;
 
-    public bool enableDamage = true;
+    public bool EnableDamage = true;
 
 
 
 	void Start() {
 		SetVelocity ();
-		distanceTravelled = 0;
+		DistanceTravelled = 0;
 	}
 
 
 	void Update() {
-		distanceTravelled += VELOCITY * Time.deltaTime;
-		if (distanceTravelled >= RANGE) {
+		DistanceTravelled += VELOCITY * Time.deltaTime;
+		if (DistanceTravelled >= RANGE) {
 			Destroy (this.gameObject);
 		}
 	}
@@ -47,14 +47,14 @@ public class FireBallController : Photon.MonoBehaviour {
 		GameObject gameObject = collision.gameObject;
 		if (gameObject.tag == CHARACTER_TAG) {
 			c = gameObject.GetComponent<Character> ();
-			if (!c.charID.Equals(charID)) {
+			if (!c.CharId.Equals(CharId)) {
 				Destroy (this.gameObject);
-                if (enableDamage) {
-				    c.TakeDamage (damage);
+                if (EnableDamage) {
+				    c.TakeDamage (Damage);
                 }
-				if (c.isDead) {
-					c.numDeath++;
-					PhotonView.Find (charID).gameObject.GetComponent<Character> ().Killed();
+				if (c.IsDead) {
+					c.NumDeath++;
+					PhotonView.Find (CharId).gameObject.GetComponent<Character> ().Killed();
 				}
 			}
 		} else {

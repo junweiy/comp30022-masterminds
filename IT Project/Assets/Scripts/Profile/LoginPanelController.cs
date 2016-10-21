@@ -4,14 +4,14 @@ using UnityEngine.UI;
 
 public class LoginPanelController : MonoBehaviour {
 
-    public InputField userName_input;
-    public string userName;
+    public InputField UserNameInput;
+    public string UserName;
 	
 	// Update is called once per frame
 	void Update () {
         if (this.gameObject.activeInHierarchy)
         {
-            userName = userName_input.text.ToString();
+            UserName = UserNameInput.text.ToString();
         }
 
 	}

@@ -18,18 +18,18 @@ public class FireNova : Spell {
 
 
 	// The range of FireNova
-	public float range { get; set; }
+	public float Range { get; set; }
 	// The power of FireNova
-	public float power { get; private set; }
+	public float Power { get; private set; }
 	// The casting time for the spell
-	public int castingTime { get; private set; }
+	public int CastingTime { get; private set; }
 
 	/* The function initialises the FireNova object with basic properties.
 	 */
 	public FireNova() : base(COOLDOWN, DAMAGE) {
-		this.power = POWER;
-		this.castingTime = CASTING_TIME;
-		this.range = RANGE;
+		this.Power = POWER;
+		this.CastingTime = CASTING_TIME;
+		this.Range = RANGE;
 	}
 
 }

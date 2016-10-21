@@ -2,14 +2,14 @@
 
 
 public class PlayerStats {
-	public string userName;
-	public int kill;
-	public int death;
+	public string UserName;
+	public int Kill;
+	public int Death;
 
 	public PlayerStats(string userName, int kill, int death) {
-		this.userName = userName;
-		this.kill = kill;
-		this.death = death;
+		this.UserName = userName;
+		this.Kill = kill;
+		this.Death = death;
 	}
 	
 }

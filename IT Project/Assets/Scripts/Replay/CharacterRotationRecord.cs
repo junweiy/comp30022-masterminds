@@ -3,24 +3,24 @@ using System.Collections;
 using System;
 
 [System.Serializable]
-public class RotationRecord : Record {
-    public int id;
-    public float x;
-    public float y;
-    public float z;
-    public float w;
+public class RotationRecord : IRecord {
+    public int Id;
+    public float X;
+    public float Y;
+    public float Z;
+    public float W;
 
 
-    public void applyEffect(RecordHandler c) {
-        c.SetRotation(id, new Quaternion(x, y, z, w));
+    public void ApplyEffect(RecordHandler c) {
+        c.SetRotation(Id, new Quaternion(X, Y, Z, W));
     }
 
     public RotationRecord(int objId, Quaternion rotation) {
-        this.id = objId;
-        this.x = rotation.x;
-        this.y = rotation.y;
-        this.z = rotation.z;
-        this.w = rotation.w;
+        this.Id = objId;
+        this.X = rotation.x;
+        this.Y = rotation.y;
+        this.Z = rotation.z;
+        this.W = rotation.w;
     }
 
 }

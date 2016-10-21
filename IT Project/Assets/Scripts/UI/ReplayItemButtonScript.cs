@@ -4,10 +4,10 @@ using System.Collections;
 
 public class ReplayItemButtonScript : MonoBehaviour {
 
-    public GameObject textField;
+    public GameObject TextField;
 
-    public void setText(string s) {
-        textField.GetComponent<Text>().text = s;
+    public void SetText(string s) {
+        TextField.GetComponent<Text>().text = s;
     }
 
 	// Use this for initialization

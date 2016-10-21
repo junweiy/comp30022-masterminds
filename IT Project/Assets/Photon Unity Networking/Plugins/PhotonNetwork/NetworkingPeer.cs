@@ -1000,7 +1000,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
         return actorProperties;
     }
 
-    public void ChangeLocalID(int newID)
+    public void ChangeLocalID(int newId)
     {
         if (this.LocalPlayer == null)
         {
@@ -1009,7 +1009,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
                     "LocalPlayer is null or not in mActors! LocalPlayer: {0} mActors==null: {1} newID: {2}",
                     this.LocalPlayer,
                     this.mActors == null,
-                    newID));
+                    newId));
         }
 
         if (this.mActors.ContainsKey(this.LocalPlayer.ID))
@@ -1017,7 +1017,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
             this.mActors.Remove(this.LocalPlayer.ID);
         }
 
-        this.LocalPlayer.InternalChangeLocalID(newID);
+        this.LocalPlayer.InternalChangeLocalID(newId);
         this.mActors[this.LocalPlayer.ID] = this.LocalPlayer;
         this.RebuildPlayerListCopies();
     }
@@ -3336,11 +3336,11 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
         this.OpRaiseEvent(PunEvent.OwnershipRequest, new int[] {viewID, fromOwner}, true, new RaiseEventOptions() { Receivers = ReceiverGroup.All });   // All sends to all via server (including self)
     }
 
-    internal protected void TransferOwnership(int viewID, int playerID)
+    internal protected void TransferOwnership(int viewID, int playerId)
     {
-        Debug.Log("TransferOwnership() view " + viewID + " to: " + playerID + " Time: " + Environment.TickCount % 1000);
+        Debug.Log("TransferOwnership() view " + viewID + " to: " + playerId + " Time: " + Environment.TickCount % 1000);
         //PhotonNetwork.networkingPeer.OpRaiseEvent(PunEvent.OwnershipTransfer, true, new int[] {viewID, playerID}, 0, EventCaching.DoNotCache, null, ReceiverGroup.All, 0);
-        this.OpRaiseEvent(PunEvent.OwnershipTransfer, new int[] { viewID, playerID }, true, new RaiseEventOptions() { Receivers = ReceiverGroup.All });   // All sends to all via server (including self)
+        this.OpRaiseEvent(PunEvent.OwnershipTransfer, new int[] { viewID, playerId }, true, new RaiseEventOptions() { Receivers = ReceiverGroup.All });   // All sends to all via server (including self)
     }
 
     public bool LocalCleanPhotonView(PhotonView view)

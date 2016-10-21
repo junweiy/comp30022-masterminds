@@ -2,41 +2,41 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class StartButtonUIController : MonoBehaviour {
+public class StartButtonUiController : MonoBehaviour {
 
 
-    private static float CoolDown = 0.5f;
-    private float currentCoolDown = 0.5f;
-    private Image startImage;
-    private bool increaseCoolDown = false;
+    private static float _coolDown = 0.5f;
+    private float _currentCoolDown = 0.5f;
+    private Image _startImage;
+    private bool _increaseCoolDown = false;
 
 	// Use this for initialization
 	void Start () {
-        startImage = GetComponent<Image>();
+        _startImage = GetComponent<Image>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Color temp = startImage.color;
-        temp.a = currentCoolDown / CoolDown;
-        startImage.color = temp;
-        if (currentCoolDown > 0 && !increaseCoolDown)
+        Color temp = _startImage.color;
+        temp.a = _currentCoolDown / _coolDown;
+        _startImage.color = temp;
+        if (_currentCoolDown > 0 && !_increaseCoolDown)
         {
-            currentCoolDown -= Time.deltaTime;
+            _currentCoolDown -= Time.deltaTime;
         }
-        else if (currentCoolDown <= 0 && !increaseCoolDown)
+        else if (_currentCoolDown <= 0 && !_increaseCoolDown)
         {
-            currentCoolDown += Time.deltaTime;
-            increaseCoolDown = true;
+            _currentCoolDown += Time.deltaTime;
+            _increaseCoolDown = true;
         }
-        else if (currentCoolDown < CoolDown+0.3f && increaseCoolDown)
+        else if (_currentCoolDown < _coolDown+0.3f && _increaseCoolDown)
         {
-            currentCoolDown += Time.deltaTime;
+            _currentCoolDown += Time.deltaTime;
         }
         else
         {
-            currentCoolDown -= Time.deltaTime;
-            increaseCoolDown = false;
+            _currentCoolDown -= Time.deltaTime;
+            _increaseCoolDown = false;
         }
 	}
 

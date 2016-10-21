@@ -7,7 +7,7 @@ public class GlobalState {
 
 	// Singleton implementation
 	private static GlobalState _instance;
-	public static GlobalState instance {
+	public static GlobalState Instance {
 		get {
 			if (_instance == null) {
 				_instance = new GlobalState ();
@@ -17,7 +17,7 @@ public class GlobalState {
 	}
 
 	private Character _currentChar = null;
-	public Character currentChar {
+	public Character CurrentChar {
 		get {
 			return _currentChar;
 		}
@@ -30,7 +30,7 @@ public class GlobalState {
 	}
 
 	private GameController _gameController = null;
-	public GameController gameController {
+	public GameController GameController {
 		get {
 			return _gameController;
 		}
@@ -42,32 +42,32 @@ public class GlobalState {
 		}
 	}
 
-	private Dictionary<Character, int> charToRoundsWon = new Dictionary<Character,int>();
+	private Dictionary<Character, int> _charToRoundsWon = new Dictionary<Character,int>();
 
-	public void recordWinner(Character c) {
-		if (charToRoundsWon.ContainsKey (c)) {
-			charToRoundsWon [c] += 1;
+	public void RecordWinner(Character c) {
+		if (_charToRoundsWon.ContainsKey (c)) {
+			_charToRoundsWon [c] += 1;
 		} else {
-			charToRoundsWon.Add (c, 0);
+			_charToRoundsWon.Add (c, 0);
 		}
 	}
 
-	public Character getFinalWinner() {
-		return charToRoundsWon.FirstOrDefault (
-			x => x.Value == charToRoundsWon.Values.Max ()
+	public Character GetFinalWinner() {
+		return _charToRoundsWon.FirstOrDefault (
+			x => x.Value == _charToRoundsWon.Values.Max ()
 		).Key;
 	}
 
-	public void clearWinnerRecord() {
-		charToRoundsWon.Clear ();
+	public void ClearWinnerRecord() {
+		_charToRoundsWon.Clear ();
 	}
 
-	public static bool isCurrentChar(Character c) {
-		return c == GlobalState.instance.currentChar;
+	public static bool IsCurrentChar(Character c) {
+		return c == GlobalState.Instance.CurrentChar;
 	}
 
 	private int _totalNumRounds = 5;
-	public int totalNumRounds {
+	public int TotalNumRounds {
 		get {
 			return _totalNumRounds;
 		} set {
@@ -75,20 +75,20 @@ public class GlobalState {
 		}
 	}
 
-	private int numRoundsFinished = 0;
+	private int _numRoundsFinished = 0;
 
-	public bool numRoundsIncrement() {
-		numRoundsFinished += 1;
-		Debug.Log ("round " + numRoundsFinished + "/" + totalNumRounds + " finished");
-		return numRoundsFinished >= totalNumRounds;
+	public bool NumRoundsIncrement() {
+		_numRoundsFinished += 1;
+		Debug.Log ("round " + _numRoundsFinished + "/" + TotalNumRounds + " finished");
+		return _numRoundsFinished >= TotalNumRounds;
 	}
 
-	public void resetNumRoundsCounter() {
-		numRoundsFinished = 0;
+	public void ResetNumRoundsCounter() {
+		_numRoundsFinished = 0;
 	}
 
 	private Profile _profile;
-	public Profile profile {
+	public Profile Profile {
 		get {
 			return _profile;
 		} set {
@@ -96,34 +96,34 @@ public class GlobalState {
 		}
 	}
 
-	public static bool loadProfileWithUid(int userid) {
-		GlobalState.instance._profile = ProfileMessenger.getProfileById (userid);
+	public static bool LoadProfileWithUid(int userid) {
+		GlobalState.Instance._profile = ProfileMessenger.GetProfileById (userid);
 		return true;
 	}
 
-	public static bool loadProfileWithEmail(string email) {
-		GlobalState.instance._profile = ProfileMessenger.GetProfileByEmail (email);
+	public static bool LoadProfileWithEmail(string email) {
+		GlobalState.Instance._profile = ProfileMessenger.GetProfileByEmail (email);
 		return true;
 	}
 
-    private GameReplay replayToSave;
+    private GameReplay _replayToSave;
     public GameReplay ReplayToSave {
         get {
-            return replayToSave;
+            return _replayToSave;
         }
         set {
-            replayToSave = value;
+            _replayToSave = value;
         }
     }
 
 
-    private GameReplay replayToLoad;
+    private GameReplay _replayToLoad;
     public GameReplay ReplayToLoad {
         get {
-            return replayToLoad;
+            return _replayToLoad;
         }
         set {
-            replayToLoad = value;
+            _replayToLoad = value;
         }
     }
 

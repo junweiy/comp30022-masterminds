@@ -4,15 +4,15 @@ using UnityEngine.UI;
 
 public class RegisterPanelController : MonoBehaviour {
 
-    public InputField userName_input;
-    public InputField email_input;
-    public string userName;
-    public string email;
+    public InputField UserNameInput;
+    public InputField EmailInput;
+    public string UserName;
+    public string Email;
 
 	
 	// Update is called once per frame
 	void Update () {
-        userName = userName_input.text.ToString();
-        email = email_input.text.ToString();
+        UserName = UserNameInput.text.ToString();
+        Email = EmailInput.text.ToString();
 	}
 }

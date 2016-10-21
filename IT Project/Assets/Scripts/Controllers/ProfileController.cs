@@ -4,32 +4,32 @@ using System.Collections;
 
 public class ProfileController : MonoBehaviour {
 	
-	public GameObject userNameField;
-	public GameObject userIdField;
-	public GameObject gamePlayedField;
-	public GameObject gameWonField;
-	public GameObject gameLostField;
-	public GameObject bestScoreField;
-	public GameObject numKillField;
-	public GameObject numDeathField;
+	public GameObject UserNameField;
+	public GameObject UserIdField;
+	public GameObject GamePlayedField;
+	public GameObject GameWonField;
+	public GameObject GameLostField;
+	public GameObject BestScoreField;
+	public GameObject NumKillField;
+	public GameObject NumDeathField;
 
-	private Profile p;
+	private Profile _p;
 
 	// Use this for initialization
 	void Start () {
-		p = GlobalState.instance.profile;
+		_p = GlobalState.Instance.Profile;
 		DisplayInfo ();
 	}
 
 	void DisplayInfo() {
-		userNameField.GetComponent<Text> ().text = p.userName;
-		userIdField.GetComponent<Text> ().text = p.uid.ToString();
-		gamePlayedField.GetComponent<Text> ().text = p.numGamesPlayed.ToString();
-		gameWonField.GetComponent<Text> ().text = p.numGamesWon.ToString();
-		gameLostField.GetComponent<Text> ().text = p.numGamesLost.ToString ();
-		bestScoreField.GetComponent<Text> ().text = p.bestScore.ToString ();
-		numKillField.GetComponent<Text> ().text = p.numPlayerKilled.ToString ();
-		numDeathField.GetComponent<Text> ().text = p.numDeath.ToString ();
+		UserNameField.GetComponent<Text> ().text = _p.UserName;
+		UserIdField.GetComponent<Text> ().text = _p.Uid.ToString();
+		GamePlayedField.GetComponent<Text> ().text = _p.NumGamesPlayed.ToString();
+		GameWonField.GetComponent<Text> ().text = _p.NumGamesWon.ToString();
+		GameLostField.GetComponent<Text> ().text = _p.NumGamesLost.ToString ();
+		BestScoreField.GetComponent<Text> ().text = _p.BestScore.ToString ();
+		NumKillField.GetComponent<Text> ().text = _p.NumPlayerKilled.ToString ();
+		NumDeathField.GetComponent<Text> ().text = _p.NumDeath.ToString ();
 	}
 
 	void Update() {

@@ -4,22 +4,22 @@ using System.Collections;
 
 public class VoiceButtonController : Photon.MonoBehaviour {
 
-	private GameObject mainPlayer;
-    private GameObject speakerIcon;
+	private GameObject _mainPlayer;
+    private GameObject _speakerIcon;
 
 	void Start() {
-		mainPlayer = FindMainPlayer ();
-		if (mainPlayer != null) {
-			speakerIcon = mainPlayer.transform.GetChild(2).GetChild(1).gameObject;
+		_mainPlayer = FindMainPlayer ();
+		if (_mainPlayer != null) {
+			_speakerIcon = _mainPlayer.transform.GetChild(2).GetChild(1).gameObject;
 		}
         
 	}
 
 	void Update() {
-		if (mainPlayer == null) {
-			mainPlayer = FindMainPlayer ();
-			if (mainPlayer != null) {
-				speakerIcon = mainPlayer.transform.GetChild (2).GetChild (1).gameObject;
+		if (_mainPlayer == null) {
+			_mainPlayer = FindMainPlayer ();
+			if (_mainPlayer != null) {
+				_speakerIcon = _mainPlayer.transform.GetChild (2).GetChild (1).gameObject;
 			} else {
 				return;
 			}
@@ -32,9 +32,9 @@ public class VoiceButtonController : Photon.MonoBehaviour {
 	}
 
 	[PunRPC]
-    void ToggleSpeakerIcon(int charID)
+    void ToggleSpeakerIcon(int charId)
 	{
-		GameObject player = PhotonView.Find (charID).gameObject;
+		GameObject player = PhotonView.Find (charId).gameObject;
 		GameObject playerIcon = player.transform.GetChild (2).GetChild (1).gameObject;
 		playerIcon.SetActive(!playerIcon.GetActive());
     }
@@ -58,7 +58,7 @@ public class VoiceButtonController : Photon.MonoBehaviour {
     public void OnClick()
     {
 		Debug.Log ("Clicked");
-		ToggleRecording (mainPlayer);
-		photonView.RPC ("ToggleSpeakerIcon", PhotonTargets.All, mainPlayer.GetComponent<Character> ().charID);
+		ToggleRecording (_mainPlayer);
+		photonView.RPC ("ToggleSpeakerIcon", PhotonTargets.All, _mainPlayer.GetComponent<Character> ().CharId);
     }
 }

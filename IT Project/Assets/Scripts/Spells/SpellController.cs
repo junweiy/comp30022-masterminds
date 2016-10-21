@@ -6,37 +6,37 @@ using System;
 
 public class SpellController : Photon.MonoBehaviour {
 	// The distance of spawned fireball from player
-	private float FIREBALL_SPAWN_DISTANCE = 30f;
+	private float _fireballSpawnDistance = 30f;
 
-	FireBall fb;
-	FireNova fn;
+	FireBall _fb;
+	FireNova _fn;
 
-	public List<Action<Spell, Transform, int>> onCastSpellActions = new List<Action<Spell, Transform, int>>();
+	public List<Action<Spell, Transform, int>> OnCastSpellActions = new List<Action<Spell, Transform, int>>();
 
 	// the character model
-	public Character character;
+	public Character Character;
 
     //Spell UI script
-    private SpellIconController fireBallUI;
-    private SpellIconController fireNovaUI;
+    private SpellIconController _fireBallUi;
+    private SpellIconController _fireNovaUi;
 
 
     void Start() {
-		fb = new FireBall ();
-		fn = new FireNova ();
-        if (character.photonView.isMine)
+		_fb = new FireBall ();
+		_fn = new FireNova ();
+        if (Character.photonView.isMine)
         {
-            fireBallUI = GameObject.Find("FireBallIcon").GetComponent<SpellIconController>();
-            fireNovaUI = GameObject.Find("FireNovaIcon").GetComponent<SpellIconController>();
-            fireBallUI.spell = fb;
-            fireNovaUI.spell = fn;
+            _fireBallUi = GameObject.Find("FireBallIcon").GetComponent<SpellIconController>();
+            _fireNovaUi = GameObject.Find("FireNovaIcon").GetComponent<SpellIconController>();
+            _fireBallUi.Spell = _fb;
+            _fireNovaUi.Spell = _fn;
         }
         
 	}
 
 	void Update() {
 		// Update cool down time for all spells
-		updateCoolDown(new Spell[]{fb,fn});
+		UpdateCoolDown(new Spell[]{_fb,_fn});
 
         if (!photonView.isMine) {
 			return;
@@ -45,29 +45,29 @@ public class SpellController : Photon.MonoBehaviour {
 
 	}
 
-	public void updateCoolDown(Spell[] spells) {
+	public void UpdateCoolDown(Spell[] spells) {
 		foreach (Spell s in spells) {
-			if (s.currentCooldown < s.cooldown) {
-				s.currentCooldown+=Time.deltaTime;
+			if (s.CurrentCooldown < s.Cooldown) {
+				s.CurrentCooldown+=Time.deltaTime;
 			}
 		}
 	}
 
 	[PunRPC]
-	void SetUpVariableFireBall(int viewID) {
-		FireBallController fbc = PhotonView.Find (viewID).gameObject.GetComponent<FireBallController>();
-		fbc.charID = photonView.viewID;
-		fbc.damage = fb.damage;
+	void SetUpVariableFireBall(int viewId) {
+		FireBallController fbc = PhotonView.Find (viewId).gameObject.GetComponent<FireBallController>();
+		fbc.CharId = photonView.viewID;
+		fbc.Damage = _fb.Damage;
 	}
 
 	[PunRPC]
-	void SetUpVariableFireNova(int viewID) {
-		FireNovaController fnc = PhotonView.Find (viewID).gameObject.GetComponent<FireNovaController>();
-		fnc.charID = photonView.viewID;
-		fnc.damage = fn.damage;
-		fnc.power = fn.power;
-		fnc.range = fn.range;
-		fnc.castingTime = fn.castingTime;
+	void SetUpVariableFireNova(int viewId) {
+		FireNovaController fnc = PhotonView.Find (viewId).gameObject.GetComponent<FireNovaController>();
+		fnc.CharId = photonView.viewID;
+		fnc.Damage = _fn.Damage;
+		fnc.Power = _fn.Power;
+		fnc.Range = _fn.Range;
+		fnc.CastingTime = _fn.CastingTime;
 	}
 
 
@@ -76,12 +76,12 @@ public class SpellController : Photon.MonoBehaviour {
 		GameObject fb;
 		Quaternion destinationAngle;
 		Vector3 joyStickMovement = GameObject.FindGameObjectWithTag ("JoyStick").GetComponent<VirtualJoyStick> ().GetStickPosition();
-		Vector3 spawnPosition = this.transform.position + joyStickMovement * FIREBALL_SPAWN_DISTANCE;
+		Vector3 spawnPosition = this.transform.position + joyStickMovement * _fireballSpawnDistance;
 
 		if (joyStickMovement != Vector3.zero) {
 			destinationAngle = Quaternion.LookRotation (joyStickMovement);
 			fb = PhotonNetwork.Instantiate ("Prefabs/Fireball", spawnPosition, destinationAngle, 0);
-			foreach (var a in onCastSpellActions) {
+			foreach (var a in OnCastSpellActions) {
 				a (new FireBall (), fb.transform, -1); // TODO
 			}
 			return fb.GetComponent<FireBallController> ();
@@ -98,7 +98,7 @@ public class SpellController : Photon.MonoBehaviour {
 
 		GameObject fn = PhotonNetwork.Instantiate ("Prefabs/FireNova", this.transform.position, this.transform.rotation, 0);
 
-		foreach (var a in onCastSpellActions) {
+		foreach (var a in OnCastSpellActions) {
 			a (new FireNova (), fn.transform, -1); // TODO
 		}
 
@@ -117,13 +117,13 @@ public class SpellController : Photon.MonoBehaviour {
 				return;
 			}
             photonView.RPC("SetUpVariableFireBall", PhotonTargets.All, fbc.photonView.viewID);
-            fb.currentCooldown = 0;
+            _fb.CurrentCooldown = 0;
         }
         if (spell is FireNova)
         {
             FireNovaController fnc = CastFireNova();
             photonView.RPC("SetUpVariableFireNova", PhotonTargets.All, fnc.photonView.viewID);
-            fn.currentCooldown = 0;
+            _fn.CurrentCooldown = 0;
         }
     }
 }

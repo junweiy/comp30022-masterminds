@@ -2,8 +2,8 @@
 using Photon;
 
 public class NetworkCharacter : Photon.MonoBehaviour {
-	private int hp;
-	private string userName;
+	private int _hp;
+	private string _userName;
 
 
 	// Update is called once per frame
@@ -12,21 +12,21 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 			return;
 		}
 		if (!photonView.isMine) {
-			GetComponent<Character> ().hp = hp;
-			GetComponent<Character> ().userName = userName;
+			GetComponent<Character> ().Hp = _hp;
+			GetComponent<Character> ().UserName = _userName;
 		}
 	}
 
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			// We own this player: send the others our data
-			stream.SendNext (GetComponent<Character> ().hp);
-			stream.SendNext (GetComponent<Character> ().userName);
+			stream.SendNext (GetComponent<Character> ().Hp);
+			stream.SendNext (GetComponent<Character> ().UserName);
 		}
 		else {
 			// Network player, receive data
-			this.hp = (int)stream.ReceiveNext ();
-			this.userName = (string) stream.ReceiveNext ();
+			this._hp = (int)stream.ReceiveNext ();
+			this._userName = (string) stream.ReceiveNext ();
 		}
 	}
 }

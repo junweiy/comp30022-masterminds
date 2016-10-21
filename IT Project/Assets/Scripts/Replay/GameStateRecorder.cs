@@ -8,61 +8,61 @@ using System.Runtime.Serialization;
 using System.IO;
 
 public class GameStateRecorder : StateRecorder {
-    private ReplayState state = ReplayState.Preparing;
+    private ReplayState _state = ReplayState.Preparing;
 
-	bool started;
+	bool _started;
 
-    GameReplay replay;
+    GameReplay _replay;
 
     const int TARGET_FRAMERATE = 60;
 
-    int frameCount = 0;
+    int _frameCount = 0;
 
 	// Use this for initialization
 	void Start () {
         Application.targetFrameRate = TARGET_FRAMERATE;
-		started = false;
+		_started = false;
 		StartRecording ();
 	}
 
     void StartRecording() {
         Debug.Log("Started Recording");
-		started = true;
-        replay = new GameReplay();
+		_started = true;
+        _replay = new GameReplay();
 
-        replay.info = new ReplayInfo(
-            getGameVersion(),
+        _replay.Info = new ReplayInfo(
+            GetGameVersion(),
             TARGET_FRAMERATE
         );
 
-        replay.entries = new Queue<GameReplay.Entry>();
-        frameCount = 0;
-        state = ReplayState.Started;
+        _replay.Entries = new Queue<GameReplay.Entry>();
+        _frameCount = 0;
+        _state = ReplayState.Started;
     }
 
-    void addEntry(Record record) {
+    void AddEntry(IRecord record) {
         var newEntry = new GameReplay.Entry();
-        newEntry.frameTime = frameCount;
-        newEntry.record = record;
-        replay.entries.Enqueue(newEntry);
+        newEntry.FrameTime = _frameCount;
+        newEntry.Record = record;
+        _replay.Entries.Enqueue(newEntry);
     }
 
     public void FinishRecording() {
-		if (!started) {
+		if (!_started) {
 			return;
 		}
         Debug.Log("Finished Recording");
-        state = ReplayState.Ended;
+        _state = ReplayState.Ended;
         FlushPendingRecodsToReplayObject();
-        GlobalState.instance.ReplayToSave = replay;
-		started = false;
+        GlobalState.Instance.ReplayToSave = _replay;
+		_started = false;
     }
 
     // Not an actual flush to disk, but could be changed to do so
     void FlushPendingRecodsToReplayObject() {
-        while (pending.Count != 0) {
-            var record = pending.Dequeue();
-            addEntry(record);
+        while (Pending.Count != 0) {
+            var record = Pending.Dequeue();
+            AddEntry(record);
         }
     }
 
@@ -76,10 +76,10 @@ public class GameStateRecorder : StateRecorder {
             FinishRecording();
         }
 
-        if (state == ReplayState.Started) {
-            addRecords();
+        if (_state == ReplayState.Started) {
+            AddRecords();
             FlushPendingRecodsToReplayObject();
-            frameCount += 1;
+            _frameCount += 1;
         }
     }
 

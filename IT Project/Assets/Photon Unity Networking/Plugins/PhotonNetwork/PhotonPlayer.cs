@@ -155,7 +155,7 @@ public class PhotonPlayer : IComparable<PhotonPlayer>, IComparable<int>, IEquata
     /// <summary>
     /// Used internally, to update this client's playerID when assigned.
     /// </summary>
-    internal void InternalChangeLocalID(int newID)
+    internal void InternalChangeLocalID(int newId)
     {
         if (!this.isLocal)
         {
@@ -163,7 +163,7 @@ public class PhotonPlayer : IComparable<PhotonPlayer>, IComparable<int>, IEquata
             return;
         }
 
-        this.actorID = newID;
+        this.actorID = newId;
     }
 
     /// <summary>

@@ -12,15 +12,15 @@ public static class StateController {
 		SceneManager.LoadScene ("scenes/result");
 	}
 		
-	public static void switchToShop() {
+	public static void SwitchToShop() {
 		SceneManager.LoadScene ("scenes/shop");
 	}
 
-	public static void switchToRoom() {
+	public static void SwitchToRoom() {
 		SceneManager.LoadScene ("scenes/room");
 	}
 
-	public static void switchToProfile() {
+	public static void SwitchToProfile() {
 		SceneManager.LoadScene ("scenes/Profile");
 	}
 

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SpeakerIconController : MonoBehaviour {
 
-    public GameObject speakerIcon;
+    public GameObject SpeakerIcon;
 
     public static GameObject FindMainPlayer()
     {

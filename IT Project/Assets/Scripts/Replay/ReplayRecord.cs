@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface Record {
+public interface IRecord {
 
-    void applyEffect(RecordHandler c);
+    void ApplyEffect(RecordHandler c);
 	
 }

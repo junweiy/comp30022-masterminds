@@ -53,4 +53,9 @@ MonoBehaviour:
   - PlayAnim
   - Continue
   - Pause
+  - SetHprpc
+  - SetPositionRpc
+  - SetRotationRpc
+  - SetScaleRpc
+  - SetTimePassedRpc
   DisableAutoOpenWizard: 1

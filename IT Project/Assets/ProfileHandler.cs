@@ -7,20 +7,20 @@ public class ProfileHandler : Photon.MonoBehaviour {
 	public const int MATCHING_SCENE_NUMBER = 2;
 	public const int RESULT_SCENE_NUMBER = 4;
 
-	public bool loadedFromFile;
-	public bool isLogedIn;
-	public string userName;
-	public int kill;
-	public int death;
-	public bool won;
-	public bool alreadyUpdated;
+	public bool LoadedFromFile;
+	public bool IsLogedIn;
+	public string UserName;
+	public int Kill;
+	public int Death;
+	public bool Won;
+	public bool AlreadyUpdated;
 
 
 	// Use this for initialization
 	void Start () {
-		loadedFromFile = false;
-		isLogedIn = false;
-		alreadyUpdated = true;
+		LoadedFromFile = false;
+		IsLogedIn = false;
+		AlreadyUpdated = true;
 		DontDestroyOnLoad (this.gameObject);
 		if (GameObject.FindGameObjectsWithTag ("ProfileHandler").Length == 2) {
 			Destroy (this.gameObject);
@@ -28,56 +28,56 @@ public class ProfileHandler : Photon.MonoBehaviour {
 	}
 		
 	public void UpdateProfile(int kill, int death, bool won) {
-		this.kill = kill;
-		this.death = death;
-		this.won = won;
-		this.alreadyUpdated = false;
+		this.Kill = kill;
+		this.Death = death;
+		this.Won = won;
+		this.AlreadyUpdated = false;
 		Debug.Log ("Updated with " + kill + " " + death);
 	}
 
 	public void ResetStats() {
-		this.alreadyUpdated = true;
-		loadedFromFile = false;
+		this.AlreadyUpdated = true;
+		LoadedFromFile = false;
 	}
 
 	public void LoggedIn(string userName) {
-		this.isLogedIn = true;
-		this.userName = userName;
+		this.IsLogedIn = true;
+		this.UserName = userName;
 	}
 
 	void OnLevelWasLoaded(int level) {
 
 		if (level == MAINMENU_SCENE_NUMBER) {
-			if (isLogedIn) {
+			if (IsLogedIn) {
 				GameObject.Find("Canvas").transform.FindChild ("Login").gameObject.SetActive (false);
 				GameObject.Find("Canvas").transform.FindChild ("MainMenu").gameObject.SetActive (true);
 			}
-			if (isLogedIn && !alreadyUpdated) {
-				Profile oldProfile = ProfileMessenger.GetProfileByEmail(userName);
-				oldProfile.numGamesPlayed += 1;
-				oldProfile.numDeath += death;
-				oldProfile.numPlayerKilled += kill;
-				if (won) {
-					oldProfile.numGamesWon++;
+			if (IsLogedIn && !AlreadyUpdated) {
+				Profile oldProfile = ProfileMessenger.GetProfileByEmail(UserName);
+				oldProfile.NumGamesPlayed += 1;
+				oldProfile.NumDeath += Death;
+				oldProfile.NumPlayerKilled += Kill;
+				if (Won) {
+					oldProfile.NumGamesWon++;
 				} else {
-					oldProfile.numGamesLost++;
+					oldProfile.NumGamesLost++;
 				}
 				ResetStats ();
-				ProfileMessenger.submitNewProfile (oldProfile);
+				ProfileMessenger.SubmitNewProfile (oldProfile);
 			}
 		}
 
 		if (level == MATCHING_SCENE_NUMBER) {
 			RandomMatchmaker rm = GameObject.FindGameObjectWithTag ("MatchMaker").GetComponent<RandomMatchmaker> ();
-			rm.loadedFromFile = loadedFromFile;
+			rm.LoadedFromFile = LoadedFromFile;
 		}
 
 		if (level == RESULT_SCENE_NUMBER) {
 			ResultPageController rpc = GameObject.FindGameObjectWithTag ("ResultPageController").GetComponent<ResultPageController> ();
-			rpc.isWinner = won;
-			rpc.userName = userName;
-			rpc.kill = kill;
-			rpc.death = death;
+			rpc.IsWinner = Won;
+			rpc.UserName = UserName;
+			rpc.Kill = Kill;
+			rpc.Death = Death;
 		}
 	}
 

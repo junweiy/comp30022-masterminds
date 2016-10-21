@@ -917,16 +917,16 @@ namespace ExitGames.Client.Photon.Voice
         }
 
         /// <summary>Converts delay to frame size (samples*channels)</summary>
-        public static int DelayToFrameSize(int _encoderDelay, int _inputSamplingRate, int numChannels)
+        public static int DelayToFrameSize(int _encoderDelay, int inputSamplingRate, int numChannels)
         {
-            return VoiceUtil.DelayToSamples(_encoderDelay,_inputSamplingRate) * numChannels;
+            return VoiceUtil.DelayToSamples(_encoderDelay,inputSamplingRate) * numChannels;
         }
 
         /// <summary>Converts delay to samples count</summary>
-        public static int DelayToSamples(int _encoderDelay, int _inputSamplingRate)
+        public static int DelayToSamples(int _encoderDelay, int inputSamplingRate)
         {
             // as implemented in OpusEncoder.EncoderDelay
-            return (int)((((int)_inputSamplingRate) / 1000) * ((decimal)_encoderDelay) / 2);
+            return (int)((((int)inputSamplingRate) / 1000) * ((decimal)_encoderDelay) / 2);
         }
 
         internal static string tostr<T>(T[] x, int lim = 10)

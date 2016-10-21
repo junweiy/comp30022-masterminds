@@ -5,26 +5,26 @@ using UnityEngine.UI;
 
 public class MenuButtonController : Photon.MonoBehaviour {
 
-    public GameObject menuPanel;
-    public GameObject menuButton;
-    public GameObject pauseButton;
-    public GameObject mainMenuButton;
-	public GameObject joyStick;
-	public GameObject spellButton;
-	public GameObject pauseMessage;
-    public Image savedImage;
-    private int saveCoolDown = 5;
-    private float currentCoolDown = 0;
+    public GameObject MenuPanel;
+    public GameObject MenuButton;
+    public GameObject PauseButton;
+    public GameObject MainMenuButton;
+	public GameObject JoyStick;
+	public GameObject SpellButton;
+	public GameObject PauseMessage;
+    public Image SavedImage;
+    private int _saveCoolDown = 5;
+    private float _currentCoolDown = 0;
 
 	public void MenuButtonOnClick()
     {
-        if (menuPanel.activeInHierarchy)
+        if (MenuPanel.activeInHierarchy)
         {
-            menuPanel.SetActive(false);
+            MenuPanel.SetActive(false);
         }
         else
         {
-            menuPanel.SetActive(true);
+            MenuPanel.SetActive(true);
         }
     }
 
@@ -36,7 +36,7 @@ public class MenuButtonController : Photon.MonoBehaviour {
 
     public void SaveButtonOnClick()
     {
-        currentCoolDown = saveCoolDown;
+        _currentCoolDown = _saveCoolDown;
 		GameSaver gs = GameObject.FindGameObjectWithTag ("Saver").GetComponent<GameSaver> ();
 		gs.Save ();
     }
@@ -52,19 +52,19 @@ public class MenuButtonController : Photon.MonoBehaviour {
 
 	[PunRPC]
 	void Pause() {
-		joyStick.SetActive(false);
-		spellButton.SetActive (false);
-        pauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Continue");
-		pauseMessage.SetActive(true);
+		JoyStick.SetActive(false);
+		SpellButton.SetActive (false);
+        PauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Continue");
+		PauseMessage.SetActive(true);
 		Time.timeScale = 0;
 	}
 
 	[PunRPC]
 	void Continue() {
-		joyStick.SetActive(true);
-		spellButton.SetActive (true);
-        pauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Pause");
-		pauseMessage.SetActive(false);
+		JoyStick.SetActive(true);
+		SpellButton.SetActive (true);
+        PauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Pause");
+		PauseMessage.SetActive(false);
 		Time.timeScale = 1;
 	}
 
@@ -72,16 +72,16 @@ public class MenuButtonController : Photon.MonoBehaviour {
 
     void Update()
     {
-        Color temp = savedImage.color;
-        temp.a = currentCoolDown / saveCoolDown;
-        savedImage.color = temp;
-        if (currentCoolDown >= 0)
+        Color temp = SavedImage.color;
+        temp.a = _currentCoolDown / _saveCoolDown;
+        SavedImage.color = temp;
+        if (_currentCoolDown >= 0)
         {
-            currentCoolDown -= Time.deltaTime;
+            _currentCoolDown -= Time.deltaTime;
         }
         else
         {
-            currentCoolDown = 0;
+            _currentCoolDown = 0;
         }
     }
     //void Update()

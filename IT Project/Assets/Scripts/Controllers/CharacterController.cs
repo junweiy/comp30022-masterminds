@@ -7,32 +7,32 @@ using System.Collections.Generic;
 public class CharacterController : Photon.MonoBehaviour {
 
 	// the character model
-	public Character character;
+	public Character Character;
 
 	public const float VELOCITY = 200f;
 	public const float MAX_VELOCITY = 300f;
-    public bool isSpeaking;
-	Rigidbody rb;
+    public bool IsSpeaking;
+	Rigidbody _rb;
 
-	private bool controlling;
+	private bool _controlling;
 
-	private Quaternion lastRotation;
+	private Quaternion _lastRotation;
 
 	// Use this for initialization
 	public void Start() {
 		this.gameObject.tag = "Character";
 		enabled = photonView.isMine;
-		character = GetComponent<Character>();
-		rb = GetComponent<Rigidbody> ();
-        isSpeaking = GetComponent<PhotonVoiceRecorder>().IsTransmitting;
-		controlling = false;
+		Character = GetComponent<Character>();
+		_rb = GetComponent<Rigidbody> ();
+        IsSpeaking = GetComponent<PhotonVoiceRecorder>().IsTransmitting;
+		_controlling = false;
 	}
 
 	public void SetControllable() {
 		CameraControl cc = this.GetComponentInChildren<CameraControl> ();
 		Camera c = this.GetComponentInChildren<Camera> ();
 		AudioListener al = this.GetComponentInChildren<AudioListener> ();
-		cc.m_Target = this.transform;
+		cc.MTarget = this.transform;
 		cc.enabled = true;
 		c.enabled = true;
 		al.enabled = true;
@@ -46,9 +46,9 @@ public class CharacterController : Photon.MonoBehaviour {
 			return;
 		}
 			
-		if (!controlling && PhotonNetwork.playerName == this.gameObject.GetComponent<Character> ().userName) {
+		if (!_controlling && PhotonNetwork.playerName == this.gameObject.GetComponent<Character> ().UserName) {
 			SetControllable ();
-			controlling = true;
+			_controlling = true;
 		}
 
 		// Detect user input of movement
@@ -59,22 +59,22 @@ public class CharacterController : Photon.MonoBehaviour {
 		VirtualJoyStick vjs = joyStick.GetComponent<VirtualJoyStick> ();
 		Vector3 joyStickMovement = vjs.GetStickPosition();
 		if (joyStickMovement != Vector3.zero) {
-			rb.AddForce (joyStickMovement * VELOCITY, ForceMode.Acceleration);
+			_rb.AddForce (joyStickMovement * VELOCITY, ForceMode.Acceleration);
 		}
-		rb.velocity = Vector3.ClampMagnitude (rb.velocity,MAX_VELOCITY);
+		_rb.velocity = Vector3.ClampMagnitude (_rb.velocity,MAX_VELOCITY);
 
 
 		if (!joyStickMovement.Equals (Vector3.zero)) {
 			Vector3 targetDir = joyStickMovement;
 			float step = 10;
 			Vector3 newDir = Vector3.RotateTowards (transform.forward, targetDir, step, 0.0F);
-			lastRotation = Quaternion.LookRotation (newDir);
-			transform.rotation = lastRotation;
+			_lastRotation = Quaternion.LookRotation (newDir);
+			transform.rotation = _lastRotation;
 
 			photonView.RPC ("PlayAnim", PhotonTargets.All, "Move|Move");
 
 		} else {
-			transform.rotation = lastRotation;
+			transform.rotation = _lastRotation;
 			photonView.RPC ("PlayAnim", PhotonTargets.All, "Move|Idle");
 
 		}

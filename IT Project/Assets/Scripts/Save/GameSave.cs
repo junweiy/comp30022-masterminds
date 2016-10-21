@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 [System.Serializable]
 public class GameSave {
-    public List<Record> Records;
+    public List<IRecord> Records;
     public SaveInfo Info;
 
-    public GameSave(IEnumerable<Record> records, SaveInfo info) {
-        this.Records = new List<Record>(records);
+    public GameSave(IEnumerable<IRecord> records, SaveInfo info) {
+        this.Records = new List<IRecord>(records);
         this.Info = info;
     }
 }

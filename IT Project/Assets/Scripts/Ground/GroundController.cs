@@ -3,27 +3,27 @@ using System.Collections;
 
 public class GroundController : Photon.MonoBehaviour {
 	// Initial scale
-	public Vector3 initialScale = new Vector3 (100, 0, 100);
+	public Vector3 InitialScale = new Vector3 (100, 0, 100);
 	// Seconds between every shrink
-	public float secondsBetweenShrinking;
+	public float SecondsBetweenShrinking;
 	// The minimum size presented as a ratio to the initial size
-	public float minScalableSizeRatio;
+	public float MinScalableSizeRatio;
 	// Size shrunk every time
-	public float sizeShrunkPerTime;
+	public float SizeShrunkPerTime;
 	// Time passed since last shrink
-	public float timePassed;
+	public float TimePassed;
     // MiniMapGround
-    public GameObject miniMap;
+    public GameObject MiniMap;
 
 
 	void Start () {
-		timePassed = 0;
+		TimePassed = 0;
 	}
 
 	void Update() {
-		timePassed += Time.deltaTime;
-		if (timePassed >= secondsBetweenShrinking && transform.localScale.x > initialScale.x * minScalableSizeRatio) {
-			timePassed -= secondsBetweenShrinking;
+		TimePassed += Time.deltaTime;
+		if (TimePassed >= SecondsBetweenShrinking && transform.localScale.x > InitialScale.x * MinScalableSizeRatio) {
+			TimePassed -= SecondsBetweenShrinking;
 			Scale ();
 		}
 	}
@@ -33,8 +33,8 @@ public class GroundController : Photon.MonoBehaviour {
 	}
 
 	[PunRPC]
-	public void SetTimePassedRPC(float timePassed) {
-		this.timePassed = timePassed;
+	public void SetTimePassedRpc(float timePassed) {
+		this.TimePassed = timePassed;
 	}
 
 	public void SetScaleForAll(float scale) {
@@ -42,18 +42,18 @@ public class GroundController : Photon.MonoBehaviour {
 	}
 
 	[PunRPC]
-	public void SetScaleRPC(float scale) {
+	public void SetScaleRpc(float scale) {
 		this.transform.localScale = new Vector3(scale, 1, scale);
-        miniMap.transform.localScale = this.transform.localScale;
+        MiniMap.transform.localScale = this.transform.localScale;
     }
 
 	void Scale() {
 		Vector3 tempSize = transform.localScale;
-		tempSize.x = transform.localScale.x - sizeShrunkPerTime;
+		tempSize.x = transform.localScale.x - SizeShrunkPerTime;
 		tempSize.y = transform.localScale.y;
-		tempSize.z = transform.localScale.z - sizeShrunkPerTime;
+		tempSize.z = transform.localScale.z - SizeShrunkPerTime;
 		transform.localScale = tempSize;
-        miniMap.transform.localScale = tempSize;
+        MiniMap.transform.localScale = tempSize;
 	}
 
 }

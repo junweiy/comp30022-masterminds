@@ -4,50 +4,50 @@ using System.Collections.Generic;
 
 public class StateRecorder : MonoBehaviour {
 
-    HashSet<GameObject> recordedChars = new HashSet<GameObject>();
-    Dictionary<int, Vector3> lastPos = new Dictionary<int, Vector3>();
-    Dictionary<int, Vector3> lastScale = new Dictionary<int, Vector3>();
-    Dictionary<int, Quaternion> lastRot = new Dictionary<int, Quaternion>();
-    Dictionary<int, int> lastHp = new Dictionary<int, int>();
-    float lastGroundSize = -1;
+    HashSet<GameObject> _recordedChars = new HashSet<GameObject>();
+    Dictionary<int, Vector3> _lastPos = new Dictionary<int, Vector3>();
+    Dictionary<int, Vector3> _lastScale = new Dictionary<int, Vector3>();
+    Dictionary<int, Quaternion> _lastRot = new Dictionary<int, Quaternion>();
+    Dictionary<int, int> _lastHp = new Dictionary<int, int>();
+    float _lastGroundSize = -1;
 
-    protected Queue<Record> pending = new Queue<Record>();
+    protected Queue<IRecord> Pending = new Queue<IRecord>();
 
-    protected string getGameVersion() {
+    protected string GetGameVersion() {
         return Application.version;
     }
 
     public virtual void AddPutSpellRecord(Spell s, Transform transform, int casterId) {
-        pending.Enqueue(new PutSpellRecord(s, transform, casterId));
+        Pending.Enqueue(new PutSpellRecord(s, transform, casterId));
     }
 
-    protected void enqueueRecords(List<Record> records) {
-        records.ForEach(pending.Enqueue);
+    protected void EnqueueRecords(List<IRecord> records) {
+        records.ForEach(Pending.Enqueue);
     }
 
-    protected void addTransformRecords() {
-        enqueueRecords(StateReader.GetChangedTransFormRecordsWithTag(
-            "Character", lastPos, lastRot, lastScale
+    protected void AddTransformRecords() {
+        EnqueueRecords(StateReader.GetChangedTransFormRecordsWithTag(
+            "Character", _lastPos, _lastRot, _lastScale
         ));
     }
 
-    protected void addHpRecords() {
-        enqueueRecords(StateReader.GetChangedHpRecords(lastHp));
+    protected void AddHpRecords() {
+        EnqueueRecords(StateReader.GetChangedHpRecords(_lastHp));
     }
 
-    protected void addInstantiateCharRecords() {
-        enqueueRecords(StateReader.GetInstantiateCharRecords(recordedChars, setupNewCharacter));
+    protected void AddInstantiateCharRecords() {
+        EnqueueRecords(StateReader.GetInstantiateCharRecords(_recordedChars, SetupNewCharacter));
     }
 
-	protected void addGroundrecord() {
-        Record rec = StateReader.GetGroundRecord(lastGroundSize);
+	protected void AddGroundrecord() {
+        IRecord rec = StateReader.GetGroundRecord(_lastGroundSize);
         if (rec != null) {
-            pending.Enqueue(rec);
+            Pending.Enqueue(rec);
         } 
 	}
 
-    void setupNewCharacter(GameObject character) {
-        character.GetComponent<SpellController>().onCastSpellActions.Add(
+    void SetupNewCharacter(GameObject character) {
+        character.GetComponent<SpellController>().OnCastSpellActions.Add(
             delegate (Spell s, Transform trans, int casterId) {
                 AddPutSpellRecord(s, trans, casterId);
             }
@@ -55,11 +55,11 @@ public class StateRecorder : MonoBehaviour {
     }
 
     // Update is called once per frame
-    protected void addRecords() {
-            addInstantiateCharRecords();
-            addTransformRecords();
-            addHpRecords();
-			addGroundrecord ();
+    protected void AddRecords() {
+            AddInstantiateCharRecords();
+            AddTransformRecords();
+            AddHpRecords();
+			AddGroundrecord ();
     }
 
 

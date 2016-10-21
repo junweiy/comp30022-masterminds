@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using System;
 using UnityEngine;
 
-public static class ReplayIO {
+public static class ReplayIo {
     public static string FolderPath = Application.persistentDataPath + "/Replays/";
 
     public static void SaveReplayAs(string filepath, GameReplay replay) {

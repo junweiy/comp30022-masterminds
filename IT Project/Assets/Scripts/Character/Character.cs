@@ -12,45 +12,45 @@ public class Character : Photon.MonoBehaviour {
     private const int DEFAULT_HP = 100;
     public const int MAXIMUM_NUMBER_OF_ITEM = 6;
 
-	public int charID;
-	public string userName;
+	public int CharId;
+	public string UserName;
 
-	public int hp = DEFAULT_HP;
-	private int maxHp;
+	public int Hp = DEFAULT_HP;
+	private int _maxHp;
 
-	public bool isDead { get; private set; }
-	public int numKilled;
-	public int numDeath;
+	public bool IsDead { get; private set; }
+	public int NumKilled;
+	public int NumDeath;
 
 
-	public float range { get; set; }
+	public float Range { get; set; }
 
-	private HealthBarUI healthBarUI;
+	private HealthBarUi _healthBarUi;
 
 	void Awake() {
-		maxHp = DEFAULT_HP;
-		numDeath = 0;
-		numKilled = 0;
-		isDead = false;
+		_maxHp = DEFAULT_HP;
+		NumDeath = 0;
+		NumKilled = 0;
+		IsDead = false;
 	}
 
     void Start()
     {
-		this.healthBarUI = this.GetComponent<HealthBarUI> ();
-		charID = photonView.viewID;
+		this._healthBarUi = this.GetComponent<HealthBarUi> ();
+		CharId = photonView.viewID;
 		if (photonView.isMine) {
-			userName = GameObject.FindGameObjectWithTag ("ProfileHandler").GetComponent<ProfileHandler> ().userName;
+			UserName = GameObject.FindGameObjectWithTag ("ProfileHandler").GetComponent<ProfileHandler> ().UserName;
 		}
     }
 
 	void Update() {
-		healthBarUI.SetHealthUI(hp,maxHp);
+		_healthBarUi.SetHealthUi(Hp,_maxHp);
 	}
 		
     public void TakeDamage(int f)
     {
-        hp -= f;
-        if (hp <= 0 && !isDead) {
+        Hp -= f;
+        if (Hp <= 0 && !IsDead) {
             OnDeath();
         }
 
@@ -58,11 +58,11 @@ public class Character : Photon.MonoBehaviour {
 
     private void OnDeath()
     {
-		if (isDead) {
+		if (IsDead) {
 			return;
 		}
-		isDead = true;
-		numDeath++;
+		IsDead = true;
+		NumDeath++;
 		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController>();
 		if (GameController.CheckIfGameEnds ()) {
 			UpdateProfile (false);
@@ -77,7 +77,7 @@ public class Character : Photon.MonoBehaviour {
 	void DisableAndObserveOtherPlayer() {
 		FocusCameraOnOtherPlayer ();
 		MoveToHiddenPlace ();
-		DisableUI ();
+		DisableUi ();
 	}
 
 	void MoveToHiddenPlace() {
@@ -90,7 +90,7 @@ public class Character : Photon.MonoBehaviour {
 		GameObject anotherPlayer = FindAnotherPlayerAlive ();
 		transform.FindChild ("CameraRig").gameObject.SetActive (false);
 		GameObject cameraRig = anotherPlayer.transform.FindChild ("CameraRig").gameObject;
-		Debug.Log (anotherPlayer.GetComponent<Character>().charID);
+		Debug.Log (anotherPlayer.GetComponent<Character>().CharId);
 		cameraRig.GetComponent<CameraControl> ().enabled = true;
 		cameraRig.GetComponentInChildren<Camera> ().enabled = true;
 		cameraRig.GetComponentInChildren<AudioListener> ().enabled = true;
@@ -99,21 +99,21 @@ public class Character : Photon.MonoBehaviour {
 	GameObject FindAnotherPlayerAlive() {
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Character");
 		foreach (GameObject player in players) {
-			if (!player.GetComponent<Character> ().isDead) {
+			if (!player.GetComponent<Character> ().IsDead) {
 				return player;
 			}
 		}
 		return null;
 	}
 
-	public static void DisableUI() {
+	public static void DisableUi() {
 		GameObject.FindGameObjectWithTag ("JoyStick").SetActive (false);
 		GameObject.FindGameObjectWithTag ("SpellButton").SetActive (false);
 	}
 
 
 	public void Killed() {
-		numKilled++;
+		NumKilled++;
 		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController>();
 		if (GameController.CheckIfGameEnds ()) {
 			UpdateProfile (true);
@@ -124,7 +124,7 @@ public class Character : Photon.MonoBehaviour {
 	public void UpdateProfile(bool win) {
 		if (photonView.isMine) {
 			ProfileHandler ph = GameObject.FindGameObjectWithTag ("ProfileHandler").GetComponent<ProfileHandler>();
-			ph.UpdateProfile (this.numKilled, this.numDeath, win);
+			ph.UpdateProfile (this.NumKilled, this.NumDeath, win);
 		}
 	}
 		
@@ -132,7 +132,7 @@ public class Character : Photon.MonoBehaviour {
 	public static GameObject FindCharacterWithUserName(string userName) {
 		GameObject[] characters = GameObject.FindGameObjectsWithTag ("Character");
 		foreach (GameObject character in characters) {
-			if (character.GetComponent<Character> ().userName == userName) {
+			if (character.GetComponent<Character> ().UserName == userName) {
 				return character;
 			}
 		}
@@ -143,7 +143,7 @@ public class Character : Photon.MonoBehaviour {
 		this.photonView.RPC ("SetPositionRPC", PhotonTargets.All, pos); 
 	}
 
-	public void SetHPForAll(int hp) {
+	public void SetHpForAll(int hp) {
 		this.photonView.RPC ("SetHPRPC", PhotonTargets.All, hp); 
 	}
 
@@ -152,21 +152,21 @@ public class Character : Photon.MonoBehaviour {
 	}
 		
 	[PunRPC]
-	public void SetPositionRPC(Vector3 pos) {
+	public void SetPositionRpc(Vector3 pos) {
 		Debug.Log (pos);
 		this.transform.position = pos;
 	}
 
 	[PunRPC]
-	public void SetRotationRPC(Quaternion rot) {
+	public void SetRotationRpc(Quaternion rot) {
 		Debug.Log (rot);
 		this.transform.rotation = rot;
 	}
 
 	[PunRPC]
-	public void SetHPRPC(int hp) {
+	public void SetHprpc(int hp) {
 		Debug.Log (hp);
-		this.hp = hp;
+		this.Hp = hp;
 	}
 
 }

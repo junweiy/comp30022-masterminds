@@ -288,7 +288,7 @@ namespace ExitGames.Client.Photon.LoadBalancing
         /// <summary>
         /// Used internally, to update this client's playerID when assigned (doesn't change after assignment).
         /// </summary>
-        protected internal void ChangeLocalID(int newID)
+        protected internal void ChangeLocalID(int newId)
         {
             if (!this.IsLocal)
             {
@@ -296,7 +296,7 @@ namespace ExitGames.Client.Photon.LoadBalancing
                 return;
             }
 
-            this.actorID = newID;
+            this.actorID = newId;
         }
 
         /// <summary>

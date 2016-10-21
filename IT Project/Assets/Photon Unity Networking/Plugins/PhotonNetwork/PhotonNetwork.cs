@@ -2388,14 +2388,14 @@ public static class PhotonNetwork
     /// <summary>
     /// Unregister a viewID (of manually instantiated and destroyed networked objects).
     /// </summary>
-    /// <param name="viewID">A viewID manually allocated by this player.</param>
-    public static void UnAllocateViewID(int viewID)
+    /// <param name="viewId">A viewID manually allocated by this player.</param>
+    public static void UnAllocateViewID(int viewId)
     {
-        manuallyAllocatedViewIds.Remove(viewID);
+        manuallyAllocatedViewIds.Remove(viewId);
 
-        if (networkingPeer.photonViewList.ContainsKey(viewID))
+        if (networkingPeer.photonViewList.ContainsKey(viewId))
         {
-            Debug.LogWarning(string.Format("UnAllocateViewID() should be called after the PhotonView was destroyed (GameObject.Destroy()). ViewID: {0} still found in: {1}", viewID, networkingPeer.photonViewList[viewID]));
+            Debug.LogWarning(string.Format("UnAllocateViewID() should be called after the PhotonView was destroyed (GameObject.Destroy()). ViewID: {0} still found in: {1}", viewId, networkingPeer.photonViewList[viewId]));
         }
     }
 
