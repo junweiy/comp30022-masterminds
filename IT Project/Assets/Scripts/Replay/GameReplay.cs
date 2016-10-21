@@ -2,14 +2,12 @@
 
 [System.Serializable]
 public class GameReplay {
-
     [System.Serializable]
     public class Entry {
-        public int frameTime;
-        public Record record;
+        public int FrameTime;
+        public IRecord Record;
     }
 
-    public Queue<Entry> entries;
-    public ReplayInfo info;
-
+    public Queue<Entry> Entries;
+    public ReplayInfo Info;
 }

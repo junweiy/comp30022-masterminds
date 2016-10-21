@@ -2,25 +2,19 @@
 using System.Collections;
 
 public class SpeakerIconController : MonoBehaviour {
+    public GameObject SpeakerIcon;
 
-    public GameObject speakerIcon;
-
-    public static GameObject FindMainPlayer()
-    {
+    public static GameObject FindMainPlayer() {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Character");
-        foreach (GameObject player in players)
-        {
-            if (player.GetPhotonView().isMine)
-            {
+        foreach (GameObject player in players) {
+            if (player.GetPhotonView().isMine) {
                 return player;
             }
         }
         throw new UnityException();
-
     }
 
-    public static T GetMainPlayerController<T>()
-    {
+    public static T GetMainPlayerController<T>() {
         GameObject mainPlayer = FindMainPlayer();
         return mainPlayer.GetComponent<T>();
     }

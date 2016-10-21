@@ -3,22 +3,21 @@ using System.Collections;
 using System;
 
 [System.Serializable]
-public class PositionRecord : Record {
-    public int id;
-    public float x;
-    public float y;
-    public float z;
+public class PositionRecord : IRecord {
+    public int Id;
+    public float X;
+    public float Y;
+    public float Z;
 
 
-    public void applyEffect(RecordHandler c) {
-        c.SetPosition(id, new Vector3(x, y, z));
+    public void ApplyEffect(RecordHandler c) {
+        c.SetPosition(Id, new Vector3(X, Y, Z));
     }
 
     public PositionRecord(int objId, Vector3 position) {
-        this.id = objId;
-        this.x = position.x;
-        this.y = position.y;
-        this.z = position.z;
+        this.Id = objId;
+        this.X = position.x;
+        this.Y = position.y;
+        this.Z = position.z;
     }
-
 }

@@ -2,186 +2,174 @@
 using System.Collections;
 
 public static class ProfileMessenger {
-	public static string updateProfileUrl = "http://115.146.95.82/masterminds/profile/update.py";
-	public static string getProfileUrl = "http://115.146.95.82/masterminds/profile/getProfile.py";
-	public static string newUserUrl = "http://115.146.95.82/masterminds/profile/newUser.py";
-	public static string password = "overdue";
+    public static string UpdateProfileUrl = "http://115.146.95.82/masterminds/profile/update.py";
+    public static string GetProfileUrl = "http://115.146.95.82/masterminds/profile/getProfile.py";
+    public static string NewUserUrl = "http://115.146.95.82/masterminds/profile/newUser.py";
+    public static string Password = "overdue";
 
-	public static int getTimeStamp() {
-		return System.DateTime.Now.Millisecond;
-	}
+    public static int GetTimeStamp() {
+        return System.DateTime.Now.Millisecond;
+    }
 
-	static void throwExceptionIfError(string text) {
-		Debug.Log (text);
-		ErrorResponse res = JsonUtility.FromJson<ErrorResponse> (text);
-		if (res.code != -1 && res.code != 0 && res.message != null) {
-			throw new ProfileMessagingException(res.code, res.message);
-		}
-	}
+    private static void ThrowExceptionIfError(string text) {
+        Debug.Log(text);
+        ErrorResponse res = JsonUtility.FromJson<ErrorResponse>(text);
+        if (res.Code != -1 && res.Code != 0 && res.Message != null) {
+            throw new ProfileMessagingException(res.Code, res.Message);
+        }
+    }
 
-	public static void submitNewProfile(Profile profile) {
-		WWWForm form = new WWWForm ();
+    public static void SubmitNewProfile(Profile profile) {
+        WWWForm form = new WWWForm();
 
-		NewProfileRequest m = new NewProfileRequest ();
-		m.newProfile = profile;
-		m.uid = profile.uid;
-		m.timestamp = getTimeStamp ();
-		m.token = ProfileMessenger.password;
+        NewProfileRequest m = new NewProfileRequest();
+        m.NewProfile = profile;
+        m.Uid = profile.Uid;
+        m.Timestamp = GetTimeStamp();
+        m.Token = ProfileMessenger.Password;
 
-		form.AddField ("message", JsonUtility.ToJson(m));
-		WWW w = new WWW (updateProfileUrl, form);
-		// wait until complete
-		while (!w.isDone) {
-		}
-		if (!string.IsNullOrEmpty(w.error)) {
-			Debug.Log(w.error);
-		}
-		else {
-			Debug.Log (w.text);
-			throwExceptionIfError (w.text);
-			Debug.Log("Finished submitting profile");
-			GlobalState.loadProfileWithUid (profile.uid);
-		}
-	}
+        form.AddField("message", JsonUtility.ToJson(m));
+        WWW w = new WWW(UpdateProfileUrl, form);
+        // wait until complete
+        while (!w.isDone) {}
+        if (!string.IsNullOrEmpty(w.error)) {
+            Debug.Log(w.error);
+        } else {
+            Debug.Log(w.text);
+            ThrowExceptionIfError(w.text);
+            Debug.Log("Finished submitting profile");
+            GlobalState.LoadProfileWithUid(profile.Uid);
+        }
+    }
 
-	public static Profile getNewProfileFromServer(Profile currentProfile) {
-		int uid = currentProfile.uid;
-		return ProfileMessenger.getProfileById (uid);
-	}
+    public static Profile GetNewProfileFromServer(Profile currentProfile) {
+        int uid = currentProfile.Uid;
+        return ProfileMessenger.GetProfileById(uid);
+    }
 
-	public static Profile getProfileById(int userid) {
-		string token = ProfileMessenger.password;
+    public static Profile GetProfileById(int userid) {
+        string token = ProfileMessenger.Password;
 
-		ProfileUpdateRequestWithUid req = new ProfileUpdateRequestWithUid ();
-		req.uid = userid;
-		req.token = token;
-		req.timestamp = getTimeStamp();
+        ProfileUpdateRequestWithUid req = new ProfileUpdateRequestWithUid();
+        req.Uid = userid;
+        req.Token = token;
+        req.Timestamp = GetTimeStamp();
 
-		WWWForm form = new WWWForm ();
-		form.AddField ("message", req.toJson());
-		WWW w = new WWW (getProfileUrl, form);
-		// wait until complete
-		while (!w.isDone) {
-		}
-		if (!string.IsNullOrEmpty(w.error)) {
-			Debug.Log(w.error);
-			return null;
-		}
-		else {
-			throwExceptionIfError (w.text);
-			var res = JsonUtility.FromJson<ProfileUpdateResponse> (w.text);
-			return res.profile;
-		}
-	}
+        WWWForm form = new WWWForm();
+        form.AddField("message", req.ToJson());
+        WWW w = new WWW(GetProfileUrl, form);
+        // wait until complete
+        while (!w.isDone) {}
+        if (!string.IsNullOrEmpty(w.error)) {
+            Debug.Log(w.error);
+            return null;
+        } else {
+            ThrowExceptionIfError(w.text);
+            var res = JsonUtility.FromJson<ProfileUpdateResponse>(w.text);
+            return res.Profile;
+        }
+    }
 
-	public static Profile GetProfileByEmail(string email) {
-		string token = ProfileMessenger.password;
+    public static Profile GetProfileByEmail(string email) {
+        string token = ProfileMessenger.Password;
 
-		ProfileUpdateRequestWithEmail req = new ProfileUpdateRequestWithEmail ();
-		req.email = email;
-		req.token = token;
-		req.timestamp = getTimeStamp();
+        ProfileUpdateRequestWithEmail req = new ProfileUpdateRequestWithEmail();
+        req.Email = email;
+        req.Token = token;
+        req.Timestamp = GetTimeStamp();
 
-		WWWForm form = new WWWForm ();
-		form.AddField ("message", req.toJson());
-		Debug.Log (req.toJson ());
-		WWW w = new WWW (getProfileUrl, form);
-		// wait until complete
-		while (!w.isDone) {
-		}
-		if (!string.IsNullOrEmpty(w.error)) {
-			Debug.Log(w.error);
-			return null;
-		}
-		else {
-			throwExceptionIfError (w.text);
-			var res = JsonUtility.FromJson<ProfileUpdateResponse> (w.text);
-			return res.profile;
-		}
-	}
+        WWWForm form = new WWWForm();
+        form.AddField("message", req.ToJson());
+        Debug.Log(req.ToJson());
+        WWW w = new WWW(GetProfileUrl, form);
+        // wait until complete
+        while (!w.isDone) {}
+        if (!string.IsNullOrEmpty(w.error)) {
+            Debug.Log(w.error);
+            return null;
+        } else {
+            ThrowExceptionIfError(w.text);
+            var res = JsonUtility.FromJson<ProfileUpdateResponse>(w.text);
+            return res.Profile;
+        }
+    }
 
-	public static int? createNewUser(string userName, string email) {
-		var req = new NewUserRequest ();
-		req.email = email;
-		req.userName = userName;
-		req.timestamp = getTimeStamp();
-		req.token = password;
-		WWWForm form = new WWWForm ();
-		form.AddField ("message", JsonUtility.ToJson (req));
-		WWW w = new WWW (newUserUrl, form);
-		// wait until complete
-		while (!w.isDone) {
-		}
-		if (!string.IsNullOrEmpty(w.error)) {
-			Debug.Log(w.error);
-			return null;
-		}
-		else {
-			throwExceptionIfError (w.text);
-			var res = JsonUtility.FromJson<NewUserResponse> (w.text);
-			return res.uid;
-		}
-	}
+    public static int? CreateNewUser(string userName, string email) {
+        var req = new NewUserRequest();
+        req.Email = email;
+        req.UserName = userName;
+        req.Timestamp = GetTimeStamp();
+        req.Token = Password;
+        WWWForm form = new WWWForm();
+        form.AddField("message", JsonUtility.ToJson(req));
+        WWW w = new WWW(NewUserUrl, form);
+        // wait until complete
+        while (!w.isDone) {}
+        if (!string.IsNullOrEmpty(w.error)) {
+            Debug.Log(w.error);
+            return null;
+        } else {
+            ThrowExceptionIfError(w.text);
+            var res = JsonUtility.FromJson<NewUserResponse>(w.text);
+            return res.Uid;
+        }
+    }
 
 
+    [System.Serializable]
+    private class NewUserRequest {
+        public string UserName;
+        public string Email;
+        public int Timestamp;
+        public string Token;
+    }
 
+    [System.Serializable]
+    private class NewUserResponse {
+        public int Code;
+        public string Message;
+        public int Uid;
+    }
 
+    [System.Serializable]
+    private class ProfileUpdateRequestWithUid {
+        public int Uid;
+        public string Token;
+        public int Timestamp;
 
-	[System.Serializable]
-	class NewUserRequest {
-		public string userName;
-		public string email;
-		public int timestamp;
-		public string token;
-	}
+        public string ToJson() {
+            return JsonUtility.ToJson(this);
+        }
+    }
 
-	[System.Serializable]
-	class NewUserResponse {
-		public int code;
-		public string message;
-		public int uid;
-	}
+    [System.Serializable]
+    private class ProfileUpdateRequestWithEmail {
+        public string Email;
+        public string Token;
+        public int Timestamp;
 
-	[System.Serializable]
-	class ProfileUpdateRequestWithUid {
-		public int uid;
-		public string token;
-		public int timestamp;
+        public string ToJson() {
+            return JsonUtility.ToJson(this);
+        }
+    }
 
-		public string toJson() {
-			return JsonUtility.ToJson (this);
-		}
-	}
+    [System.Serializable]
+    private class ProfileUpdateResponse {
+        public int Code;
+        public Profile Profile;
+    }
 
-	[System.Serializable]
-	class ProfileUpdateRequestWithEmail {
-		public string email;
-		public string token;
-		public int timestamp;
+    [System.Serializable]
+    private class NewProfileRequest {
+        public Profile NewProfile;
+        public int Uid;
+        public string Token;
+        public int Timestamp;
+    }
 
-		public string toJson() {
-			return JsonUtility.ToJson (this);
-		}
-	}
-
-	[System.Serializable]
-	class ProfileUpdateResponse {
-		public int code;
-		public Profile profile;
-	}
-
-	[System.Serializable]
-	class NewProfileRequest {
-		public Profile newProfile;
-		public int uid;
-		public string token;
-		public int timestamp;
-	}
-
-	[System.Serializable]
-	class ErrorResponse {
-		public int code;
-		public string message;
-	}
+    [System.Serializable]
+    private class ErrorResponse {
+        public int Code;
+        public string Message;
+    }
 }
-

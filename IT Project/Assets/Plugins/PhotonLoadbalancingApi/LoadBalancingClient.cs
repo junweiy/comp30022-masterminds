@@ -1706,18 +1706,18 @@ namespace ExitGames.Client.Photon.LoadBalancing
         /// <summary>
         /// Internally used to set the LocalPlayer's ID (from -1 to the actual in-room ID).
         /// </summary>
-        /// <param name="newID">New actor ID (a.k.a actorNr) assigned when joining a room.</param>
-        protected internal void ChangeLocalID(int newID)
+        /// <param name="newId">New actor ID (a.k.a actorNr) assigned when joining a room.</param>
+        protected internal void ChangeLocalID(int newId)
         {
             if (this.LocalPlayer == null)
             {
-                this.DebugReturn(DebugLevel.WARNING, string.Format("Local actor is null or not in mActors! mLocalActor: {0} mActors==null: {1} newID: {2}", this.LocalPlayer, this.CurrentRoom.Players == null, newID));
+                this.DebugReturn(DebugLevel.WARNING, string.Format("Local actor is null or not in mActors! mLocalActor: {0} mActors==null: {1} newID: {2}", this.LocalPlayer, this.CurrentRoom.Players == null, newId));
             }
 
             if (this.CurrentRoom == null)
             {
                 // change to new actor/player ID and make sure the player does not have a room reference left
-                this.LocalPlayer.ChangeLocalID(newID);
+                this.LocalPlayer.ChangeLocalID(newId);
                 this.LocalPlayer.RoomReference = null;
             }
             else
@@ -1726,7 +1726,7 @@ namespace ExitGames.Client.Photon.LoadBalancing
                 this.CurrentRoom.RemovePlayer(this.LocalPlayer);
 
                 // change to new actor/player ID
-                this.LocalPlayer.ChangeLocalID(newID);
+                this.LocalPlayer.ChangeLocalID(newId);
 
                 // update the room's list with the new reference
                 this.CurrentRoom.StorePlayer(this.LocalPlayer);

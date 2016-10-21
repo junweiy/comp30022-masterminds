@@ -4,38 +4,35 @@ using System;
 using Replay;
 
 [System.Serializable]
-public class PutSpellRecord : Record {
+public class PutSpellRecord : IRecord {
+    public SpellType SpellType;
 
-    public SpellType spellType;
+    public float PositionX;
+    public float PositionY;
+    public float PositionZ;
 
-    public float positionX;
-    public float positionY;
-    public float positionZ;
+    public float QuaternionX;
+    public float QuaternionY;
+    public float QuaternionZ;
+    public float QuaternionW;
 
-    public float quaternionX;
-    public float quaternionY;
-    public float quaternionZ;
-    public float quaternionW;
+    public int CasterId;
 
-    public int casterId;
-
-    public void applyEffect(RecordHandler c) {
-        Vector3 position = new Vector3(positionX, positionY, positionZ);
-        Quaternion rotation = new Quaternion(quaternionX, quaternionY, quaternionZ, quaternionW);
-        c.InstantiateSpellWith(spellType, casterId, position, rotation);
+    public void ApplyEffect(RecordHandler c) {
+        Vector3 position = new Vector3(PositionX, PositionY, PositionZ);
+        Quaternion rotation = new Quaternion(QuaternionX, QuaternionY, QuaternionZ, QuaternionW);
+        c.InstantiateSpellWith(SpellType, CasterId, position, rotation);
     }
 
     public PutSpellRecord(Spell s, Transform trans, int casterId) {
-        this.spellType = ReplayTypeConverter.GetTypeFromSpell(s);
-        this.positionX = trans.position.x;
-        this.positionY = trans.position.y;
-        this.positionZ = trans.position.z;
-        this.quaternionX = trans.rotation.x;
-        this.quaternionY = trans.rotation.y;
-        this.quaternionZ = trans.rotation.z;
-        this.quaternionW = trans.rotation.w;
-        this.casterId = casterId;
+        this.SpellType = ReplayTypeConverter.GetTypeFromSpell(s);
+        this.PositionX = trans.position.x;
+        this.PositionY = trans.position.y;
+        this.PositionZ = trans.position.z;
+        this.QuaternionX = trans.rotation.x;
+        this.QuaternionY = trans.rotation.y;
+        this.QuaternionZ = trans.rotation.z;
+        this.QuaternionW = trans.rotation.w;
+        this.CasterId = casterId;
     }
-
-
 }

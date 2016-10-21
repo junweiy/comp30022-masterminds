@@ -3,12 +3,13 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class LoginPanelController : MonoBehaviour {
+    public InputField UserNameInput;
+    public string UserName;
 
-    public InputField userName_input;
-    public string userName;
-	
-	// Update is called once per frame
-	void Update () {
-        userName = userName_input.text.ToString();
-	}
+    // Update is called once per frame
+    private void Update() {
+        if (this.gameObject.activeInHierarchy) {
+            UserName = UserNameInput.text.ToString();
+        }
+    }
 }

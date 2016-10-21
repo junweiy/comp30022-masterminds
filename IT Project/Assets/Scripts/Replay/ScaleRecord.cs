@@ -3,22 +3,21 @@ using System.Collections;
 using System;
 
 [System.Serializable]
-public class ScaleRecord : Record {
-    public int id;
-    public float x;
-    public float y;
-    public float z;
+public class ScaleRecord : IRecord {
+    public int Id;
+    public float X;
+    public float Y;
+    public float Z;
 
 
-    public void applyEffect(RecordHandler c) {
-        c.SetScale(id, new Vector3(x, y, z));
+    public void ApplyEffect(RecordHandler c) {
+        c.SetScale(Id, new Vector3(X, Y, Z));
     }
 
     public ScaleRecord(int objId, Vector3 scale) {
-        this.id = objId;
-        this.x = scale.x;
-        this.y = scale.y;
-        this.z = scale.z;
+        this.Id = objId;
+        this.X = scale.x;
+        this.Y = scale.y;
+        this.Z = scale.z;
     }
-
 }

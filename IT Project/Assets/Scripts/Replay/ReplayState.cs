@@ -1,1 +1,6 @@
-﻿public enum ReplayState { Preparing, Started, Paused, Ended }
+﻿public enum ReplayState {
+    Preparing,
+    Started,
+    Paused,
+    Ended
+}

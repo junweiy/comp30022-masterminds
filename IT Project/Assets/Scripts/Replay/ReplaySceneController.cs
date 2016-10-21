@@ -4,19 +4,17 @@ using Replay;
 using UnityEngine.UI;
 
 public class ReplaySceneController : RecordHandler {
-
     public Text ButtonLabel;
-    public GameObject pauseButton;
-    public GameObject endMessage;
+    public GameObject PauseButton;
+    public GameObject EndMessage;
     //public Slider speedSlider;
     //public Text sliderText;
     //private decimal replaySpeed;
     private ReplayState _state = ReplayState.Preparing;
 
-    private ReplayState state {
-        get {
-            return _state;
-        } set {
+    private ReplayState State {
+        get { return _state; }
+        set {
             _state = value;
 
             if (ButtonLabel != null) {
@@ -33,12 +31,12 @@ public class ReplaySceneController : RecordHandler {
         }
     }
 
-    GameReplay replay;
-    int frameCount = 0;
-    
+    private GameReplay _replay;
+    private int _frameCount = 0;
+
     // Use this for initialization
-    void Start () {
-        GameReplay p = GlobalState.instance.ReplayToLoad;
+    private void Start() {
+        GameReplay p = GlobalState.Instance.ReplayToLoad;
 
         if (p == null) {
             Debug.LogError("ReplayToLoad is empty");
@@ -48,56 +46,54 @@ public class ReplaySceneController : RecordHandler {
         StartReplay();
     }
 
-    void LoadReplay(GameReplay replay) {
-        this.replay = replay;
-        var info = replay.info;
-        Application.targetFrameRate = info.targetFrameRate;
-        frameCount = 0;
+    private void LoadReplay(GameReplay replay) {
+        this._replay = replay;
+        var info = replay.Info;
+        Application.targetFrameRate = info.TargetFrameRate;
+        _frameCount = 0;
     }
 
-    void StartReplay() {
-        state = ReplayState.Started;
+    private void StartReplay() {
+        State = ReplayState.Started;
     }
 
     public void Exit() {
         StateController.SwitchToReplaySelection();
     }
 
-    void FinishReplay() {
-        endMessage.SetActive(true);
-        state = ReplayState.Ended;
+    private void FinishReplay() {
+        EndMessage.SetActive(true);
+        State = ReplayState.Ended;
     }
 
     public void TriggerPauseContinue() {
-        if(state == ReplayState.Started) {
+        if (State == ReplayState.Started) {
             Pause();
-        } else if (state == ReplayState.Paused) {
+        } else if (State == ReplayState.Paused) {
             Continue();
         }
     }
 
     public void Pause() {
-        state = ReplayState.Paused;
-        pauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Continue");
+        State = ReplayState.Paused;
+        PauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Continue");
         Time.timeScale = 0;
     }
 
     public void Continue() {
-        state = ReplayState.Started;
-        pauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Pause");
+        State = ReplayState.Started;
+        PauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Pause");
         Time.timeScale = 1;
     }
 
     // Update is called once per frame
-    void Update () {
-
+    private void Update() {
         if (Input.GetKeyDown("p")) {
             TriggerPauseContinue();
         }
 
-        if (state == ReplayState.Started) {
-
-            if (replay.entries.Count == 0) {
+        if (State == ReplayState.Started) {
+            if (_replay.Entries.Count == 0) {
                 FinishReplay();
                 return;
             }
@@ -106,18 +102,18 @@ public class ReplaySceneController : RecordHandler {
             //Time.timeScale = (float)System.Decimal.Round(replaySpeed, 1);
             //sliderText.text = Time.timeScale.ToString("0.0");
 
-            var nextEntry = replay.entries.Peek();
-            while (nextEntry.frameTime <= frameCount) {
-                replay.entries.Dequeue();
-                nextEntry.record.applyEffect(this);
-                if (replay.entries.Count == 0) {
+            var nextEntry = _replay.Entries.Peek();
+            while (nextEntry.FrameTime <= _frameCount) {
+                _replay.Entries.Dequeue();
+                nextEntry.Record.ApplyEffect(this);
+                if (_replay.Entries.Count == 0) {
                     FinishReplay();
                     return;
                 }
-                nextEntry = replay.entries.Peek();
+                nextEntry = _replay.Entries.Peek();
             }
 
-            frameCount += 1;
+            _frameCount += 1;
         }
-	}
+    }
 }

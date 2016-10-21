@@ -3,7 +3,6 @@ using System.Collections;
 using Replay;
 
 public static class ReplayTypeConverter {
-
     public static CharacterType GetTypeFromCharacter(Character character) {
         if (character.GetType() == typeof(Character)) {
             return CharacterType.Character;
@@ -40,10 +39,7 @@ public static class ReplayTypeConverter {
 
         throw new NonMatchedReplayTypeException();
     }
-	
 }
 
 
-public class NonMatchedReplayTypeException : System.Exception {
-
-}
+public class NonMatchedReplayTypeException : System.Exception {}

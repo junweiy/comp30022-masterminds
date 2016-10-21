@@ -52,8 +52,8 @@ public class PhotonVoiceNetwork : MonoBehaviour
 			return _instance;
 		}
 	}
-	
-    void OnDestroy()
+
+    private void OnDestroy()
     {
         if (this != _instance)
         {
@@ -64,7 +64,8 @@ public class PhotonVoiceNetwork : MonoBehaviour
     }
 
     internal UnityVoiceClient client;
-    PhotonVoiceNetwork()
+
+    private PhotonVoiceNetwork()
     {
         client = new UnityVoiceClient(this);
         //client.loadBalancingPeer.DebugOut = DebugLevel.ALL;
@@ -230,7 +231,7 @@ public class PhotonVoiceNetwork : MonoBehaviour
     }
 
     // PUN room joined
-    void OnJoinedRoom()
+    private void OnJoinedRoom()
     {
         if (this != _instance)
         {
@@ -257,7 +258,7 @@ public class PhotonVoiceNetwork : MonoBehaviour
         }
     }
 
-    void OnLeftRoom()
+    private void OnLeftRoom()
     {
         if (this != _instance)
         {
@@ -270,7 +271,7 @@ public class PhotonVoiceNetwork : MonoBehaviour
         }
     }
 
-    void OnDisconnectedFromPhoton()
+    private void OnDisconnectedFromPhoton()
     {
         if (this != _instance)
         {

@@ -6,7 +6,8 @@ using Rotorz.ReorderableList.Internal;
 public class PhotonGUI
 {
     #region Styles
-    static GUIStyle m_DefaultTitleStyle;
+
+    private static GUIStyle m_DefaultTitleStyle;
     public static GUIStyle DefaultTitleStyle
     {
         get
@@ -28,7 +29,7 @@ public class PhotonGUI
         }
     }
 
-    static GUIStyle m_DefaultContainerStyle;
+    private static GUIStyle m_DefaultContainerStyle;
     public static GUIStyle DefaultContainerStyle
     {
         get
@@ -46,7 +47,7 @@ public class PhotonGUI
         }
     }
 
-    static GUIStyle m_DefaultAddButtonStyle;
+    private static GUIStyle m_DefaultAddButtonStyle;
     public static GUIStyle DefaultAddButtonStyle
     {
         get
@@ -64,7 +65,7 @@ public class PhotonGUI
         }
     }
 
-    static GUIStyle m_DefaultRemoveButtonStyle;
+    private static GUIStyle m_DefaultRemoveButtonStyle;
     public static GUIStyle DefaultRemoveButtonStyle
     {
         get
@@ -83,7 +84,7 @@ public class PhotonGUI
         }
     }
 
-    static GUIStyle m_DefaultContainerRowStyle;
+    private static GUIStyle m_DefaultContainerRowStyle;
     public static GUIStyle DefaultContainerRowStyle
     {
         get
@@ -102,7 +103,7 @@ public class PhotonGUI
         }
     }
 
-    static GUIStyle m_FoldoutBold;
+    private static GUIStyle m_FoldoutBold;
     public static GUIStyle FoldoutBold
     {
         get
@@ -117,7 +118,7 @@ public class PhotonGUI
         }
     }
 
-    static GUIStyle m_RichLabel;
+    private static GUIStyle m_RichLabel;
     public static GUIStyle RichLabel
     {
         get
@@ -134,7 +135,7 @@ public class PhotonGUI
     }
     #endregion
 
-    static Texture2D m_HelpIcon;
+    private static Texture2D m_HelpIcon;
     public static Texture2D HelpIcon
     {
         get
@@ -226,7 +227,8 @@ public class PhotonGUI
     #endregion
 
     #region Implementation
-    static Rect DoContainerBody( float height )
+
+    private static Rect DoContainerBody( float height )
     {
         Rect controlRect = EditorGUILayout.GetControlRect( false, height );
         controlRect.yMin -= 3;
@@ -242,7 +244,7 @@ public class PhotonGUI
         return controlRect;
     }
 
-    static bool DoContainerHeaderToggle( string headline, bool toggle )
+    private static bool DoContainerHeaderToggle( string headline, bool toggle )
     {
         Rect rect = DoContainerHeader( headline, 27, 15 );
         Rect toggleRect = new Rect( rect.xMin + 5, rect.yMin + 5, EditorGUIUtility.labelWidth, rect.height );
@@ -251,7 +253,7 @@ public class PhotonGUI
     }
 
 
-    static bool DoContainerHeaderFoldout( string headline, bool foldout )
+    private static bool DoContainerHeaderFoldout( string headline, bool foldout )
     {
         Rect rect = DoContainerHeader( "", 27, 0f );
         Rect foldoutRect = new Rect( rect.xMin + 15, rect.yMin + 5, rect.width, rect.height );
@@ -259,7 +261,7 @@ public class PhotonGUI
         return EditorGUI.Foldout( foldoutRect, foldout, headline, FoldoutBold );
     }
 
-    static Rect DoContainerHeader( string headline, float height, float contentOffset )
+    private static Rect DoContainerHeader( string headline, float height, float contentOffset )
     {
         GUILayout.Space( 5 );
         Rect controlRect = EditorGUILayout.GetControlRect( false, height );

@@ -5,7 +5,6 @@ using System.Linq;
 using System;
 
 public static class StateReader {
-
     public static Dictionary<int, Transform> GetTransformsWithTag(string tag) {
         var dict = new Dictionary<int, Transform>();
         var objs = GameObject.FindGameObjectsWithTag(tag);
@@ -15,7 +14,7 @@ public static class StateReader {
         return dict;
     }
 
-    public static List<Record> GetTransformRecordsWithTag(string tag) {
+    public static List<IRecord> GetTransformRecordsWithTag(string tag) {
         return GetChangedTransFormRecordsWithTag(
             tag,
             new Dictionary<int, Vector3>(),
@@ -24,13 +23,12 @@ public static class StateReader {
         );
     }
 
-    public static List<Record> GetChangedTransFormRecordsWithTag(
+    public static List<IRecord> GetChangedTransFormRecordsWithTag(
         string tag,
         Dictionary<int, Vector3> lastPos,
         Dictionary<int, Quaternion> lastRot,
         Dictionary<int, Vector3> lastScl) {
-
-        var records = new List<Record>();
+        var records = new List<IRecord>();
 
         foreach (var entry in GetTransformsWithTag(tag)) {
             int id = entry.Key;
@@ -59,18 +57,17 @@ public static class StateReader {
         }
 
         return records;
-
     }
 
-    public static List<Record> GetHpRecords() {
+    public static List<IRecord> GetHpRecords() {
         return GetChangedHpRecords(new Dictionary<int, int>());
     }
 
-    public static List<Record> GetChangedHpRecords(Dictionary<int, int> lastHp) {
-        var records = new List<Record>();
+    public static List<IRecord> GetChangedHpRecords(Dictionary<int, int> lastHp) {
+        var records = new List<IRecord>();
         foreach (var obj in GameObject.FindGameObjectsWithTag("Character")) {
             int id = obj.GetInstanceID();
-            int hp = obj.GetComponent<Character>().hp;
+            int hp = obj.GetComponent<Character>().Hp;
             if (!lastHp.ContainsKey(id) || lastHp[id] != hp) {
                 lastHp[id] = hp;
                 records.Add(new PlayerHpRecord(id, hp));
@@ -79,25 +76,26 @@ public static class StateReader {
         return records;
     }
 
-    public static List<Record> GetInstantiateCharRecords(
-        HashSet<GameObject> recordedChars, Action<GameObject> onAdded) {
-
-        var records = new List<Record>();
+    public static List<IRecord> GetInstantiateCharRecords(
+        HashSet<GameObject> recordedChars,
+        Action<GameObject> onAdded) {
+        var records = new List<IRecord>();
         foreach (var obj in GameObject.FindGameObjectsWithTag("Character")) {
             if (!recordedChars.Contains(obj)) {
                 recordedChars.Add(obj);
-                records.Add(new AddCharacterRecord(
-					obj.GetInstanceID(), obj.GetComponent<Character>().charID, obj.GetComponent<Character>().userName
-                ));
+                records.Add(
+                    new AddCharacterRecord(
+                        obj.GetInstanceID(), obj.GetComponent<Character>().CharId,
+                        obj.GetComponent<Character>().UserName
+                    ));
                 onAdded(obj);
             }
         }
         return records;
-
     }
 
-    public static List<Record> GetInstantiateCharRecords(HashSet<GameObject> recordedChars) {
-        return GetInstantiateCharRecords(recordedChars, delegate (GameObject o) { });
+    public static List<IRecord> GetInstantiateCharRecords(HashSet<GameObject> recordedChars) {
+        return GetInstantiateCharRecords(recordedChars, delegate(GameObject o) { });
     }
 
     public static GroundRecord GetGroundRecord(float lastGroundSize) {
@@ -105,14 +103,10 @@ public static class StateReader {
         GroundController gc = ground.GetComponent<GroundController>();
         float scale = ground.transform.localScale.x;
         if (scale != lastGroundSize) {
-            if (scale != 100f) {
-                Debug.Log("Ground Scale: " + ground.transform.localScale.x);
-            }
-            return new GroundRecord(ground.transform.localScale.x, gc.timePassed);
+            if (scale != 100f) {}
+            return new GroundRecord(ground.transform.localScale.x, gc.TimePassed);
         } else {
             return null;
         }
     }
-
-    
 }

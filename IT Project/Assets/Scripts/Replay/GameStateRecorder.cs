@@ -8,80 +8,80 @@ using System.Runtime.Serialization;
 using System.IO;
 
 public class GameStateRecorder : StateRecorder {
-    private ReplayState state = ReplayState.Preparing;
+    private ReplayState _state = ReplayState.Preparing;
 
-	bool started;
+    private bool _started;
 
-    GameReplay replay;
+    private GameReplay _replay;
 
-    const int TARGET_FRAMERATE = 60;
+    private const int TARGET_FRAMERATE = 60;
 
-    int frameCount = 0;
+    private int _frameCount = 0;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    private void Start() {
         Application.targetFrameRate = TARGET_FRAMERATE;
-		started = false;
-		StartRecording ();
-	}
-
-    void StartRecording() {
-        Debug.Log("Started Recording");
-		started = true;
-        replay = new GameReplay();
-
-        replay.info = new ReplayInfo(
-            getGameVersion(),
-            TARGET_FRAMERATE
-        );
-
-        replay.entries = new Queue<GameReplay.Entry>();
-        frameCount = 0;
-        state = ReplayState.Started;
+        _started = false;
+        StartRecording();
     }
 
-    void addEntry(Record record) {
-        var newEntry = new GameReplay.Entry();
-        newEntry.frameTime = frameCount;
-        newEntry.record = record;
-        replay.entries.Enqueue(newEntry);
+    private void StartRecording() {
+        Debug.Log("Started Recording");
+        _started = true;
+        _replay = new GameReplay {
+            Info = new ReplayInfo(
+                GetGameVersion(),
+                TARGET_FRAMERATE
+            ),
+            Entries = new Queue<GameReplay.Entry>()
+        };
+
+
+        _frameCount = 0;
+        _state = ReplayState.Started;
+    }
+
+    private void AddEntry(IRecord record) {
+        var newEntry = new GameReplay.Entry {
+            FrameTime = _frameCount,
+            Record = record
+        };
+        _replay.Entries.Enqueue(newEntry);
     }
 
     public void FinishRecording() {
-		if (!started) {
-			return;
-		}
+        if (!_started) {
+            return;
+        }
         Debug.Log("Finished Recording");
-        state = ReplayState.Ended;
+        _state = ReplayState.Ended;
         FlushPendingRecodsToReplayObject();
-        GlobalState.instance.ReplayToSave = replay;
-		started = false;
+        GlobalState.Instance.ReplayToSave = _replay;
+        _started = false;
     }
 
     // Not an actual flush to disk, but could be changed to do so
-    void FlushPendingRecodsToReplayObject() {
-        while (pending.Count != 0) {
-            var record = pending.Dequeue();
-            addEntry(record);
+    private void FlushPendingRecodsToReplayObject() {
+        while (Pending.Count != 0) {
+            var record = Pending.Dequeue();
+            AddEntry(record);
         }
     }
 
 
     // Update is called once per frame
-    void Update() {
-		GameObject mainChar = GameObject.FindGameObjectWithTag ("Character");
+    private void Update() {
+        GameObject mainChar = GameObject.FindGameObjectWithTag("Character");
         if (Input.GetKeyDown(KeyCode.S)) {
             StartRecording();
         } else if (Input.GetKeyDown(KeyCode.E)) {
             FinishRecording();
         }
 
-        if (state == ReplayState.Started) {
-            addRecords();
+        if (_state == ReplayState.Started) {
+            AddRecords();
             FlushPendingRecodsToReplayObject();
-            frameCount += 1;
+            _frameCount += 1;
         }
     }
-
-
 }

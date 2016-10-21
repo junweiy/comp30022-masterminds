@@ -2,118 +2,113 @@
 using System.Collections;
 using UnityEngine.UI;
 
+// ReSharper disable All
+
 public class MainMenuController : MonoBehaviour {
+    public InputField RegisterUserNameField;
+    public InputField RegisterEmailField;
 
-	public InputField registerUserNameField;
-	public InputField registerEmailField;
+    public GameObject MainMenuPage;
+    public GameObject SingleModePage;
+    public GameObject MultiModePage;
+    public GameObject RegisterPage;
+    public GameObject LoginPage;
+    public GameObject AlertPage;
 
-	public GameObject mainMenuPage;
-	public GameObject singleModePage;
-	public GameObject multiModePage;
-	public GameObject registerPage;
-	public GameObject loginPage;
-	public GameObject alertPage;
+    // Use this for initialization
+    private void Start() {
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+    }
 
-	// Use this for initialization
-	void Start () {
-		Screen.orientation = ScreenOrientation.LandscapeLeft;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		// TODO Keybord action for testing, shuold probably provide a feature to switch user properly
-		if (Input.GetKeyDown (KeyCode.S) && mainMenuPage.activeSelf) {
-			switchTo (loginPage);
-		}
-	}
+    // Update is called once per frame
+    private void Update() {}
 
-	private void DisableAllPages() {
-		mainMenuPage.SetActive(false);
-		singleModePage.SetActive(false);
-		multiModePage.SetActive(false);
-		registerPage.SetActive(false);
-		loginPage.SetActive(false);
-	}
+    private void DisableAllPages() {
+        MainMenuPage.SetActive(false);
+        SingleModePage.SetActive(false);
+        MultiModePage.SetActive(false);
+        RegisterPage.SetActive(false);
+        LoginPage.SetActive(false);
+    }
 
-	private void switchTo(GameObject page) {
-		DisableAllPages ();
-		page.SetActive (true);
-	}
+    private void SwitchTo(GameObject page) {
+        DisableAllPages();
+        page.SetActive(true);
+    }
 
-	private void displayError(ProfileMessagingException exception) {
-		alertPage.SetActive (true);
-		alertPage.GetComponent<ErrorPageController> ().showAlert (exception.message);
-	}
+    private void DisplayError(ProfileMessagingException exception) {
+        AlertPage.SetActive(true);
+        AlertPage.GetComponent<ErrorPageController>().ShowAlert(exception.message);
+    }
 
-	public void registerSubmit() {
-		string userName = registerUserNameField.text;
-		string email = registerEmailField.text;
-		try {
-			int? uid = ProfileMessenger.createNewUser (userName, email);
-			if (uid == null) {
-				Debug.LogWarning ("register failed");
-			} else {
-				GlobalState.loadProfileWithUid ( (int) uid);
-				GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().LoggedIn(email);
-				gotoMainMenu ();
-			}
-		} catch (ProfileMessagingException e) {
-			displayError (e);
-		}
-	}
+    public void RegisterSubmit() {
+        string userName = RegisterUserNameField.text;
+        string email = RegisterEmailField.text;
+        try {
+            int? uid = ProfileMessenger.CreateNewUser(userName, email);
+            if (uid == null) {
+                Debug.LogWarning("register failed");
+            } else {
+                GlobalState.LoadProfileWithUid((int) uid);
+                GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().LoggedIn(email);
+                GotoMainMenu();
+            }
+        } catch (ProfileMessagingException e) {
+            DisplayError(e);
+        }
+    }
 
-	public void registerCancel() {
-		switchTo (loginPage);
-	}
+    public void RegisterCancel() {
+        SwitchTo(LoginPage);
+    }
 
-	public void login(GameObject emailTextField) {
-		string email = emailTextField.GetComponent<Text> ().text;
-		try {
-			bool outcome = GlobalState.loadProfileWithEmail (email);
-			if (outcome == false) {
-				Debug.LogWarning ("login failed");
-			} else {
-				GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().LoggedIn(email);
-				gotoMainMenu ();
-			}
-		} catch (ProfileMessagingException e) {
-			displayError (e);
-		}
-	}
+    public void Login(GameObject emailTextField) {
+        string email = emailTextField.GetComponent<Text>().text;
+        try {
+            bool outcome = GlobalState.LoadProfileWithEmail(email);
+            if (outcome == false) {
+                Debug.LogWarning("login failed");
+            } else {
+                GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().LoggedIn(email);
+                GotoMainMenu();
+            }
+        } catch (ProfileMessagingException e) {
+            DisplayError(e);
+        }
+    }
 
-	public void gotoMainMenu() {
-		switchTo (mainMenuPage);
-	}
+    public void GotoMainMenu() {
+        SwitchTo(MainMenuPage);
+    }
 
-	public void gotoRegister() {
-		switchTo (registerPage);
-	}
+    public void GotoRegister() {
+        SwitchTo(RegisterPage);
+    }
 
-	public void gotoProfile() {
-		StateController.switchToProfile ();
-	}
+    public void GotoProfile() {
+        StateController.SwitchToProfile();
+    }
 
-    public void gotoreplay() {
+    public void Gotoreplay() {
         StateController.SwitchToReplaySelection();
     }
 
 
-    public void gotoSingleModePage() {
-		switchTo (singleModePage);
-	}
+    public void GotoSingleModePage() {
+        SwitchTo(SingleModePage);
+    }
 
     // for multiPlayer button
-	public void gotoMultiModePage() {
-		ProfileHandler ph = GameObject.FindGameObjectWithTag ("ProfileHandler").GetComponent<ProfileHandler> ();
-		ph.loadedFromFile = false;
-		StateController.SwitchToMatching ();
-	}
+    public void GotoMultiModePage() {
+        ProfileHandler ph = GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>();
+        ph.LoadedFromFile = false;
+        StateController.SwitchToMatching();
+    }
 
     // for load button
-    public void LoadGame()
-    {
-		ProfileHandler ph = GameObject.FindGameObjectWithTag ("ProfileHandler").GetComponent<ProfileHandler> ();
-		ph.loadedFromFile = true;
+    public void LoadGame() {
+        ProfileHandler ph = GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>();
+        ph.LoadedFromFile = true;
         StateController.SwitchToMatching();
     }
 }

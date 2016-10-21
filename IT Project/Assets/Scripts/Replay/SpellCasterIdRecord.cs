@@ -2,8 +2,8 @@
 using System.Collections;
 using System;
 
-public class SpellCasterIdRecord : Record {
-    public void applyEffect(RecordHandler c) {
+public class SpellCasterIdRecord : IRecord {
+    public void ApplyEffect(RecordHandler c) {
         throw new NotImplementedException();
     }
 }

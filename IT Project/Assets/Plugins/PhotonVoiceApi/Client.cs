@@ -22,7 +22,7 @@ namespace ExitGames.Client.Photon.Voice
     /// Single event code for all events to save codes for user.
     /// Change if conflicts with other code.
     /// </summary>
-    enum EventCode
+    internal enum EventCode
     {
         VoiceEvent = 201
     }
@@ -97,7 +97,7 @@ namespace ExitGames.Client.Photon.Voice
         public byte VoiceId { get; private set; }
     }
 
-    enum EventSubcode : byte
+    internal enum EventSubcode : byte
     {
         VoiceInfo = 1,
         VoiceRemove = 2,
@@ -105,7 +105,7 @@ namespace ExitGames.Client.Photon.Voice
         DebugEchoRemoveMyVoices = 10
     }
 
-    enum EventParam : byte
+    internal enum EventParam : byte
     {
         VoiceId = 1,
         SamplingRate = 2,
@@ -809,7 +809,7 @@ namespace ExitGames.Client.Photon.Voice
             }
         }
 
-        Random rnd = new Random();
+        private Random rnd = new Random();
         private void onFrame(EventData ev, object[] content)
         {
             var playerId = (int)ev[LoadBalancing.ParameterCode.ActorNr];
@@ -917,16 +917,16 @@ namespace ExitGames.Client.Photon.Voice
         }
 
         /// <summary>Converts delay to frame size (samples*channels)</summary>
-        public static int DelayToFrameSize(int _encoderDelay, int _inputSamplingRate, int numChannels)
+        public static int DelayToFrameSize(int _encoderDelay, int inputSamplingRate, int numChannels)
         {
-            return VoiceUtil.DelayToSamples(_encoderDelay,_inputSamplingRate) * numChannels;
+            return VoiceUtil.DelayToSamples(_encoderDelay,inputSamplingRate) * numChannels;
         }
 
         /// <summary>Converts delay to samples count</summary>
-        public static int DelayToSamples(int _encoderDelay, int _inputSamplingRate)
+        public static int DelayToSamples(int _encoderDelay, int inputSamplingRate)
         {
             // as implemented in OpusEncoder.EncoderDelay
-            return (int)((((int)_inputSamplingRate) / 1000) * ((decimal)_encoderDelay) / 2);
+            return (int)((((int)inputSamplingRate) / 1000) * ((decimal)_encoderDelay) / 2);
         }
 
         internal static string tostr<T>(T[] x, int lim = 10)
@@ -963,15 +963,15 @@ namespace ExitGames.Client.Photon.Voice
     public class LevelMeter
     {
         // sum of all values in buffer
-        float ampSum;
+        private float ampSum;
         // max of values from start buffer to current pos
-        float ampPeak;
-        int bufferSize;
-        float[] buffer;
-        int prevValuesPtr;
+        private float ampPeak;
+        private int bufferSize;
+        private float[] buffer;
+        private int prevValuesPtr;
 
-        float accumAvgPeakAmpSum;
-        int accumAvgPeakAmpCount;
+        private float accumAvgPeakAmpSum;
+        private int accumAvgPeakAmpCount;
 
         internal LevelMeter(int samplingRate, int numChannels)
         {
@@ -1054,10 +1054,10 @@ namespace ExitGames.Client.Photon.Voice
             } 
         }
 
-        int activityDelay;
-        int autoSilenceCounter = 0;
-        int valuesCountPerSec;
-        int activityDelayValuesCount;
+        private int activityDelay;
+        private int autoSilenceCounter = 0;
+        private int valuesCountPerSec;
+        private int activityDelayValuesCount;
 
         internal VoiceDetector(int samplingRate, int numChannels)
         {

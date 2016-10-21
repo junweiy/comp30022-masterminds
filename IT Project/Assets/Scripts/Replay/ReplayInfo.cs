@@ -4,13 +4,12 @@ using Replay;
 
 [System.Serializable]
 public class ReplayInfo {
-    public string gameVersion;
-    public int targetFrameRate;
+    public string GameVersion;
+    public int TargetFrameRate;
 
 
     public ReplayInfo(string gameVersion, int targetFrameRate) {
-        this.gameVersion = gameVersion;
-        this.targetFrameRate = targetFrameRate;
+        this.GameVersion = gameVersion;
+        this.TargetFrameRate = targetFrameRate;
     }
-
 }

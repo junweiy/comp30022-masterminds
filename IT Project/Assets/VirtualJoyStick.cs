@@ -4,47 +4,45 @@ using UnityEngine.EventSystems;
 using System.Collections;
 
 public class VirtualJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler {
-
-    private Image joyStickBG;
-    private Image joyStickImg;
-    private Vector3 inputVector;
+    private Image _joyStickBg;
+    private Image _joyStickImg;
+    private Vector3 _inputVector;
 
     public object RectransformUtility { get; private set; }
 
-    void Start()
-    {
-        joyStickBG = GetComponent<Image>();
-        joyStickImg = transform.GetChild(0).GetComponent<Image>();
+    private void Start() {
+        _joyStickBg = GetComponent<Image>();
+        _joyStickImg = transform.GetChild(0).GetComponent<Image>();
     }
 
-    public Vector3 GetStickPosition()
-    {
-        return inputVector;
+    public Vector3 GetStickPosition() {
+        return _inputVector;
     }
 
-    public virtual void OnDrag(PointerEventData ped)
-    {
+    public virtual void OnDrag(PointerEventData ped) {
         Vector2 pos;
-        if(RectTransformUtility.ScreenPointToLocalPointInRectangle(joyStickBG.rectTransform,ped.position,ped.pressEventCamera,out pos))
-        {
-            pos.x = pos.x / joyStickBG.rectTransform.sizeDelta.x;
-            pos.y = pos.y / joyStickBG.rectTransform.sizeDelta.y;
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            _joyStickBg.rectTransform, ped.position,
+            ped.pressEventCamera, out pos)) {
+            pos.x = pos.x/_joyStickBg.rectTransform.sizeDelta.x;
+            pos.y = pos.y/_joyStickBg.rectTransform.sizeDelta.y;
 
-            inputVector = new Vector3(pos.x * 2, 0, pos.y * 2);
-            inputVector = (inputVector.magnitude > 1.0f) ? inputVector.normalized : inputVector;
+            _inputVector = new Vector3(pos.x*2, 0, pos.y*2);
+            _inputVector = (_inputVector.magnitude > 1.0f) ? _inputVector.normalized : _inputVector;
 
-            joyStickImg.rectTransform.anchoredPosition =
-                new Vector3(inputVector.x * (joyStickBG.rectTransform.sizeDelta.x / 3),
-                            inputVector.z * (joyStickBG.rectTransform.sizeDelta.y / 3));
+            _joyStickImg.rectTransform.anchoredPosition =
+                new Vector3(
+                    _inputVector.x*(_joyStickBg.rectTransform.sizeDelta.x/3),
+                    _inputVector.z*(_joyStickBg.rectTransform.sizeDelta.y/3));
         }
     }
-    public virtual void OnPointerDown(PointerEventData ped)
-    {
+
+    public virtual void OnPointerDown(PointerEventData ped) {
         OnDrag(ped);
     }
-    public virtual void OnPointerUp(PointerEventData ped)
-    {
-        inputVector = Vector3.zero;
-        joyStickImg.rectTransform.anchoredPosition = Vector3.zero;
+
+    public virtual void OnPointerUp(PointerEventData ped) {
+        _inputVector = Vector3.zero;
+        _joyStickImg.rectTransform.anchoredPosition = Vector3.zero;
     }
 }

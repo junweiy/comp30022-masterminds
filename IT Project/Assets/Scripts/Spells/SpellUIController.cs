@@ -3,14 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class SpellUIController : MonoBehaviour {
-
-    public GameObject spellIcon;
-    private GameObject spellBar_go;
-    private Character character;
-    private bool isMainCharacter;
-    private List<Spell> spells;
-    private GameObject [] icons;
+public class SpellUiController : MonoBehaviour {
+    public GameObject SpellIcon;
+    private GameObject _spellBarGo;
+    private Character _character;
+    private bool _isMainCharacter;
+    private List<Spell> _spells;
+    private GameObject[] _icons;
 
 //    public void initialise(Character c)
 //    {
@@ -38,5 +37,4 @@ public class SpellUIController : MonoBehaviour {
 //			}
 //		}
 //	}
-
 }

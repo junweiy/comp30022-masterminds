@@ -140,7 +140,7 @@ namespace POpusCodec
             return pcm;
         }
 
-        float[] tempData;
+        private float[] tempData;
         public float[] DecodePacketFloat(byte[] packetData)
         {
             if (tempData == null || tempData.Length != MaxFrameSize * _channelCount)

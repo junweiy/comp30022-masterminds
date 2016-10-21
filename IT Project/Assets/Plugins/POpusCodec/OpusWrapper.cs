@@ -75,10 +75,10 @@ namespace POpusCodec
         public static extern IntPtr opus_get_version_string();
 
         [DllImport("opus_egpv", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern int opus_encode(IntPtr st, short[] pcm, int frame_size, byte[] data, int max_data_bytes);
+        private static extern int opus_encode(IntPtr st, short[] pcm, int frame_size, byte[] data, int maxDataBytes);
 
         [DllImport("opus_egpv", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern int opus_encode_float(IntPtr st, float[] pcm, int frame_size, byte[] data, int max_data_bytes);
+        private static extern int opus_encode_float(IntPtr st, float[] pcm, int frame_size, byte[] data, int maxDataBytes);
 
         [DllImport("opus_egpv", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         private static extern int opus_encoder_ctl_set(IntPtr st, OpusCtlSetRequest request, int value);
@@ -99,10 +99,10 @@ namespace POpusCodec
         private static extern OpusStatusCode opus_decoder_init(IntPtr st, SamplingRate Fs, Channels channels);
 
         [DllImport("opus_egpv", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern int opus_decode(IntPtr st, byte[] data, int len, short[] pcm, int frame_size, int decode_fec);
+        private static extern int opus_decode(IntPtr st, byte[] data, int len, short[] pcm, int frame_size, int decodeFec);
 
         [DllImport("opus_egpv", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern int opus_decode_float(IntPtr st, byte[] data, int len, float[] pcm, int frame_size, int decode_fec);
+        private static extern int opus_decode_float(IntPtr st, byte[] data, int len, float[] pcm, int frame_size, int decodeFec);
 
 //        [DllImport("opus_egpv", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
 //        private static extern int opus_decode(IntPtr st, IntPtr data, int len, short[] pcm, int frame_size, int decode_fec);

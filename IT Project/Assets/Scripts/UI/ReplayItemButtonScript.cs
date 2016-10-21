@@ -3,20 +3,15 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class ReplayItemButtonScript : MonoBehaviour {
+    public GameObject TextField;
 
-    public GameObject textField;
-
-    public void setText(string s) {
-        textField.GetComponent<Text>().text = s;
+    public void SetText(string s) {
+        TextField.GetComponent<Text>().text = s;
     }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Use this for initialization
+    private void Start() {}
+
+    // Update is called once per frame
+    private void Update() {}
 }
