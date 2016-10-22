@@ -5,18 +5,11 @@ using NUnit.Framework;
 public class GroundControllerTest {
 
 	[Test]
-	public void EditorTest()
+	public void GroundTest()
 	{
-		//Arrange
-		var gameObject = new GameObject();
+        //Arrange
+        GroundController ground = new GroundController();
 
-		//Act
-		//Try to rename the GameObject
-		var newGameObjectName = "My game object";
-		gameObject.name = newGameObjectName;
-
-		//Assert
-		//The object has a new name
-		Assert.AreEqual(newGameObjectName, gameObject.name);
+        Assert.Equals(ground.TimePassed, 0);
 	}
 }

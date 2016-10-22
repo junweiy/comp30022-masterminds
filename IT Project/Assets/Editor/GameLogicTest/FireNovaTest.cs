@@ -2,6 +2,9 @@
 using UnityEditor;
 using NUnit.Framework;
 
+/**
+ * An unit test for fire nova class
+ * */
 public class FireNovaTest {
 
 	private const float COOLDOWN = 5;
@@ -9,7 +12,8 @@ public class FireNovaTest {
 
 
 	[Test]
-	public void CreateTest()
+    //The class only have a constructor, so just create an new object and tests its properties.
+    public void CreateTest()
 	{
 		FireNova fb = new FireNova();
 		Assert.AreEqual (fb.CurrentCooldown, COOLDOWN);

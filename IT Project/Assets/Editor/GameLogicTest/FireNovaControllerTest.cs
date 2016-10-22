@@ -6,18 +6,16 @@ public class FireNovaControllerTest {
 
 	private const int DAMAGE = 10;
 
-	GameObject fn; // Fire Nova
-	FireBallController fnController;
-	GameObject characterObject;
-	Character character;
+    private GameObject fn; // Fire Nova
+    private FireBallController fnController;
+    private GameObject characterObject;
+    private Character character;
 
 
 	[SetUp]
 	public void SetUp() {
 		fn = UnityEngine.Object.Instantiate(Resources.Load("Prefabs/FireNova", typeof(GameObject))) as GameObject;
 		fnController = fn.GetComponent<FireBallController> ();
-
-
 		characterObject = UnityEngine.Object.Instantiate(Resources.Load("Prefabs/Character", typeof(GameObject))) as GameObject;
 		character = characterObject.GetComponent<Character> ();
 	}

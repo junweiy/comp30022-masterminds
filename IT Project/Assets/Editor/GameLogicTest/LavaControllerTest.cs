@@ -5,18 +5,11 @@ using NUnit.Framework;
 public class LavaControllerTest {
 
 	[Test]
-	public void EditorTest()
+	public void LavaTest()
 	{
-		//Arrange
-		var gameObject = new GameObject();
+        LavaController lv = new LavaController();
+        
+        // All methods are private 
 
-		//Act
-		//Try to rename the GameObject
-		var newGameObjectName = "My game object";
-		gameObject.name = newGameObjectName;
-
-		//Assert
-		//The object has a new name
-		Assert.AreEqual(newGameObjectName, gameObject.name);
 	}
 }
