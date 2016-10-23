@@ -68,10 +68,12 @@ public class RecordHandler : MonoBehaviour {
         GameObject obj;
         if (!PhotonNetwork.connected) {
             if (type == SpellType.Fireball) {
+				Debug.Log ("Cast fireball");
                 obj = GameObject.Instantiate(FireballPrefab);
                 obj.GetComponent<FireBallController>().EnableDamage = false;
                 obj.GetComponent<FireBallController>().CharId = casterId;
             } else if (type == SpellType.FireNova) {
+				Debug.Log ("Cast firenova");
                 obj = GameObject.Instantiate(FireNovaPrefab);
                 obj.GetComponent<FireNovaController>().CastingTime = FireNova.CASTING_TIME;
                 obj.GetComponent<FireNovaController>().CharId = casterId;

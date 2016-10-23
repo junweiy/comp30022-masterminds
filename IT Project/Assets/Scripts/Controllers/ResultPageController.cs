@@ -39,6 +39,6 @@ public class ResultPageController : MonoBehaviour {
     public void SaveReplay() {
         SavedImage.SetActive(true);
         SaveButton.interactable = false;
-        ReplayIo.SaveReplayWithTimeAsFilename(GlobalState.Instance.ReplayToSave);
+        ReplayIO.SaveReplayWithTimeAsFilename(GlobalState.Instance.ReplayToSave);
     }
 }

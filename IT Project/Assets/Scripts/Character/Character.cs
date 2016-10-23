@@ -23,7 +23,7 @@ public class Character : Photon.MonoBehaviour {
 
     public float Range { get; set; }
 
-    private HealthBarUi _healthBarUi;
+    private HealthBarUI _healthBarUI;
 
     private void Awake() {
         _maxHp = DEFAULT_HP;
@@ -33,7 +33,7 @@ public class Character : Photon.MonoBehaviour {
     }
 
     private void Start() {
-        this._healthBarUi = this.GetComponent<HealthBarUi>();
+        this._healthBarUI = this.GetComponent<HealthBarUI>();
         CharId = photonView.viewID;
         if (photonView.isMine) {
 			UserName = GameObjectFinder.FindProfileHandler().UserName;
@@ -41,7 +41,7 @@ public class Character : Photon.MonoBehaviour {
     }
 
     private void Update() {
-        _healthBarUi.SetHealthUi(Hp, _maxHp);
+        _healthBarUI.SetHealthUI(Hp, _maxHp);
     }
 
     public void TakeDamage(int f) {
@@ -135,19 +135,19 @@ public class Character : Photon.MonoBehaviour {
     }
 
     [PunRPC]
-    public void SetPositionRpc(Vector3 pos) {
+	public void SetPositionRPC(Vector3 pos) {
         Debug.Log(pos);
         this.transform.position = pos;
     }
 
     [PunRPC]
-    public void SetRotationRpc(Quaternion rot) {
+	public void SetRotationRPC(Quaternion rot) {
         Debug.Log(rot);
         this.transform.rotation = rot;
     }
 
     [PunRPC]
-    public void SetHprpc(int hp) {
+	public void SetHPRPC(int hp) {
         Debug.Log(hp);
         this.Hp = hp;
     }

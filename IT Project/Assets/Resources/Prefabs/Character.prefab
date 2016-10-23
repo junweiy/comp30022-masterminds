@@ -1729,10 +1729,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34b5bcd7b5eec5458053c616bf234b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 55916832}
+  Slider: {fileID: 114000013116237186}
   FullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   ZeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
-  fillImage: {fileID: 53814176}
+  FillImage: {fileID: 114000010861010884}
 --- !u!114 &114000014106367788
 MonoBehaviour:
   m_ObjectHideFlags: 1

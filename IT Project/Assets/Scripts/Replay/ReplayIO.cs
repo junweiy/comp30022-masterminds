@@ -5,7 +5,7 @@ using System;
 using UnityEngine;
 
 // Static class containing methods handling input/output of replay files
-public static class ReplayIo {
+public static class ReplayIO {
     // The default folder path of replay files
     public static string FolderPath = Application.persistentDataPath + "/Replays/";
 
@@ -24,6 +24,7 @@ public static class ReplayIo {
             Directory.CreateDirectory(FolderPath);
         }
         SaveReplayAs(FolderPath + filename, replay);
+		Debug.Log ("Saved in " + FolderPath);
     }
 
     // Loads replay with a given file path

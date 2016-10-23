@@ -70,12 +70,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2894cf3c519741758bf3c74a2b77e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charID: 0
-  damage: 10
-  range: 10
-  power: 100
-  castingTime: 300
-  timePassed: 0
+  CharId: 0
+  Damage: 10
+  Range: 10
+  Power: 100
+  CastingTime: 300
+  TimePassed: 0
 --- !u!114 &114000010505868192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -151,7 +151,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
+  randomSeed: 2068261345
   InitialModule:
     serializedVersion: 2
     enabled: 1

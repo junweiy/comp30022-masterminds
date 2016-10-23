@@ -7,7 +7,7 @@ public class ReplayPageController : MonoBehaviour {
     public GameObject ScrollViewContent;
 
     private void LoadReplays() {
-        var filePaths = ReplayIo.GetReplayFilepaths();
+        var filePaths = ReplayIO.GetReplayFilepaths();
 
         // generate each button for each replay
         foreach (var filePath in filePaths) {
@@ -21,7 +21,7 @@ public class ReplayPageController : MonoBehaviour {
     }
 
     private void OpenReplay(string filePath) {
-        GlobalState.Instance.ReplayToLoad = ReplayIo.LoadReplayFromFilepath(filePath);
+        GlobalState.Instance.ReplayToLoad = ReplayIO.LoadReplayFromFilepath(filePath);
         StateController.SwitchToReplayScene();
     }
 

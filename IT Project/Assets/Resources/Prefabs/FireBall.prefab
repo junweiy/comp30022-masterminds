@@ -134,10 +134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96f11c00d56ec34b9113b5a6c87e396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charID: 0
-  damage: 10
-  distanceTravelled: 0
-  enableDamage: 1
+  CharId: 0
+  Damage: 10
+  DistanceTravelled: 0
+  EnableDamage: 1
 --- !u!135 &135000011889760044
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -200,7 +200,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 1151908575
+  randomSeed: -1978596126
   InitialModule:
     serializedVersion: 2
     enabled: 1
