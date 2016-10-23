@@ -50,17 +50,25 @@ public class MainMenuController : MonoBehaviour {
 
     public void Login(GameObject emailTextField) {
         string email = emailTextField.GetComponent<Text>().text;
-        try {
-            bool outcome = GlobalState.LoadProfileWithEmail(email);
-            if (outcome == false) {
-                Debug.LogWarning("login failed");
-            } else {
-				GameObjectFinder.FindProfileHandler().LoggedIn(email);
-                GoToMainMenu();
-            }
-        } catch (ProfileMessagingException e) {
-            DisplayError(e);
+        if (email == "") {
+            AlertPage.SetActive(true);
+            AlertPage.transform.GetChild(0).GetComponent<Text>().text = "Invalid Email Address";
         }
+        else {
+            try {
+                bool outcome = GlobalState.LoadProfileWithEmail(email);
+                if (outcome == false) {
+                    Debug.LogWarning("login failed");
+                }
+                else {
+                    GameObjectFinder.FindProfileHandler().LoggedIn(email);
+                    GoToMainMenu();
+                }
+            }
+            catch (ProfileMessagingException e) {
+                DisplayError(e);
+            }
+        }   
     }
 
     public void GoToMainMenu() {
