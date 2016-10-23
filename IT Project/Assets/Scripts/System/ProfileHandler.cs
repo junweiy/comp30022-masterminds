@@ -25,6 +25,7 @@ public class ProfileHandler : Photon.MonoBehaviour {
         }
     }
 
+	// Update the profile handler with stats
     public void UpdateProfile(int kill, int death, bool won) {
         this.Kill = kill;
         this.Death = death;
@@ -45,10 +46,12 @@ public class ProfileHandler : Photon.MonoBehaviour {
 
     private void OnLevelWasLoaded(int level) {
         if (level == MAINMENU_SCENE_NUMBER) {
+			// Skip login from other scenes if already logged in
             if (IsLogedIn) {
                 GameObject.Find("Canvas").transform.FindChild("Login").gameObject.SetActive(false);
                 GameObject.Find("Canvas").transform.FindChild("MainMenu").gameObject.SetActive(true);
             }
+			// Update the profile to the server if not updated yet
             if (IsLogedIn && !AlreadyUpdated) {
                 Profile oldProfile = ProfileMessenger.GetProfileByEmail(UserName);
                 oldProfile.numGamesPlayed += 1;
@@ -63,13 +66,14 @@ public class ProfileHandler : Photon.MonoBehaviour {
                 ProfileMessenger.SubmitNewProfile(oldProfile);
             }
         }
-
+		// Inform RandomMatchMaker if the player has chosen to load from save file
         if (level == MATCHING_SCENE_NUMBER) {
 			RandomMatchmaker rm = GameObjectFinder.FindRandomMatchMaker ();
             rm.LoadedFromFile = LoadedFromFile;
         }
 
         if (level == RESULT_SCENE_NUMBER) {
+			// Display stats in result scene
 			ResultPageController rpc = GameObjectFinder.FindResultPageController ();
             rpc.IsWinner = Won;
             rpc.UserName = UserName;

@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class RandomMatchmaker : Photon.PunBehaviour {
     public const int COUNTDOWN = 10;
-
+	// String to display on screen of current status
     private string _status;
+	// Whether countdown has started
     private bool _countdownStarted;
+	// Time left before game starts
     public float TimeLeft { get; set; }
-
+	// Whether save file needs to be loaded
     public bool LoadedFromFile;
 
     //UI text
@@ -26,7 +28,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
         PhotonNetwork.ConnectUsingSettings("V0.1");
     }
 
-    // Check for
+    // Keep checking for players joining
     private IEnumerator CheckForPlayers() {
         yield return new WaitForSeconds(2);
         if (PhotonNetwork.playerList.Length > 1) {
@@ -36,6 +38,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
         }
     }
 
+	// Reset the countdown
     private void RestartCountdown() {
         _countdownStarted = false;
         TimeLeft = COUNTDOWN;
@@ -49,6 +52,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
         PhotonNetwork.playerName = name;
     }
 
+	// Switch to game play after countdown finished
     public void CountdownFinished() {
 		GameController gc = GameObjectFinder.FindGameController();
         gc.LoadedFromFile = LoadedFromFile;
@@ -68,18 +72,23 @@ public class RandomMatchmaker : Photon.PunBehaviour {
     }
 
     private void Update() {
+		// Update status to reflect the change that save file has been loaded 
+		// under certain condition
         if (PhotonNetwork.inRoom && LoadedFromFile && !PhotonNetwork.isMasterClient) {
             _status = "Game loaded from player " + PhotonNetwork.masterClient.name + ".";
         }
 
+		// Update countdown time
         if (_countdownStarted && TimeLeft > 0) {
             TimeLeft -= Time.deltaTime;
         }
 
+		// Initialise gameplay when countdown finished
         if (TimeLeft <= 0) {
             PhotonNetwork.room.visible = false;
             CountdownFinished();
         }
+
         // update UI
         if (_countdownStarted) {
             CountDownUi.text = ((int) TimeLeft).ToString();
@@ -95,11 +104,12 @@ public class RandomMatchmaker : Photon.PunBehaviour {
         PhotonNetwork.CreateRoom(null);
     }
 
+	// Check if load file exists
     public bool LoadFileExists() {
         return File.Exists(Application.persistentDataPath + "/SaveFiles/test.sav");
     }
 
-
+	// Handle different conditions when the player joined quick match
     public override void OnJoinedRoom() {
         PhotonNetwork.playerName =
 			GameObjectFinder.FindProfileHandler().UserName;
@@ -121,6 +131,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
         }
     }
 
+	// Handle different conditions when other players join the quick match
     public override void OnPhotonPlayerConnected(PhotonPlayer player) {
         if (LoadedFromFile) {
             this.photonView.RPC("SetLoadFile", PhotonTargets.All, true);
@@ -132,6 +143,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
         _countdownStarted = true;
     }
 
+	// Restart countdown when there is only one player left
     public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
         if (PhotonNetwork.playerList.Length == 1) {
             _status = "Player left the room, waiting For other players to join in";

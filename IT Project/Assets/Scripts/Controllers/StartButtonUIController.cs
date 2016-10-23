@@ -13,7 +13,7 @@ public class StartButtonUIController : MonoBehaviour {
 		Screen.orientation = ScreenOrientation.LandscapeLeft;
     }
 
-    // Update is called once per frame
+	// Update on effects to allow start button effect on welcome page
     private void Update() {
         Color temp = _startImage.color;
         temp.a = _currentCoolDown/_coolDown;

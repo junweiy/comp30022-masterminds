@@ -54,9 +54,7 @@ public static class GameObjectFinder {
 	public static GameObject FindGround() {
 		return GameObject.FindGameObjectWithTag("Ground");
 	}
-
-
-
+		
 	public static GameObject FindMainPlayer() {
 		GameObject[] players = FindAllCharacters();
 		foreach (GameObject player in players) {
@@ -75,6 +73,7 @@ public static class GameObjectFinder {
 		return null;
 	}
 
+
 	public static GameObject FindAnotherPlayerAlive() {
 		GameObject[] players = FindAllCharacters();
 		foreach (GameObject player in players) {
@@ -85,9 +84,20 @@ public static class GameObjectFinder {
 		return null;
 	}
 
+	// Generic method to find controller attached to main character
 	public static T GetMainPlayerController<T>() {
 		GameObject mainPlayer = FindMainPlayer();
 		return mainPlayer.GetComponent<T>();
 	}
-
+		
+	public static GameObject FindCharacterWithUserName(string userName) {
+		GameObject[] characters = GameObjectFinder.FindAllCharacters();
+		foreach (GameObject character in characters) {
+			if (character.GetComponent<Character>().UserName == userName) {
+				return character;
+			}
+		}
+		return null;
+	}
+		
 }

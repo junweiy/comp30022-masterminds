@@ -14,7 +14,7 @@ public class DisplayProfile : MonoBehaviour {
 		SetText("NumDeath", Profile.numDeath.ToString(), 1);
 	}
 
-    //load content from profile, and set the related text field
+    // Load content from profile, and set the related text field
     private void SetText(string transName, string profileContent, int childNum) {
 		Transform temp = this.gameObject.transform.FindChild(transName);
         Text[] texts;

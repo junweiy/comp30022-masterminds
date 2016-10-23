@@ -24,6 +24,8 @@ public class FireNovaController : Photon.MonoBehaviour {
         TimePassed = 0;
     }
 
+	// Update time passed and trigger explosive effect when time passed reached
+	// the given casting time
     private void Update() {
         TimePassed += Time.deltaTime;
         if (TimePassed >= CastingTime) {

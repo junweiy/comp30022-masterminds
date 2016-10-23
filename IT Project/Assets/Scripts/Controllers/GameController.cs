@@ -9,6 +9,7 @@ public class GameController : Photon.PunBehaviour {
 
     public bool LoadedFromFile;
 
+	// Check if the game ends and handle recording accordingly
     public static bool CheckIfGameEnds() {
 		GameStateRecorder gsr = GameObjectFinder.FindGameStateRecorder();
 		GameObject[] players = GameObjectFinder.FindAllCharacters();
@@ -26,6 +27,7 @@ public class GameController : Photon.PunBehaviour {
         }
     }
 
+	// Get coordinates of spawn points for all players
     public static Vector3 GetNextSpawnPoint(int index) {
         switch (index) {
             case 0:
@@ -41,6 +43,7 @@ public class GameController : Photon.PunBehaviour {
         }
     }
 
+	// Get the index of current player for finding spawning point
     public static int GetIndex() {
         PhotonPlayer[] players = PhotonNetwork.playerList;
         Array.Sort(players);
@@ -51,12 +54,15 @@ public class GameController : Photon.PunBehaviour {
         }
         throw new UnityException();
     }
-
+		
     private void OnLevelWasLoaded(int level) {
         if (level == GAMEPLAY_SCENE_NUMBER) {
             if (!LoadedFromFile) {
+				// Initialise game normally
                 InitialiseGamePlay();
             } else {
+				// Master client loads from the save file and allocate instantiated
+				// characters to other clients according to user name
                 if (PhotonNetwork.isMasterClient) {
 					GameLoader gl = GameObjectFinder.FindGameLoader ();
                     GameSave save = gl.ReadFile();
@@ -72,6 +78,7 @@ public class GameController : Photon.PunBehaviour {
         }
     }
 
+	// Spawn player in the network and set controllable
     public GameObject SpawnPlayer() {
         GameObject player = PhotonNetwork.Instantiate(
             "Prefabs/Character", GetNextSpawnPoint(GetIndex()),
@@ -84,6 +91,7 @@ public class GameController : Photon.PunBehaviour {
         SpawnPlayer();
     }
 
+	// Terminate the game when there is only one player left during gameplay
     public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
         if (PhotonNetwork.playerList.Length == 1) {
             PhotonNetwork.Disconnect();
@@ -91,12 +99,14 @@ public class GameController : Photon.PunBehaviour {
         }
     }
 
+	// Switch to result with delay to allow stats storage
     public IEnumerator SwitchToResultWithDelay() {
         yield return new WaitForSecondsRealtime(1);
         PhotonNetwork.LoadLevel(RESULT_SCENE_NUMBER);
     }
 
-
+	// End the game on master client and other players will also 
+	// be taken into result page
     public void DisplayGameOverMessage() {
         if (PhotonNetwork.isMasterClient) {
             StartCoroutine("SwitchToResultWithDelay");
@@ -107,13 +117,5 @@ public class GameController : Photon.PunBehaviour {
     private void Start() {
         DontDestroyOnLoad(this.gameObject);
     }
-
-
-    public static Character FindMainCharacter() {
-        GameObject mainPlayer = GameObjectFinder.FindMainPlayer();
-        if (mainPlayer != null) {
-            return mainPlayer.GetComponent<Character>();
-        }
-        return null;
-    }
+		
 }

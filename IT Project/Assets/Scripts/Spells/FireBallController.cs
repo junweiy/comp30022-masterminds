@@ -10,11 +10,11 @@ public class FireBallController : Photon.MonoBehaviour {
 
     // Character ID that cast the spell
     public int CharId;
-
+	// Damage of spell
     public int Damage;
-
+	// Distance traveled since cast 
     public float DistanceTravelled;
-
+	// Whether damage is enabled (disabled in replay)
     public bool EnableDamage = true;
 
 
@@ -23,7 +23,8 @@ public class FireBallController : Photon.MonoBehaviour {
         DistanceTravelled = 0;
     }
 
-
+	// Update distance traveled and destroy the game object once
+	// beyond range
     private void Update() {
         DistanceTravelled += VELOCITY*Time.deltaTime;
         if (DistanceTravelled >= RANGE) {
@@ -31,6 +32,7 @@ public class FireBallController : Photon.MonoBehaviour {
         }
     }
 
+	// Set velocity of the fire ball
     private void SetVelocity() {
         this.GetComponent<Rigidbody>().velocity = VELOCITY*(this.transform.rotation*new Vector3(0, 0, 1));
     }

@@ -64,7 +64,7 @@ public class SpellController : Photon.MonoBehaviour {
         fnc.CastingTime = _fn.CastingTime;
     }
 
-
+	// Cast FireBall according to joystick input
     public FireBallController CastFireBall() {
         GameObject fb;
         Quaternion destinationAngle;
@@ -85,7 +85,7 @@ public class SpellController : Photon.MonoBehaviour {
         return null;
     }
 
-
+	// Cast FireNova and get controller
     public FireNovaController CastFireNova() {
         GameObject fn = PhotonNetwork.Instantiate(
             "Prefabs/FireNova", this.transform.position, this.transform.rotation,
@@ -98,6 +98,7 @@ public class SpellController : Photon.MonoBehaviour {
         return fn.GetComponent<FireNovaController>();
     }
 
+	// Generic Method to cast spell 
     public void CastSpell(Spell spell) {
         photonView.RPC("PlayAnim", PhotonTargets.All, "Move|Cast");
 

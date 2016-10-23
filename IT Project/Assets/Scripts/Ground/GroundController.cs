@@ -11,7 +11,7 @@ public class GroundController : Photon.MonoBehaviour {
     public float SizeShrunkPerTime;
     // Time passed since last shrink
     public float TimePassed;
-    // MiniMapGround
+    // MiniMap Ground
     public GameObject MiniMap;
 
 
@@ -27,27 +27,30 @@ public class GroundController : Photon.MonoBehaviour {
         }
     }
 
+	// Update timePassed variable for ground on all clients
     public void SetTimePassedForAll(float timePassed) {
         this.photonView.RPC("SetTimePassedRPC", PhotonTargets.All, timePassed);
     }
 
     [PunRPC]
-    public void SetTimePassedRpc(float timePassed) {
+    public void SetTimePassedRPC(float timePassed) {
         this.TimePassed = timePassed;
     }
 
+	// Set scale of Ground on all clients
     public void SetScaleForAll(float scale) {
         this.photonView.RPC("SetScaleRPC", PhotonTargets.All, scale);
     }
 
     [PunRPC]
-    public void SetScaleRpc(float scale) {
+    public void SetScaleRPC(float scale) {
         this.transform.localScale = new Vector3(scale, 1, scale);
 		if (MiniMap != null) {
 			MiniMap.transform.localScale = this.transform.localScale;
 		}
     }
 
+	// Shrink the ground with given properties
     private void Scale() {
         Vector3 tempSize = transform.localScale;
         tempSize.x = transform.localScale.x - SizeShrunkPerTime;

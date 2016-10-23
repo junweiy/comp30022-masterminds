@@ -8,6 +8,7 @@
         if (!PhotonNetwork.connected) {
             return;
         }
+		// Update variable only for current player
         if (!photonView.isMine) {
             GetComponent<Character>().Hp = _hp;
             GetComponent<Character>().UserName = _userName;

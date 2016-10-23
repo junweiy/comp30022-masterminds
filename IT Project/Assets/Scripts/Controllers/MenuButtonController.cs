@@ -10,7 +10,9 @@ public class MenuButtonController : Photon.MonoBehaviour {
     public GameObject SpellButton;
     public GameObject PauseMessage;
     public Image SavedImage;
+	// Cool down time for saving game state
     private int _saveCoolDown = 5;
+	// Current cool down time
     private float _currentCoolDown = 0;
 
     public void MenuButtonOnClick() {
@@ -21,17 +23,20 @@ public class MenuButtonController : Photon.MonoBehaviour {
         }
     }
 
+	// Switch to main menu
     public void MainMenuButtonOnClick() {
         StateController.SwitchToMainMenu();
         PhotonNetwork.Disconnect();
     }
 
+	// Save the game
     public void SaveButtonOnClick() {
         _currentCoolDown = _saveCoolDown;
 		GameSaver gs = GameObjectFinder.FindGameSaver ();
         gs.Save();
     }
 
+	// Handle pause function on all clients
     public void PauseButtonOnClick() {
         if (Time.timeScale > 0) {
             photonView.RPC("Pause", PhotonTargets.All);
@@ -40,6 +45,7 @@ public class MenuButtonController : Photon.MonoBehaviour {
         }
     }
 
+	// Disable UI and display pause message on all clients
     [PunRPC]
     private void Pause() {
         JoyStick.SetActive(false);
@@ -49,6 +55,7 @@ public class MenuButtonController : Photon.MonoBehaviour {
         Time.timeScale = 0;
     }
 
+	// Resume game on all clients
     [PunRPC]
     private void Continue() {
         JoyStick.SetActive(true);
@@ -58,7 +65,7 @@ public class MenuButtonController : Photon.MonoBehaviour {
         Time.timeScale = 1;
     }
 
-
+	// Handle the cool down of saving function
     private void Update() {
         Color temp = SavedImage.color;
         temp.a = _currentCoolDown/_saveCoolDown;
