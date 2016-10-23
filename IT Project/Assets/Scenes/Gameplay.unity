@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692504, g: 0.4967869, b: 0.57508504, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.5750856, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -303,8 +303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7047599e36c5e04fa27b73438014261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthDropPerTime: 10
-  healthDropSecondsInterval: 2
+  HealthDropPerTime: 0
+  HealthDropSecondsInterval: 0
 --- !u!1 &364706860
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,12 +831,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3ef09ff12a24c55bd7990697f7a25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialScale: {x: 100, y: 0, z: 100}
-  secondsBetweenShrinking: 5
-  minScalableSizeRatio: 0.2
-  sizeShrunkPerTime: 10
-  timePassed: 0
-  miniMap: {fileID: 933987888}
+  InitialScale: {x: 100, y: 0, z: 100}
+  SecondsBetweenShrinking: 0
+  MinScalableSizeRatio: 0
+  SizeShrunkPerTime: 0
+  TimePassed: 0
+  MiniMap: {fileID: 0}
 --- !u!114 &918524707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1454,6 +1454,11 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010997073122, guid: ffe47eeb92e7e604ea0a4743c0c4de54,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Onclick
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffe47eeb92e7e604ea0a4743c0c4de54, type: 2}
   m_IsPrefabParent: 0
@@ -1612,6 +1617,11 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010997073122, guid: ffe47eeb92e7e604ea0a4743c0c4de54,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Onclick
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffe47eeb92e7e604ea0a4743c0c4de54, type: 2}
@@ -2287,14 +2297,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2687a9b1f07b6244a14a07413026938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuPanel: {fileID: 1315102955}
-  menuButton: {fileID: 1600111851}
-  pauseButton: {fileID: 1408553126}
-  mainMenuButton: {fileID: 40004045}
-  joyStick: {fileID: 1751152774}
-  spellButton: {fileID: 2005153434}
-  pauseMessage: {fileID: 1116272778}
-  savedImage: {fileID: 1597976777}
+  MenuPanel: {fileID: 1315102955}
+  MenuButton: {fileID: 1600111851}
+  PauseButton: {fileID: 1408553126}
+  MainMenuButton: {fileID: 40004045}
+  JoyStick: {fileID: 849329192}
+  SpellButton: {fileID: 2005153434}
+  PauseMessage: {fileID: 1116272778}
+  SavedImage: {fileID: 1597976777}
 --- !u!114 &1600111857
 MonoBehaviour:
   m_ObjectHideFlags: 0

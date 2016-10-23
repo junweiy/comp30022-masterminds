@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692504, g: 0.4967869, b: 0.57508504, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.5750856, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -241,7 +241,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2012856186}
-        m_MethodName: gotoRegister
+        m_MethodName: GotoRegister
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -602,10 +602,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edbd920eaf54fd4998a0cf31b23a647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userName_input: {fileID: 590364254}
-  email_input: {fileID: 1201495983}
-  userName: 
-  email: 
+  UserNameInput: {fileID: 590364254}
+  EmailInput: {fileID: 1201495983}
+  UserName: 
+  Email: 
 --- !u!1 &590364252
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,7 +987,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2012856186}
-        m_MethodName: registerSubmit
+        m_MethodName: RegisterSubmit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1563,7 +1563,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2012856186}
-        m_MethodName: gotoProfile
+        m_MethodName: GotoProfile
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1899,8 +1899,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbaa748a35325f34190178d65b7dbbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userName_input: {fileID: 1616531777}
-  userName: 
+  UserNameInput: {fileID: 1616531777}
+  UserName: 
 --- !u!1 &1281963991
 GameObject:
   m_ObjectHideFlags: 0
@@ -2849,7 +2849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c617c193e5424704a10645f2dccfc88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  errorMessage: {fileID: 2133933918}
+  ErrorMessage: {fileID: 0}
 --- !u!1 &1889263855
 GameObject:
   m_ObjectHideFlags: 0
@@ -3049,7 +3049,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2012856186}
-        m_MethodName: gotoMultiModePage
+        m_MethodName: GotoMultiModePage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3121,13 +3121,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeaeccb12814945b6861661aa3c4b5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadedFromFile: 0
-  isLogedIn: 0
-  userName: 
-  kill: 0
-  death: 0
-  won: 0
-  alreadyUpdated: 0
+  LoadedFromFile: 0
+  IsLogedIn: 0
+  UserName: 
+  Kill: 0
+  Death: 0
+  Won: 0
+  AlreadyUpdated: 0
 --- !u!4 &1996767388
 Transform:
   m_ObjectHideFlags: 0
@@ -3218,7 +3218,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2012856186}
-        m_MethodName: gotoreplay
+        m_MethodName: Gotoreplay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3412,14 +3412,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e178014db40c4031b501db4987a4ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  registerUserNameField: {fileID: 590364254}
-  registerEmailField: {fileID: 1201495983}
-  mainMenuPage: {fileID: 962138955}
-  singleModePage: {fileID: 962138955}
-  multiModePage: {fileID: 962138955}
-  registerPage: {fileID: 462722154}
-  loginPage: {fileID: 1229490597}
-  alertPage: {fileID: 1840431639}
+  RegisterUserNameField: {fileID: 590364254}
+  RegisterEmailField: {fileID: 1201495983}
+  MainMenuPage: {fileID: 962138955}
+  SingleModePage: {fileID: 0}
+  MultiModePage: {fileID: 0}
+  RegisterPage: {fileID: 462722154}
+  LoginPage: {fileID: 1229490597}
+  AlertPage: {fileID: 1840431639}
 --- !u!4 &2012856187
 Transform:
   m_ObjectHideFlags: 0
@@ -3658,7 +3658,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2012856186}
-        m_MethodName: login
+        m_MethodName: Login
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 2118912545}
@@ -3955,7 +3955,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2012856186}
-        m_MethodName: registerCancel
+        m_MethodName: RegisterCancel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

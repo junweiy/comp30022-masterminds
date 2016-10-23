@@ -23,8 +23,8 @@ public class MainMenuController : MonoBehaviour {
 
     private void DisableAllPages() {
         MainMenuPage.SetActive(false);
-        SingleModePage.SetActive(false);
-        MultiModePage.SetActive(false);
+        //SingleModePage.SetActive(false);
+        //MultiModePage.SetActive(false);
         RegisterPage.SetActive(false);
         LoginPage.SetActive(false);
     }

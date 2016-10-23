@@ -20,14 +20,14 @@ public class ProfileController : MonoBehaviour {
     }
 
     private void DisplayInfo() {
-        UserNameField.GetComponent<Text>().text = _p.UserName;
-        UserIdField.GetComponent<Text>().text = _p.Uid.ToString();
-        GamePlayedField.GetComponent<Text>().text = _p.NumGamesPlayed.ToString();
-        GameWonField.GetComponent<Text>().text = _p.NumGamesWon.ToString();
-        GameLostField.GetComponent<Text>().text = _p.NumGamesLost.ToString();
-        BestScoreField.GetComponent<Text>().text = _p.BestScore.ToString();
-        NumKillField.GetComponent<Text>().text = _p.NumPlayerKilled.ToString();
-        NumDeathField.GetComponent<Text>().text = _p.NumDeath.ToString();
+        UserNameField.GetComponent<Text>().text = _p.userName;
+        UserIdField.GetComponent<Text>().text = _p.uid.ToString();
+        GamePlayedField.GetComponent<Text>().text = _p.numGamesPlayed.ToString();
+        GameWonField.GetComponent<Text>().text = _p.numGamesWon.ToString();
+        GameLostField.GetComponent<Text>().text = _p.numGamesLost.ToString();
+        BestScoreField.GetComponent<Text>().text = _p.bestScore.ToString();
+        NumKillField.GetComponent<Text>().text = _p.numPlayerKilled.ToString();
+        NumDeathField.GetComponent<Text>().text = _p.numDeath.ToString();
     }
 
     private void Update() {

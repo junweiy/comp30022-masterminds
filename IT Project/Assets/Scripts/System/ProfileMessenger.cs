@@ -15,8 +15,8 @@ public static class ProfileMessenger {
     private static void ThrowExceptionIfError(string text) {
         Debug.Log(text);
         ErrorResponse res = JsonUtility.FromJson<ErrorResponse>(text);
-        if (res.Code != -1 && res.Code != 0 && res.Message != null) {
-            throw new ProfileMessagingException(res.Code, res.Message);
+        if (res.code != -1 && res.code != 0 && res.message != null) {
+            throw new ProfileMessagingException(res.code, res.message);
         }
     }
 
@@ -25,11 +25,10 @@ public static class ProfileMessenger {
         WWWForm form = new WWWForm();
 
         NewProfileRequest m = new NewProfileRequest();
-        m.NewProfile = profile;
-        m.Uid = profile.Uid;
-        m.Timestamp = GetTimeStamp();
-        m.Token = ProfileMessenger.Password;
-
+        m.newProfile = profile;
+        m.uid = profile.uid;
+        m.timestamp = GetTimeStamp();
+        m.token = ProfileMessenger.Password;
         form.AddField("message", JsonUtility.ToJson(m));
         WWW w = new WWW(UpdateProfileUrl, form);
         // wait until complete
@@ -40,13 +39,13 @@ public static class ProfileMessenger {
             Debug.Log(w.text);
             ThrowExceptionIfError(w.text);
             Debug.Log("Finished submitting profile");
-            GlobalState.LoadProfileWithUid(profile.Uid);
+            GlobalState.LoadProfileWithUid(profile.uid);
         }
     }
 
     // Gets the latest version of the given profile form the server
     public static Profile GetNewProfileFromServer(Profile currentProfile) {
-        int uid = currentProfile.Uid;
+        int uid = currentProfile.uid;
         return ProfileMessenger.GetProfileById(uid);
     }
 
@@ -55,12 +54,12 @@ public static class ProfileMessenger {
         string token = ProfileMessenger.Password;
 
         ProfileUpdateRequestWithUid req = new ProfileUpdateRequestWithUid();
-        req.Uid = userid;
-        req.Token = token;
-        req.Timestamp = GetTimeStamp();
+        req.uid = userid;
+        req.token = token;
+        req.timestamp = GetTimeStamp();
 
         WWWForm form = new WWWForm();
-        form.AddField("message", req.ToJson());
+        form.AddField("message", JsonUtility.ToJson(req));
         WWW w = new WWW(GetProfileUrl, form);
         // wait until complete
         while (!w.isDone) {}
@@ -70,7 +69,7 @@ public static class ProfileMessenger {
         } else {
             ThrowExceptionIfError(w.text);
             var res = JsonUtility.FromJson<ProfileUpdateResponse>(w.text);
-            return res.Profile;
+            return res.profile;
         }
     }
 
@@ -79,13 +78,12 @@ public static class ProfileMessenger {
         string token = ProfileMessenger.Password;
 
         ProfileUpdateRequestWithEmail req = new ProfileUpdateRequestWithEmail();
-        req.Email = email;
-        req.Token = token;
-        req.Timestamp = GetTimeStamp();
+        req.email = email;
+        req.token = token;
+        req.timestamp = GetTimeStamp();
 
         WWWForm form = new WWWForm();
-        form.AddField("message", req.ToJson());
-        Debug.Log(req.ToJson());
+        form.AddField("message", JsonUtility.ToJson(req));
         WWW w = new WWW(GetProfileUrl, form);
         // wait until complete
         while (!w.isDone) {}
@@ -95,17 +93,17 @@ public static class ProfileMessenger {
         } else {
             ThrowExceptionIfError(w.text);
             var res = JsonUtility.FromJson<ProfileUpdateResponse>(w.text);
-            return res.Profile;
+            return res.profile;
         }
     }
 
     // Request to create a new user in the server, returns the user id of new user if successful
     public static int? CreateNewUser(string userName, string email) {
         var req = new NewUserRequest();
-        req.Email = email;
-        req.UserName = userName;
-        req.Timestamp = GetTimeStamp();
-        req.Token = Password;
+        req.email = email;
+        req.userName = userName;
+        req.timestamp = GetTimeStamp();
+        req.token = Password;
         WWWForm form = new WWWForm();
         form.AddField("message", JsonUtility.ToJson(req));
         WWW w = new WWW(NewUserUrl, form);
@@ -117,7 +115,7 @@ public static class ProfileMessenger {
         } else {
             ThrowExceptionIfError(w.text);
             var res = JsonUtility.FromJson<NewUserResponse>(w.text);
-            return res.Uid;
+            return res.uid;
         }
     }
 
@@ -125,58 +123,50 @@ public static class ProfileMessenger {
 
     [System.Serializable]
     private class NewUserRequest {
-        public string UserName;
-        public string Email;
-        public int Timestamp;
-        public string Token;
+        public string userName;
+        public string email;
+        public int timestamp;
+        public string token;
     }
 
     [System.Serializable]
     private class NewUserResponse {
-        public int Code;
-        public string Message;
-        public int Uid;
+        public int code;
+        public string message;
+        public int uid;
     }
 
     [System.Serializable]
     private class ProfileUpdateRequestWithUid {
-        public int Uid;
-        public string Token;
-        public int Timestamp;
-
-        public string ToJson() {
-            return JsonUtility.ToJson(this);
-        }
+        public int uid;
+        public string token;
+        public int timestamp;
     }
 
     [System.Serializable]
     private class ProfileUpdateRequestWithEmail {
-        public string Email;
-        public string Token;
-        public int Timestamp;
-
-        public string ToJson() {
-            return JsonUtility.ToJson(this);
-        }
+        public string email;
+        public string token;
+        public int timestamp;
     }
 
     [System.Serializable]
     private class ProfileUpdateResponse {
-        public int Code;
-        public Profile Profile;
+        public int code;
+        public Profile profile;
     }
 
     [System.Serializable]
     private class NewProfileRequest {
-        public Profile NewProfile;
-        public int Uid;
-        public string Token;
-        public int Timestamp;
+        public Profile newProfile;
+        public int uid;
+        public string token;
+        public int timestamp;
     }
 
     [System.Serializable]
     private class ErrorResponse {
-        public int Code;
-        public string Message;
+        public int code;
+        public string message;
     }
 }

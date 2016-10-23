@@ -51,13 +51,13 @@ public class ProfileHandler : Photon.MonoBehaviour {
             }
             if (IsLogedIn && !AlreadyUpdated) {
                 Profile oldProfile = ProfileMessenger.GetProfileByEmail(UserName);
-                oldProfile.NumGamesPlayed += 1;
-                oldProfile.NumDeath += Death;
-                oldProfile.NumPlayerKilled += Kill;
+                oldProfile.numGamesPlayed += 1;
+                oldProfile.numDeath += Death;
+                oldProfile.numPlayerKilled += Kill;
                 if (Won) {
-                    oldProfile.NumGamesWon++;
+                    oldProfile.numGamesWon++;
                 } else {
-                    oldProfile.NumGamesLost++;
+                    oldProfile.numGamesLost++;
                 }
                 ResetStats();
                 ProfileMessenger.SubmitNewProfile(oldProfile);

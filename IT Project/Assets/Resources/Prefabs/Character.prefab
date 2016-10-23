@@ -1510,7 +1510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bbb2e9921d9bcd4ca745ab2c12c7677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 4000010374224458}
+  MTarget: {fileID: 4000010374224458}
 --- !u!114 &114000011952285792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1560,7 +1560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729361e7535de4a3c9147b78e5674ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 114000013035146968}
+  Character: {fileID: 114000013035146968}
 --- !u!114 &114000012874688120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1625,11 +1625,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196da49a900c8474a983ff18d062294e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charID: 0
-  userName: 
-  hp: 100
-  numKilled: 0
-  numDeath: 0
+  CharId: 0
+  UserName: 
+  Hp: 100
+  NumKilled: 0
+  NumDeath: 0
 --- !u!114 &114000013116237186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1716,8 +1716,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8915915fe4a4946a8978dd4ace9ac282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 114000013035146968}
-  isSpeaking: 0
+  Character: {fileID: 114000013035146968}
+  IsSpeaking: 0
 --- !u!114 &114000013874442838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1729,10 +1729,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34b5bcd7b5eec5458053c616bf234b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 114000013116237186}
+  slider: {fileID: 55916832}
   FullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   ZeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
-  fillImage: {fileID: 114000010861010884}
+  fillImage: {fileID: 53814176}
 --- !u!114 &114000014106367788
 MonoBehaviour:
   m_ObjectHideFlags: 1
