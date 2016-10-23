@@ -2869,21 +2869,8 @@ Prefab:
       propertyPath: instantiationId
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013978009302, guid: ebbbb41d46eef194aba93bd64f84f4c6,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: b506673b56af067458c311be70a6825e,
-        type: 3}
-    - target: {fileID: 114000011872677510, guid: ebbbb41d46eef194aba93bd64f84f4c6,
-        type: 2}
-      propertyPath: debuglog
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 114000011790820332, guid: ebbbb41d46eef194aba93bd64f84f4c6, type: 2}
-    - {fileID: 114000011504948620, guid: ebbbb41d46eef194aba93bd64f84f4c6, type: 2}
-    - {fileID: 82000010536722466, guid: ebbbb41d46eef194aba93bd64f84f4c6, type: 2}
+    - {fileID: 114000011599623548, guid: ebbbb41d46eef194aba93bd64f84f4c6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ebbbb41d46eef194aba93bd64f84f4c6, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &2092754262 stripped

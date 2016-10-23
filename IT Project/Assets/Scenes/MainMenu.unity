@@ -241,7 +241,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2012856186}
-        m_MethodName: GotoRegister
+        m_MethodName: GoToRegister
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2849,7 +2849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c617c193e5424704a10645f2dccfc88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ErrorMessage: {fileID: 0}
+  ErrorMessage: {fileID: 2133933918}
 --- !u!1 &1889263855
 GameObject:
   m_ObjectHideFlags: 0

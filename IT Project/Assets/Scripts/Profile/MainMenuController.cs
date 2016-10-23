@@ -11,11 +11,6 @@ public class MainMenuController : MonoBehaviour {
     public GameObject LoginPage;
     public GameObject AlertPage;
 
-    // Use this for initialization
-    private void Start() {
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
-    }
-
     private void DisableAllPages() {
         MainMenuPage.SetActive(false);
         RegisterPage.SetActive(false);

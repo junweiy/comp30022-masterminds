@@ -76,7 +76,7 @@ public class SpellController : Photon.MonoBehaviour {
             destinationAngle = Quaternion.LookRotation(joyStickMovement);
             fb = PhotonNetwork.Instantiate("Prefabs/Fireball", spawnPosition, destinationAngle, 0);
             foreach (var a in OnCastSpellActions) {
-                a(new FireBall(), fb.transform, -1); // TODO
+                a(new FireBall(), fb.transform, -1);
             }
             return fb.GetComponent<FireBallController>();
         }

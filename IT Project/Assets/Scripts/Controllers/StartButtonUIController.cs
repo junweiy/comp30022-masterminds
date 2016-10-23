@@ -10,6 +10,7 @@ public class StartButtonUIController : MonoBehaviour {
     // Use this for initialization
     private void Start() {
         _startImage = this.GetComponent<Image>();
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
     }
 
     // Update is called once per frame
