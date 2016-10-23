@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+// Base class for recording the current game state
 public class StateRecorder : MonoBehaviour {
     private HashSet<GameObject> _recordedChars = new HashSet<GameObject>();
     private Dictionary<int, Vector3> _lastPos = new Dictionary<int, Vector3>();

@@ -1,5 +1,6 @@
 ﻿using System;
 
+// Record for adding a character to the game
 [Serializable]
 public class AddCharacterRecord : IRecord {
     public int ObjId;

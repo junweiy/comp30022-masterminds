@@ -68,7 +68,7 @@ public static class StateReader {
             int hp = obj.GetComponent<Character>().Hp;
             if (!lastHp.ContainsKey(id) || lastHp[id] != hp) {
                 lastHp[id] = hp;
-                records.Add(new PlayerHpRecord(id, hp));
+                records.Add(new CharacterHpRecord(id, hp));
             }
         }
         return records;

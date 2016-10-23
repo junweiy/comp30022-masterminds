@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+// The recorder of a game, reads the game state in every update, and generates a GameReplay file
 public class GameStateRecorder : StateRecorder {
     private ReplayState _state = ReplayState.Preparing;
-
     private bool _started;
-
     private GameReplay _replay;
-
     private const int TARGET_FRAMERATE = 60;
-
     private int _frameCount = 0;
 
     // Use this for initialization
@@ -19,8 +16,8 @@ public class GameStateRecorder : StateRecorder {
         StartRecording();
     }
 
-    private void StartRecording() {
-        Debug.Log("Started Recording");
+    // Start recording of the game
+    public void StartRecording() {
         _started = true;
         _replay = new GameReplay {
             Info = new ReplayInfo(
@@ -29,7 +26,6 @@ public class GameStateRecorder : StateRecorder {
             ),
             Entries = new Queue<GameReplay.Entry>()
         };
-
 
         _frameCount = 0;
         _state = ReplayState.Started;
@@ -42,18 +38,19 @@ public class GameStateRecorder : StateRecorder {
         };
         _replay.Entries.Enqueue(newEntry);
     }
-
+    
+    // Finish recording of the game, makes the GameReplay ready to be saved
     public void FinishRecording() {
         if (!_started) {
             return;
         }
-        Debug.Log("Finished Recording");
         _state = ReplayState.Ended;
         FlushPendingRecodsToReplayObject();
         GlobalState.Instance.ReplayToSave = _replay;
         _started = false;
     }
 
+    // Writes the records in queue to the GameReplay object
     // Not an actual flush to disk, but could be changed to do so
     private void FlushPendingRecodsToReplayObject() {
         while (Pending.Count != 0) {

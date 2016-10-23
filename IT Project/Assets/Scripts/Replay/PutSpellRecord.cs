@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Replay;
 
+// Record for the initialisation of a spell
 [System.Serializable]
 public class PutSpellRecord : IRecord {
     public SpellType SpellType;

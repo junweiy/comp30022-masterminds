@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// Record for the rotation of a given GameObject
 [System.Serializable]
 public class RotationRecord : IRecord {
     public int Id;

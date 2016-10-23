@@ -1,4 +1,5 @@
-﻿[System.Serializable]
+﻿// Class containing metadata of a game replay
+[System.Serializable]
 public class ReplayInfo {
     public string GameVersion;
     public int TargetFrameRate;

@@ -1,4 +1,5 @@
-﻿[System.Serializable]
+﻿// Record representing state of the ground, including its scale and time to the next shrink
+[System.Serializable]
 public class GroundRecord : IRecord {
     private float _scale;
     private float _timePassedSinceLastShrink;

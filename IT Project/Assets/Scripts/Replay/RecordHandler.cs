@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Replay;
 using System;
 
+// Base class that contains shared logic for handling game records
 public class RecordHandler : MonoBehaviour {
     public GameObject CharacterPrefab;
     public GameObject FireballPrefab;
@@ -10,7 +11,8 @@ public class RecordHandler : MonoBehaviour {
 
     protected Dictionary<int, GameObject> GameObjMap = new Dictionary<int, GameObject>();
 
-    public void SetPlayerHp(int objId, int hp) {
+    // Changes HP of the character with the specified GameObject instance ID
+    public void SetCharacterHp(int objId, int hp) {
         if (PhotonNetwork.connected) {
             GameObjMap[objId].GetComponent<Character>().SetHpForAll(hp);
         } else {
@@ -18,6 +20,7 @@ public class RecordHandler : MonoBehaviour {
         }
     }
 
+    // Sets the position of the GameObject with specified instance ID
     public void SetPosition(int objId, Vector3 position) {
         if (PhotonNetwork.connected) {
             if (GameObjMap[objId].GetComponent<Character>() != null) {
@@ -30,6 +33,7 @@ public class RecordHandler : MonoBehaviour {
         }
     }
 
+    // Sets the rotation of the GameObject with specified instance ID
     public void SetRotation(int objId, Quaternion rotation) {
         if (PhotonNetwork.connected) {
             if (GameObjMap[objId].GetComponent<Character>() != null) {
@@ -42,10 +46,12 @@ public class RecordHandler : MonoBehaviour {
         }
     }
 
+    // Sets the scale of the GameObject with specified instance ID
     public void SetScale(int objId, Vector3 scale) {
         GameObjMap[objId].transform.localScale = scale;
     }
 
+    // Sets the state of the ground
     public void SetGround(float scale, float time) {
         GroundController gc = GameObject.FindGameObjectWithTag("Ground").GetComponent<GroundController>();
         if (PhotonNetwork.connected) {
@@ -57,6 +63,7 @@ public class RecordHandler : MonoBehaviour {
         }
     }
 
+    // Instantiate a spell with given spell type, caster ID and initial state
     public void InstantiateSpellWith(SpellType type, int casterId, Vector3 position, Quaternion rotation) {
         GameObject obj;
         if (!PhotonNetwork.connected) {
@@ -77,10 +84,12 @@ public class RecordHandler : MonoBehaviour {
         }
     }
 
+    // Applys the given record
     public void ApplyRecord(IRecord record) {
         record.ApplyEffect(this);
     }
 
+    // Instantiate a character with given ID and user name
     public void InstantiateCharacterWith(int recordObjId, int charId, string userName) {
         if (!PhotonNetwork.connected) {
             GameObject o = Instantiate(CharacterPrefab);

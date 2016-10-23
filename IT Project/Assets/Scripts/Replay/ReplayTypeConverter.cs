@@ -1,6 +1,8 @@
 ﻿using Replay;
 
+// Static class that helps intepreting replay types
 public static class ReplayTypeConverter {
+    // Gets the type of a character
     public static CharacterType GetTypeFromCharacter(Character character) {
         if (character.GetType() == typeof(Character)) {
             return CharacterType.Character;
@@ -9,6 +11,7 @@ public static class ReplayTypeConverter {
         throw new NonMatchedReplayTypeException();
     }
 
+    // Gets a new character class with the given type
     public static Character GetCharacterFromType(CharacterType type) {
         if (type == CharacterType.Character) {
             return new Character();
@@ -17,6 +20,7 @@ public static class ReplayTypeConverter {
         throw new NonMatchedReplayTypeException();
     }
 
+    // Gets the type of a spell
     public static SpellType GetTypeFromSpell(Spell s) {
         System.Type typ = s.GetType();
         if (typ == typeof(FireNova)) {
@@ -28,6 +32,7 @@ public static class ReplayTypeConverter {
         throw new NonMatchedReplayTypeException();
     }
 
+    // Gets a new spell object of a given type
     public static Spell GetSpellFromType(SpellType type) {
         if (type == SpellType.Fireball) {
             return new FireBall();

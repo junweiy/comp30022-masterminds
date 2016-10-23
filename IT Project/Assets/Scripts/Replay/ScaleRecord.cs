@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// Record for the scale of a GameObject
 [System.Serializable]
 public class ScaleRecord : IRecord {
     public int Id;

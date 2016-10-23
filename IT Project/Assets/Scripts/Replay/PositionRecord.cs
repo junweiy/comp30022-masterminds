@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// Record for the position of a GameObject
 [System.Serializable]
 public class PositionRecord : IRecord {
     public int Id;

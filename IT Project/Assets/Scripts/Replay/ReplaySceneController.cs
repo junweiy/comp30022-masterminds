@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+// The main controller for the replay scene, performs the game replay
+// and handles pause/continue actions
 public class ReplaySceneController : RecordHandler {
     public Text ButtonLabel;
     public GameObject PauseButton;
     public GameObject EndMessage;
-    //public Slider speedSlider;
-    //public Text sliderText;
-    //private decimal replaySpeed;
     private ReplayState _state = ReplayState.Preparing;
 
     private ReplayState State {
@@ -51,10 +50,12 @@ public class ReplaySceneController : RecordHandler {
         _frameCount = 0;
     }
 
+    // Starts the replay
     private void StartReplay() {
         State = ReplayState.Started;
     }
 
+    // Exit the replay scene, return to the replay selection menu
     public void Exit() {
         StateController.SwitchToReplaySelection();
     }
@@ -64,6 +65,7 @@ public class ReplaySceneController : RecordHandler {
         State = ReplayState.Ended;
     }
 
+    // Trigger between pause/play state
     public void TriggerPauseContinue() {
         if (State == ReplayState.Started) {
             Pause();
@@ -72,12 +74,14 @@ public class ReplaySceneController : RecordHandler {
         }
     }
 
+    // Pauses the replay
     public void Pause() {
         State = ReplayState.Paused;
         PauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Continue");
         Time.timeScale = 0;
     }
 
+    // Continues the replay from pause
     public void Continue() {
         State = ReplayState.Started;
         PauseButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/Pause");

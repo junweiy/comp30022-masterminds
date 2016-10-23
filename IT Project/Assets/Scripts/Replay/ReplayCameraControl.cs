@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// Controller for the camera in replay scene
 public class ReplayCameraControl : MonoBehaviour {
     public float SlideSpeed = 5f;
     public float ZoomSpeed = 5f;
@@ -10,7 +11,8 @@ public class ReplayCameraControl : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
-        if (Input.touchCount == 1) {
+        if (Input.touchCount == 1 && Input.touches[0].phase == TouchPhase.Moved) {
+            // handles moving
             Vector2 touchPos = Input.touches[0].position;
             if (_lastSlidePoint != null) {
                 var movement = (Vector2) _lastSlidePoint - Input.touches[0].position;
@@ -21,14 +23,10 @@ public class ReplayCameraControl : MonoBehaviour {
                 Mathf.Clamp(pos.x, 0, 900f);
                 Mathf.Clamp(pos.z, 0, 900f);
                 this.transform.position = pos;
-//                this.transform.Translate(new Vector3(
-//                    movement.x * SlideSpeed,
-//                    0f,
-//                    movement.y * SlideSpeed
-//                ));
             }
             _lastSlidePoint = touchPos;
-        } else if (Input.touchCount == 2) {
+        } else if (Input.touchCount == 2 && Input.touches[0].phase == TouchPhase.Moved) {
+            // handles zooming
             float dist = Vector2.Distance(
                 Input.touches[0].position,
                 Input.touches[1].position

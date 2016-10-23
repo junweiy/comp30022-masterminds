@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 
+// Class representing a saved game
 [System.Serializable]
 public class GameSave {
     public List<IRecord> Records;
