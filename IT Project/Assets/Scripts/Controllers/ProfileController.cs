@@ -7,7 +7,6 @@ public class ProfileController : MonoBehaviour {
     public GameObject GamePlayedField;
     public GameObject GameWonField;
     public GameObject GameLostField;
-    public GameObject BestScoreField;
     public GameObject NumKillField;
     public GameObject NumDeathField;
 
@@ -25,13 +24,11 @@ public class ProfileController : MonoBehaviour {
         GamePlayedField.GetComponent<Text>().text = _p.numGamesPlayed.ToString();
         GameWonField.GetComponent<Text>().text = _p.numGamesWon.ToString();
         GameLostField.GetComponent<Text>().text = _p.numGamesLost.ToString();
-        BestScoreField.GetComponent<Text>().text = _p.bestScore.ToString();
         NumKillField.GetComponent<Text>().text = _p.numPlayerKilled.ToString();
         NumDeathField.GetComponent<Text>().text = _p.numDeath.ToString();
     }
 
     private void Update() {
-        // TODO investigate on why this must be in update()
         DisplayInfo();
     }
 

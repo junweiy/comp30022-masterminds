@@ -10,7 +10,6 @@ public class DisplayProfile : MonoBehaviour {
 		SetText("NumGamesPlayed", Profile.numGamesPlayed.ToString(), 1);
 		SetText("NumGamesWon", Profile.numGamesWon.ToString(), 1);
 		SetText("NumGamesLost", Profile.numGamesLost.ToString(), 1);
-		SetText("BestScore", Profile.bestScore.ToString(), 1);
 		SetText("NumKilled", Profile.numPlayerKilled.ToString(), 1);
 		SetText("NumDeath", Profile.numDeath.ToString(), 1);
 	}
