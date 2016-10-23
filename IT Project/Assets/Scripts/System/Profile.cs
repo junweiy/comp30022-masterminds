@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// Class for a player's profile, containing basic information and stats
 [System.Serializable]
 public class Profile {
     public int Uid = 0;
@@ -12,9 +13,4 @@ public class Profile {
     public int BestScore = 0;
     public int NumPlayerKilled = 0;
     public int NumDeath = 0;
-
-
-    public string ToJson() {
-        return JsonUtility.ToJson(this);
-    }
 }

@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 
+// Static class for fetching/updating profile with the server
 public static class ProfileMessenger {
     public static string UpdateProfileUrl = "http://115.146.95.82/masterminds/profile/update.py";
     public static string GetProfileUrl = "http://115.146.95.82/masterminds/profile/getProfile.py";
     public static string NewUserUrl = "http://115.146.95.82/masterminds/profile/newUser.py";
     public static string Password = "overdue";
 
+    // Gets the timestamp
     public static int GetTimeStamp() {
         return System.DateTime.Now.Millisecond;
     }
@@ -18,6 +20,7 @@ public static class ProfileMessenger {
         }
     }
 
+    // Submits a new profile to the server, overwriting existing profile on server
     public static void SubmitNewProfile(Profile profile) {
         WWWForm form = new WWWForm();
 
@@ -41,11 +44,13 @@ public static class ProfileMessenger {
         }
     }
 
+    // Gets the latest version of the given profile form the server
     public static Profile GetNewProfileFromServer(Profile currentProfile) {
         int uid = currentProfile.Uid;
         return ProfileMessenger.GetProfileById(uid);
     }
 
+    // Gets the profile from server given the user id
     public static Profile GetProfileById(int userid) {
         string token = ProfileMessenger.Password;
 
@@ -69,6 +74,7 @@ public static class ProfileMessenger {
         }
     }
 
+    // Gets the profile from server given the email of the profile
     public static Profile GetProfileByEmail(string email) {
         string token = ProfileMessenger.Password;
 
@@ -93,6 +99,7 @@ public static class ProfileMessenger {
         }
     }
 
+    // Request to create a new user in the server, returns the user id of new user if successful
     public static int? CreateNewUser(string userName, string email) {
         var req = new NewUserRequest();
         req.Email = email;
@@ -114,6 +121,7 @@ public static class ProfileMessenger {
         }
     }
 
+    // Classes for JSON requests and responses
 
     [System.Serializable]
     private class NewUserRequest {

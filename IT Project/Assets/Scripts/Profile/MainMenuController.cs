@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-// ReSharper disable All
-
+// Controller for the main menu
 public class MainMenuController : MonoBehaviour {
     public InputField RegisterUserNameField;
     public InputField RegisterEmailField;

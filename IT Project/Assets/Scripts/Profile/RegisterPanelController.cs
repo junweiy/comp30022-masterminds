@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+// Controller for the register panel
 public class RegisterPanelController : MonoBehaviour {
     public InputField UserNameInput;
     public InputField EmailInput;

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+// Controller for the login panel
 public class LoginPanelController : MonoBehaviour {
     public InputField UserNameInput;
     public string UserName;

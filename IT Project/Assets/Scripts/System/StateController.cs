@@ -1,5 +1,6 @@
 ﻿using UnityEngine.SceneManagement;
 
+// Static class handling switching between different scenes
 public static class StateController {
     public static void SwitchToGamePlay() {
         SceneManager.LoadScene("scenes/gameplay");
