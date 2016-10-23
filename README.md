@@ -134,17 +134,25 @@ The game supports replay function so that players can watch saved replay. When t
 In the main menu, when the player taps on `Replay` button, the player will see a list of saved replay named by time (Figure 14). Then the player can tap on the button with desired time to watch replay. After the replay has started, the player can move around with one finger,  zoom in/out with two fingers, and can pause/continue the replay by tapping on corresponding button (Figure 15). 
 ![Figure 14](https://i.imgur.com/XdVpqEA.jpg)
 (Figure 14)
-
+![Figure 15](https://i.imgur.com/2YDBhSe.jpg)
+(Figure 15)
 
 If the player would like to exit the player can tap on the menu button on upper left corner, otherwise the player has to wait for replay to finish, then a message will tell the player that the replay has finished.
 
 ### Save/Load
 
 The game supports Save/Load function, so that the player can choose to continue a game from saved file. When the player is in the game, the player can save the current state into a file by tapping on the `S`(save) button (Figure 16), so that the game state will be saved (only one game state can be saved, later game saved  will replace the previous one). After the game state has been saved, the player can continue from the saved game. When the player is in the main menu, the player can continue from saved game by tapping on Load button. After the player has loaded from save file, when other players in the previous game joined, the countdown will start and game will continue from previous state (Figure 17).
+![Figure 16](https://i.imgur.com/rLvwgaM.png)
+(Figure 16)
+![Figure 17](https://i.imgur.com/VRuC6k7.jpg)
+(Figure 17)
+
 
 ### Profile
 
 For different accounts, all stats such as number of victory, killed player will be stored on the server. When the player would like to see the detailed stats, the player can enter the profile page by tapping on `Profile` button in the main menu (Figure 18).
+![Figure 18](https://i.imgur.com/XAVffqg.jpg)
+(Figure 18)
 
 
 ## Testing
