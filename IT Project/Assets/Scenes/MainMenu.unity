@@ -1563,7 +1563,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2012856186}
-        m_MethodName: GotoProfile
+        m_MethodName: GoToProfile
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2984,7 +2984,7 @@ GameObject:
   - 114: {fileID: 1948482975}
   - 114: {fileID: 1948482974}
   m_Layer: 5
-  m_Name: MultiMode
+  m_Name: QuickMatch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3049,7 +3049,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2012856186}
-        m_MethodName: GotoMultiModePage
+        m_MethodName: GoToQuickMatch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3218,7 +3218,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2012856186}
-        m_MethodName: Gotoreplay
+        m_MethodName: GoToReplay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3415,8 +3415,6 @@ MonoBehaviour:
   RegisterUserNameField: {fileID: 590364254}
   RegisterEmailField: {fileID: 1201495983}
   MainMenuPage: {fileID: 962138955}
-  SingleModePage: {fileID: 0}
-  MultiModePage: {fileID: 0}
   RegisterPage: {fileID: 462722154}
   LoginPage: {fileID: 1229490597}
   AlertPage: {fileID: 1840431639}

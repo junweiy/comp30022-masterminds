@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class StartButtonUiController : MonoBehaviour {
+public class StartButtonUIController : MonoBehaviour {
     private static float _coolDown = 0.5f;
     private float _currentCoolDown = 0.5f;
     private Image _startImage;
@@ -9,7 +9,7 @@ public class StartButtonUiController : MonoBehaviour {
 
     // Use this for initialization
     private void Start() {
-        _startImage = GetComponent<Image>();
+        _startImage = this.GetComponent<Image>();
     }
 
     // Update is called once per frame

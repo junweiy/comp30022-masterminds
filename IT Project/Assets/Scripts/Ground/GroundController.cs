@@ -43,7 +43,9 @@ public class GroundController : Photon.MonoBehaviour {
     [PunRPC]
     public void SetScaleRpc(float scale) {
         this.transform.localScale = new Vector3(scale, 1, scale);
-        MiniMap.transform.localScale = this.transform.localScale;
+		if (MiniMap != null) {
+			MiniMap.transform.localScale = this.transform.localScale;
+		}
     }
 
     private void Scale() {
@@ -52,6 +54,9 @@ public class GroundController : Photon.MonoBehaviour {
         tempSize.y = transform.localScale.y;
         tempSize.z = transform.localScale.z - SizeShrunkPerTime;
         transform.localScale = tempSize;
-        MiniMap.transform.localScale = tempSize;
+		if (MiniMap != null) {
+			MiniMap.transform.localScale = tempSize;
+		}
+        
     }
 }

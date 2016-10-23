@@ -7,8 +7,6 @@ public class MainMenuController : MonoBehaviour {
     public InputField RegisterEmailField;
 
     public GameObject MainMenuPage;
-    public GameObject SingleModePage;
-    public GameObject MultiModePage;
     public GameObject RegisterPage;
     public GameObject LoginPage;
     public GameObject AlertPage;
@@ -18,13 +16,8 @@ public class MainMenuController : MonoBehaviour {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
     }
 
-    // Update is called once per frame
-    private void Update() {}
-
     private void DisableAllPages() {
         MainMenuPage.SetActive(false);
-        //SingleModePage.SetActive(false);
-        //MultiModePage.SetActive(false);
         RegisterPage.SetActive(false);
         LoginPage.SetActive(false);
     }
@@ -49,7 +42,7 @@ public class MainMenuController : MonoBehaviour {
             } else {
                 GlobalState.LoadProfileWithUid((int) uid);
 				GameObjectFinder.FindProfileHandler().LoggedIn(email);
-                GotoMainMenu();
+                GoToMainMenu();
             }
         } catch (ProfileMessagingException e) {
             DisplayError(e);
@@ -68,36 +61,32 @@ public class MainMenuController : MonoBehaviour {
                 Debug.LogWarning("login failed");
             } else {
 				GameObjectFinder.FindProfileHandler().LoggedIn(email);
-                GotoMainMenu();
+                GoToMainMenu();
             }
         } catch (ProfileMessagingException e) {
             DisplayError(e);
         }
     }
 
-    public void GotoMainMenu() {
+    public void GoToMainMenu() {
         SwitchTo(MainMenuPage);
     }
 
-    public void GotoRegister() {
+    public void GoToRegister() {
         SwitchTo(RegisterPage);
     }
 
-    public void GotoProfile() {
+    public void GoToProfile() {
         StateController.SwitchToProfile();
     }
 
-    public void Gotoreplay() {
+    public void GoToReplay() {
         StateController.SwitchToReplaySelection();
     }
-
-
-    public void GotoSingleModePage() {
-        SwitchTo(SingleModePage);
-    }
+		
 
     // for multiPlayer button
-    public void GotoMultiModePage() {
+    public void GoToQuickMatch() {
 		ProfileHandler ph = GameObjectFinder.FindProfileHandler();
         ph.LoadedFromFile = false;
         StateController.SwitchToMatching();

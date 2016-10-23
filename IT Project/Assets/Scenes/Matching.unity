@@ -164,7 +164,7 @@ GameObject:
   - 114: {fileID: 72667715}
   - 114: {fileID: 72667717}
   m_Layer: 0
-  m_Name: connectionStatus
+  m_Name: ConnectionStatus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692504, g: 0.4967869, b: 0.57508504, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.5750856, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -616,7 +616,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 828161342}
-        m_MethodName: saveReplay
+        m_MethodName: SaveReplay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -762,16 +762,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a45c5a9ecbb4e07989aeddeeb1bc97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isWinner: 0
-  userName: 
-  kill: 0
-  death: 0
-  playerResult: {fileID: 1000012607363884, guid: 8ff9cf3e341dfdb43adf36dacd989f2d,
+  IsWinner: 0
+  UserName: 
+  Kill: 0
+  Death: 0
+  PlayerResult: {fileID: 1000012607363884, guid: 8ff9cf3e341dfdb43adf36dacd989f2d,
     type: 2}
-  playerList: {fileID: 455560639}
-  result: {fileID: 1868995158}
-  savedImage: {fileID: 1344370940}
-  saveButton: {fileID: 678897715}
+  PlayerList: {fileID: 455560639}
+  Result: {fileID: 1868995158}
+  SavedImage: {fileID: 1344370940}
+  SaveButton: {fileID: 678897715}
 --- !u!4 &828161343
 Transform:
   m_ObjectHideFlags: 0
@@ -1010,7 +1010,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 828161342}
-        m_MethodName: returnToMainMenu
+        m_MethodName: ReturnToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -164,7 +164,7 @@ GameObject:
   - 222: {fileID: 101409219}
   - 114: {fileID: 101409218}
   m_Layer: 5
-  m_Name: numGamesLost
+  m_Name: NumGamesLost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,7 +239,7 @@ GameObject:
   - 222: {fileID: 304457874}
   - 114: {fileID: 304457873}
   m_Layer: 5
-  m_Name: Text
+  m_Name: GamesWonNum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -313,7 +313,7 @@ GameObject:
   - 222: {fileID: 470098669}
   - 114: {fileID: 470098668}
   m_Layer: 5
-  m_Name: numGamesWin
+  m_Name: NumGamesWon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -388,7 +388,7 @@ GameObject:
   - 222: {fileID: 479928409}
   - 114: {fileID: 479928408}
   m_Layer: 5
-  m_Name: numGamesPlayed
+  m_Name: NumGamesPlayed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,7 +537,7 @@ GameObject:
   - 222: {fileID: 519556206}
   - 114: {fileID: 519556205}
   m_Layer: 5
-  m_Name: bestScore
+  m_Name: BestScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -734,7 +734,7 @@ GameObject:
   - 222: {fileID: 708228866}
   - 114: {fileID: 708228865}
   m_Layer: 5
-  m_Name: Text
+  m_Name: GamesLostNum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -808,7 +808,7 @@ GameObject:
   - 222: {fileID: 718182925}
   - 114: {fileID: 718182924}
   m_Layer: 5
-  m_Name: Text
+  m_Name: NumKilledNum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1032,7 +1032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b93de5d3d9e9847967f2eadca5a896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile:
+  Profile:
     uid: 0
     userName: 
     email: 
@@ -1042,7 +1042,6 @@ MonoBehaviour:
     bestScore: 0
     numPlayerKilled: 0
     numDeath: 0
-  details: {fileID: 803788372}
 --- !u!1 &832599229
 GameObject:
   m_ObjectHideFlags: 0
@@ -1116,7 +1115,7 @@ GameObject:
   - 222: {fileID: 841199205}
   - 114: {fileID: 841199204}
   m_Layer: 5
-  m_Name: Text
+  m_Name: BestScoreNum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1190,7 +1189,7 @@ GameObject:
   - 222: {fileID: 942081830}
   - 114: {fileID: 942081829}
   m_Layer: 5
-  m_Name: numKilled
+  m_Name: NumKilled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1281,14 +1280,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa4e13b9dd42d4ff992c2cbf59d77a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userNameField: {fileID: 2112590930}
-  userIdField: {fileID: 752814306}
-  gamePlayedField: {fileID: 1290104331}
-  gameWonField: {fileID: 304457871}
-  gameLostField: {fileID: 708228863}
-  bestScoreField: {fileID: 841199202}
-  numKillField: {fileID: 718182922}
-  numDeathField: {fileID: 1152352390}
+  UserNameField: {fileID: 2112590930}
+  UserIdField: {fileID: 752814306}
+  GamePlayedField: {fileID: 1290104331}
+  GameWonField: {fileID: 304457871}
+  GameLostField: {fileID: 708228863}
+  BestScoreField: {fileID: 841199202}
+  NumKillField: {fileID: 718182922}
+  NumDeathField: {fileID: 1152352390}
 --- !u!4 &982787140
 Transform:
   m_ObjectHideFlags: 0
@@ -1387,7 +1386,7 @@ GameObject:
   - 222: {fileID: 1152352393}
   - 114: {fileID: 1152352392}
   m_Layer: 5
-  m_Name: Text
+  m_Name: NumDeathNum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1461,7 +1460,7 @@ GameObject:
   - 222: {fileID: 1290104334}
   - 114: {fileID: 1290104333}
   m_Layer: 5
-  m_Name: Text
+  m_Name: GamesPlayedNum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1786,7 +1785,7 @@ GameObject:
   - 222: {fileID: 2007869231}
   - 114: {fileID: 2007869230}
   m_Layer: 5
-  m_Name: numDeath
+  m_Name: NumDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1919,7 +1918,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: usename
+  m_Text: username
 --- !u!222 &2112590933
 CanvasRenderer:
   m_ObjectHideFlags: 0

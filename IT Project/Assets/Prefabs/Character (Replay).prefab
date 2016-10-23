@@ -1491,7 +1491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bbb2e9921d9bcd4ca745ab2c12c7677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 4000011760025484}
+  MTarget: {fileID: 4000011760025484}
 --- !u!114 &114000011410415804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1569,10 +1569,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34b5bcd7b5eec5458053c616bf234b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 114000012777649178}
+  slider: {fileID: 312199109}
   FullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   ZeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
-  fillImage: {fileID: 114000010252330382}
+  fillImage: {fileID: 312198853}
 --- !u!114 &114000012328296942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1610,7 +1610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729361e7535de4a3c9147b78e5674ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 114000013352372126}
+  Character: {fileID: 114000013352372126}
 --- !u!114 &114000012728890298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1683,8 +1683,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8915915fe4a4946a8978dd4ace9ac282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 114000013352372126}
-  isSpeaking: 0
+  Character: {fileID: 114000013352372126}
+  IsSpeaking: 0
 --- !u!114 &114000013179918454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1723,11 +1723,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196da49a900c8474a983ff18d062294e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charID: 0
-  userName: 
-  hp: 100
-  numKilled: 0
-  numDeath: 0
+  CharId: 0
+  UserName: 
+  Hp: 100
+  NumKilled: 0
+  NumDeath: 0
 --- !u!124 &124000013613241862
 Behaviour:
   m_ObjectHideFlags: 1
