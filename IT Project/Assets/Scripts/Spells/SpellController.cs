@@ -69,7 +69,7 @@ public class SpellController : Photon.MonoBehaviour {
         GameObject fb;
         Quaternion destinationAngle;
         Vector3 joyStickMovement =
-            GameObject.FindGameObjectWithTag("JoyStick").GetComponent<VirtualJoyStick>().GetStickPosition();
+			GameObjectFinder.FindJoyStick().GetComponent<VirtualJoyStick>().GetStickPosition();
         Vector3 spawnPosition = this.transform.position + joyStickMovement*_fireballSpawnDistance;
 
         if (joyStickMovement != Vector3.zero) {

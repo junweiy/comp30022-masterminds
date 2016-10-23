@@ -5,7 +5,7 @@ public class VoiceButtonController : Photon.MonoBehaviour {
     private GameObject _speakerIcon;
 
     private void Start() {
-        _mainPlayer = FindMainPlayer();
+        _mainPlayer = GameObjectFinder.FindMainPlayer();
         if (_mainPlayer != null) {
             _speakerIcon = _mainPlayer.transform.GetChild(2).GetChild(1).gameObject;
         }
@@ -13,7 +13,7 @@ public class VoiceButtonController : Photon.MonoBehaviour {
 
     private void Update() {
         if (_mainPlayer == null) {
-            _mainPlayer = FindMainPlayer();
+			_mainPlayer = GameObjectFinder.FindMainPlayer();
             if (_mainPlayer != null) {
                 _speakerIcon = _mainPlayer.transform.GetChild(2).GetChild(1).gameObject;
             } else {
@@ -33,22 +33,6 @@ public class VoiceButtonController : Photon.MonoBehaviour {
         GameObject playerIcon = player.transform.GetChild(2).GetChild(1).gameObject;
         playerIcon.SetActive(!playerIcon.GetActive());
     }
-
-    public static GameObject FindMainPlayer() {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Character");
-        foreach (GameObject player in players) {
-            if (player.GetPhotonView().isMine) {
-                return player;
-            }
-        }
-        return null;
-    }
-
-    public static T GetMainPlayerController<T>() {
-        GameObject mainPlayer = FindMainPlayer();
-        return mainPlayer.GetComponent<T>();
-    }
-
 
     public void OnClick() {
         Debug.Log("Clicked");

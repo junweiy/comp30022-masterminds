@@ -46,7 +46,7 @@ public class CharacterController : Photon.MonoBehaviour {
         }
 
         // Detect user input of movement
-        GameObject joyStick = GameObject.FindGameObjectWithTag("JoyStick");
+		GameObject joyStick = GameObjectFinder.FindJoyStick();
         if (joyStick == null) {
             return;
         }

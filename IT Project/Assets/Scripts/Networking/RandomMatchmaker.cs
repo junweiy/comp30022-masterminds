@@ -41,16 +41,6 @@ public class RandomMatchmaker : Photon.PunBehaviour {
         TimeLeft = COUNTDOWN;
     }
 
-    //void OnGUI() {
-
-    //	GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
-    //	GUI.Label (new Rect(Screen.width/3, Screen.height/2,300,20), status);
-    //	if (countdownStarted) {
-    //		GUI.Label (new Rect(Screen.width/2, Screen.height/3,100,20), ((int)timeLeft).ToString());
-    //	}
-
-    //}
-
     public override void OnJoinedLobby() {
         PhotonNetwork.JoinRandomRoom();
     }
@@ -60,7 +50,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
     }
 
     public void CountdownFinished() {
-        GameController gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+		GameController gc = GameObjectFinder.FindGameController();
         gc.LoadedFromFile = LoadedFromFile;
         if (PhotonNetwork.isMasterClient) {
             PhotonNetwork.LoadLevel("scenes/gameplay");
@@ -112,7 +102,7 @@ public class RandomMatchmaker : Photon.PunBehaviour {
 
     public override void OnJoinedRoom() {
         PhotonNetwork.playerName =
-            GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().UserName;
+			GameObjectFinder.FindProfileHandler().UserName;
         if (PhotonNetwork.playerList.Length == 1) {
             if (LoadedFromFile && LoadFileExists()) {
                 _status = "Save loaded, Waiting For other players to join in.";

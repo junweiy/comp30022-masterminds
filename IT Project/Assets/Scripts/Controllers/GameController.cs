@@ -10,9 +10,8 @@ public class GameController : Photon.PunBehaviour {
     public bool LoadedFromFile;
 
     public static bool CheckIfGameEnds() {
-        GameObject recorder = GameObject.FindGameObjectWithTag("Recorder");
-        GameStateRecorder gsr = recorder.GetComponent<GameStateRecorder>();
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Character");
+		GameStateRecorder gsr = GameObjectFinder.FindGameStateRecorder();
+		GameObject[] players = GameObjectFinder.FindAllCharacters();
         int numAlive = 0;
         foreach (GameObject player in players) {
             if (!player.GetComponent<Character>().IsDead) {
@@ -59,7 +58,7 @@ public class GameController : Photon.PunBehaviour {
                 InitialiseGamePlay();
             } else {
                 if (PhotonNetwork.isMasterClient) {
-                    GameLoader gl = GameObject.FindGameObjectWithTag("Loader").GetComponent<GameLoader>();
+					GameLoader gl = GameObjectFinder.FindGameLoader ();
                     GameSave save = gl.ReadFile();
                     gl.Load(save);
                 }
@@ -111,7 +110,7 @@ public class GameController : Photon.PunBehaviour {
 
 
     public static Character FindMainCharacter() {
-        GameObject mainPlayer = VoiceButtonController.FindMainPlayer();
+        GameObject mainPlayer = GameObjectFinder.FindMainPlayer();
         if (mainPlayer != null) {
             return mainPlayer.GetComponent<Character>();
         }

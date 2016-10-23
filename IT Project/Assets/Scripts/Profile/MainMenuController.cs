@@ -48,7 +48,7 @@ public class MainMenuController : MonoBehaviour {
                 Debug.LogWarning("register failed");
             } else {
                 GlobalState.LoadProfileWithUid((int) uid);
-                GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().LoggedIn(email);
+				GameObjectFinder.FindProfileHandler().LoggedIn(email);
                 GotoMainMenu();
             }
         } catch (ProfileMessagingException e) {
@@ -67,7 +67,7 @@ public class MainMenuController : MonoBehaviour {
             if (outcome == false) {
                 Debug.LogWarning("login failed");
             } else {
-                GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().LoggedIn(email);
+				GameObjectFinder.FindProfileHandler().LoggedIn(email);
                 GotoMainMenu();
             }
         } catch (ProfileMessagingException e) {
@@ -98,14 +98,14 @@ public class MainMenuController : MonoBehaviour {
 
     // for multiPlayer button
     public void GotoMultiModePage() {
-        ProfileHandler ph = GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>();
+		ProfileHandler ph = GameObjectFinder.FindProfileHandler();
         ph.LoadedFromFile = false;
         StateController.SwitchToMatching();
     }
 
     // for load button
     public void LoadGame() {
-        ProfileHandler ph = GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>();
+		ProfileHandler ph = GameObjectFinder.FindProfileHandler();
         ph.LoadedFromFile = true;
         StateController.SwitchToMatching();
     }

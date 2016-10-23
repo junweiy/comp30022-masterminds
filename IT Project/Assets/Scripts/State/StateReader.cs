@@ -97,7 +97,7 @@ public static class StateReader {
     }
 
     public static GroundRecord GetGroundRecord(float lastGroundSize) {
-        GameObject ground = GameObject.FindGameObjectWithTag("Ground");
+		GameObject ground = GameObjectFinder.FindGround ();
         GroundController gc = ground.GetComponent<GroundController>();
         float scale = ground.transform.localScale.x;
         if (scale != lastGroundSize) {

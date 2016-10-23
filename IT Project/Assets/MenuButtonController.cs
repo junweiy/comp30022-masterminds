@@ -28,7 +28,7 @@ public class MenuButtonController : Photon.MonoBehaviour {
 
     public void SaveButtonOnClick() {
         _currentCoolDown = _saveCoolDown;
-        GameSaver gs = GameObject.FindGameObjectWithTag("Saver").GetComponent<GameSaver>();
+		GameSaver gs = GameObjectFinder.FindGameSaver ();
         gs.Save();
     }
 
@@ -69,16 +69,5 @@ public class MenuButtonController : Photon.MonoBehaviour {
             _currentCoolDown = 0;
         }
     }
-
-    //void Update()
-    //{
-    //    if (menuPanel.activeInHierarchy)
-    //    {
-    //        if (EventSystem.current.gameObject != pauseButton && EventSystem.current.gameObject != mainMenuButton)
-    //        {
-    //            //menuPanel.SetActive(false);
-    //        }
-
-    //    }
-    //}
+		
 }

@@ -20,7 +20,7 @@ public class ProfileHandler : Photon.MonoBehaviour {
         IsLogedIn = false;
         AlreadyUpdated = true;
         DontDestroyOnLoad(this.gameObject);
-        if (GameObject.FindGameObjectsWithTag("ProfileHandler").Length == 2) {
+		if (GameObjectFinder.FindAllProfileHandler().Length == 2) {
             Destroy(this.gameObject);
         }
     }
@@ -65,13 +65,12 @@ public class ProfileHandler : Photon.MonoBehaviour {
         }
 
         if (level == MATCHING_SCENE_NUMBER) {
-            RandomMatchmaker rm = GameObject.FindGameObjectWithTag("MatchMaker").GetComponent<RandomMatchmaker>();
+			RandomMatchmaker rm = GameObjectFinder.FindRandomMatchMaker ();
             rm.LoadedFromFile = LoadedFromFile;
         }
 
         if (level == RESULT_SCENE_NUMBER) {
-            ResultPageController rpc =
-                GameObject.FindGameObjectWithTag("ResultPageController").GetComponent<ResultPageController>();
+			ResultPageController rpc = GameObjectFinder.FindResultPageController ();
             rpc.IsWinner = Won;
             rpc.UserName = UserName;
             rpc.Kill = Kill;

@@ -53,7 +53,7 @@ public class RecordHandler : MonoBehaviour {
 
     // Sets the state of the ground
     public void SetGround(float scale, float time) {
-        GroundController gc = GameObject.FindGameObjectWithTag("Ground").GetComponent<GroundController>();
+		GroundController gc = GameObjectFinder.FindGroundController();
         if (PhotonNetwork.connected) {
             gc.SetTimePassedForAll(time);
             gc.SetScaleForAll(scale);

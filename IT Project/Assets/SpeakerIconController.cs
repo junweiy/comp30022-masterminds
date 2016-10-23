@@ -4,7 +4,7 @@ public class SpeakerIconController : MonoBehaviour {
     public GameObject SpeakerIcon;
 
     public static GameObject FindMainPlayer() {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Character");
+		GameObject[] players = GameObjectFinder.FindAllCharacters ();
         foreach (GameObject player in players) {
             if (player.GetPhotonView().isMine) {
                 return player;

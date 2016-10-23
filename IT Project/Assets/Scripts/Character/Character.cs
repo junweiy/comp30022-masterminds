@@ -36,7 +36,7 @@ public class Character : Photon.MonoBehaviour {
         this._healthBarUi = this.GetComponent<HealthBarUi>();
         CharId = photonView.viewID;
         if (photonView.isMine) {
-            UserName = GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>().UserName;
+			UserName = GameObjectFinder.FindProfileHandler().UserName;
         }
     }
 
@@ -57,7 +57,7 @@ public class Character : Photon.MonoBehaviour {
         }
         IsDead = true;
         NumDeath++;
-        GameController gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+		GameController gc = GameObjectFinder.FindGameController();
         if (GameController.CheckIfGameEnds()) {
             UpdateProfile(false);
             gc.DisplayGameOverMessage();
@@ -80,7 +80,7 @@ public class Character : Photon.MonoBehaviour {
     }
 
     private void FocusCameraOnOtherPlayer() {
-        GameObject anotherPlayer = FindAnotherPlayerAlive();
+        GameObject anotherPlayer = GameObjectFinder.FindAnotherPlayerAlive();
         transform.FindChild("CameraRig").gameObject.SetActive(false);
         GameObject cameraRig = anotherPlayer.transform.FindChild("CameraRig").gameObject;
         Debug.Log(anotherPlayer.GetComponent<Character>().CharId);
@@ -89,25 +89,15 @@ public class Character : Photon.MonoBehaviour {
         cameraRig.GetComponentInChildren<AudioListener>().enabled = true;
     }
 
-    private GameObject FindAnotherPlayerAlive() {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Character");
-        foreach (GameObject player in players) {
-            if (!player.GetComponent<Character>().IsDead) {
-                return player;
-            }
-        }
-        return null;
-    }
-
     public static void DisableUi() {
-        GameObject.FindGameObjectWithTag("JoyStick").SetActive(false);
-        GameObject.FindGameObjectWithTag("SpellButton").SetActive(false);
+		GameObjectFinder.FindJoyStick().SetActive(false);
+		GameObjectFinder.FindSpellIcon().SetActive(false);
     }
 
 
     public void Killed() {
         NumKilled++;
-        GameController gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+		GameController gc = GameObjectFinder.FindGameController();
         if (GameController.CheckIfGameEnds()) {
             UpdateProfile(true);
             gc.DisplayGameOverMessage();
@@ -116,14 +106,14 @@ public class Character : Photon.MonoBehaviour {
 
     public void UpdateProfile(bool win) {
         if (photonView.isMine) {
-            ProfileHandler ph = GameObject.FindGameObjectWithTag("ProfileHandler").GetComponent<ProfileHandler>();
+			ProfileHandler ph = GameObjectFinder.FindProfileHandler();
             ph.UpdateProfile(this.NumKilled, this.NumDeath, win);
         }
     }
 
 
     public static GameObject FindCharacterWithUserName(string userName) {
-        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
+		GameObject[] characters = GameObjectFinder.FindAllCharacters();
         foreach (GameObject character in characters) {
             if (character.GetComponent<Character>().UserName == userName) {
                 return character;
